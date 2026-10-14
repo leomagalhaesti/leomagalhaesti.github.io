@@ -222,6 +222,31 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
 .item:focus-visible{outline:2px solid var(--menta);outline-offset:-2px}
 @media (max-width:30rem){.item .quero b{display:none}}
 .servicos mark{background:color-mix(in srgb,var(--menta) 30%,transparent);color:inherit;border-radius:3px}
+/* Nina: atendente do site (a buldogue do Leo) */
+.pata{width:1.15em;height:1.15em;fill:currentColor;flex:none}
+.nina{display:flex;flex-direction:column;min-width:0;background:var(--fundo);border:1px solid var(--linha-forte);border-radius:16px;overflow:hidden}
+.nina-cab{display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;border-bottom:1px solid var(--linha)}
+.nina-av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;color:#03140F;background:var(--menta)}
+.nina-av .pata{width:20px;height:20px}
+.nina-cab strong{display:block;font-size:.98rem}
+.nina-cab small{display:flex;align-items:center;gap:.4rem;font:500 .72rem var(--mono);color:var(--texto-3)}
+.nina-cab small i{width:6px;height:6px;border-radius:50%;background:var(--menta);animation:pulso 2.4s ease-out infinite}
+.nina-cab .link-sec{margin-left:auto;font-size:.78rem;color:var(--texto-3)}
+.nina-msgs{list-style:none;margin:0;padding:1rem;display:flex;flex-direction:column;gap:.55rem;height:22rem;overflow-y:auto;scroll-behavior:smooth;overscroll-behavior:contain}
+.nina-msgs li{max-width:85%;padding:.65rem .9rem;border-radius:14px;font-size:.95rem;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere;animation:entra .3s ease-out both}
+.nina-msgs .dela{align-self:flex-start;background:var(--painel-2);border:1px solid var(--linha);border-bottom-left-radius:4px;color:var(--texto)}
+.nina-msgs .sua{align-self:flex-end;background:rgba(43,217,168,.14);border:1px solid rgba(43,217,168,.3);border-bottom-right-radius:4px}
+.nina-msgs .aviso{align-self:center;max-width:100%;background:none;padding:.2rem;font:500 .74rem var(--mono);color:var(--menta-2);text-align:center}
+.nina-msgs .digita{display:flex;gap:.3rem;padding:.8rem .9rem}
+.nina-msgs .digita i{width:6px;height:6px;border-radius:50%;background:var(--texto-3);animation:pula 1s ease-in-out infinite}
+.nina-msgs .digita i:nth-child(2){animation-delay:.15s}.nina-msgs .digita i:nth-child(3){animation-delay:.3s}
+.pedido .nina-escreve{display:flex;gap:.4rem;padding:.6rem;border-top:1px solid var(--linha)}
+.nina-escreve input{flex:1;min-width:0;background:var(--painel);border:1px solid var(--linha-forte);border-radius:10px;color:var(--texto);font:400 .98rem var(--sans);padding:.75rem .9rem}
+.nina-escreve input:focus{outline:0;border-color:var(--menta);box-shadow:0 0 0 4px rgba(43,217,168,.12)}
+.nina-escreve .botao{padding:.7rem .9rem}
+.nina-escreve .botao[disabled]{opacity:.5;pointer-events:none}
+@keyframes pula{0%,100%{transform:none;opacity:.5}50%{transform:translateY(-3px);opacity:1}}
+@media (max-width:30rem){.nina-msgs{height:19rem}}
 /* botão flutuante */
 .flutua{position:fixed;right:1rem;bottom:1rem;z-index:30;display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.1rem;border-radius:999px;text-decoration:none;
   font:600 .9rem var(--sans);color:#03140F;background:var(--menta);box-shadow:0 12px 34px -10px rgba(43,217,168,.8);
@@ -246,7 +271,8 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
 .pedido h3{margin:.6rem 0 0;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;letter-spacing:-.03em;line-height:1.1}
 .pedido h3 em{font-style:normal;color:var(--menta)}
 .pedido>div>p{margin:.7rem 0 0;color:var(--texto-2)}
-.pedido form{display:grid;gap:.7rem}
+.pedido #form-pedido{display:grid;gap:.7rem}
+.pedido [hidden]{display:none!important}
 .pedido{position:relative;animation:respira 4.5s ease-in-out infinite}
 .pedido.chamou{animation:chama .8s ease-out 2}
 .disponivel{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font:500 .8rem var(--mono);color:var(--texto-2);padding:.4rem .75rem;border-radius:999px;border:1px solid var(--linha-forte);background:rgba(5,8,7,.5)}
@@ -446,12 +472,18 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
 
       <div class="pedido surge" id="pedido">
         <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Não achou?</span>
-          <h3>Me conta o que você <em>precisa resolver.</em></h3>
-          <p>Serviço, produto, uma ideia solta ou um problema que ninguém resolveu ainda. A mensagem chega direto no meu celular, e quem responde sou eu.</p>
+          <span class="rotulo"><svg class="pata" style="color:var(--menta)" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="10" r="2.1"/><circle cx="10" cy="5.8" r="2.1"/><circle cx="14" cy="5.8" r="2.1"/><circle cx="17.5" cy="10" r="2.1"/><path d="M12 11.5c-3.1 0-5.6 3.2-5.6 5.5 0 1.7 1.3 2.5 2.8 2.5 1.2 0 1.8-.6 2.8-.6s1.6.6 2.8.6c1.5 0 2.8-.8 2.8-2.5 0-2.3-2.5-5.5-5.6-5.5z"/></svg>Atendimento</span>
+          <h3>Fala com a Nina. <em>Ela responde na hora.</em></h3>
+          <p>A Nina é a minha buldogue e cuida do atendimento aqui: entende o que você precisa, fala de valores e me passa tudo no WhatsApp. O resto é comigo.</p>
           <span class="disponivel" id="disponivel"><i></i><span>Respondo assim que eu ver</span></span>
         </div>
-        <form id="form-pedido" novalidate>
+        <div class="pedido-dir" style="min-width:0">
+        <div class="nina" id="nina">
+          <header class="nina-cab"><span class="nina-av"><svg class="pata" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="10" r="2.1"/><circle cx="10" cy="5.8" r="2.1"/><circle cx="14" cy="5.8" r="2.1"/><circle cx="17.5" cy="10" r="2.1"/><path d="M12 11.5c-3.1 0-5.6 3.2-5.6 5.5 0 1.7 1.3 2.5 2.8 2.5 1.2 0 1.8-.6 2.8-.6s1.6.6 2.8.6c1.5 0 2.8-.8 2.8-2.5 0-2.3-2.5-5.5-5.6-5.5z"/></svg></span><div><strong>Nina</strong><small><i></i>Assistente do Leo · responde na hora</small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
+          <ol class="nina-msgs" id="nina-msgs" aria-live="polite"></ol>
+          <form class="nina-escreve" id="nina-form"><input id="nina-txt" maxlength="600" autocomplete="off" placeholder="Escreva aqui…" aria-label="Mensagem para a Nina"><button class="botao cheio" type="submit" id="nina-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
+        </div>
+        <form id="form-pedido" novalidate hidden>
           <span class="selo-servico" id="selo-servico"><span id="selo-texto"></span><button type="button" id="selo-tira" aria-label="Tirar o serviço escolhido">✕</button></span>
           <div class="linha2">
             <label>Seu nome<input name="nome" autocomplete="name" maxlength="80" placeholder="Como posso te chamar?"></label>
@@ -465,6 +497,7 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
           </div>
           <div class="resposta" id="pedido-resposta" role="status" hidden></div>
         </form>
+        </div>
       </div>
       <a class="ponte surge" href="#como"><span>Escolheu? Veja como funciona da primeira conversa até o sistema rodando.</span><b>Como a gente trabalha ↓</b></a>
     </section>
@@ -580,7 +613,7 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
     </footer>
   </div>
 </main>
-<a class="flutua" id="flutua" href="#pedido"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Fazer um pedido</a>
+<a class="flutua" id="flutua" href="#pedido"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Falar com a Nina</a>
 
 <script>
 /* ====== DIÁRIO: acrescente uma linha a cada avanço ====== */
@@ -778,7 +811,7 @@ function mostrarDor(i, porClique) {
       <button class="link-sec" type="button" id="dor-cat">Ver serviços de ${area.nome.toLowerCase()} ↓</button></div>
     <p class="ja-roda"><i></i>Já roda: ${d.prova}</p>`;
   $("dor-cat").addEventListener("click", () => irParaCategoria(d.cat));
-  $("dor-pedido").addEventListener("click", () => { if (!$("pedido-msg").value) $("pedido-msg").value = "“" + d.frase + "” "; escolherServico(d.titulo); });
+  $("dor-pedido").addEventListener("click", () => escolherServico(null, d.frase));
   if (dorAuto) dorTimer = setTimeout(() => mostrarDor((dorAtual + 1) % DORES.length), 7000);
 }
 $("frases").replaceChildren(...DORES.map((d, i) => {
@@ -853,14 +886,62 @@ function montarCatalogo() {
     $("catalogo").replaceChildren(cab, v);
   } else $("catalogo").replaceChildren(cab, ul);
 }
-function escolherServico(nome) {
-  $("selo-texto").textContent = "Serviço: " + nome;
-  $("selo-servico").classList.add("tem"); $("selo-servico").dataset.servico = nome;
+function escolherServico(nome, texto) {
+  if (nome) { $("selo-texto").textContent = "Serviço: " + nome; $("selo-servico").classList.add("tem"); $("selo-servico").dataset.servico = nome; }
   $("pedido").scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
   const caixa = $("pedido"); caixa.classList.remove("chamou"); void caixa.offsetWidth; caixa.classList.add("chamou");
   setTimeout(() => caixa.classList.remove("chamou"), 1800);
-  setTimeout(() => $("pedido-msg").focus({ preventScroll: true }), calmo ? 0 : 600);
+  if (ninaViva) {
+    if (nome && !ninaServico) ninaServico = nome;
+    const fala = texto || (nome ? "Quero saber mais sobre: " + nome : "");
+    if (fala) setTimeout(() => falarNina(fala), calmo ? 0 : 500);
+    setTimeout(() => $("nina-txt").focus({ preventScroll: true }), calmo ? 0 : 600);
+  } else {
+    if (texto && !$("pedido-msg").value) $("pedido-msg").value = texto;
+    setTimeout(() => $("pedido-msg").focus({ preventScroll: true }), calmo ? 0 : 600);
+  }
 }
+/* Nina: conversa guardada no navegador; o servidor só responde. Caiu = volta o formulário com o que a pessoa já escreveu */
+const NINA_URL = "https://painel.leomagalhaes.tech/leo/nina";
+let ninaViva = true, ninaServico = "", ninaOcupada = false;
+const ninaId = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)).slice(0, 36);
+const ninaHist = [];
+function ninaBalao(cls, texto) {
+  const li = el("li", cls, texto); $("nina-msgs").append(li);
+  $("nina-msgs").scrollTop = $("nina-msgs").scrollHeight; return li;
+}
+function ninaFormulario(motivo) {
+  ninaViva = false;
+  if (motivo) ninaBalao("dela", motivo);
+  const escrito = ninaHist.filter(m => m.quem === "voce").map(m => m.texto).join("\n");
+  if (escrito && !$("pedido-msg").value) $("pedido-msg").value = escrito;
+  $("nina-form").hidden = true; $("form-pedido").hidden = false; $("ir-form").hidden = true;
+}
+async function falarNina(texto) {
+  texto = texto.trim().slice(0, 600);
+  if (!texto || !ninaViva) return;
+  if (ninaOcupada) { $("nina-txt").value = texto; return; }
+  ninaOcupada = true; $("nina-btn").disabled = true;
+  ninaHist.push({ quem: "voce", texto }); ninaBalao("sua", texto);
+  const d = ninaBalao("dela digita"); d.innerHTML = "<i></i><i></i><i></i>";
+  try {
+    const r = await fetch(NINA_URL, { method: "POST", headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({ id: ninaId, historico: ninaHist, servico: ninaServico }) });
+    const o = await r.json();
+    d.remove();
+    if (!o.resposta) throw new Error("sem resposta");
+    ninaHist.push({ quem: "nina", texto: o.resposta }); ninaBalao("dela", o.resposta);
+    if (r.status === 429) ninaFormulario();
+    if (o.fechou) { ninaBalao("aviso", "✓ Pedido entregue ao Leo no WhatsApp"); registrar("Site", "Nina fechou um pedido", "", true); }
+  } catch (e) {
+    d.remove();
+    ninaFormulario("Minha conexão caiu 🐾 Deixa seu contato aqui embaixo que o seu pedido chega direto no Leo.");
+  }
+  ninaOcupada = false; $("nina-btn").disabled = false;
+}
+$("nina-form").addEventListener("submit", e => { e.preventDefault(); const t = $("nina-txt").value; $("nina-txt").value = ""; falarNina(t); });
+$("ir-form").addEventListener("click", () => ninaFormulario());
+ninaBalao("dela", "Oi! Eu sou a Nina, a buldogue que atende aqui 🐾 Me conta: o que você quer resolver?");
 $("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
 $("busca").addEventListener("input", () => { montarAreas(); montarCatalogo(); });
 montarAreas(); montarCatalogo(); mostrarDor(0);
@@ -896,13 +977,11 @@ exemplosVivos($("pedido-msg"), ["Tenho uma loja e queria que os pedidos do site 
   "Quero um bot no Telegram que venda meu curso e libere o acesso sozinho.",
   "Preciso de um painel que mostre minhas vendas do dia no celular.",
   "Tenho uma ideia de app e não sei por onde começar."]);
-/* topo: a frase vira o pedido e o cursor já vai pro contato */
+/* topo: a frase vira a primeira mensagem para a Nina */
 $("rapido").addEventListener("submit", e => {
   e.preventDefault();
-  const t = $("rapido-txt").value.trim();
-  if (t) $("pedido-msg").value = t;
-  $("pedido").scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
-  setTimeout(() => document.querySelector('#form-pedido [name="' + (t ? "contato" : "mensagem") + '"]').focus({ preventScroll: true }), calmo ? 0 : 600);
+  const t = $("rapido-txt").value.trim(); $("rapido-txt").value = "";
+  escolherServico(null, t);
 });
 exemplosVivos($("rapido-txt"), ["Quero parar de perder cliente no WhatsApp.", "Preciso postar todo dia sem perder o dia.", "Quero um painel com as vendas no celular.", "Tenho um produto e quero vender online."]);
 /* link direto: ?servico=nome já escolhe o serviço; ?area=id abre a área (pra usar na bio e nos posts) */
