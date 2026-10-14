@@ -83,6 +83,18 @@ h1 em{font-style:normal;color:var(--menta)}
 .botao.cheio:hover{background:#7AF5D4}
 
 /* números */
+.operacao{margin-top:2.2rem}
+.op-topo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.4rem 1rem;margin-bottom:.9rem}
+.op-resumo{font-family:var(--mono);font-size:.75rem;color:var(--texto-3)}
+.op-lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5rem,1fr));gap:.6rem}
+.op-lista li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.35rem .7rem;background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);padding:.85rem 1rem;min-width:0}
+.op-lista i{width:8px;height:8px;border-radius:50%;background:var(--menta);box-shadow:0 0 0 0 rgba(92,242,200,.6);animation:pulsoVerde 2.4s ease-out infinite}
+.op-lista li.instavel i{background:var(--ambar);animation:none}
+.op-lista li.vinculado i{background:var(--azul);animation:none}
+.op-lista b{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
+.op-lista em{font-style:normal;font-family:var(--mono);font-size:.68rem;color:var(--menta)}
+.op-lista li.instavel em{color:var(--ambar)}.op-lista li.vinculado em{color:var(--azul)}
+.op-lista span{grid-column:2/4;font-size:.88rem;color:var(--texto-3);line-height:1.35}
 .numeros{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--linha)}
 .numeros div{padding:1.4rem 1rem 1.4rem 0;display:flex;flex-direction:column;gap:.2rem;min-width:0}
 .numeros div+div{padding-left:1.25rem;border-left:1px solid var(--linha)}
@@ -199,6 +211,14 @@ h1 em{font-style:normal;color:var(--menta)}
       <div><strong>27</strong><span>etapas automáticas no robô do LinkedIn</span></div>
       <div><strong>1/dia</strong><span>post publicado sem ninguém apertar botão</span></div>
     </div>
+
+    <section class="operacao" aria-labelledby="op-titulo">
+      <div class="op-topo">
+        <span class="eyebrow" id="op-titulo">Em operação agora</span>
+        <span class="op-resumo" id="op-resumo">verificando o servidor…</span>
+      </div>
+      <ul class="op-lista" id="op-lista"></ul>
+    </section>
 
     <section class="secao" id="projetos">
       <header>
@@ -351,6 +371,25 @@ async function mostrarVisto() {
   document.querySelector(".quem").classList.toggle("online", min < 10);
 }
 mostrarVisto(); setInterval(mostrarVisto, 60000);
+
+/* Em operação agora: resumo anônimo do servidor (sem @ e sem nome de projeto), atualizado a cada minuto. */
+const OPERACAO_URL = "https://painel.leomagalhaes.tech/status/publico.json";
+async function mostrarOperacao() {
+  let d;
+  try { d = await fetch(OPERACAO_URL, { cache: "no-store" }).then(r => r.json()); } catch (e) { return; }
+  if (!d.pronto) return;
+  document.getElementById("op-lista").replaceChildren(...d.itens.map(it => {
+    const li = document.createElement("li"), i = document.createElement("i"), b = document.createElement("b"),
+          em = document.createElement("em"), s = document.createElement("span");
+    li.className = it.status === "instável" ? "instavel" : it.status === "vinculado" ? "vinculado" : "";
+    b.textContent = it.rede; em.textContent = it.status; s.textContent = it.o_que;
+    li.append(i, b, em, s); return li;
+  }));
+  const seg = Math.max(0, Math.round(Date.now() / 1000 - d.quando));
+  document.getElementById("op-resumo").textContent =
+    d.operando + " de " + d.total + " no ar · conferido há " + (seg < 60 ? seg + " s" : Math.round(seg / 60) + " min");
+}
+mostrarOperacao(); setInterval(mostrarOperacao, 60000);
 
 const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 function dataCurta(iso) { const [a, m, d] = iso.split("-"); return d + " " + MESES[+m - 1] + " " + a; }
