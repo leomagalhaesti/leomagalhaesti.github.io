@@ -61,6 +61,12 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.
 .quem{display:flex;align-items:center;gap:.9rem}
 .quem img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--linha-forte)}
 .quem strong{display:block;font-family:var(--display);font-size:1.05rem;font-weight:600}
+.quem{position:relative}
+.quem.online img{box-shadow:0 0 0 2px var(--fundo),0 0 0 4px var(--menta)}
+.quem .visto{display:flex;align-items:center;gap:.45rem;margin-top:.3rem;color:var(--texto-2)}
+.visto i{width:7px;height:7px;border-radius:50%;background:var(--texto-3);flex:none}
+.online .visto i{background:var(--menta);box-shadow:0 0 0 0 rgba(92,242,200,.6);animation:pulsoVerde 2s ease-out infinite}
+@keyframes pulsoVerde{to{box-shadow:0 0 0 7px rgba(92,242,200,0)}}
 .quem span{font-family:var(--mono);font-size:.78rem;color:var(--texto-3)}
 h1{font-size:clamp(2.5rem,7.4vw,4.6rem);line-height:1;font-weight:700}
 h1 em{font-style:normal;color:var(--menta)}
@@ -173,7 +179,7 @@ h1 em{font-style:normal;color:var(--menta)}
       <div class="conteudo">
         <div class="quem">
           <img src="img/foto.jpg" alt="Foto do Leo Magalhães">
-          <div><strong>Leo Magalhães</strong><span>Computer Science student</span></div>
+          <div><strong>Leo Magalhães</strong><span>Computer Science student</span><span class="visto" id="visto" hidden><i></i><span id="visto-texto"></span></span></div>
         </div>
         <h1>Eu construo sistemas que <em>trabalham sozinhos.</em></h1>
         <p class="lead">Robôs de automação, aplicativos web e ferramentas com IA. Cada projeto fica registrado aqui no pé em que está, do primeiro rascunho até rodar no ar.</p>
@@ -319,6 +325,32 @@ const DIARIO = [
 ];
 const REPOS = { "Postengine-ai": ["01", "PostEngineAI"], "trackpoint": ["02", "TrackPoint"] };
 /* ======================================================= */
+
+/* Último acesso: o PC do Leo avisa o servidor a cada 5 min; o GitHub público entra como segunda fonte. */
+const VISTO_URL = "https://painel.leomagalhaes.tech/leo/visto.json";
+async function mostrarVisto() {
+  const fontes = await Promise.allSettled([
+    fetch(VISTO_URL, { cache: "no-store" }).then(r => r.json()),
+    fetch("https://api.github.com/users/leomagalhaesti/events/public?per_page=1").then(r => r.json())
+  ]);
+  let quando = 0, projeto = null;
+  if (fontes[0].status === "fulfilled" && fontes[0].value.visto) { quando = fontes[0].value.visto * 1000; projeto = fontes[0].value.projeto; }
+  if (fontes[1].status === "fulfilled" && Array.isArray(fontes[1].value) && fontes[1].value[0]) {
+    const t = Date.parse(fontes[1].value[0].created_at);
+    if (t > quando) { quando = t; projeto = null; }
+  }
+  if (!quando) return;
+  const min = Math.max(0, Math.round((Date.now() - quando) / 6e4));
+  let texto;
+  if (min < 10) texto = "codando agora" + (projeto ? " · " + projeto : "");
+  else if (min < 60) texto = "codando há " + min + " min";
+  else if (min < 1440) texto = "último código há " + Math.round(min / 60) + " h";
+  else texto = "último código há " + Math.round(min / 1440) + (min < 2880 ? " dia" : " dias");
+  document.getElementById("visto-texto").textContent = texto;
+  document.getElementById("visto").hidden = false;
+  document.querySelector(".quem").classList.toggle("online", min < 10);
+}
+mostrarVisto(); setInterval(mostrarVisto, 60000);
 
 const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 function dataCurta(iso) { const [a, m, d] = iso.split("-"); return d + " " + MESES[+m - 1] + " " + a; }
