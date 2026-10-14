@@ -268,7 +268,19 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
 .turbo-pista::before{content:"";position:absolute;right:calc(100% - 6px);top:55%;width:90px;height:16px;transform:translateY(-50%);
   background:repeating-linear-gradient(180deg,transparent 0 4px,rgba(245,183,0,.7) 4px 6px);-webkit-mask:linear-gradient(90deg,transparent,#000);mask:linear-gradient(90deg,transparent,#000)}
 .turbo-pista span{align-self:flex-start;margin-top:.4rem;font:700 .7rem var(--mono);color:#1A1200;background:var(--ambar);padding:.2rem .5rem;border-radius:999px;white-space:nowrap}
-.turbo-pista.vai{animation:disparada 1.9s cubic-bezier(.55,.1,.45,.9) 2 both}
+.turbo-pista.vai{animation:disparada 2.8s cubic-bezier(.55,.1,.45,.9) infinite both;pointer-events:auto;cursor:pointer}
+.turbo-pista.parou{animation:none}
+.coracao{position:fixed;z-index:42;pointer-events:none;font-size:1.8rem;animation:sobe 1.2s ease-out forwards}
+.turbo-aviso{position:fixed;left:50%;top:72px;z-index:41;display:flex;align-items:center;gap:.7rem;max-width:calc(100vw - 2rem);padding:.55rem .55rem .55rem 1rem;border-radius:999px;
+  background:var(--ambar);color:#1A1200;font:600 .9rem/1.3 var(--sans);box-shadow:0 14px 34px -10px rgba(245,183,0,.75);opacity:0;pointer-events:none;transform:translate(-50%,-16px);transition:opacity .3s,transform .3s}
+.turbo-aviso.ve{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.turbo-aviso.ve:not(.calmo){animation:balanca 1.2s ease-in-out infinite}
+.turbo-aviso button{all:unset;cursor:pointer;flex:none;padding:.5rem .9rem;border-radius:999px;background:#1A1200;color:var(--ambar);font:700 .84rem var(--sans);white-space:nowrap}
+.turbo-aviso button[hidden]{display:none}
+.turbo-aviso button:focus-visible{outline:2px solid #1A1200;outline-offset:2px}
+@media (max-width:30rem){.turbo-aviso{font-size:.82rem;border-radius:16px}}
+@keyframes sobe{0%{opacity:0;transform:translateY(0) scale(.6)}20%{opacity:1;transform:translateY(-10px) scale(1.15)}100%{opacity:0;transform:translateY(-60px) scale(1)}}
+@keyframes balanca{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,3px)}}
 .flutua-av{width:26px;height:26px;border-radius:50%;object-fit:cover;margin:-.2rem 0 -.2rem -.45rem;border:2px solid #03140F}
 @keyframes inclina{0%,88%,100%{transform:none}91%{transform:rotate(-13deg)}95%{transform:rotate(9deg)}}
 @keyframes treme{0%,100%{transform:translate(0,0)}25%{transform:translate(1px,-1px)}50%{transform:translate(-1px,1px)}75%{transform:translate(1px,1px)}}
@@ -643,6 +655,7 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
 </main>
 <a class="flutua" id="flutua" href="#pedido"><img class="flutua-av" src="img/nina.jpg" alt="">Falar com a Nina</a>
 <div class="turbo-pista" id="turbo" aria-hidden="true"><img src="img/nina-turbo.png" alt=""><span>⚡ MODO TURBO 220V</span></div>
+<div class="turbo-aviso" id="turbo-aviso" role="status"><span id="turbo-aviso-txt">⚡ A Nina ativou o modo turbo! Faz carinho nela pra ela parar</span><button type="button" id="turbo-carinho">Fazer carinho 🐾</button></div>
 
 <script>
 /* ====== DIÁRIO: acrescente uma linha a cada avanço ====== */
@@ -985,7 +998,7 @@ async function falarNina(texto) {
     if (!o.resposta) throw new Error("sem resposta");
     ninaHist.push({ quem: "nina", texto: o.resposta }); ninaBalao("dela", o.resposta);
     if (r.status === 429) ninaFormulario();
-    if (o.fechou) { ninaBalao("aviso", "✓ Pedido entregue ao Leo no WhatsApp"); registrar("Site", "Nina fechou um pedido", "", true); setTimeout(() => modoTurbo("Correndo avisar o Leo ⚡ 220V"), 600); }
+    if (o.fechou) { ninaBalao("aviso", "✓ Pedido entregue ao Leo no WhatsApp"); registrar("Site", "Nina fechou um pedido", "", true); setTimeout(() => modoTurbo("Correndo avisar o Leo ⚡"), 600); }
   } catch (e) {
     clearInterval(farejo); d.remove();
     ninaFormulario("Minha conexão caiu 🐾 Deixa seu contato aqui embaixo que o seu pedido chega direto no Leo.");
@@ -995,24 +1008,51 @@ async function falarNina(texto) {
 $("nina-form").addEventListener("submit", e => { e.preventDefault(); const t = $("nina-txt").value; $("nina-txt").value = ""; falarNina(t); });
 $("ir-form").addEventListener("click", () => ninaFormulario());
 /* modo turbo: a Nina sai correndo 220V pela tela (no pedido fechado, no carinho e uma vez por visita) */
-let turboAtivo = false;
+let turboAtivo = false, turboFim, statusAntes = "";
+const avisoTurbo = (txt, botao) => {
+  $("turbo-aviso-txt").textContent = txt; $("turbo-carinho").hidden = !botao;
+  $("turbo-aviso").classList.toggle("calmo", calmo || !botao); $("turbo-aviso").classList.add("ve");
+};
 function modoTurbo(texto) {
   if (turboAtivo) return;
   turboAtivo = true;
-  const st = $("nina-status"), antes = st.textContent;
-  st.textContent = texto || "Modo turbo ativado ⚡ 220V"; $("nina").classList.add("turbo");
-  if (!calmo) { const t = $("turbo"); t.classList.remove("vai"); void t.offsetWidth; t.classList.add("vai"); }
-  setTimeout(() => { $("nina").classList.remove("turbo"); st.textContent = antes; turboAtivo = false; }, 4200);
+  const st = $("nina-status"); statusAntes = st.textContent;
+  st.textContent = (texto || "Modo turbo ativado ⚡ 220V") + " · faz carinho pra parar"; $("nina").classList.add("turbo");
+  const t = $("turbo"); t.classList.remove("parou", "vai"); t.style.transform = t.style.opacity = t.style.transition = ""; void t.offsetWidth; if (!calmo) t.classList.add("vai");
+  avisoTurbo("⚡ A Nina ativou o modo turbo! Faz carinho nela pra ela parar", true);
+  turboFim = setTimeout(() => pararTurbo("Cansou de correr e deitou 😴"), 25000);
+}
+function pararTurbo(msg) {
+  if (!turboAtivo) return;
+  clearTimeout(turboFim); turboAtivo = false;
+  const t = $("turbo");
+  if (t.classList.contains("vai")) {
+    const r = t.getBoundingClientRect(), c = el("span", "coracao", "❤️");
+    t.style.transform = getComputedStyle(t).transform; t.style.opacity = "1"; t.classList.remove("vai"); t.classList.add("parou");
+    requestAnimationFrame(() => { t.style.transition = "opacity .7s .7s"; t.style.opacity = "0"; });
+    c.style.left = (r.left + r.width * .55) + "px"; c.style.top = (r.top - 10) + "px";
+    document.body.append(c); setTimeout(() => c.remove(), 1300);
+  }
+  $("nina").classList.remove("turbo"); $("nina-status").textContent = statusAntes;
+  avisoTurbo(msg || "Ufa, parou. Ela amou o carinho 🐾", false);
+  setTimeout(() => { if (!turboAtivo) $("turbo-aviso").classList.remove("ve"); }, 2600);
 }
 let carinhos = 0;
-const carinho = () => { carinhos++; if (carinhos === 1 && !turboAtivo) { const st = $("nina-status"), a = st.textContent; st.textContent = "Ela gostou do carinho 🐾"; setTimeout(() => { if (!turboAtivo) st.textContent = a; }, 1800); } else modoTurbo(); };
+const carinho = () => {
+  if (turboAtivo) return pararTurbo();
+  carinhos++;
+  if (carinhos % 2) { const st = $("nina-status"), a = st.textContent; st.textContent = "Ela gostou do carinho 🐾"; setTimeout(() => { if (!turboAtivo) st.textContent = a; }, 1800); }
+  else modoTurbo("Carinho demais, ligou o turbo ⚡");
+};
 $("nina-av").addEventListener("click", carinho);
 $("nina-av").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); carinho(); } });
+$("turbo").addEventListener("click", () => pararTurbo());
+$("turbo-carinho").addEventListener("click", () => pararTurbo());
 new IntersectionObserver(([e], obs) => {
   if (!e.isIntersecting) return;
   obs.disconnect();
   let ja = false; try { ja = sessionStorage.getItem("nina-turbo") === "1"; sessionStorage.setItem("nina-turbo", "1"); } catch (_) {}
-  if (!ja) setTimeout(() => modoTurbo("Ativou o modo turbo do nada ⚡ 220V"), 2500);
+  if (!ja) setTimeout(() => modoTurbo("Ativou o turbo do nada ⚡"), 2500);
 }, { threshold: .5 }).observe($("nina"));
 ninaBalao("dela", "Oi! Eu sou a Nina, a buldogue que atende aqui 🐾 Me conta: o que você quer resolver?");
 $("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
