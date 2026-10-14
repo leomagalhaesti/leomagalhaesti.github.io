@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<base href="/">
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Leo Magalhães, Computer Science student. Robôs de automação, aplicativos web e ferramentas com IA, com o status de cada um ao vivo.">
+<meta property="og:title" content="Leo Magalhães · Projetos">
+<meta property="og:description" content="Eu construo sistemas que trabalham sozinhos. Veja o que está rodando agora.">
+<meta property="og:image" content="https://leomagalhaesti.github.io/previa.png">
+<meta property="og:url" content="https://leomagalhaesti.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#050807">
+<link rel="icon" href="img/foto.jpg">
+<title>Leo Magalhães</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: central de controle. Topo com quem sou + console ao vivo (dados reais do servidor e do GitHub entrando linha
+   a linha); faixa de números animados; sistemas em operação com batimento; projetos com barra de progresso; diário em
+   linha do tempo que acende ao rolar; fora do código com os ícones dos destaques do Instagram; contato.
+   Identidade = a do Instagram: verde-menta da foto, grafite, ícones de traço e a ondinha. Só escuro. */
+:root{
+  --fundo:#050807; --painel:#0B1110; --painel-2:#101917; --linha:#17231F; --linha-forte:#24362F;
+  --texto:#E8F2EE; --texto-2:#A7BAB3; --texto-3:#6A7F78;
+  --menta:#2BD9A8; --menta-2:#7CF5CF; --ambar:#F5B700; --coral:#FF4D6D; --azul:#3D8BFF; --lilas:#B79CFF;
+  --mono:"Geist Mono",ui-monospace,monospace; --sans:"Geist",system-ui,sans-serif; --raio:14px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fundo);color:var(--texto);font:400 1rem/1.6 var(--sans);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:linear-gradient(var(--linha) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--linha) 1px,transparent 1px) 0 0/48px 48px;
+  opacity:.35;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%)}
+body::after{content:"";position:fixed;left:50%;top:-30vh;width:90vw;height:70vh;transform:translateX(-50%);pointer-events:none;z-index:0;
+  background:radial-gradient(closest-side,rgba(43,217,168,.16),transparent)}
+a{color:inherit}
+img{max-width:100%;display:block}
+.envelope{position:relative;z-index:1;width:min(1160px,100% - 2rem);margin-inline:auto}
+.rotulo{font:500 .7rem/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--texto-3)}
+.rotulo b{color:var(--menta);font-weight:500}
+
+/* barra */
+.barra{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(5,8,7,.72);border-bottom:1px solid var(--linha)}
+.barra .envelope{display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
+.marca{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:600;letter-spacing:-.01em}
+.marca img{width:28px;height:28px;border-radius:50%}
+.barra nav{display:flex;gap:1.4rem;font:500 .78rem var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.barra nav a{text-decoration:none;color:var(--texto-2)}.barra nav a:hover{color:var(--menta)}
+.relogio{font:500 .72rem var(--mono);color:var(--texto-3);font-variant-numeric:tabular-nums}
+.marca,.barra nav a{white-space:nowrap}
+@media (max-width:40rem){.barra nav a.opcional,.relogio{display:none}.barra nav{gap:1rem;font-size:.7rem}}
+@media (max-width:26rem){.marca span{display:none}}
+
+/* topo */
+.topo{padding:clamp(2.5rem,7vw,5rem) 0 2.5rem;display:grid;gap:2.5rem;align-items:center}
+@media (min-width:60rem){.topo{grid-template-columns:1.05fr .95fr}}
+.quem{display:flex;align-items:center;gap:1rem}
+.orbita{position:relative;width:76px;height:76px;flex:none;display:grid;place-items:center}
+.orbita::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--menta),transparent 35%,transparent 65%,var(--menta));
+  animation:gira 6s linear infinite;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px))}
+.orbita img{width:64px;height:64px;border-radius:50%}
+.orbita .ponto{position:absolute;right:4px;bottom:4px;width:14px;height:14px;border-radius:50%;background:var(--texto-3);border:3px solid var(--fundo)}
+.online .orbita .ponto{background:var(--menta);box-shadow:0 0 12px var(--menta)}
+.quem strong{display:block;font-size:1.1rem;font-weight:600}
+.quem .cargo{font:400 .78rem var(--mono);color:var(--texto-3)}
+.visto{display:flex;align-items:center;gap:.45rem;margin-top:.25rem;font:500 .78rem var(--mono);color:var(--texto-2)}
+.visto i{width:7px;height:7px;border-radius:50%;background:var(--texto-3);flex:none}
+.online .visto i{background:var(--menta);animation:pulso 2s ease-out infinite}
+.online .visto{color:var(--menta-2)}
+h1{margin:1.6rem 0 0;font-weight:700;font-size:clamp(2.5rem,6.6vw,4.6rem);line-height:1.02;letter-spacing:-.045em}
+h1 .troca{display:block;color:var(--menta);min-height:1.05em}
+h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;background:var(--menta);vertical-align:-.06em;animation:pisca 1s steps(1) infinite}
+.lead{max-width:34rem;margin:1.3rem 0 0;font-size:1.08rem;color:var(--texto-2)}
+.acoes{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+.botao{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.15rem;border-radius:10px;border:1px solid var(--linha-forte);text-decoration:none;font-weight:600;font-size:.92rem;transition:border-color .2s,background .2s,transform .2s}
+.botao:hover{border-color:var(--menta);transform:translateY(-1px)}
+.botao.cheio{background:var(--menta);border-color:var(--menta);color:#03140F}
+.botao.cheio:hover{background:var(--menta-2)}
+
+/* console */
+.console{background:linear-gradient(180deg,var(--painel-2),var(--painel));border:1px solid var(--linha-forte);border-radius:var(--raio);overflow:hidden;
+  box-shadow:0 30px 80px -30px rgba(43,217,168,.25),inset 0 1px 0 rgba(255,255,255,.03);min-width:0}
+.console header{display:flex;align-items:center;gap:.45rem;padding:.75rem 1rem;border-bottom:1px solid var(--linha)}
+.console header i{width:10px;height:10px;border-radius:50%;background:#2A3A35}
+.console header i:first-child{background:var(--coral)}.console header i:nth-child(2){background:var(--ambar)}.console header i:nth-child(3){background:var(--menta)}
+.console header span{margin-left:auto;font:500 .7rem var(--mono);color:var(--texto-3)}
+.console header .vivo{display:inline-flex;align-items:center;gap:.35rem;color:var(--menta)}
+.console header .vivo::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--menta);animation:pulso 2s ease-out infinite}
+.log{margin:0;padding:1rem 1.1rem 1.2rem;list-style:none;font:400 .8rem/1.75 var(--mono);height:19.5rem;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+  -webkit-mask-image:linear-gradient(transparent,#000 22%);mask-image:linear-gradient(transparent,#000 22%)}
+.log li{display:flex;gap:.7rem;white-space:nowrap;animation:entra .35s ease-out}
+.log time{color:var(--texto-3);flex:none}
+.log .tag{flex:none;min-width:5.6rem;color:var(--menta)}
+.log .tag.ambar{color:var(--ambar)}.log .tag.azul{color:var(--azul)}.log .tag.lilas{color:var(--lilas)}.log .tag.coral{color:var(--coral)}
+.log .msg{color:var(--texto-2);overflow:hidden;text-overflow:ellipsis}
+.log .ok{color:var(--menta);flex:none}
+.log li.digitando .msg::after{content:"▍";color:var(--menta);animation:pisca 1s steps(1) infinite}
+@media (max-width:30rem){.log{font-size:.72rem;height:15rem}.log .tag{min-width:4.6rem}.log time{display:none}}
+
+/* números */
+.numeros{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--linha);border-radius:var(--raio);background:rgba(11,17,16,.6);margin-top:1rem}
+.numeros div{padding:1.3rem 1.2rem;min-width:0}
+.numeros div+div{border-left:1px solid var(--linha)}
+.numeros strong{display:block;font-weight:700;font-size:clamp(1.8rem,4.5vw,2.6rem);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.numeros strong small{font-size:.5em;color:var(--texto-3);font-weight:500;margin-left:.15em}
+.numeros>div>span{display:block;margin-top:.45rem;font-size:.83rem;color:var(--texto-3);line-height:1.35}
+.numeros .vivo strong{color:var(--menta)}
+@media (max-width:48rem){.numeros{grid-template-columns:1fr 1fr}.numeros div:nth-child(3){border-left:0}.numeros div:nth-child(n+3){border-top:1px solid var(--linha)}}
+
+/* seções */
+.secao{padding-top:clamp(4rem,9vw,6.5rem)}
+.secao>header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:.8rem 2rem;margin-bottom:1.8rem}
+.secao h2{margin:.7rem 0 0;font-weight:700;font-size:clamp(1.7rem,3.6vw,2.5rem);letter-spacing:-.035em;line-height:1.08}
+.secao>header p{margin:.6rem 0 0;max-width:36rem;color:var(--texto-2)}
+.resumo-vivo{font:500 .75rem var(--mono);color:var(--texto-3);font-variant-numeric:tabular-nums}
+.resumo-vivo b{color:var(--menta);font-weight:500}
+
+/* operação */
+.op-lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(20rem,1fr));gap:.75rem}
+.op-lista li{position:relative;background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio);padding:1rem 1.1rem 0;overflow:hidden;min-width:0;transition:border-color .25s}
+.op-lista li:hover{border-color:var(--linha-forte)}
+.op-cab{display:flex;align-items:center;gap:.6rem}
+.op-cab i{width:8px;height:8px;border-radius:50%;background:var(--menta);animation:pulso 2.4s ease-out infinite;flex:none}
+.op-cab b{font:600 .74rem var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.op-cab em{margin-left:auto;font:500 .68rem var(--mono);font-style:normal;color:var(--menta);border:1px solid rgba(43,217,168,.35);padding:.2rem .5rem;border-radius:999px}
+.op-lista p{margin:.45rem 0 .2rem;font-size:.9rem;color:var(--texto-2)}
+.op-lista svg{display:block;width:calc(100% + 2.2rem);margin:0 -1.1rem;height:38px}
+.op-lista svg path{fill:none;stroke:var(--menta);stroke-width:1.5;stroke-dasharray:6 600;animation:batida 3.2s linear infinite;filter:drop-shadow(0 0 4px rgba(43,217,168,.7))}
+.op-lista svg path.base{stroke:var(--linha-forte);stroke-dasharray:none;animation:none;filter:none}
+.op-lista li.instavel .op-cab i{background:var(--ambar);animation:none}
+.op-lista li.instavel em{color:var(--ambar);border-color:rgba(245,183,0,.35)}.op-lista li.instavel svg path:not(.base){stroke:var(--ambar);animation-duration:1.4s}
+.op-lista li.vinculado .op-cab i{background:var(--azul);animation:none}
+.op-lista li.vinculado em{color:var(--azul);border-color:rgba(61,139,255,.35)}.op-lista li.vinculado svg path:not(.base){stroke:var(--azul);animation:none;stroke-dasharray:none;opacity:.5;filter:none}
+
+/* projetos */
+.projetos{display:grid;gap:1.2rem}
+.projeto{display:grid;gap:1.6rem;background:var(--painel);border:1px solid var(--linha);border-radius:calc(var(--raio) + 4px);padding:clamp(1.2rem,3vw,2rem);transition:border-color .3s}
+.projeto:hover{border-color:var(--linha-forte)}
+@media (min-width:58rem){.projeto{grid-template-columns:1fr 1fr;align-items:center}.projeto.inverte .midia{order:-1}}
+.cabeca{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.status{font:500 .68rem var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px;border:1px solid}
+.status.no-ar{color:var(--menta);border-color:rgba(43,217,168,.4)}.status.piloto{color:var(--azul);border-color:rgba(61,139,255,.4)}.status.obra{color:var(--ambar);border-color:rgba(245,183,0,.4)}
+.projeto h3{margin:.8rem 0 0;font-weight:700;font-size:clamp(1.35rem,2.6vw,1.75rem);letter-spacing:-.03em;line-height:1.15}
+.projeto .resumo{margin:.6rem 0 0;color:var(--texto-2)}
+.progresso{margin-top:1.1rem}
+.progresso div{display:flex;justify-content:space-between;font:500 .7rem var(--mono);color:var(--texto-3);letter-spacing:.06em;text-transform:uppercase}
+.progresso>span{display:block;height:4px;margin-top:.45rem;background:var(--linha);border-radius:4px;overflow:hidden}
+.progresso>span i{display:block;height:100%;width:0;background:var(--cor,var(--menta));border-radius:4px;box-shadow:0 0 12px var(--cor,var(--menta));transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.visivel .progresso>span i{width:var(--p)}
+.ficha{margin:1.2rem 0 0;display:grid;gap:.7rem}
+.ficha div{display:grid;grid-template-columns:6.2rem 1fr;gap:.8rem;padding-top:.7rem;border-top:1px dashed var(--linha-forte)}
+.ficha dt{font:500 .7rem/1.9 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--texto-3)}
+.ficha dd{margin:0;font-size:.93rem;color:var(--texto-2)}
+@media (max-width:30rem){.ficha div{grid-template-columns:1fr;gap:.15rem}}
+.pilha{list-style:none;margin:1.2rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.pilha li{font:500 .72rem var(--mono);color:var(--texto-2);background:var(--painel-2);border:1px solid var(--linha);padding:.3rem .6rem;border-radius:6px}
+.link{display:inline-block;margin-top:1.2rem;font:600 .85rem var(--mono);color:var(--menta);text-decoration:none}
+.link:hover{text-decoration:underline}
+.midia{margin:0;min-width:0}
+.tela{border-radius:10px;border:1px solid var(--linha-forte);background:#fff;box-shadow:0 20px 50px -20px rgba(0,0,0,.8)}
+.moldura{position:relative;padding:10px;border-radius:16px;background:linear-gradient(140deg,rgba(43,217,168,.25),transparent 40%,transparent 60%,rgba(43,217,168,.12));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.projeto:hover .moldura{transform:translateY(-4px)}
+.duas{display:grid;grid-template-columns:1.1fr .9fr;gap:.7rem;align-items:start}
+.leque{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.leque img:nth-child(2){transform:translateY(-14px)}
+figcaption{margin-top:.7rem;font:400 .72rem var(--mono);color:var(--texto-3);text-align:center}
+
+/* diário */
+.diario{list-style:none;margin:0;padding:0 0 0 1.4rem;position:relative}
+.diario::before{content:"";position:absolute;left:5px;top:.5rem;bottom:.5rem;width:2px;background:var(--linha)}
+.diario::after{content:"";position:absolute;left:5px;top:.5rem;width:2px;height:var(--andou,0%);background:linear-gradient(var(--menta),rgba(43,217,168,.2));transition:height .2s linear}
+.diario li{position:relative;display:grid;grid-template-columns:7.5rem 1fr auto;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--linha);align-items:baseline}
+.diario li::before{content:"";position:absolute;left:calc(-1.4rem + 1px);top:1.45rem;width:10px;height:10px;border-radius:50%;background:var(--fundo);border:2px solid var(--linha-forte);transition:all .4s}
+.diario li.aceso::before{border-color:var(--menta);background:var(--menta);box-shadow:0 0 10px var(--menta)}
+.diario time{font:500 .75rem var(--mono);color:var(--texto-3)}
+.diario span{color:var(--texto-2)}
+.diario small{font:500 .68rem var(--mono);color:var(--texto-3);letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:40rem){.diario li{grid-template-columns:1fr;gap:.2rem}}
+.nota{font:400 .75rem var(--mono);color:var(--texto-3);margin-top:1rem}
+
+/* fora do código */
+.fora{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.75rem}
+.fora div{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio);padding:1.4rem;transition:border-color .3s,transform .3s}
+.fora div:hover{border-color:var(--cor);transform:translateY(-2px)}
+.fora svg.ic{width:40px;height:40px;stroke:var(--texto);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fora svg.onda{display:block;width:60px;height:8px;margin:.7rem 0 0}
+.fora svg.onda path{fill:none;stroke:var(--cor);stroke-width:2;stroke-linecap:round}
+.fora h3{margin:1rem 0 0;font-size:1.15rem;letter-spacing:-.02em}
+.fora p{margin:.35rem 0 0;font-size:.92rem;color:var(--texto-2)}
+
+/* contato */
+.contato{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.75rem}
+.contato a{display:flex;flex-direction:column;gap:.3rem;text-decoration:none;background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio);padding:1.3rem;transition:border-color .2s,transform .2s}
+.contato a:hover{border-color:var(--menta);transform:translateY(-2px)}
+.contato strong{display:flex;justify-content:space-between;font-size:1.1rem}
+.contato strong span{color:var(--menta)}
+.contato a>span{font:400 .8rem var(--mono);color:var(--texto-3)}
+.rodape{margin-top:clamp(4rem,8vw,6rem);border-top:1px solid var(--linha);padding:1.6rem 0 2.4rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;font:400 .75rem var(--mono);color:var(--texto-3)}
+
+/* entrada ao rolar */
+.surge{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.surge.visivel{opacity:1;transform:none}
+
+@keyframes gira{to{transform:rotate(360deg)}}
+@keyframes pisca{50%{opacity:0}}
+@keyframes pulso{0%{box-shadow:0 0 0 0 rgba(43,217,168,.55)}100%{box-shadow:0 0 0 8px rgba(43,217,168,0)}}
+@keyframes entra{from{opacity:0;transform:translateY(6px)}}
+@keyframes batida{from{stroke-dashoffset:606}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .surge{opacity:1;transform:none}
+  .progresso>span i{width:var(--p)}
+}
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="envelope">
+    <a class="marca" href="#inicio"><img src="img/foto.jpg" alt=""><span>Leo Magalhães</span></a>
+    <nav aria-label="Seções">
+      <a href="#operacao">Ao vivo</a>
+      <a href="#projetos">Projetos</a>
+      <a class="opcional" href="#diario">Diário</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <span class="relogio" id="relogio" aria-hidden="true">SSA --:--:--</span>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="envelope">
+    <section class="topo">
+      <div>
+        <div class="quem" id="quem">
+          <div class="orbita"><img src="img/foto.jpg" alt="Ilustração do rosto do Leo Magalhães"><span class="ponto"></span></div>
+          <div>
+            <strong>Leo Magalhães</strong>
+            <span class="cargo">Computer Science student · Salvador, BA</span>
+            <span class="visto" id="visto"><i></i><span id="visto-texto">conectando…</span></span>
+          </div>
+        </div>
+        <h1>Eu construo sistemas que <span class="troca"><span id="troca">trabalham sozinhos.</span><span class="cursor" aria-hidden="true"></span></span></h1>
+        <p class="lead">Robôs de automação, aplicativos web e ferramentas com IA. Tudo o que está rodando aparece aqui ao vivo, com o status de cada sistema.</p>
+        <div class="acoes">
+          <a class="botao cheio" href="#operacao">Ver ao vivo</a>
+          <a class="botao" href="#projetos">Projetos</a>
+          <a class="botao" href="https://github.com/leomagalhaesti">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="console" aria-label="Registro ao vivo dos sistemas">
+        <header><i></i><i></i><i></i><span><span class="vivo">ao vivo</span> · leo@servidor</span></header>
+        <ol class="log" id="log" aria-live="off"></ol>
+      </div>
+    </section>
+
+    <div class="numeros surge">
+      <div class="vivo"><strong><span data-conta id="n-sistemas">0</span><small id="n-total">/0</small></strong><span>sistemas no ar agora</span></div>
+      <div><strong><span data-conta="27">0</span></strong><span>etapas automáticas no robô do LinkedIn</span></div>
+      <div><strong><span data-conta="3">0</span></strong><span>projetos em andamento</span></div>
+      <div class="vivo"><strong id="n-codigo">--</strong><span>desde a última linha de código</span></div>
+    </div>
+
+    <section class="secao" id="operacao">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><b>●</b> Em operação agora</span>
+          <h2>O que está rodando neste momento</h2>
+          <p>Conferido direto no servidor a cada minuto. Sem nomes nem perfis: só o tipo de sistema e se está de pé.</p>
+        </div>
+        <span class="resumo-vivo" id="op-resumo">verificando o servidor…</span>
+      </header>
+      <ul class="op-lista" id="op-lista"></ul>
+    </section>
+
+    <section class="secao" id="projetos">
+      <header class="surge">
+        <div>
+          <span class="rotulo">Projetos</span>
+          <h2>O que eu montei e em que pé está</h2>
+          <p>Problema real, solução e resultado. As telas são dos próprios sistemas, com dados de demonstração.</p>
+        </div>
+      </header>
+      <div class="projetos">
+        <article class="projeto surge">
+          <div class="texto">
+            <div class="cabeca"><span class="rotulo">01 · <b>PostEngineAI</b></span><span class="status no-ar">No ar</span></div>
+            <h3>Robô que publica no LinkedIn todos os dias</h3>
+            <p class="resumo">Do tema à publicação, sem intervenção: escolhe o assunto, escreve com IA, revisa, busca a imagem, publica e registra.</p>
+            <div class="progresso"><div><span>maturidade</span><span>no ar</span></div><span><i style="--p:100%"></i></span></div>
+            <dl class="ficha">
+              <div><dt>Problema</dt><dd>Manter constância no LinkedIn exigia um tempo que a rotina não tinha.</dd></div>
+              <div><dt>Solução</dt><dd>Um fluxo de 27 etapas que decide o formato do dia (foto, carrossel, enquete ou texto) e evita repetir temas.</dd></div>
+              <div><dt>Resultado</dt><dd>Um post por dia rodando num servidor próprio, com IA reserva e segunda busca de imagem quando algo falha.</dd></div>
+            </dl>
+            <ul class="pilha" aria-label="Tecnologias"><li>n8n</li><li>Gemini</li><li>Notion</li><li>Pixabay API</li><li>LinkedIn API</li><li>Linux VPS</li></ul>
+            <a class="link" href="https://github.com/leomagalhaesti/Postengine-ai">Ver o código →</a>
+          </div>
+          <figure class="midia">
+            <div class="moldura"><img class="tela" src="img/postengine-fluxo.jpg" alt="Mapa do fluxo do robô: cada caixa é uma tarefa, da agenda das 8h ao registro do post." loading="lazy" width="960" height="750"></div>
+            <figcaption>mapa real do fluxo · cada caixa é uma tarefa</figcaption>
+          </figure>
+        </article>
+
+        <article class="projeto inverte surge">
+          <div class="texto">
+            <div class="cabeca"><span class="rotulo">02 · <b>TrackPoint</b></span><span class="status piloto">Piloto</span></div>
+            <h3>Controle de saída e retorno de equipamentos</h3>
+            <p class="resumo">Cada equipamento que sai e volta passa por uma conferência rápida pela câmera, com QR Code.</p>
+            <div class="progresso" style="--cor:var(--azul)"><div><span>maturidade</span><span>piloto</span></div><span><i style="--p:72%"></i></span></div>
+            <dl class="ficha">
+              <div><dt>Problema</dt><dd>Equipamentos saindo e voltando o dia inteiro, sem saber ao certo o que estava fora e com quem.</dd></div>
+              <div><dt>Solução</dt><dd>Agenda de saídas, lista pronta para cada tipo de trabalho e conferência por QR Code na saída e na volta.</dd></div>
+              <div><dt>Resultado</dt><dd>Em piloto. O fim do dia sai resumido num relatório em PDF ou planilha.</dd></div>
+            </dl>
+            <ul class="pilha" aria-label="Tecnologias"><li>React</li><li>TypeScript</li><li>Vite</li><li>QR Code</li><li>PDF</li></ul>
+            <a class="link" href="https://github.com/leomagalhaesti/trackpoint">Ver o estudo de caso →</a>
+          </div>
+          <figure class="midia">
+            <div class="moldura duas">
+              <img class="tela" src="img/trackpoint-calendario.jpg" alt="Calendário do mês com as saídas marcadas por dia." loading="lazy" width="720" height="636">
+              <img class="tela" src="img/trackpoint-relatorio.jpg" alt="Tela do relatório diário com botões para baixar PDF e CSV." loading="lazy" width="600" height="663">
+            </div>
+            <figcaption>telas do piloto · dados de demonstração</figcaption>
+          </figure>
+        </article>
+
+        <article class="projeto surge">
+          <div class="texto">
+            <div class="cabeca"><span class="rotulo">03 · <b>Robô do Instagram</b></span><span class="status obra">Em teste</span></div>
+            <h3>A máquina que monta e publica os posts deste perfil</h3>
+            <p class="resumo">Escolhe o tema do dia, escreve, desenha os slides, acha a foto da capa e manda a prévia para o meu celular. Eu aprovo, ele publica.</p>
+            <div class="progresso" style="--cor:var(--ambar)"><div><span>maturidade</span><span>em teste</span></div><span><i style="--p:58%"></i></span></div>
+            <dl class="ficha">
+              <div><dt>Problema</dt><dd>Montar slide por slide num editor de imagem não cabe numa rotina de post diário.</dd></div>
+              <div><dt>Solução</dt><dd>Slides gerados em código, uma cor por série da semana, revisão automática do texto e aprovação por um toque no WhatsApp.</dd></div>
+              <div><dt>Resultado</dt><dd>Prévia às 8h, publicação no fim da tarde e a capa também no story. Os primeiros posts estão saindo agora.</dd></div>
+            </dl>
+            <ul class="pilha" aria-label="Tecnologias"><li>Python</li><li>HTML e CSS</li><li>Chromium</li><li>Gemini</li><li>Docker</li><li>Instagram API</li></ul>
+          </div>
+          <figure class="midia">
+            <div class="moldura leque">
+              <img class="tela" src="img/carrossel-1.jpg" alt="Capa: fiz um robô que posta no meu LinkedIn por mim." loading="lazy" width="540" height="675">
+              <img class="tela" src="img/carrossel-3.jpg" alt="Capa: os posts daqui saem de um programa meu." loading="lazy" width="540" height="675">
+              <img class="tela" src="img/carrossel-2.jpg" alt="Capa: ninguém sabia onde tava o equipamento." loading="lazy" width="540" height="675">
+            </div>
+            <figcaption>slides gerados pela máquina</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section class="secao" id="diario">
+      <header class="surge">
+        <div>
+          <span class="rotulo">Diário de obra</span>
+          <h2>Últimas atualizações</h2>
+        </div>
+      </header>
+      <ol class="diario" id="lista-diario"></ol>
+      <p class="nota" id="fonte-diario"></p>
+    </section>
+
+    <section class="secao">
+      <header class="surge">
+        <div>
+          <span class="rotulo">Fora do código</span>
+          <h2>O que mais ocupa a cabeça</h2>
+        </div>
+      </header>
+      <div class="fora surge">
+        <div style="--cor:#8B5CF6">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8.5" width="20" height="4" rx="1"/><rect x="9.5" y="7" width="5" height="7" rx="1.2"/><path d="M10.6 14l-2 7M13.4 14l2 7"/></svg>
+          <svg class="onda" viewBox="0 0 60 8" aria-hidden="true"><path d="M1 4q7.25-4 14.5 0t14.5 0 14.5 0 14.5 0"/></svg>
+          <h3>Jiu-jitsu</h3><p>Faixa roxa. Melhor do Ano 2025 pela FBJJMMA.</p>
+        </div>
+        <div style="--cor:#3D8BFF">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+          <svg class="onda" viewBox="0 0 60 8" aria-hidden="true"><path d="M1 4q7.25-4 14.5 0t14.5 0 14.5 0 14.5 0"/></svg>
+          <h3>Surf</h3><p>Sempre que o mar de Salvador deixa.</p>
+        </div>
+        <div style="--cor:#B79CFF">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="13" rx="10" ry="3.2"/><path d="M6.8 12.2a5.2 5.2 0 0 1 10.4 0"/><path d="M9 17.5l-1.5 3.5M15 17.5l1.5 3.5"/></svg>
+          <svg class="onda" viewBox="0 0 60 8" aria-hidden="true"><path d="M1 4q7.25-4 14.5 0t14.5 0 14.5 0 14.5 0"/></svg>
+          <h3>Astronomia</h3><p>E a pergunta sobre vida fora da Terra. Assunto das sextas no Instagram.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="contato">
+      <header class="surge">
+        <div>
+          <span class="rotulo">Contato</span>
+          <h2>Vamos conversar</h2>
+          <p>Para acompanhar os próximos capítulos ou trocar uma ideia sobre algum projeto.</p>
+        </div>
+      </header>
+      <div class="contato surge">
+        <a href="https://www.instagram.com/leomagalhaes.ti/"><strong>Instagram <span aria-hidden="true">↗</span></strong><span>@leomagalhaes.ti · bastidores toda semana</span></a>
+        <a href="https://www.linkedin.com/in/leomagalhaesti/"><strong>LinkedIn <span aria-hidden="true">↗</span></strong><span>in/leomagalhaesti</span></a>
+        <a href="https://github.com/leomagalhaesti"><strong>GitHub <span aria-hidden="true">↗</span></strong><span>github.com/leomagalhaesti</span></a>
+      </div>
+    </section>
+
+    <footer class="rodape">
+      <span>© 2026 Leo Magalhães</span>
+      <span>Página construída e mantida por mim · <a href="https://github.com/leomagalhaesti/leomagalhaesti.github.io">código</a></span>
+    </footer>
+  </div>
+</main>
+
+<script>
+/* ====== DIÁRIO: acrescente uma linha a cada avanço ====== */
+const DIARIO = [
+  { quando: "2026-10-14", texto: "Robô do Instagram começou a publicar pela API. Prévia de manhã, aprovação pelo WhatsApp.", projeto: "03" },
+  { quando: "2026-10-14", texto: "Este portfólio passou a mostrar ao vivo o que está rodando no servidor.", projeto: "site" },
+  { quando: "2026-10-13", texto: "Gerador de carrosséis: cada série da semana ganhou sua cor e novos formatos de slide.", projeto: "03" },
+  { quando: "2026-10-12", texto: "Os slides do Instagram passaram a sair de código, não de editor de imagem.", projeto: "03" },
+  { quando: "2026-10-12", texto: "TrackPoint ganhou nome e estudo de caso público.", projeto: "02" },
+  { quando: "2026-10-11", texto: "PostEngineAI: código publicado no GitHub.", projeto: "01" }
+];
+const REPOS = { "Postengine-ai": ["01", "PostEngineAI"], "trackpoint": ["02", "TrackPoint"] };
+const FRASES = ["trabalham sozinhos.", "postam por mim.", "não esquecem nada.", "avisam quando algo cai."];
+/* ======================================================= */
+
+const VISTO_URL = "https://painel.leomagalhaes.tech/leo/visto.json";
+const OPERACAO_URL = "https://painel.leomagalhaes.tech/status/publico.json";
+const calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = id => document.getElementById(id);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const hora = (d = new Date()) => d.toLocaleTimeString("pt-BR", { timeZone: "America/Bahia", hour12: false });
+
+/* relógio de Salvador */
+setInterval(() => { $("relogio").textContent = "SSA " + hora(); }, 1000);
+
+/* frase que se reescreve */
+(function trocar() {
+  if (calmo) return;
+  let i = 0;
+  const alvo = $("troca");
+  const escrever = async () => {
+    const atual = alvo.textContent;
+    for (let n = atual.length; n >= 0; n--) { alvo.textContent = atual.slice(0, n); await new Promise(r => setTimeout(r, 28)); }
+    i = (i + 1) % FRASES.length;
+    for (let n = 1; n <= FRASES[i].length; n++) { alvo.textContent = FRASES[i].slice(0, n); await new Promise(r => setTimeout(r, 55)); }
+    setTimeout(escrever, 2600);
+  };
+  setTimeout(escrever, 2600);
+})();
+
+/* console: fila de linhas reais, uma de cada vez */
+const fila = [];
+let escrevendo = false;
+function registrar(tag, msg, cor = "", ok = true) { fila.push({ tag, msg, cor, ok }); if (!escrevendo) proxima(); }
+async function proxima() {
+  const item = fila.shift();
+  if (!item) { escrevendo = false; return; }
+  escrevendo = true;
+  const log = $("log"), li = el("li", "digitando"), m = el("span", "msg", "");
+  li.append(el("time", "", hora()), el("span", "tag " + item.cor, item.tag), m);
+  log.append(li);
+  while (log.children.length > 14) log.firstChild.remove();
+  if (calmo) m.textContent = item.msg;
+  else for (let n = 1; n <= item.msg.length; n += 2) { m.textContent = item.msg.slice(0, n); await new Promise(r => setTimeout(r, 14)); }
+  m.textContent = item.msg; li.classList.remove("digitando");
+  if (item.ok) li.append(el("span", "ok", "✓"));
+  setTimeout(proxima, 380);
+}
+
+/* números que sobem */
+function contar(alvo, ate) {
+  if (calmo) { alvo.textContent = ate; return; }
+  const t0 = performance.now(), dur = 1200;
+  const passo = t => { const p = Math.min(1, (t - t0) / dur); alvo.textContent = Math.round(ate * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(passo); };
+  requestAnimationFrame(passo);
+}
+
+/* último acesso */
+let ultimoCodigo = 0;
+function tempoDesde(ms) {
+  const min = Math.max(0, Math.round((Date.now() - ms) / 6e4));
+  if (min < 1) return ["agora", min];
+  if (min < 60) return [min + " min", min];
+  if (min < 1440) return [Math.round(min / 60) + " h", min];
+  return [Math.round(min / 1440) + (min < 2880 ? " dia" : " dias"), min];
+}
+async function mostrarVisto(primeira) {
+  const fontes = await Promise.allSettled([
+    fetch(VISTO_URL, { cache: "no-store" }).then(r => r.json()),
+    fetch("https://api.github.com/users/leomagalhaesti/events/public?per_page=1").then(r => r.json())
+  ]);
+  let quando = 0, projeto = null;
+  if (fontes[0].status === "fulfilled" && fontes[0].value.visto) { quando = fontes[0].value.visto * 1000; projeto = fontes[0].value.projeto; }
+  if (fontes[1].status === "fulfilled" && Array.isArray(fontes[1].value) && fontes[1].value[0]) {
+    const t = Date.parse(fontes[1].value[0].created_at);
+    if (t > quando) { quando = t; projeto = null; }
+  }
+  if (!quando) { $("visto-texto").textContent = "sem sinal agora"; return; }
+  ultimoCodigo = quando;
+  const [txt, min] = tempoDesde(quando);
+  const online = min < 10;
+  $("visto-texto").textContent = online ? "codando agora" + (projeto ? " · " + projeto : "") : "último código há " + txt;
+  $("quem").classList.toggle("online", online);
+  $("n-codigo").textContent = online ? "agora" : txt;
+  if (primeira) registrar("leo", online ? "online · codando" + (projeto ? " no " + projeto : "") : "último código há " + txt, "", online);
+}
+
+/* em operação */
+const CORES = { YouTube: "coral", Instagram: "lilas", TikTok: "azul", LinkedIn: "azul", WhatsApp: "" };
+function batimento() {
+  const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  s.setAttribute("viewBox", "0 0 300 38"); s.setAttribute("preserveAspectRatio", "none"); s.setAttribute("aria-hidden", "true");
+  const d = "M0 26 H110 l6 -3 l5 3 h10 l5 -18 l6 30 l5 -12 h12 l5 -2 l5 2 H300";
+  s.innerHTML = `<path class="base" d="${d}"/><path d="${d}"/>`;
+  return s;
+}
+let verificado = 0;
+async function mostrarOperacao(primeira) {
+  let d;
+  try { d = await fetch(OPERACAO_URL, { cache: "no-store" }).then(r => r.json()); } catch (e) { $("op-resumo").textContent = "servidor sem resposta agora"; return; }
+  if (!d.pronto) return;
+  verificado = d.quando * 1000;
+  $("op-lista").replaceChildren(...d.itens.map(it => {
+    const li = el("li", it.status === "instável" ? "instavel" : it.status === "vinculado" ? "vinculado" : ""), cab = el("div", "op-cab");
+    cab.append(el("i"), el("b", "", it.rede), el("em", "", it.status));
+    li.append(cab, el("p", "", it.o_que), batimento());
+    return li;
+  }));
+  $("n-total").textContent = "/" + d.total;
+  if (primeira) {
+    contar($("n-sistemas"), d.operando);
+    d.itens.forEach(it => registrar(it.rede.toLowerCase(), it.o_que + " · " + it.status, CORES[it.rede] || "", it.status !== "instável"));
+  } else $("n-sistemas").textContent = d.operando;
+  $("op-resumo").dataset.ok = d.operando; $("op-resumo").dataset.total = d.total;
+}
+setInterval(() => {
+  if (!verificado) return;
+  const s = Math.max(0, Math.round((Date.now() - verificado) / 1000)), r = $("op-resumo");
+  r.innerHTML = `<b>${r.dataset.ok} de ${r.dataset.total}</b> no ar · conferido há ${s < 60 ? s + " s" : Math.round(s / 60) + " min"}`;
+}, 1000);
+
+/* diário */
+const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+function dataCurta(iso) { const [a, m, d] = iso.split("-"); return d + " " + MESES[+m - 1] + " " + a; }
+function montarDiario(itens, fonte) {
+  $("lista-diario").replaceChildren(...itens.slice().sort((a, b) => b.quando.localeCompare(a.quando)).slice(0, 7).map(e => {
+    const li = el("li"), t = el("time", "", dataCurta(e.quando));
+    t.dateTime = e.quando;
+    li.append(t, el("span", "", e.texto), el("small", "", e.projeto === "site" ? "este site" : "projeto " + e.projeto));
+    return li;
+  }));
+  $("fonte-diario").textContent = fonte;
+  observarDiario();
+}
+
+/* rolagem: elementos surgem, a linha do diário acende */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visivel"); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll(".surge").forEach(e => io.observe(e));
+const ioNum = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.querySelectorAll("[data-conta]").forEach(n => n.dataset.conta && contar(n, +n.dataset.conta));
+  ioNum.unobserve(e.target);
+}), { threshold: .4 });
+ioNum.observe(document.querySelector(".numeros"));
+function observarDiario() {
+  const lista = $("lista-diario");
+  const andar = () => {
+    const r = lista.getBoundingClientRect(), meio = innerHeight * .7;
+    const p = Math.max(0, Math.min(1, (meio - r.top) / r.height));
+    lista.style.setProperty("--andou", (p * 100).toFixed(1) + "%");
+    lista.querySelectorAll("li").forEach(li => li.classList.toggle("aceso", li.getBoundingClientRect().top < meio));
+  };
+  andar(); addEventListener("scroll", andar, { passive: true });
+}
+
+/* partida */
+registrar("sistema", "conectando ao servidor em Salvador…", "ambar");
+mostrarOperacao(true); setInterval(mostrarOperacao, 60000);
+mostrarVisto(true); setInterval(mostrarVisto, 60000);
+montarDiario(DIARIO, "Registro escrito a cada avanço.");
+fetch("https://api.github.com/users/leomagalhaesti/repos?sort=pushed&per_page=30")
+  .then(r => r.ok ? r.json() : Promise.reject(r.status))
+  .then(repos => {
+    const meus = repos.filter(r => REPOS[r.name]);
+    if (meus[0]) registrar("github", REPOS[meus[0].name][1] + " · último envio " + dataCurta(meus[0].pushed_at.slice(0, 10)), "lilas");
+    const extra = meus.map(r => ({ quando: r.pushed_at.slice(0, 10), projeto: REPOS[r.name][0], texto: REPOS[r.name][1] + ": nova atualização no código." }));
+    if (extra.length) montarDiario([...DIARIO, ...extra], "Registro escrito a cada avanço, somado à atividade pública no GitHub.");
+  })
+  .catch(() => {});
+/* depois da carga, o console continua vivo: a cada 20 s uma checagem real */
+setInterval(async () => {
+  try {
+    const d = await fetch(OPERACAO_URL, { cache: "no-store" }).then(r => r.json());
+    const it = d.itens[Math.floor(Math.random() * d.itens.length)];
+    registrar(it.rede.toLowerCase(), "checagem · " + it.status, CORES[it.rede] || "", it.status !== "instável");
+  } catch (e) {}
+}, 20000);
+</script>
+</body>
+</html>
