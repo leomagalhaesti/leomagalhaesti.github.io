@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="A nave roda com o meu cérebro: cada sinal em órbita é algo que estou montando. Código, tatame, mar e céu.">
+<meta property="og:title" content="Em construção · Leo Magalhães">
+<meta property="og:description" content="A nave roda com o meu cérebro: cada sinal em órbita é algo que estou montando.">
+<meta property="og:image" content="https://leomagalhaesti.github.io/previa.png">
+<meta property="og:url" content="https://leomagalhaesti.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#06051A">
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Em construção · Leo Magalhães</title>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* Layout: a nave-cérebro no topo (o cérebro mora na cúpula, o tronco encaixa na engrenagem do disco, os projetos orbitam
+   e o escolhido desce no feixe); embaixo, a ficha do sinal captado e o diário em blocos. Tema Córtex, só escuro. */
+:root{
+  color-scheme:dark;
+  --noite:#06051A; --indigo:#100D36; --indigo-claro:#241B63; --painel:#120F3D; --linha:#3A3380;
+  --texto:#EDEBFF; --texto-2:#C9C4F2; --texto-3:#8E88C2;
+  --menta:#5CF2C8; --obra:#F2C14E; --azul:#6CB6FF; --lilas:#B79CFF; --rosa:#FF6B8B; --tinta:#07061C;
+  --fx-branca:#F2F0FF; --fx-azul:#2F6BFF; --fx-roxa:#8A4DE0; --fx-marrom:#7A4A28; --fx-preta:#0B0B14; --fx-ponta:#0B0B14; --fx-ponta-preta:#D7263D;
+  --display:"Space Grotesk",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--noite);color:var(--texto);font-family:var(--display);font-size:1rem;line-height:1.5;overflow-x:hidden}
+.pagina{max-width:44rem;margin:0 auto;padding-inline:1.125rem;padding-block:1rem 3rem;display:flex;flex-direction:column;gap:2.5rem}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--menta);outline-offset:3px}
+.rotulo{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--texto-3)}
+
+/* abertura */
+.abertura{display:flex;flex-direction:column;gap:.9rem}
+.sinal{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:var(--texto-3)}
+.sinal a{color:var(--texto-2);text-decoration:none}
+.sinal .vivo{color:var(--menta)}
+.sinal .vivo::before{content:"";display:inline-block;width:.5rem;height:.5rem;border-radius:50%;background:var(--menta);margin-right:.45rem;animation:pulsar 1.6s ease-in-out infinite}
+@keyframes pulsar{50%{opacity:.25}}
+h1{margin:0;font-weight:700;font-size:clamp(2.6rem,14vw,6.2rem);line-height:.88;letter-spacing:-.04em;text-transform:uppercase}
+h1 .vazado{display:block;color:transparent;-webkit-text-stroke:1.5px var(--obra)}
+.lema{margin:0;color:var(--texto-2);max-width:28rem;font-size:1.05rem}
+.lema b{color:var(--texto);font-weight:600}
+
+/* céu */
+.ceu{position:relative;margin-inline:-1.125rem;height:31rem;background:radial-gradient(90% 70% at 50% 25%,var(--indigo-claro) 0%,var(--indigo) 50%,var(--noite) 100%)}
+.ceu canvas{display:block;width:100%;height:100%;touch-action:manipulation}
+.ceu .dica,.ceu .coord{position:absolute;top:.8rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--texto-3);pointer-events:none;font-variant-numeric:tabular-nums}
+.ceu .dica{left:1.125rem;text-transform:uppercase}
+.ceu .coord{right:1.125rem;text-align:right}
+@media (min-width:46rem){.ceu{margin-inline:0;border:1px solid var(--linha);border-radius:.5rem;overflow:hidden}}
+
+.seletor{display:flex;gap:.5rem;flex-wrap:wrap}
+.seletor button{all:unset;box-sizing:border-box;cursor:pointer;font-family:var(--mono);font-size:.78rem;padding:.5rem .8rem;border:1px solid var(--linha);border-radius:2rem;color:var(--texto-2)}
+.seletor button[aria-pressed="true"]{background:var(--cor);border-color:var(--cor);color:var(--tinta);font-weight:700}
+
+/* ficha */
+.ficha{position:relative;background:var(--painel);padding:1.4rem 1.2rem;display:flex;flex-direction:column;gap:1.1rem;--cor:var(--obra)}
+.ficha::before,.ficha::after{content:"";position:absolute;width:1.4rem;height:1.4rem;border:2px solid var(--cor);pointer-events:none}
+.ficha::before{top:0;left:0;border-right:0;border-bottom:0}
+.ficha::after{bottom:0;right:0;border-left:0;border-top:0}
+.ficha .rotulo b{color:var(--cor);font-weight:500}
+.ficha h2{margin:0;font-size:clamp(1.6rem,7vw,2.3rem);line-height:1.02;letter-spacing:-.02em;font-weight:700;text-wrap:balance}
+.ficha .apelido{font-family:var(--mono);font-size:.8rem;color:var(--cor)}
+.lobo{display:flex;gap:.7rem;align-items:center;font-size:.92rem;color:var(--texto-2)}
+.lobo::before{content:"";flex:none;width:.7rem;height:.7rem;border-radius:50%;background:var(--cor);box-shadow:0 0 .8rem var(--cor)}
+.lobo b{color:var(--texto);font-weight:600}
+.campos{margin:0;display:grid;gap:.9rem}
+@media (min-width:40rem){.campos{grid-template-columns:repeat(3,1fr)}}
+.campos div{min-width:0}
+.campos dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--texto-3)}
+.campos dd{margin:.2rem 0 0;color:var(--texto-2)}
+.ficha .codigo{font-family:var(--mono);font-size:.8rem;color:var(--menta);align-self:flex-start}
+
+/* faixa */
+.graduacao{display:flex;flex-direction:column;gap:.55rem}
+.faixa{position:relative;height:1.5rem;border-radius:.15rem;background:var(--fx);border:1px solid var(--linha);
+  background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.12) 0 1px,transparent 1px 7px)}
+.faixa::after{content:"";position:absolute;top:-1px;bottom:-1px;right:12%;width:18%;background:var(--ponta);border-inline:1px solid var(--linha)}
+.graduacao .legenda{font-family:var(--mono);font-size:.82rem;color:var(--texto)}
+.graduacao .legenda span{color:var(--texto-3)}
+.escada{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:.35rem}
+.escada li{display:flex;flex-direction:column;gap:.3rem;font-family:var(--mono);font-size:.6rem;color:var(--texto-3);min-width:0;opacity:.55}
+.escada li::before{content:"";height:.4rem;background:var(--fx);border:1px solid var(--linha)}
+.escada li.aqui{opacity:1;color:var(--texto)}
+.escada li.aqui::before{box-shadow:0 0 .7rem var(--cor)}
+.nota{margin:0;font-size:.85rem;color:var(--texto-3)}
+
+/* blocos */
+section{display:flex;flex-direction:column;gap:1rem}
+h3{margin:0;font-size:1.5rem;line-height:1.1;font-weight:700;letter-spacing:-.02em}
+.cadeia{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.cadeia li{position:relative;display:grid;grid-template-columns:3.2rem 1fr;gap:.9rem;padding-bottom:1.3rem}
+.cadeia li::before{content:"";position:absolute;left:1.55rem;top:2.6rem;bottom:0;border-left:2px dashed var(--linha)}
+.cadeia li:last-child::before{display:none}
+.cadeia .num{height:2.6rem;display:grid;place-items:center;border:1px solid var(--menta);color:var(--menta);font-family:var(--mono);font-size:.78rem;background:var(--painel)}
+.cadeia .corpo{min-width:0;display:flex;flex-direction:column;gap:.15rem}
+.cadeia .meta{font-family:var(--mono);font-size:.7rem;color:var(--texto-3);display:flex;gap:.7rem;flex-wrap:wrap}
+.cadeia .meta time{color:var(--obra)}
+.cadeia .texto{color:var(--texto-2)}
+
+/* saída */
+.saida{border-top:1px solid var(--linha);padding-top:1.4rem}
+.saida p{margin:0;color:var(--texto-2);max-width:28rem}
+.links{display:flex;flex-wrap:wrap;gap:.6rem}
+.links a{font-family:var(--mono);font-size:.8rem;text-decoration:none;padding:.65rem .9rem;border:1px solid var(--linha);color:var(--texto)}
+.links a.principal{background:var(--menta);border-color:var(--menta);color:var(--tinta);font-weight:700}
+@media (prefers-reduced-motion:reduce){.sinal .vivo::before{animation:none}}
+</style>
+
+<div class="pagina">
+  <header class="abertura">
+    <div class="sinal">
+      <span class="vivo">sinal captado · <span id="ultimo-sinal">transmitindo</span></span>
+      <a href="https://www.instagram.com/leomagalhaes.ti/">@leomagalhaes.ti</a>
+    </div>
+    <h1>Em <span class="vazado">construção</span></h1>
+    <p class="lema"><b>Código, tatame, mar e céu.</b> A nave aqui embaixo roda com o meu cérebro. Cada sinal em órbita é algo que estou montando.</p>
+  </header>
+
+  <div class="ceu">
+    <canvas id="ceu" role="img" aria-label="Um disco voador com um cérebro dentro da cúpula. O tronco do cérebro encaixa na engrenagem do disco, e os projetos orbitam em volta; o escolhido desce no feixe de luz."></canvas>
+    <span class="dica">toque num sinal em órbita</span>
+    <span class="coord" id="coord"></span>
+  </div>
+
+  <div class="seletor" id="seletor" aria-label="Escolher o sinal"></div>
+
+  <article class="ficha" id="ficha" aria-live="polite">
+    <span class="rotulo">Sinal captado · <b id="f-cap"></b></span>
+    <h2 id="f-nome"></h2>
+    <span class="apelido" id="f-apelido"></span>
+    <span class="lobo" id="f-lobo"></span>
+    <div class="graduacao" id="f-graduacao">
+      <div class="faixa" id="f-faixa"></div>
+      <div class="legenda" id="f-legenda"></div>
+      <ol class="escada" id="f-escada" aria-label="Graduação dos projetos"></ol>
+    </div>
+    <dl class="campos" id="f-campos"></dl>
+    <a class="codigo" id="f-codigo" hidden>ver o código →</a>
+    <p class="nota" id="f-nota">Aqui projeto tem faixa, igual no jiu-jitsu: nasce na branca e só pega a preta quando roda sozinho.</p>
+  </article>
+
+  <section>
+    <span class="rotulo">Diário de obra</span>
+    <h3>Cada avanço vira um bloco, preso ao anterior</h3>
+    <ol class="cadeia" id="cadeia"></ol>
+    <p class="nota" id="fonte"></p>
+  </section>
+
+  <section class="saida">
+    <p>Toda quarta sai um capítulo novo no Instagram. Ficou curioso com algum? Pergunta no direct.</p>
+    <div class="links">
+      <a class="principal" href="https://www.instagram.com/leomagalhaes.ti/">Ver no Instagram</a>
+      <a href="https://github.com/leomagalhaesti">É da área? O código está no GitHub</a>
+      <a href="https://www.linkedin.com/in/leomagalhaesti/">LinkedIn</a>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ====== DADOS: é só isto que muda a cada semana ====== */
+const FAIXAS = [
+  { nome: "branca", fase: "ideia",     fx: "--fx-branca" },
+  { nome: "azul",   fase: "montando",  fx: "--fx-azul" },
+  { nome: "roxa",   fase: "em ensaio", fx: "--fx-roxa" },
+  { nome: "marrom", fase: "piloto",    fx: "--fx-marrom" },
+  { nome: "preta",  fase: "no ar",     fx: "--fx-preta" }
+];
+/* lobo: a parte do cérebro da nave que acende para cada projeto (coordenadas no desenho do cérebro, 200 × 150) */
+const LOBOS = {
+  linguagem: { nome: "área da linguagem", faz: "a parte que monta frases", x: 44, y: 80 },
+  visao:     { nome: "lobo occipital", faz: "a parte que enxerga", x: 176, y: 60 },
+  espaco:    { nome: "lobo parietal", faz: "a parte que entende espaço e forma", x: 138, y: 30 },
+  cerebelo:  { nome: "cerebelo", faz: "a parte do equilíbrio e do tempo certo", x: 162, y: 112 }
+};
+const DADOS = {
+  atual: 3, // capítulo que abre no feixe
+  capitulos: [
+    { n: 1, nome: "O robô que posta no LinkedIn", curto: "robô do LinkedIn", apelido: "PostEngineAI", faixa: 4, repo: "Postengine-ai", cor: "--menta", lobo: "linguagem",
+      problema: "Postar todo dia pedia um tempo que eu não tinha.",
+      fiz: "Um robô que escolhe o assunto, escreve o texto, procura a imagem e publica. Um post por dia.",
+      ficou: "Roda sozinho num servidor. Se a primeira tentativa falha, ele tem um plano B para o texto e para a imagem." },
+    { n: 2, nome: "O controle de equipamentos", curto: "controle de equipamentos", apelido: "TrackPoint", faixa: 3, repo: "trackpoint", cor: "--azul", lobo: "visao",
+      problema: "Saber qual equipamento saiu, com quem está e se voltou.",
+      fiz: "Um aplicativo em que cada saída é conferida apontando a câmera para um QR Code.",
+      ficou: "Em piloto. No fim do dia ele entrega um relatório pronto em PDF." },
+    { n: 3, nome: "A máquina de posts deste perfil", curto: "máquina de posts", apelido: "Gerador de carrosséis", faixa: 2, repo: null, cor: "--obra", lobo: "espaco",
+      problema: "Montar slide por slide num editor de imagem não cabe na minha rotina.",
+      fiz: "Um programa que recebe o texto e devolve os slides desenhados, já no tamanho do Instagram.",
+      ficou: "Os slides já saem prontos. Falta ele publicar sozinho, todo dia." }
+  ],
+  /* fora da obra: aparece ao tocar no cerebelo da nave */
+  extra: { n: 0, nome: "O cerebelo fica fora da obra", curto: "cerebelo", apelido: "reservado para o mar e o tatame", cor: "--rosa", lobo: "cerebelo",
+    campos: [["O que ele faz", "Segura o equilíbrio e acerta o tempo de cada movimento."],
+             ["Onde eu uso", "Em cima da prancha e no tatame."],
+             ["Como está", "Em treino. Esse não tem faixa de projeto, tem a do kimono."]] },
+  diario: [
+    { quando: "2026-10-13", texto: "Os posts ganharam uma cor para cada dia da semana." },
+    { quando: "2026-10-12", texto: "Os slides deste perfil passaram a sair de um programa, não de um editor de imagem." },
+    { quando: "2026-10-12", texto: "O controle de equipamentos ganhou nome: TrackPoint." },
+    { quando: "2026-10-11", texto: "O robô do LinkedIn teve o código publicado." }
+  ]
+};
+/* ====================================================== */
+
+const $ = id => document.getElementById(id);
+const dois = n => String(n).padStart(2, "0");
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const TODOS = [...DADOS.capitulos, DADOS.extra];
+let escolhido = DADOS.capitulos.find(c => c.n === DADOS.atual);
+
+function haQuanto(iso) {
+  const dias = Math.floor((Date.now() - new Date(iso + "T12:00:00").getTime()) / 864e5);
+  if (dias <= 0) return "hoje";
+  if (dias === 1) return "ontem";
+  if (dias < 7) return "há " + dias + " dias";
+  if (dias < 14) return "semana passada";
+  if (dias < 60) return "há " + Math.floor(dias / 7) + " semanas";
+  return "há " + Math.floor(dias / 30) + " meses";
+}
+function el(tag, props, ...filhos) { const e = Object.assign(document.createElement(tag), props || {}); e.append(...filhos); return e; }
+
+/* ---------- ficha ---------- */
+function montarSeletor() {
+  TODOS.forEach(c => {
+    const b = el("button", { id: "sel-" + c.n, textContent: (c.n ? dois(c.n) : "∞") + " · " + c.curto });
+    b.style.setProperty("--cor", "var(" + c.cor + ")");
+    b.addEventListener("click", () => escolher(c));
+    $("seletor").append(b);
+  });
+}
+function escolher(c) {
+  if (c !== escolhido) motor.impulso = 3;
+  escolhido = c;
+  TODOS.forEach(x => $("sel-" + x.n).setAttribute("aria-pressed", String(x === c)));
+  const projeto = c.n > 0, lobo = LOBOS[c.lobo];
+  $("ficha").style.setProperty("--cor", "var(" + c.cor + ")");
+  $("f-cap").textContent = projeto ? "capítulo " + dois(c.n) : "fora da série";
+  $("f-nome").textContent = c.nome;
+  $("f-apelido").textContent = c.apelido;
+  $("f-lobo").replaceChildren("No cérebro da nave: ", el("b", { textContent: lobo.nome }), ", " + lobo.faz + ".");
+  $("f-graduacao").hidden = $("f-nota").hidden = !projeto;
+  if (projeto) {
+    const fx = FAIXAS[c.faixa];
+    $("f-faixa").style.setProperty("--fx", "var(" + fx.fx + ")");
+    $("f-faixa").style.setProperty("--ponta", "var(" + (c.faixa === 4 ? "--fx-ponta-preta" : "--fx-ponta") + ")");
+    $("f-legenda").replaceChildren("faixa " + fx.nome + " ", el("span", { textContent: "· " + fx.fase }));
+    $("f-escada").replaceChildren(...FAIXAS.map((f, i) => {
+      const li = el("li", { textContent: f.fase, className: i === c.faixa ? "aqui" : "" });
+      li.style.setProperty("--fx", "var(" + f.fx + ")");
+      return li;
+    }));
+  }
+  const campos = c.campos || [["O problema", c.problema], ["O que eu montei", c.fiz], ["Como está", c.ficou]];
+  $("f-campos").replaceChildren(...campos.map(([t, d]) => el("div", null, el("dt", { textContent: t }), el("dd", { textContent: d }))));
+  const a = $("f-codigo");
+  a.hidden = !c.repo;
+  if (c.repo) a.href = "https://github.com/leomagalhaesti/" + c.repo;
+  if (calmo && W) desenhar(0);
+}
+
+/* ---------- diário em blocos ---------- */
+function digital(txt) { // impressão digital curta do texto (FNV-1a)
+  let h = 0x811c9dc5;
+  for (let i = 0; i < txt.length; i++) { h ^= txt.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+  return (h >>> 0).toString(16).padStart(8, "0");
+}
+function montarCadeia(itens, origem) {
+  const ordem = itens.slice().sort((a, b) => a.quando.localeCompare(b.quando));
+  let anterior = "00000000";
+  ordem.forEach((e, i) => { e.n = i + 1; e.hash = digital(anterior + e.quando + e.texto); anterior = e.hash; });
+  $("cadeia").replaceChildren(...ordem.reverse().slice(0, 6).map(e => {
+    const t = el("time", { textContent: haQuanto(e.quando) }); t.dateTime = e.quando;
+    return el("li", null,
+      el("span", { className: "num", textContent: "#" + dois(e.n) }),
+      el("div", { className: "corpo" },
+        el("div", { className: "meta" }, t, el("span", { textContent: "0x" + e.hash })),
+        el("span", { className: "texto", textContent: e.texto })));
+  }));
+  $("ultimo-sinal").textContent = "última obra " + haQuanto(ordem[0].quando);
+  $("fonte").textContent = origem;
+}
+/* Hospedada fora daqui, a página pergunta ao GitHub quando cada projeto foi mexido por último. Sem resposta, vale o diário escrito. */
+async function movimentosDoGitHub() {
+  const r = await fetch("https://api.github.com/users/leomagalhaesti/repos?sort=pushed&per_page=20");
+  if (!r.ok) throw new Error(r.status);
+  const repos = await r.json();
+  return DADOS.capitulos.filter(c => c.repo).map(c => {
+    const repo = repos.find(x => x.name === c.repo);
+    return repo && { quando: repo.pushed_at.slice(0, 10), texto: "Mexi no código do " + c.curto + "." };
+  }).filter(Boolean);
+}
+
+/* ---------- a nave-cérebro ---------- */
+function sorteio(semente) { return () => { semente |= 0; semente = semente + 0x6D2B79F5 | 0; let t = Math.imul(semente ^ semente >>> 15, 1 | semente); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+// cérebro de perfil, virado para a esquerda, numa caixa de 200 × 150
+const CEREBRO = new Path2D("M22 95 C5 70 10 30 45 15 C75 0 130 0 160 18 C190 35 198 70 185 92 C178 102 165 104 152 100 C135 110 110 118 88 112 C65 108 55 100 58 92 C50 98 35 100 22 95 Z");
+const CEREBELO = new Path2D("M136 101 C136 124 178 131 189 106 C186 96 160 96 136 101 Z");
+const TRONCO = new Path2D("M124 104 C129 122 127 140 123 156 L141 156 C142 138 142 122 147 103 Z");
+const FISSURAS = new Path2D("M58 93 C85 84 112 78 138 66 M106 5 C98 28 113 46 94 76");
+const FOLHAS = new Path2D();
+for (let i = 0; i < 7; i++) FOLHAS.moveTo(136, 101 + i * 4), FOLHAS.bezierCurveTo(152, 106 + i * 4.4, 170, 107 + i * 4.4, 190, 99 + i * 4);
+const GIROS = new Path2D(), FAISCAS = [];
+(() => {
+  const teste = document.createElement("canvas").getContext("2d"), rnd = sorteio(2026);
+  const dentro = (x, y) => teste.isPointInPath(CEREBRO, x, y) && !teste.isPointInPath(FISSURAS, x, y);
+  for (let g = 0; g < 95; g++) {
+    let x, y; do { x = 8 + rnd() * 188; y = 4 + rnd() * 112; } while (!dentro(x, y));
+    let a = rnd() * 6.28; GIROS.moveTo(x, y);
+    for (let k = 0; k < 7; k++) {
+      a += (rnd() - .5) * 2.4;
+      const nx = x + Math.cos(a) * 8, ny = y + Math.sin(a) * 8;
+      if (!teste.isPointInPath(CEREBRO, nx, ny)) break;
+      GIROS.quadraticCurveTo(x + Math.cos(a - .9) * 6, y + Math.sin(a - .9) * 6, nx, ny); x = nx; y = ny;
+    }
+  }
+  while (FAISCAS.length < 34) { const x = 10 + rnd() * 185, y = 5 + rnd() * 110; if (teste.isPointInPath(CEREBRO, x, y)) FAISCAS.push({ x, y, f: rnd() * 6.28, menta: rnd() < .25 }); }
+  window.TESTE = teste;
+})();
+
+const cv = $("ceu"), ctx = cv.getContext("2d");
+let W = 0, H = 0, s = 1, cx = 0, cy = 0, estrelas = [], antes = 0;
+const motor = { giro: 0, impulso: 0, orbita: 0 };
+const COR = {};
+const FONTE = '"JetBrains Mono", ui-monospace, monospace';
+
+function medir() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2), r = cv.getBoundingClientRect();
+  W = r.width; H = r.height;
+  cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  s = Math.min(W * .48, H * .44) / 200; cx = W / 2; cy = H * .44;
+  const rnd = sorteio(1310);
+  estrelas = Array.from({ length: 120 }, () => ({ x: rnd() * W, y: rnd() * H * .8, r: rnd() * 1.1 + .3, f: rnd() * 6.28 }));
+}
+const brainX = x => cx + (x - 100) * s, brainY = y => cy + (y - 152) * s;
+const orbita = () => ({ rx: Math.min(W * .44, 250), ry: H * .2 });
+
+function posicoes() {
+  const { rx, ry } = orbita();
+  return DADOS.capitulos.map((c, i) => {
+    const a = motor.orbita + i * 2.0944;
+    return { c, x: cx + Math.cos(a) * rx, y: cy + Math.sin(a) * ry, frente: Math.sin(a) };
+  });
+}
+
+function engrenagem(x, y, r, dentes, ang) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(ang); ctx.beginPath();
+  for (let i = 0; i < dentes; i++) {
+    const a = i / dentes * 6.2832, d = 6.2832 / dentes;
+    ctx.lineTo(Math.cos(a) * r * .78, Math.sin(a) * r * .78);
+    ctx.lineTo(Math.cos(a + d * .18) * r, Math.sin(a + d * .18) * r);
+    ctx.lineTo(Math.cos(a + d * .48) * r, Math.sin(a + d * .48) * r);
+    ctx.lineTo(Math.cos(a + d * .66) * r * .78, Math.sin(a + d * .66) * r * .78);
+  }
+  ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.arc(0, 0, r * .28, 0, 6.29);
+  for (let i = 0; i < 4; i++) { const a = i * 1.5708; ctx.moveTo(Math.cos(a) * r * .28, Math.sin(a) * r * .28); ctx.lineTo(Math.cos(a) * r * .62, Math.sin(a) * r * .62); }
+  ctx.stroke(); ctx.restore();
+}
+
+function satelite(p, t, rotulo) {
+  const cor = COR[p.c.cor], sel = p.c === escolhido, k = .7 + .3 * (p.frente + 1) / 2;
+  const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 30 * k);
+  g.addColorStop(0, cor); g.addColorStop(.3, cor + "66"); g.addColorStop(1, cor + "00");
+  ctx.globalAlpha = p.frente < 0 ? .55 : 1;
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, 30 * k, 0, 6.29); ctx.fill();
+  ctx.fillStyle = COR.texto; ctx.beginPath(); ctx.arc(p.x, p.y, 3.5 * k, 0, 6.29); ctx.fill();
+  ctx.strokeStyle = cor; ctx.lineWidth = 1.5;
+  if (sel) { ctx.setLineDash([5, 5]); ctx.lineDashOffset = -t * 14; ctx.beginPath(); ctx.arc(p.x, p.y, 17, 0, 6.29); ctx.stroke(); ctx.setLineDash([]); }
+  else { ctx.beginPath(); ctx.arc(p.x, p.y, 9 * k, 0, 6.29); ctx.stroke(); }
+  if (rotulo) {
+    ctx.font = "500 11px " + FONTE; ctx.textAlign = "center";
+    const txt = dois(p.c.n) + " " + p.c.curto, larg = ctx.measureText(txt).width / 2 + 6, rx = Math.max(larg + 4, Math.min(W - larg - 4, p.x));
+    ctx.fillStyle = "rgba(6,5,26,.82)"; ctx.fillRect(rx - larg, p.y + 22, larg * 2, 18);
+    ctx.fillStyle = sel ? cor : COR.texto2; ctx.fillText(txt, rx, p.y + 35);
+  }
+  ctx.globalAlpha = 1;
+}
+
+function desenhar(ms) {
+  const t = ms / 1000, dt = Math.min(.05, (ms - antes) / 1000 || 0); antes = ms;
+  ctx.clearRect(0, 0, W, H);
+  const lobo = LOBOS[escolhido.lobo], corSel = COR[escolhido.cor];
+
+  // a órbita gira até deixar o sinal escolhido embaixo da nave
+  const idx = DADOS.capitulos.indexOf(escolhido);
+  if (idx >= 0) {
+    let alvo = 1.5708 - idx * 2.0944, d = ((alvo - motor.orbita) % 6.2832 + 9.4248) % 6.2832 - 3.1416;
+    motor.orbita += calmo ? d : d * .06;
+  } else motor.orbita += dt * .25;
+  motor.impulso = Math.max(0, motor.impulso - dt * 1.2);
+  motor.giro += dt * (.5 + motor.impulso);
+  const pos = posicoes(), { rx, ry } = orbita();
+
+  // estrelas
+  estrelas.forEach(e => { ctx.globalAlpha = .3 + .5 * Math.sin(t * 1.3 + e.f) ** 2; ctx.fillStyle = COR.texto; ctx.beginPath(); ctx.arc(e.x, e.y, e.r, 0, 6.29); ctx.fill(); });
+  ctx.globalAlpha = 1;
+  // trilho da órbita
+  ctx.strokeStyle = "rgba(183,156,255,.22)"; ctx.lineWidth = 1; ctx.setLineDash([3, 6]);
+  ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, 6.29); ctx.stroke(); ctx.setLineDash([]);
+  pos.filter(p => p.frente < 0).forEach(p => satelite(p, t, true));
+
+  // feixe: desce até o sinal escolhido, ou até o mar quando é o cerebelo
+  const fundoFeixe = idx >= 0 ? pos[idx].y + 18 : H * .9, base = cy + 30 * s;
+  const gf = ctx.createLinearGradient(0, base, 0, fundoFeixe);
+  gf.addColorStop(0, corSel + (idx >= 0 ? "88" : "AA")); gf.addColorStop(1, corSel + "08");
+  ctx.fillStyle = gf; ctx.globalAlpha = .75 + .25 * Math.sin(t * 6);
+  ctx.beginPath(); ctx.moveTo(cx - 22 * s, base); ctx.lineTo(cx + 22 * s, base); ctx.lineTo(cx + 46, fundoFeixe); ctx.lineTo(cx - 46, fundoFeixe); ctx.closePath(); ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // cúpula (vidro, por trás)
+  const domoY = cy - 4 * s;
+  const gd = ctx.createRadialGradient(cx, domoY - 70 * s, 10, cx, domoY - 50 * s, 140 * s);
+  gd.addColorStop(0, "rgba(92,242,200,.10)"); gd.addColorStop(1, "rgba(92,242,200,.02)");
+  ctx.fillStyle = gd; ctx.beginPath(); ctx.ellipse(cx, domoY, 122 * s, 150 * s, 0, 3.1416, 6.2832); ctx.fill();
+
+  // cérebro
+  ctx.save(); ctx.translate(brainX(0), brainY(0)); ctx.scale(s, s);
+  const lw = 1 / s; ctx.lineJoin = ctx.lineCap = "round";
+  ctx.fillStyle = "rgba(36,27,99,.9)"; ctx.strokeStyle = COR.lilas; ctx.lineWidth = 1.6 * lw;
+  ctx.fill(TRONCO); ctx.stroke(TRONCO);
+  ctx.fill(CEREBELO); ctx.stroke(CEREBELO);
+  ctx.save(); ctx.clip(CEREBELO); ctx.strokeStyle = "rgba(201,196,242,.5)"; ctx.lineWidth = lw; ctx.stroke(FOLHAS); ctx.restore();
+  ctx.shadowColor = COR.lilas; ctx.shadowBlur = 14;
+  ctx.fillStyle = "rgba(24,18,74,.92)"; ctx.fill(CEREBRO); ctx.lineWidth = 2 * lw; ctx.stroke(CEREBRO); ctx.shadowBlur = 0;
+  // lobo aceso
+  ctx.save(); ctx.clip(escolhido.lobo === "cerebelo" ? CEREBELO : CEREBRO);
+  const gl = ctx.createRadialGradient(lobo.x, lobo.y, 0, lobo.x, lobo.y, 48);
+  gl.addColorStop(0, corSel + "CC"); gl.addColorStop(.5, corSel + "40"); gl.addColorStop(1, corSel + "00");
+  ctx.globalAlpha = .65 + .35 * Math.sin(t * 3); ctx.fillStyle = gl; ctx.fillRect(-10, -10, 220, 170); ctx.globalAlpha = 1;
+  ctx.restore();
+  ctx.save(); ctx.clip(CEREBRO);
+  ctx.strokeStyle = "rgba(201,196,242,.55)"; ctx.lineWidth = 1.3 * lw; ctx.stroke(GIROS);
+  ctx.strokeStyle = COR.lilas; ctx.lineWidth = 2.4 * lw; ctx.stroke(FISSURAS);
+  ctx.restore();
+  FAISCAS.forEach(f => { ctx.globalAlpha = .35 + .65 * Math.sin(t * 2.2 + f.f) ** 2; ctx.fillStyle = f.menta ? COR.menta : COR.texto; ctx.beginPath(); ctx.arc(f.x, f.y, 1.6 * lw, 0, 6.29); ctx.fill(); });
+  ctx.globalAlpha = 1; ctx.restore();
+
+  // disco
+  const gc = ctx.createLinearGradient(0, cy - 20 * s, 0, cy + 32 * s);
+  gc.addColorStop(0, "#2A2370"); gc.addColorStop(1, COR.painel);
+  ctx.fillStyle = gc; ctx.strokeStyle = COR.menta; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.ellipse(cx, cy + 6 * s, 152 * s, 27 * s, 0, 0, 6.29); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#1B1656"; ctx.beginPath(); ctx.ellipse(cx, domoY, 122 * s, 13 * s, 0, 0, 6.29); ctx.fill(); ctx.stroke();
+  // engrenagens: a central recebe o tronco do cérebro
+  ctx.save(); ctx.beginPath(); ctx.ellipse(cx, cy + 6 * s, 150 * s, 25 * s, 0, 0, 6.29); ctx.clip();
+  ctx.fillStyle = "rgba(18,15,61,.95)"; ctx.strokeStyle = corSel; ctx.lineWidth = 1.3;
+  const rc = 19 * s, rl = 13 * s, dist = rc + rl - 2 * s;
+  engrenagem(cx, cy + 14 * s, rc, 12, motor.giro);
+  ctx.strokeStyle = COR.menta;
+  engrenagem(cx - dist, cy + 14 * s, rl, 8, -motor.giro * 1.5 + .2);
+  engrenagem(cx + dist, cy + 14 * s, rl, 8, -motor.giro * 1.5 + .2);
+  engrenagem(cx - dist - rl * 1.85, cy + 14 * s, rl * .9, 8, motor.giro * 1.66);
+  engrenagem(cx + dist + rl * 1.85, cy + 14 * s, rl * .9, 8, motor.giro * 1.66);
+  ctx.restore();
+  // luzes do casco em sequência
+  for (let i = 0; i < 11; i++) {
+    const a = .14 * 3.1416 + i / 10 * .72 * 3.1416, x = cx + Math.cos(a) * 146 * s, y = cy + 6 * s + Math.sin(a) * 24 * s;
+    const aceso = ((t * 6 - i) % 11 + 11) % 11 < 1.5;
+    ctx.fillStyle = aceso ? COR.obra : "rgba(242,193,78,.25)"; ctx.beginPath(); ctx.arc(x, y, aceso ? 2.4 : 1.6, 0, 6.29); ctx.fill();
+  }
+  // vidro da cúpula (por cima)
+  ctx.strokeStyle = "rgba(92,242,200,.55)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.ellipse(cx, domoY, 122 * s, 150 * s, 0, 3.1416, 6.2832); ctx.stroke();
+  ctx.strokeStyle = "rgba(237,235,255,.18)"; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.ellipse(cx, domoY, 108 * s, 136 * s, 0, 3.55, 4.25); ctx.stroke();
+
+  // sinapse: do lobo aceso, pelo tronco, até a engrenagem e o sinal
+  const lx = brainX(lobo.x), ly = brainY(lobo.y), tx = brainX(132), ty = cy + 14 * s;
+  const fim = idx >= 0 ? { x: pos[idx].x, y: pos[idx].y } : { x: cx, y: H * .86 };
+  const trilha = [[lx, ly], [tx, brainY(118)], [tx, ty], [fim.x, fim.y]];
+  ctx.strokeStyle = corSel; ctx.globalAlpha = .55; ctx.lineWidth = 1.2; ctx.setLineDash([2, 4]);
+  ctx.beginPath(); trilha.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+  const trechos = trilha.slice(1).map(([x, y], i) => Math.hypot(x - trilha[i][0], y - trilha[i][1])), total = trechos.reduce((a, b) => a + b, 0);
+  for (let k = 0; k < 3; k++) {
+    let d = ((t * .55 + k / 3) % 1) * total, i = 0;
+    while (i < trechos.length - 1 && d > trechos[i]) d -= trechos[i++];
+    const f = d / trechos[i], x = trilha[i][0] + (trilha[i + 1][0] - trilha[i][0]) * f, y = trilha[i][1] + (trilha[i + 1][1] - trilha[i][1]) * f;
+    ctx.fillStyle = corSel; ctx.shadowColor = corSel; ctx.shadowBlur = 10; ctx.beginPath(); ctx.arc(x, y, 2.6, 0, 6.29); ctx.fill(); ctx.shadowBlur = 0;
+  }
+
+  pos.filter(p => p.frente >= 0).forEach(p => satelite(p, t, true));
+
+  // mar
+  const forte = idx < 0;
+  [["lilas", .82, 6, 170, .5, .5], ["azul", .87, 8, 230, -.7, .7], ["menta", .93, 10, 300, .9, .92]].forEach(([cor, b, amp, comp, vel, tampa]) => {
+    ctx.beginPath(); ctx.moveTo(0, H);
+    for (let x = 0; x <= W + 6; x += 6) ctx.lineTo(x, H * b + Math.sin(x / comp * 6.28 + t * vel) * amp * (forte ? 1.6 : 1) + Math.sin(x / (comp * .37) * 6.28 - t * vel * 1.6) * amp * .3);
+    ctx.lineTo(W, H); ctx.closePath();
+    ctx.fillStyle = "rgba(6,5,26," + tampa + ")"; ctx.fill();
+    ctx.strokeStyle = COR[cor]; ctx.globalAlpha = .75; ctx.lineWidth = 1.5; ctx.stroke(); ctx.globalAlpha = 1;
+  });
+
+  $("coord").textContent = "motor ×" + (1 + motor.impulso).toFixed(1) + "\n" + lobo.nome;
+  if (!calmo) requestAnimationFrame(desenhar);
+}
+
+function alvoEm(ev) {
+  const r = cv.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+  const p = posicoes().sort((a, b) => b.frente - a.frente).find(p => (p.x - x) ** 2 + (p.y - y) ** 2 < 32 * 32);
+  if (p) return p.c;
+  if (TESTE.isPointInPath(CEREBELO, (x - brainX(0)) / s, (y - brainY(0)) / s)) return DADOS.extra;
+}
+cv.addEventListener("click", ev => { const c = alvoEm(ev); if (c) escolher(c); });
+cv.addEventListener("pointermove", ev => { cv.style.cursor = alvoEm(ev) ? "pointer" : "default"; });
+addEventListener("resize", () => { medir(); if (calmo) desenhar(0); });
+
+Object.assign(COR, { texto: css("--texto"), texto2: css("--texto-2"), menta: css("--menta"), lilas: css("--lilas"), painel: css("--painel"),
+  azul: css("--azul"), obra: css("--obra"), "--menta": css("--menta"), "--azul": css("--azul"), "--obra": css("--obra"), "--rosa": css("--rosa") });
+$("coord").style.whiteSpace = "pre";
+montarSeletor();
+escolher(escolhido);
+montarCadeia(DADOS.diario.map(e => ({ ...e })), "Blocos escritos à mão no diário da série.");
+movimentosDoGitHub()
+  .then(mov => { if (mov.length) montarCadeia([...DADOS.diario.map(e => ({ ...e })), ...mov], "Blocos do diário da série e da atividade pública no GitHub."); })
+  .catch(() => {});
+medir();
+motor.orbita = 1.5708 - DADOS.capitulos.indexOf(escolhido) * 2.0944; // abre com o sinal da vez já no feixe
+requestAnimationFrame(desenhar);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (calmo) desenhar(0); });
+</script>
+
+</body>
+</html>
