@@ -14,7 +14,7 @@
 <meta name="theme-color" content="#050807">
 <link rel="icon" href="img/foto.jpg">
 <title>Leo Magalhães</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap">
 <style>
 /* Layout: central de controle. Topo com quem sou + console ao vivo (dados reais do servidor e do GitHub entrando linha
    a linha); faixa de números animados; sistemas em operação com batimento; projetos com barra de progresso; diário em
@@ -221,6 +221,187 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
 .item:focus-visible{outline:2px solid var(--menta);outline-offset:-2px}
 @media (max-width:30rem){.item .quero b{display:none}}
 .servicos mark{background:color-mix(in srgb,var(--menta) 30%,transparent);color:inherit;border-radius:3px}
+/* Nina: atendente do site (a buldogue do Leo) */
+.pata{width:1.15em;height:1.15em;fill:currentColor;flex:none}
+.nina{display:flex;flex-direction:column;min-width:0;background:var(--fundo);border:1px solid var(--linha-forte);border-radius:16px;overflow:hidden}
+.nina-cab{display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;border-bottom:1px solid var(--linha)}
+.nina-av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;color:#03140F;background:var(--menta)}
+.nina-av .pata{width:20px;height:20px}
+.nina-cab strong{display:block;font-size:.98rem}
+.nina-cab small{display:flex;align-items:center;gap:.4rem;font:500 .72rem var(--mono);color:var(--texto-3)}
+.nina-cab small i{width:6px;height:6px;border-radius:50%;background:var(--menta);animation:pulso 2.4s ease-out infinite}
+.nina-cab .link-sec{margin-left:auto;font-size:.78rem;color:var(--texto-3)}
+.nina-msgs{list-style:none;margin:0;padding:1rem;display:flex;flex-direction:column;gap:.55rem;height:22rem;overflow-y:auto;scroll-behavior:smooth;overscroll-behavior:contain}
+.nina-msgs li{max-width:85%;padding:.65rem .9rem;border-radius:14px;font-size:.95rem;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere;animation:entra .3s ease-out both}
+.nina-msgs .dela{align-self:flex-start;background:var(--painel-2);border:1px solid var(--linha);border-bottom-left-radius:4px;color:var(--texto)}
+.nina-msgs .sua{align-self:flex-end;background:rgba(43,217,168,.14);border:1px solid rgba(43,217,168,.3);border-bottom-right-radius:4px}
+.nina-msgs .aviso{align-self:center;max-width:100%;background:none;padding:.2rem;font:500 .74rem var(--mono);color:var(--menta-2);text-align:center}
+.nina-msgs .digita{display:flex;gap:.3rem;padding:.8rem .9rem}
+.nina-msgs .digita i{width:6px;height:6px;border-radius:50%;background:var(--texto-3);animation:pula 1s ease-in-out infinite}
+.nina-msgs .digita i:nth-child(2){animation-delay:.15s}.nina-msgs .digita i:nth-child(3){animation-delay:.3s}
+.pedido .nina-escreve{display:flex;gap:.4rem;padding:.6rem;border-top:1px solid var(--linha)}
+.nina-escreve input{flex:1;min-width:0;background:var(--painel);border:1px solid var(--linha-forte);border-radius:10px;color:var(--texto);font:400 .98rem var(--sans);padding:.75rem .9rem}
+.nina-escreve input:focus{outline:0;border-color:var(--menta);box-shadow:0 0 0 4px rgba(43,217,168,.12)}
+.nina-escreve .botao{padding:.7rem .9rem}
+.nina-escreve .botao[disabled]{opacity:.5;pointer-events:none}
+@keyframes pula{0%,100%{transform:none;opacity:.5}50%{transform:translateY(-3px);opacity:1}}
+@media (max-width:30rem){.nina-msgs{height:19rem}}
+/* seletor de profissão nas soluções */
+.perfil{display:flex;align-items:center;gap:.8rem;margin:-.4rem 0 1rem;min-width:0}
+.perfil>span{flex:none;font:500 .76rem var(--mono);color:var(--texto-3)}
+.perfis{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:none;min-width:0;padding:.15rem}
+.perfis::-webkit-scrollbar{display:none}
+.perfis button{all:unset;cursor:pointer;flex:none;padding:.42rem .8rem;border-radius:999px;border:1px solid var(--linha);font:500 .84rem var(--sans);color:var(--texto-3);transition:color .2s,border-color .2s,background .2s}
+.perfis button:hover{color:var(--texto);border-color:var(--linha-forte)}
+.perfis button[aria-pressed="true"]{color:var(--texto);border-color:var(--menta);background:rgba(43,217,168,.08)}
+.perfis button:focus-visible{outline:2px solid var(--menta);outline-offset:2px}
+@media (max-width:40rem){.perfil{flex-direction:column;align-items:stretch;gap:.5rem}}
+/* Nina viva: inclina a cabeça, fareja enquanto pensa, modo turbo 220V */
+.nina-av{padding:0;overflow:hidden;cursor:pointer;border:2px solid var(--menta);background:var(--painel)}
+.nina-av img{width:100%;height:100%;object-fit:cover;animation:inclina 9s ease-in-out infinite;transform-origin:50% 80%}
+.nina.turbo .nina-av{border-color:var(--ambar);box-shadow:0 0 16px rgba(245,183,0,.7);animation:treme .1s linear infinite}
+.nina.turbo .nina-cab small{color:var(--ambar)}.nina.turbo .nina-cab small i{background:var(--ambar)}
+.nina-msgs .digita span{margin-left:.35rem;font:500 .72rem var(--mono);color:var(--texto-3)}
+.turbo-pista{position:fixed;left:0;bottom:10px;z-index:40;pointer-events:none;display:flex;align-items:center;gap:.45rem;opacity:0;transform:translateX(-300px)}
+.turbo-pista img{width:132px;height:auto;filter:drop-shadow(0 0 14px rgba(245,183,0,.35))}
+.turbo-pista::before{content:"";position:absolute;right:calc(100% - 6px);top:55%;width:90px;height:16px;transform:translateY(-50%);
+  background:repeating-linear-gradient(180deg,transparent 0 4px,rgba(245,183,0,.7) 4px 6px);-webkit-mask:linear-gradient(90deg,transparent,#000);mask:linear-gradient(90deg,transparent,#000)}
+.turbo-pista span{align-self:flex-start;margin-top:.4rem;font:700 .7rem var(--mono);color:#1A1200;background:var(--ambar);padding:.2rem .5rem;border-radius:999px;white-space:nowrap}
+.turbo-pista.vai{animation:disparada 2.8s cubic-bezier(.55,.1,.45,.9) infinite both;pointer-events:auto;cursor:pointer}
+.turbo-pista.parou{animation:none}
+.coracao{position:fixed;z-index:42;pointer-events:none;font-size:1.8rem;animation:sobe 1.2s ease-out forwards}
+.turbo-aviso{position:fixed;left:0;right:0;margin-inline:auto;width:fit-content;top:72px;z-index:41;display:flex;align-items:center;gap:.7rem;max-width:calc(100vw - 1.5rem);box-sizing:border-box;padding:.55rem .55rem .55rem 1rem;border-radius:999px;
+  background:var(--ambar);color:#1A1200;font:600 .9rem/1.3 var(--sans);box-shadow:0 14px 34px -10px rgba(245,183,0,.75);opacity:0;pointer-events:none;transform:translateY(-16px);transition:opacity .3s,transform .3s}
+.turbo-aviso.ve{opacity:1;pointer-events:auto;transform:none}
+.turbo-aviso.ve:not(.calmo){animation:balanca 1.2s ease-in-out infinite}
+.turbo-aviso button{all:unset;cursor:pointer;flex:none;padding:.5rem .9rem;border-radius:999px;background:#1A1200;color:var(--ambar);font:700 .84rem var(--sans);white-space:nowrap}
+.turbo-aviso button[hidden]{display:none}
+.turbo-aviso button:focus-visible{outline:2px solid #1A1200;outline-offset:2px}
+@media (max-width:30rem){.turbo-aviso{font-size:.82rem;border-radius:16px}}
+@keyframes sobe{0%{opacity:0;transform:translateY(0) scale(.6)}20%{opacity:1;transform:translateY(-10px) scale(1.15)}100%{opacity:0;transform:translateY(-60px) scale(1)}}
+@keyframes balanca{0%,100%{transform:none}50%{transform:translateY(3px)}}
+.flutua-av{width:26px;height:26px;border-radius:50%;object-fit:cover;margin:-.2rem 0 -.2rem -.45rem;border:2px solid #03140F}
+@keyframes inclina{0%,88%,100%{transform:none}91%{transform:rotate(-13deg)}95%{transform:rotate(9deg)}}
+@keyframes treme{0%,100%{transform:translate(0,0)}25%{transform:translate(1px,-1px)}50%{transform:translate(-1px,1px)}75%{transform:translate(1px,1px)}}
+@keyframes disparada{0%{opacity:1;transform:translateX(-300px)}12%{transform:translateX(14vw) translateY(-16px)}24%{transform:translateX(28vw)}36%{transform:translateX(42vw) translateY(-16px)}
+  48%{transform:translateX(56vw)}60%{transform:translateX(70vw) translateY(-16px)}72%{transform:translateX(84vw)}99%{opacity:1;transform:translateX(calc(100vw + 40px))}100%{opacity:0;transform:translateX(calc(100vw + 40px))}}
+/* ===== reforma 2026-10-14: conversão. Verde = confiança e ao vivo; âmbar = ação (só nos botões que vendem);
+   coral = dor; azul = prova. Títulos em Bricolage Grotesque, palavra-chave em Instrument Serif itálico. ===== */
+:root{--display:"Bricolage Grotesque",var(--sans);--serif:"Instrument Serif",Georgia,serif;--cta:#FFB224;--cta-2:#FF8A3D}
+body::before{opacity:.16}
+h1,.secao h2,.cura h3,.pedido h3,.lista-cab h3,.caso h3,.chamada h2{font-family:var(--display);font-optical-sizing:auto}
+h1{font-weight:800;letter-spacing:-.035em}
+.secao h2{font-weight:800;letter-spacing:-.03em}
+.serif,h1 .troca{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--menta)}
+h1 .troca{font-size:1.06em;line-height:1}
+.botao.cheio{background:linear-gradient(135deg,#FFC44D,var(--cta-2));border-color:transparent;color:#1A0E00;box-shadow:0 10px 28px -12px rgba(255,140,60,.85)}
+.botao.cheio:hover{background:linear-gradient(135deg,#FFD06B,#FF9A55);border-color:transparent}
+.flutua{background:linear-gradient(135deg,#FFC44D,var(--cta-2));color:#1A0E00;box-shadow:0 12px 34px -10px rgba(255,140,60,.8)}
+.nina-ic{width:1.2em;height:1.2em;flex:none}
+.cta-topo{padding:.5rem .85rem;font-size:.84rem;gap:.45rem}
+.cta-topo .nina-ic{width:20px;height:20px}
+.barra nav{margin-left:auto;margin-right:1.2rem}
+@media (max-width:40rem){.cta-topo span{display:none}.cta-topo{padding:.5rem}.barra nav{margin-right:.6rem}}
+.nina-av{border:0;background:var(--menta);color:#03140F}
+.nina-av .nina-ic{width:26px;height:26px;animation:inclina 9s ease-in-out infinite;transform-origin:50% 80%}
+.flutua-av{display:grid;place-items:center;background:var(--menta);color:#03140F;border:2px solid #1A0E00}
+.flutua-av .nina-ic{width:18px;height:18px}
+.garantias{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin:.9rem 0 0;padding:0;font:500 .82rem var(--sans);color:var(--texto-2)}
+.garantias li::before{content:"✓";color:var(--menta);font-weight:700;margin-right:.4rem}
+/* prova ao vivo */
+.prova-viva{margin-top:1rem;border:1px solid var(--linha);border-radius:18px;background:rgba(11,17,16,.7);overflow:hidden}
+.prova-cab{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.3rem 1rem;padding:.75rem 1.2rem;border-bottom:1px solid var(--linha)}
+.prova-cab .rotulo{color:var(--menta-2)}
+.ponto-vivo{width:7px;height:7px;border-radius:50%;background:var(--menta);animation:pulso 2s ease-out infinite}
+.prova-fonte{font:400 .74rem var(--mono);color:var(--texto-3)}
+.prova-grade{display:grid;grid-template-columns:repeat(4,1fr)}
+.pv{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:.4rem;padding:1.3rem 1.2rem 1.15rem;min-width:0;transition:background .25s}
+.pv+.pv{border-left:1px solid var(--linha)}
+.pv .ic-s{width:20px;height:20px;color:var(--menta);margin-bottom:.3rem}
+.pv strong{font:800 clamp(1.9rem,4.2vw,2.7rem)/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.pv.vivo strong{color:var(--menta)}
+.pv strong small{font-size:.5em;color:var(--texto-3);font-weight:600;margin-left:.1em}
+.pv .rot{font-size:.85rem;color:var(--texto-2);line-height:1.38}
+.pv .cta-pv{margin-top:auto;padding-top:.55rem;font:700 .84rem var(--sans);color:var(--cta);opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s}
+.pv:hover{background:rgba(255,178,36,.05)}
+.pv:hover .cta-pv,.pv:focus-visible .cta-pv{opacity:1;transform:none}
+.pv:focus-visible{outline:2px solid var(--cta);outline-offset:-2px}
+@media (hover:none){.pv .cta-pv{opacity:1;transform:none}}
+@media (max-width:52rem){.prova-grade{grid-template-columns:1fr 1fr}.pv:nth-child(3){border-left:0}.pv:nth-child(n+3){border-top:1px solid var(--linha)}}
+/* monte sua solução */
+.passo-n{display:inline-flex;align-items:center;gap:.5rem;font:600 .8rem var(--sans);color:var(--texto-2)}
+.passo-n b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--menta);color:#03140F;font:700 .74rem var(--mono)}
+.perfil>.passo-n{flex:none}
+.col-frases{display:grid;gap:.7rem;align-content:start}
+.cura{border-color:rgba(43,217,168,.28);background:radial-gradient(420px circle at 100% 0%,rgba(43,217,168,.10),transparent 60%),var(--painel)}
+.cura-cab{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem}
+.chip-serv{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .65rem;border-radius:999px;border:1px solid color-mix(in srgb,var(--cor) 45%,transparent);font:600 .76rem var(--sans);color:var(--texto)}
+.chip-serv .ic-s{width:14px;height:14px;color:var(--cor)}
+.incluso{display:block;margin-top:1.2rem;font:500 .72rem var(--mono);color:var(--texto-3)}
+.tres{margin-top:.4rem}
+.tres li{grid-template-columns:1.6rem 1fr;align-items:center}
+.tres li::before{display:none}
+.tres li .ic-s{color:var(--menta);width:17px;height:17px}
+.preco{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;margin-top:1.2rem;padding:1rem 1.1rem;border-radius:14px;background:rgba(255,178,36,.07);border:1px solid rgba(255,178,36,.28)}
+.preco span{font:500 .78rem var(--sans);color:var(--texto-2)}
+.preco strong{font:800 clamp(1.8rem,3.6vw,2.3rem)/1 var(--display);letter-spacing:-.03em;color:var(--cta)}
+.preco em{font-style:normal;font:600 .9rem var(--sans);color:var(--cta)}
+.preco small{flex-basis:100%;font-size:.78rem;color:var(--texto-3)}
+.cura-pe{padding-top:1.1rem}
+.cura-pe .botao{padding:.9rem 1.3rem;font-size:.98rem}
+/* trabalhos reais */
+.casos{display:grid;gap:1.1rem}
+.caso{display:grid;border:1px solid var(--linha);border-radius:20px;overflow:hidden;background:var(--painel);transition:border-color .3s}
+.caso:hover{border-color:color-mix(in srgb,var(--cor) 45%,transparent)}
+@media (min-width:56rem){.caso{grid-template-columns:1.1fr .9fr}.caso:nth-child(even) .caso-img{order:2}}
+.caso-img{position:relative;min-height:280px;display:grid;place-items:center;padding:1.8rem;overflow:hidden;
+  background:radial-gradient(circle at 30% 20%,color-mix(in srgb,var(--cor) 26%,transparent),transparent 62%),#0D1413}
+.caso-img img{max-height:300px;width:auto;border-radius:12px;box-shadow:0 30px 60px -22px rgba(0,0,0,.85);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.caso:hover .caso-img img:first-child{transform:translateY(-5px) rotate(-.8deg)}
+.caso-img .extra{position:absolute;right:5%;bottom:-6%;width:40%;max-height:none;transform:rotate(4deg)}
+.caso-img.leque{min-height:330px}
+.caso-img.leque img{position:absolute;width:31%;max-height:none}
+.caso-img.leque img:nth-child(1){transform:translateX(-62%) rotate(-8deg)}
+.caso-img.leque img:nth-child(2){z-index:1}
+.caso-img.leque img:nth-child(3){transform:translateX(62%) rotate(8deg)}
+.caso:hover .caso-img.leque img:nth-child(1){transform:translateX(-72%) rotate(-11deg)}
+.caso:hover .caso-img.leque img:nth-child(3){transform:translateX(72%) rotate(11deg)}
+.caso-txt{display:flex;flex-direction:column;justify-content:center;gap:.6rem;padding:clamp(1.3rem,3vw,2.3rem)}
+.caso .tag{font:500 .74rem var(--mono);color:var(--cor)}
+.caso h3{margin:0;font-weight:700;font-size:clamp(1.4rem,2.6vw,1.95rem);line-height:1.1;letter-spacing:-.03em}
+.caso p{margin:0;color:var(--texto-2)}
+.caso-cta{all:unset;cursor:pointer;align-self:flex-start;margin-top:.5rem;font:700 .95rem var(--sans);color:var(--cta)}
+.caso-cta:hover{text-decoration:underline}
+.caso-cta:focus-visible{outline:2px solid var(--cta);outline-offset:3px;border-radius:4px}
+/* quem faz */
+.sobre{display:grid;gap:1.8rem;align-items:center;border:1px solid var(--linha);border-radius:20px;padding:clamp(1.4rem,3.5vw,2.4rem);background:linear-gradient(180deg,var(--painel-2),var(--painel))}
+@media (min-width:52rem){.sobre{grid-template-columns:auto 1fr}}
+.sobre h2{margin:.6rem 0 0}
+.sobre p{color:var(--texto-2);max-width:40rem}
+.sobre-fotos{position:relative;width:250px;height:215px}
+.sobre-fotos .eu{width:180px;height:180px;border-radius:26px;object-fit:cover;border:3px solid var(--menta)}
+.sobre-fotos .nina-foto{position:absolute;right:0;bottom:0;width:118px;height:118px;border-radius:50%;object-fit:cover;border:4px solid var(--fundo);transform:rotate(6deg);box-shadow:0 14px 30px -12px rgba(0,0,0,.8)}
+.selos{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0 0;padding:0}
+.selos li{padding:.35rem .75rem;border-radius:999px;border:1px solid var(--linha-forte);font-size:.84rem;color:var(--texto-2)}
+.sobre-links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1.1rem;font:600 .9rem var(--sans)}
+.sobre-links a{text-decoration:none;color:var(--menta)}
+.sobre-links a:hover{text-decoration:underline}
+/* dúvidas */
+.faq{display:grid;gap:.5rem;max-width:54rem}
+.faq details{border:1px solid var(--linha);border-radius:14px;background:var(--painel);padding:0 1.15rem;transition:border-color .2s}
+.faq details[open]{border-color:var(--linha-forte)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.05rem 0;font:600 1.02rem var(--sans)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;color:var(--menta);font:500 1.4rem/1 var(--mono);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:0 0 1.1rem;color:var(--texto-2)}
+.faq-cta{margin-top:1.2rem}
+/* Nina no fechamento */
+.nina-cartao{display:flex;align-items:center;gap:.9rem;margin:1.2rem 0 0}
+.nina-cartao img{width:92px;height:92px;border-radius:22px;object-fit:cover;border:3px solid var(--menta);transform:rotate(-3deg)}
+.nina-cartao figcaption{font:700 1.05rem var(--display)}
+.nina-cartao small{display:block;font:400 .8rem var(--sans);color:var(--texto-3)}
+#falar .pedido{margin-top:0}
 /* botão flutuante */
 .flutua{position:fixed;right:1rem;bottom:1rem;z-index:30;display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.1rem;border-radius:999px;text-decoration:none;
   font:600 .9rem var(--sans);color:#03140F;background:var(--menta);box-shadow:0 12px 34px -10px rgba(43,217,168,.8);
@@ -245,7 +426,8 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
 .pedido h3{margin:.6rem 0 0;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;letter-spacing:-.03em;line-height:1.1}
 .pedido h3 em{font-style:normal;color:var(--menta)}
 .pedido>div>p{margin:.7rem 0 0;color:var(--texto-2)}
-.pedido form{display:grid;gap:.7rem}
+.pedido #form-pedido{display:grid;gap:.7rem}
+.pedido [hidden]{display:none!important}
 .pedido{position:relative;animation:respira 4.5s ease-in-out infinite}
 .pedido.chamou{animation:chama .8s ease-out 2}
 .disponivel{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font:500 .8rem var(--mono);color:var(--texto-2);padding:.4rem .75rem;border-radius:999px;border:1px solid var(--linha-forte);background:rgba(5,8,7,.5)}
@@ -370,12 +552,12 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
   <div class="envelope">
     <a class="marca" href="#inicio"><img src="img/foto.jpg" alt=""><span>Leo Magalhães</span></a>
     <nav aria-label="Seções">
-      <a href="#dores">Soluções</a>
-      <a href="#servicos">Serviços</a>
-      <a class="opcional" href="#operacao">Ao vivo</a>
-      <a href="#pedido">Pedido</a>
+      <a href="#dores">Monte sua solução</a>
+      <a class="opcional" href="#servicos">Serviços</a>
+      <a class="opcional" href="#trabalhos">Trabalhos</a>
+      <a class="opcional" href="#duvidas">Dúvidas</a>
     </nav>
-    <span class="relogio" id="relogio" aria-hidden="true">SSA --:--:--</span>
+    <a class="botao cheio cta-topo" href="#pedido"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg><span>Falar com a Nina</span></a>
   </div>
 </header>
 
@@ -391,13 +573,13 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
             <span class="visto" id="visto"><i></i><span id="visto-texto">Conectando…</span></span>
           </div>
         </div>
-        <h1>Eu construo sistemas que <span class="troca"><span id="troca">trabalham sozinhos.</span><span class="cursor" aria-hidden="true"></span></span></h1>
-        <p class="lead">Automações, aplicativos web e ferramentas com IA, e projetos no mercado digital: canais, produtos e campanhas. O que está rodando aparece aqui ao vivo.</p>
+        <h1>Eu construo sistemas que <span class="troca serif"><span id="troca">trabalham sozinhos.</span><span class="cursor" aria-hidden="true"></span></span></h1>
+        <p class="lead">Bots de atendimento, automações, sistemas e páginas que vendem, para o seu negócio parar de depender de você em tudo. O que já está rodando aparece aqui ao vivo.</p>
         <form class="rapido" id="rapido">
           <input id="rapido-txt" maxlength="300" placeholder="Me conta em uma frase o que você quer resolver" aria-label="O que você quer resolver">
           <button class="botao cheio" type="submit">Começar →</button>
         </form>
-        <div class="atalhos"><a href="#servicos">Ver serviços ↓</a><a href="#dores">Ver soluções ↓</a><a href="https://github.com/leomagalhaesti">GitHub ↗</a></div>
+        <ul class="garantias"><li>Resposta na hora</li><li>Orçamento sem compromisso</li><li>Sem cadastro</li></ul>
       </div>
       <div class="console" aria-label="Registro ao vivo dos sistemas">
         <header><i></i><i></i><i></i><span><span class="vivo">Ao vivo</span> · leo@servidor</span></header>
@@ -405,26 +587,30 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
       </div>
     </section>
 
-    <div class="numeros surge">
-      <div class="vivo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><strong><span data-conta id="n-sistemas">0</span><small id="n-total">/0</small></strong><span>Sistemas no ar agora</span></div>
-      <div><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M6.5 10v4a3 3 0 0 0 3 3H14"/></svg><strong><span data-conta="27">0</span></strong><span>Etapas automáticas no fluxo do LinkedIn</span></div>
-      <div><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><strong><span data-conta="3">0</span></strong><span>Projetos em andamento</span></div>
-      <div class="vivo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><strong id="n-codigo">--</strong><span>Desde a última linha de código</span></div>
-    </div>
+    <section class="prova-viva surge" id="prova" aria-label="Prova ao vivo">
+      <div class="prova-cab"><span class="rotulo"><i class="ponto-vivo"></i>Prova ao vivo</span><span class="prova-fonte">Números reais do meu servidor, atualizados a cada minuto</span></div>
+      <div class="prova-grade">
+        <button class="pv vivo" type="button" data-servico="Site e sistemas vigiados 24h"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><strong id="pv-no-ar">—</strong><span class="rot" id="pv-no-ar-rot">sistemas meus no ar agora, conferidos a cada minuto</span><span class="cta-pv">Quero um sistema que não para →</span></button>
+        <button class="pv" type="button" data-servico="Cortes e Reels a partir de vídeo longo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></svg><strong id="pv-pubs">—</strong><span class="rot" id="pv-pubs-rot">vídeos e Reels publicados sem ninguém apertar um botão</span><span class="cta-pv">Quero conteúdo no automático →</span></button>
+        <button class="pv" type="button" data-nina="1"><svg class="ic-s nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg><strong>24h</strong><span class="rot">de atendimento com IA. A Nina está online agora: teste antes de contratar</span><span class="cta-pv">Testar a Nina agora →</span></button>
+        <button class="pv" type="button" data-ir="dores"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8M2 7h20v5H2zM12 21V7M12 7H8a2.5 2.5 0 1 1 0-5c3 0 4 5 4 5zM12 7h4a2.5 2.5 0 1 0 0-5c-3 0-4 5-4 5z"/></svg><strong>R$ 0</strong><span class="rot">pra montar a sua solução e receber o orçamento. Sem cadastro e sem compromisso</span><span class="cta-pv">Montar a minha agora →</span></button>
+      </div>
+    </section>
 
     <section class="secao" id="dores">
       <header class="surge">
         <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>Soluções</span>
-          <h2>Qual destas frases você já disse?</h2>
-          <p>Escolha a que mais incomoda e veja como fica resolvida.</p>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>Monte sua solução</span>
+          <h2>Monte a solução do seu negócio <em class="serif">em 2 cliques.</em></h2>
+          <p>Escolha a sua área e o que mais te atrapalha. Do lado aparece o serviço, o que vem incluso e o valor de partida.</p>
         </div>
       </header>
+      <div class="perfil surge"><span class="passo-n"><b>1</b>Sua área</span><div class="perfis" id="perfis" role="group" aria-label="Sua área"></div></div>
       <div class="dores surge">
-        <ul class="frases" id="frases" role="tablist" aria-label="Problemas comuns"></ul>
+        <div class="col-frases"><span class="passo-n"><b>2</b>O que mais te atrapalha?</span>
+        <ul class="frases" id="frases" role="tablist" aria-label="Problemas comuns"></ul></div>
         <div class="cura" id="cura" role="tabpanel" aria-live="polite"></div>
       </div>
-      <a class="ponte surge" href="#servicos"><span>Reconheceu alguma? Isso é só uma parte do que dá pra resolver.</span><b>Ver todos os serviços ↓</b></a>
     </section>
 
     <section class="secao" id="servicos">
@@ -443,29 +629,49 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
         <div class="lista" id="catalogo" role="tabpanel" aria-live="polite"></div>
       </div>
 
-      <div class="pedido surge" id="pedido">
+    </section>
+
+    <section class="secao" id="trabalhos">
+      <header class="surge">
         <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Não achou?</span>
-          <h3>Me conta o que você <em>precisa resolver.</em></h3>
-          <p>Serviço, produto, uma ideia solta ou um problema que ninguém resolveu ainda. A mensagem chega direto no meu celular, e quem responde sou eu.</p>
-          <span class="disponivel" id="disponivel"><i></i><span>Respondo assim que eu ver</span></span>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>Trabalhos reais</span>
+          <h2>Não é maquete. <em class="serif">Está rodando.</em></h2>
+          <p>Telas de verdade de sistemas que eu construí e mantenho no ar.</p>
         </div>
-        <form id="form-pedido" novalidate>
-          <span class="selo-servico" id="selo-servico"><span id="selo-texto"></span><button type="button" id="selo-tira" aria-label="Tirar o serviço escolhido">✕</button></span>
-          <div class="linha2">
-            <label>Seu nome<input name="nome" autocomplete="name" maxlength="80" placeholder="Como posso te chamar?"></label>
-            <label>WhatsApp ou e-mail *<input name="contato" required maxlength="120" placeholder="Pra eu te responder"></label>
-          </div>
-          <label>O que você precisa? *<textarea name="mensagem" id="pedido-msg" required maxlength="1500" placeholder="Ex.: tenho uma loja e queria que os pedidos do site caíssem numa planilha e me avisassem no WhatsApp."></textarea></label>
-          <span class="isca" aria-hidden="true"><label>Não preencha<input name="site_url" tabindex="-1" autocomplete="off"></label></span>
-          <div class="envia">
-            <button class="botao cheio" type="submit" id="pedido-btn"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Enviar pedido</button>
-            <small>Seus dados servem só pra eu te responder.</small>
-          </div>
-          <div class="resposta" id="pedido-resposta" role="status" hidden></div>
-        </form>
+      </header>
+      <div class="casos">
+        <article class="caso surge" style="--cor:#3D8BFF">
+          <div class="caso-img"><img src="img/trackpoint-calendario.jpg" alt="Calendário do sistema de controle de equipamentos" loading="lazy"><img class="extra" src="img/trackpoint-relatorio.jpg" alt="Relatório diário em PDF do mesmo sistema" loading="lazy"></div>
+          <div class="caso-txt"><span class="tag">Sistema para empresa · em piloto</span><h3>Controle de equipamentos com QR Code</h3>
+            <p>Quem pegou, quando e o que voltou, conferido pela câmera do celular. A agenda do mês e o relatório em PDF saem prontos.</p>
+            <button class="caso-cta" type="button" data-servico="Controle com QR Code">Quero um sistema assim →</button></div>
+        </article>
+        <article class="caso surge" style="--cor:#2BD9A8">
+          <div class="caso-img"><img src="img/postengine-fluxo.jpg" alt="Fluxo de 27 etapas do robô que publica no LinkedIn" loading="lazy"></div>
+          <div class="caso-txt"><span class="tag">Automação · roda todo dia</span><h3>Robô que escreve e publica no LinkedIn</h3>
+            <p>27 etapas: escolhe o tema, escreve, monta a arte e publica sozinho. Eu só recebo o aviso no celular.</p>
+            <button class="caso-cta" type="button" data-servico="Posts diários com aprovação no celular">Quero meus posts no automático →</button></div>
+        </article>
+        <article class="caso surge" style="--cor:#FFB224">
+          <div class="caso-img leque"><img src="img/carrossel-1.jpg" alt="Capa de carrossel gerada por programa" loading="lazy"><img src="img/carrossel-2.jpg" alt="" loading="lazy"><img src="img/carrossel-3.jpg" alt="" loading="lazy"></div>
+          <div class="caso-txt"><span class="tag">Conteúdo · Instagram</span><h3>Carrosséis montados por programa</h3>
+            <p>Texto, foto e slides gerados por código, na identidade da marca. A aprovação é um toque no WhatsApp.</p>
+            <button class="caso-cta" type="button" data-servico="Imagens e textos na sua identidade">Quero na minha marca →</button></div>
+        </article>
       </div>
-      <a class="ponte surge" href="#como"><span>Escolheu? Veja como funciona da primeira conversa até o sistema rodando.</span><b>Como a gente trabalha ↓</b></a>
+    </section>
+
+    <section class="secao" id="quem">
+      <div class="sobre surge">
+        <div class="sobre-fotos"><img class="eu" src="img/foto.jpg" alt="Ilustração do Leo Magalhães" loading="lazy"><img class="nina-foto" src="img/nina-praia.jpg" alt="A Nina na praia" loading="lazy"></div>
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>Quem faz</span>
+          <h2>Leo Magalhães <em class="serif">e a Nina.</em></h2>
+          <p>Desenvolvedor em Salvador e Computer Science student. Eu converso com você, construo, coloco no ar e acompanho. A Nina cuida do atendimento e, de vez em quando, do modo turbo.</p>
+          <ul class="selos"><li>Faixa roxa de jiu-jitsu · Melhor do Ano 2025</li><li>Surf quando o mar deixa</li><li>Sistemas rodando 24h no meu servidor</li></ul>
+          <div class="sobre-links"><a href="https://www.instagram.com/leomagalhaes.ti/">Instagram ↗</a><a href="https://www.linkedin.com/in/leomagalhaesti/">LinkedIn ↗</a><a href="https://github.com/leomagalhaesti">GitHub ↗</a></div>
+        </div>
+      </div>
     </section>
 
     <section class="secao" id="como">
@@ -480,106 +686,62 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
         <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Eu desenho e construo</h3><p>Você vê a solução tomando forma, com prévias no caminho, antes de ir pro ar.</p><small>Em etapas curtas</small></li>
         <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><h3>Roda e você acompanha</h3><p>O sistema trabalha todo dia e te avisa no celular. Igual ao que está rodando nesta página.</p><small>Com acompanhamento</small></li>
       </ol>
-      <a class="ponte surge" href="#operacao"><span>Não precisa acreditar só no texto. Tudo isso já está rodando agora.</span><b>Ver ao vivo ↓</b></a>
     </section>
 
-    <section class="secao" id="operacao">
-      <header class="surge">
-        <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Em operação agora</span>
-          <h2>O que está rodando neste momento</h2>
-          <p>Conferido direto no servidor a cada minuto. Sem nomes nem perfis: só o tipo de sistema e se está de pé.</p>
-        </div>
-        <span class="resumo-vivo" id="op-resumo">verificando o servidor…</span>
-      </header>
-      <ul class="op-lista" id="op-lista"></ul>
-      <a class="ponte surge" href="#pedido"><span>O seu sistema pode ser o próximo a aparecer aqui.</span><b>Fazer meu pedido ↑</b></a>
-    </section>
-
-    <section class="secao" id="semana">
-      <header class="surge">
-        <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Toda semana no Instagram</span>
-          <h2>Um assunto por dia</h2>
-          <p>Um assunto por dia, explicado para quem não é da área. Pergunta nos comentários que eu respondo.</p>
-        </div>
-        <a class="resumo-vivo" href="https://www.instagram.com/leomagalhaes.ti/" style="text-decoration:none"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7h.01"/></svg> <b>@leomagalhaes.ti</b> ↗</a>
-      </header>
-      <ul class="semana surge" style="padding:0;margin:0">
-        <li class="luz" data-dia="0" style="--cor:#2BD9A8"><span class="dia">Segunda</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div><strong>IA na prática</strong><span class="d">Como as ferramentas funcionam por dentro</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="1" style="--cor:#FF4D6D"><span class="dia">Terça</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><strong>Segurança digital</strong><span class="d">Golpes, senhas e como se proteger</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="2" style="--cor:#F5B700"><span class="dia">Quarta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><strong>Em construção</strong><span class="d">O que eu construí na semana</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="3" style="--cor:#3D8BFF"><span class="dia">Quinta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727"/></svg></div><strong>Tecnologia e cripto</strong><span class="d">O mercado e como funciona por dentro</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="4" style="--cor:#B79CFF"><span class="dia">Sexta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="13" rx="10" ry="3.2"/><path d="M6.8 12.2a5.2 5.2 0 0 1 10.4 0"/><path d="M9 17.5l-1.5 3.5M15 17.5l1.5 3.5"/></svg></div><strong>Fora da Terra</strong><span class="d">Astronomia e vida fora daqui, com fonte</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="5" style="--cor:#8B5CF6"><span class="dia">Fim de semana</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8.5" width="20" height="4" rx="1"/><rect x="9.5" y="7" width="5" height="7" rx="1.2"/><path d="M10.6 14l-2 7M13.4 14l2 7"/></svg></div><strong>Tatame e mar</strong><span class="d">Foto real, jiu-jitsu ou folga</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-      </ul>
-    </section>
-
-    <section class="secao" id="diario">
-      <header class="surge">
-        <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3M8 7h8M8 11h6"/></svg>Diário de obra</span>
-          <h2>Últimas atualizações</h2>
-        </div>
-      </header>
-      <ol class="diario" id="lista-diario"></ol>
-      <p class="nota" id="fonte-diario"></p>
-    </section>
-
-    <section class="secao" id="fora">
-      <header class="surge">
-        <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Fora do código</span>
-          <h2>O que mais ocupa a cabeça</h2>
-        </div>
-      </header>
-      <div class="fora surge">
-        <div class="luz" style="--cor:#8B5CF6">
-          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8.5" width="20" height="4" rx="1"/><rect x="9.5" y="7" width="5" height="7" rx="1.2"/><path d="M10.6 14l-2 7M13.4 14l2 7"/></svg>
-          <svg class="onda" viewBox="0 0 60 8" aria-hidden="true"><path d="M1 4q7.25-4 14.5 0t14.5 0 14.5 0 14.5 0"/></svg>
-          <h3>Jiu-jitsu</h3><p>Faixa roxa. Melhor do Ano 2025 pela FBJJMMA.</p>
-        </div>
-        <div class="luz" style="--cor:#3D8BFF">
-          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
-          <svg class="onda" viewBox="0 0 60 8" aria-hidden="true"><path d="M1 4q7.25-4 14.5 0t14.5 0 14.5 0 14.5 0"/></svg>
-          <h3>Surf</h3><p>Sempre que o mar de Salvador deixa.</p>
-        </div>
-        <div class="luz" style="--cor:#B79CFF">
-          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="13" rx="10" ry="3.2"/><path d="M6.8 12.2a5.2 5.2 0 0 1 10.4 0"/><path d="M9 17.5l-1.5 3.5M15 17.5l1.5 3.5"/></svg>
-          <svg class="onda" viewBox="0 0 60 8" aria-hidden="true"><path d="M1 4q7.25-4 14.5 0t14.5 0 14.5 0 14.5 0"/></svg>
-          <h3>Astronomia</h3><p>E a pergunta sobre vida fora da Terra. Assunto das sextas no Instagram.</p>
-        </div>
+    <section class="secao" id="duvidas">
+      <header class="surge"><div><span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg>Dúvidas</span><h2>Antes de você perguntar</h2></div></header>
+      <div class="faq surge">
+        <details><summary>Quanto custa?</summary><p>Depende do que você precisa. Para ter uma ideia: automações a partir de R$ 500, bots a partir de R$ 800, páginas de vendas a partir de R$ 900 e sistemas sob medida a partir de R$ 2.500. A Nina te passa o valor de partida do seu caso na hora, e eu confirmo o valor final na proposta.</p></details>
+        <details><summary>Quanto tempo leva?</summary><p>Depende do tamanho. Você acompanha prévias no caminho, em etapas curtas, e o prazo vem confirmado junto com a proposta.</p></details>
+        <details><summary>Preciso entender de tecnologia?</summary><p>Não. Você usa pelo celular, recebe os avisos no WhatsApp e aprova com um toque. A parte técnica fica comigo.</p></details>
+        <details><summary>E se der problema depois que estiver no ar?</summary><p>Eu acompanho depois de entregar. Se quiser, o sistema fica vigiado 24h: se algo cair, o alerta chega antes de você perceber, igual aos sistemas desta página.</p></details>
+        <details><summary>Serve pro meu tipo de negócio?</summary><p>Clínica, salão, restaurante, escritório, imobiliária, academia, loja ou quem vende online: escolha a sua área em “Monte sua solução” ou conte o seu caso pra Nina.</p></details>
       </div>
+      <button class="botao cheio faq-cta surge" type="button" data-nina="1">Ainda com dúvida? Pergunta pra Nina →</button>
     </section>
 
-    <section class="secao" id="contato">
-      <header class="surge">
+    <section class="secao" id="falar">
+      <div class="pedido surge" id="pedido">
         <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Contato</span>
+          <span class="rotulo"><svg class="pata" style="color:var(--menta)" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="10" r="2.1"/><circle cx="10" cy="5.8" r="2.1"/><circle cx="14" cy="5.8" r="2.1"/><circle cx="17.5" cy="10" r="2.1"/><path d="M12 11.5c-3.1 0-5.6 3.2-5.6 5.5 0 1.7 1.3 2.5 2.8 2.5 1.2 0 1.8-.6 2.8-.6s1.6.6 2.8.6c1.5 0 2.8-.8 2.8-2.5 0-2.3-2.5-5.5-5.6-5.5z"/></svg>Atendimento</span>
+          <h3>Fala com a Nina. <em class="serif">Ela responde na hora.</em></h3>
+          <p>A Nina é a minha buldogue e cuida do atendimento aqui: entende o que você precisa, fala de valores e me passa tudo no WhatsApp. O resto é comigo.</p>
+          <figure class="nina-cartao"><img src="img/nina.jpg" alt="A Nina, buldogue francesa do Leo" loading="lazy"><figcaption>Essa é a Nina 🐾<small>buldogue francesa, chefe do atendimento</small></figcaption></figure>
+          <span class="disponivel" id="disponivel"><i></i><span>Respondo assim que eu ver</span></span>
         </div>
-      </header>
-      <div class="chamada surge luz">
-        <h2>Me conta o que você <em>quer resolver.</em></h2>
-        <p>Quem responde sou eu, não um atendimento automático. Se eu não for a pessoa certa pro seu problema, eu te digo isso também.</p>
-        <div class="acoes">
-          <a class="botao cheio" href="mailto:leomagalhaes.ti@gmail.com?subject=Quero%20resolver%20um%20problema"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Mandar um e-mail</a>
-          <a class="botao" href="https://ig.me/m/leomagalhaes.ti">Chamar no Instagram ↗</a>
+        <div class="pedido-dir" style="min-width:0">
+        <div class="nina" id="nina">
+          <header class="nina-cab"><span class="nina-av" id="nina-av" title="Faz carinho nela" role="button" tabindex="0"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg></span><div><strong>Nina</strong><small><i></i><span id="nina-status">Assistente do Leo · responde na hora</span></small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
+          <ol class="nina-msgs" id="nina-msgs" aria-live="polite"></ol>
+          <form class="nina-escreve" id="nina-form"><input id="nina-txt" maxlength="600" autocomplete="off" placeholder="Escreva aqui…" aria-label="Mensagem para a Nina"><button class="botao cheio" type="submit" id="nina-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
         </div>
-      </div>
-      <div class="contato surge">
-        <a href="https://www.instagram.com/leomagalhaes.ti/"><strong><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7h.01"/></svg>Instagram <span aria-hidden="true">↗</span></strong><span>@leomagalhaes.ti · Bastidores toda semana</span></a>
-        <a href="https://www.linkedin.com/in/leomagalhaesti/"><strong><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16M8 7.6h.01M11.5 16v-5.5M11.5 13c0-1.6 1-2.6 2.4-2.6s2.1 1 2.1 2.6V16"/></svg>LinkedIn <span aria-hidden="true">↗</span></strong><span>in/leomagalhaesti</span></a>
-        <a href="https://github.com/leomagalhaesti"><strong><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub <span aria-hidden="true">↗</span></strong><span>github.com/leomagalhaesti</span></a>
+        <form id="form-pedido" novalidate hidden>
+          <span class="selo-servico" id="selo-servico"><span id="selo-texto"></span><button type="button" id="selo-tira" aria-label="Tirar o serviço escolhido">✕</button></span>
+          <div class="linha2">
+            <label>Seu nome<input name="nome" autocomplete="name" maxlength="80" placeholder="Como posso te chamar?"></label>
+            <label>WhatsApp ou e-mail *<input name="contato" required maxlength="120" placeholder="Pra eu te responder"></label>
+          </div>
+          <label>O que você precisa? *<textarea name="mensagem" id="pedido-msg" required maxlength="1500" placeholder="Ex.: tenho uma loja e queria que os pedidos do site caíssem numa planilha e me avisassem no WhatsApp."></textarea></label>
+          <span class="isca" aria-hidden="true"><label>Não preencha<input name="site_url" tabindex="-1" autocomplete="off"></label></span>
+          <div class="envia">
+            <button class="botao cheio" type="submit" id="pedido-btn"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Enviar pedido</button>
+            <small>Seus dados servem só pra eu te responder.</small>
+          </div>
+          <div class="resposta" id="pedido-resposta" role="status" hidden></div>
+        </form>
+        </div>
       </div>
     </section>
 
     <footer class="rodape">
-      <span>© 2026 Leo Magalhães</span>
+      <span>© 2026 Leo Magalhães · Salvador, BA · <a href="mailto:leomagalhaes.ti@gmail.com">leomagalhaes.ti@gmail.com</a></span>
       <span>Página construída e mantida por mim · <a href="https://github.com/leomagalhaesti/leomagalhaesti.github.io">código</a></span>
     </footer>
   </div>
 </main>
-<a class="flutua" id="flutua" href="#pedido"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Fazer um pedido</a>
+<a class="flutua" id="flutua" href="#pedido"><span class="flutua-av"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg></span>Falar com a Nina</a>
+<div class="turbo-pista" id="turbo" aria-hidden="true"><img src="img/nina-turbo.png" alt=""><span>⚡ MODO TURBO 220V</span></div>
+<div class="turbo-aviso" id="turbo-aviso" role="status"><span id="turbo-aviso-txt">⚡ A Nina ativou o modo turbo! Faz carinho nela pra ela parar</span><button type="button" id="turbo-carinho">Fazer carinho 🐾</button></div>
 
 <script>
 /* ====== DIÁRIO: acrescente uma linha a cada avanço ====== */
@@ -609,6 +771,7 @@ const DORES = [
     titulo: "Painel ao vivo e alerta antes do problema", como: ["O que importa numa tela só", "Alerta no celular quando algo cai", "Histórico pra saber o que aconteceu"],
     prova: "Esta página mostra meus sistemas ao vivo. Role pra cima e confira.", cat: "seguranca", ligados: ["Site e sistemas vigiados 24h", "Alertas fora do normal", "Backup automático"], rede: [] }
 ];
+const PROFISSOES = [{"id": "clinica", "nome": "Clínica e consultório", "quem": "de quem tem clínica ou consultório", "dores": [{"frase": "Paciente falta e eu só fico sabendo na hora.", "custa": ["Horário vazio é dinheiro que não volta"], "titulo": "Agenda que confirma e lembra sozinha", "como": ["O paciente marca pelo link, a qualquer hora", "Lembrete e confirmação pelo WhatsApp na véspera", "Quem desmarca libera o horário pra lista de espera"], "cat": "bots", "servico": "Agendamento com lembrete"}, {"frase": "Minha secretária passa o dia respondendo as mesmas perguntas.", "custa": ["Telefone ocupado e paciente novo desistindo"], "titulo": "Atendimento que responde o básico na hora", "como": ["Valores, convênios e endereço respondidos na hora", "Dúvida séria vai direto pra secretária", "Funciona à noite e no fim de semana"], "cat": "bots", "servico": "Bot de WhatsApp com menu"}, {"frase": "Eu não sei quantos pacientes voltam depois da primeira consulta.", "custa": ["Paciente some e ninguém chama de volta"], "titulo": "Painel do consultório com os retornos à vista", "como": ["Atendimentos do mês numa tela só", "Lista de quem está na hora do retorno", "Mensagem de retorno pronta pra enviar"], "cat": "sistemas", "servico": "Painel administrativo sob medida"}]}, {"id": "salao", "nome": "Salão e barbearia", "quem": "de quem tem salão ou barbearia", "dores": [{"frase": "Passo o dia respondendo “tem horário hoje?”.", "custa": ["Você para o atendimento pra responder mensagem"], "titulo": "Cliente marca sozinho, você só atende", "como": ["Link com os horários livres de cada profissional", "Lembrete automático antes do horário", "A agenda do dia no seu celular de manhã"], "cat": "bots", "servico": "Agendamento com lembrete"}, {"frase": "Cliente marca e não aparece.", "custa": ["Cadeira vazia no horário mais disputado"], "titulo": "Confirmação que acaba com o furo", "como": ["Pedido de confirmação na véspera", "Sem resposta, o horário volta pra agenda", "Você sabe quem costuma faltar"], "cat": "bots", "servico": "Agendamento com lembrete"}, {"frase": "Meu Instagram fica parado semanas.", "custa": ["Quem procura salão olha o perfil antes de marcar"], "titulo": "Posts prontos com os seus trabalhos", "como": ["Suas fotos viram posts com texto pronto", "Você aprova com um toque", "Sai no melhor horário, toda semana"], "cat": "conteudo", "servico": "Posts diários com aprovação no celular"}]}, {"id": "restaurante", "nome": "Restaurante e delivery", "quem": "de quem tem restaurante ou delivery", "dores": [{"frase": "No horário de pico eu perco pedido no WhatsApp.", "custa": ["Cliente com fome não espera resposta"], "titulo": "Cardápio que atende e anota o pedido", "como": ["Menu com pratos e preços no WhatsApp", "O pedido chega organizado pra cozinha", "Você só confirma e manda entregar"], "cat": "bots", "servico": "Bot de WhatsApp com menu"}, {"frase": "Eu não sei qual prato dá lucro de verdade.", "custa": ["Prato que vende muito pode estar dando prejuízo"], "titulo": "As vendas da noite resumidas no celular", "como": ["Vendas e custos entram sozinhos numa planilha", "Resumo do dia no seu WhatsApp", "Os pratos campeões e os que não pagam a conta"], "cat": "automacao", "servico": "Relatórios que chegam sozinhos"}, {"frase": "Ingrediente acaba no meio do serviço.", "custa": ["Prato riscado do cardápio em plena sexta"], "titulo": "Estoque que avisa antes de faltar", "como": ["Saída do estoque registrada pelo celular", "Alerta quando um item chega no mínimo", "Lista de compras pronta"], "cat": "sistemas", "servico": "Controle com QR Code"}]}, {"id": "advocacia", "nome": "Advocacia e contabilidade", "quem": "de escritórios de advocacia e contabilidade", "dores": [{"frase": "Perco horas copiando dados de documento pra planilha.", "custa": ["Hora de trabalho caro gasta em digitação"], "titulo": "Documentos lidos e organizados sozinhos", "como": ["Você manda o PDF ou a foto", "Os dados importantes vão pra planilha", "Você só confere"], "cat": "ia", "servico": "Leitura de documentos e notas"}, {"frase": "Cliente me cobra andamento toda semana.", "custa": ["Ligação que interrompe o trabalho"], "titulo": "Cliente informado sem você parar", "como": ["Atualização automática quando algo muda", "As dúvidas comuns respondidas na hora", "Você entra só no que é decisão"], "cat": "bots", "servico": "Assistente que conhece seu negócio"}, {"frase": "Um prazo quase passou porque ninguém lembrou.", "custa": ["Prazo perdido custa caro e mancha o nome"], "titulo": "Alertas de prazo no seu celular", "como": ["Prazos cadastrados uma vez", "Aviso com antecedência no WhatsApp", "Resumo da semana toda segunda"], "cat": "automacao", "servico": "Alertas fora do normal"}]}, {"id": "imobiliaria", "nome": "Imobiliária e corretor", "quem": "de imobiliárias e corretores", "dores": [{"frase": "Recebo muito contato curioso e pouco cliente de verdade.", "custa": ["Horas em visita que não vira negócio"], "titulo": "Triagem antes de você atender", "como": ["Perguntas de faixa de preço, bairro e prazo", "Quem está pronto chega marcado pra você", "O curioso recebe as opções sozinho"], "cat": "bots", "servico": "Triagem de contatos"}, {"frase": "Demoro pra mandar as opções e o cliente fecha com outro.", "custa": ["Contato esfria em poucas horas"], "titulo": "Resposta na hora, a qualquer hora", "como": ["Imóveis certos pelo perfil de quem pergunta", "Fotos e valores sem você digitar", "Visita marcada direto na agenda"], "cat": "ia", "servico": "Chat com IA no seu site"}, {"frase": "Fazer proposta e ficha toma a minha tarde.", "custa": ["Burocracia no lugar de visita"], "titulo": "Proposta em PDF com um clique", "como": ["Preencheu os dados, saiu o documento", "Com a sua marca, tudo certinho", "Enviado direto pro cliente"], "cat": "sistemas", "servico": "Orçamentos e PDFs automáticos"}]}, {"id": "academia", "nome": "Academia e personal", "quem": "de academias e personal trainers", "dores": [{"frase": "Aluno some e eu só percebo quando ele cancela.", "custa": ["Cada cancelamento é mensalidade a menos"], "titulo": "Alerta de aluno sumido", "como": ["Frequência registrada sozinha", "Aviso de quem não aparece há dias", "Mensagem de incentivo pronta"], "cat": "automacao", "servico": "Alertas fora do normal"}, {"frase": "Cobrar mensalidade atrasada é constrangedor.", "custa": ["Inadimplência que vai se acumulando"], "titulo": "Cobrança educada e automática", "como": ["Lembrete antes do vencimento", "Link de pagamento na mensagem", "Quem pagou e quem não pagou numa tela"], "cat": "automacao", "servico": "Ferramentas conversando entre si"}, {"frase": "Monto treino e mando um por um no WhatsApp.", "custa": ["Noites inteiras em tarefa repetida"], "titulo": "Treinos num app no celular do aluno", "como": ["O treino de cada aluno no próprio app", "Funciona até sem internet", "Você atualiza uma vez e todos recebem"], "cat": "sistemas", "servico": "App que funciona no celular"}]}, {"id": "loja", "nome": "Loja física", "quem": "de quem tem loja", "dores": [{"frase": "Não sei o que tem no estoque sem ir contar.", "custa": ["Venda perdida por falta e dinheiro parado em sobra"], "titulo": "Estoque na palma da mão", "como": ["Entrada e saída pelo celular, com QR Code", "Alerta quando algo está acabando", "Relatório do que mais gira"], "cat": "sistemas", "servico": "Controle com QR Code"}, {"frase": "Cliente pergunta preço no direct e some.", "custa": ["Interesse que esfria sem resposta"], "titulo": "Resposta na hora, com preço e foto", "como": ["Catálogo respondido automaticamente", "Quem quer comprar vem pra você", "Funciona fora do horário da loja"], "cat": "bots", "servico": "Bot de WhatsApp com menu"}, {"frase": "Fecho o mês sem saber se lucrei.", "custa": ["Decisão tomada no escuro"], "titulo": "Resumo das vendas toda noite", "como": ["As vendas do dia entram sozinhas", "Resumo no WhatsApp ao fechar a loja", "Comparação com a semana passada"], "cat": "automacao", "servico": "Relatórios que chegam sozinhos"}]}];
 const FRASES = ["trabalham sozinhos.", "vendem no digital.", "fazem negócios crescerem.", "não esquecem nada."];
 /* ======================================================= */
 
@@ -622,8 +785,6 @@ const $ = id => document.getElementById(id);
 const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
 const hora = (d = new Date()) => d.toLocaleTimeString("pt-BR", { timeZone: "America/Bahia", hour12: false });
 
-/* relógio de Salvador */
-setInterval(() => { $("relogio").textContent = "SSA " + hora(); }, 1000);
 
 /* frase que se reescreve */
 (function trocar() {
@@ -701,16 +862,7 @@ async function mostrarVisto(primeira) {
   const [txt, min] = tempoDesde(quando);
   const online = min < 10;
   const seguidas = online && inicio && Date.now() - inicio >= 10 * 3600e3 ? duracao((Date.now() - inicio) / 1000) : null;   /* só a partir de 10 h */
-  const n = $("n-codigo"), rot = n.nextElementSibling;
-  if (online) {
-    $("visto-texto").textContent = "Codando agora" + (seguidas ? " · " + seguidas + " seguidas" : "");
-    n.textContent = seguidas || "Agora";
-    rot.textContent = seguidas ? "Codando sem parar" : "Codando agora";
-  } else {
-    $("visto-texto").textContent = "Offline · último código há " + txt;
-    n.textContent = txt;
-    rot.textContent = "Desde a última linha de código";
-  }
+  $("visto-texto").textContent = online ? "Codando agora" + (seguidas ? " · " + seguidas + " seguidas" : "") : "Offline · último código há " + txt;
   $("quem").classList.toggle("online", online);
   $("disponivel").classList.toggle("on", online);
   $("disponivel").lastChild.textContent = online ? "Online agora · respondo rápido" : "Respondo assim que eu ver";
@@ -719,78 +871,95 @@ async function mostrarVisto(primeira) {
 mostrarVisto(true);
 setInterval(() => mostrarVisto(false), 60000);
 
-/* em operação */
+/* prova ao vivo: números reais do servidor (vídeos, Reels, visualizações, último trabalho) + console */
 const CORES = { YouTube: "coral", Instagram: "lilas", TikTok: "azul", LinkedIn: "azul", WhatsApp: "" };
-function batimento() {
-  const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  s.setAttribute("viewBox", "0 0 300 38"); s.setAttribute("class", "bat"); s.setAttribute("preserveAspectRatio", "none"); s.setAttribute("aria-hidden", "true");
-  const d = "M0 26 H110 l6 -3 l5 3 h10 l5 -18 l6 30 l5 -12 h12 l5 -2 l5 2 H300";
-  s.innerHTML = `<path class="base" d="${d}"/><path d="${d}"/>`;
-  return s;
+const milhar = n => n.toLocaleString("pt-BR");
+function contarBR(alvo, ate) {
+  if (calmo) { alvo.textContent = milhar(ate); return; }
+  const t0 = performance.now(), dur = 1400;
+  const passo = t => { const p = Math.min(1, (t - t0) / dur); alvo.textContent = milhar(Math.round(ate * (1 - Math.pow(1 - p, 3)))); if (p < 1) requestAnimationFrame(passo); };
+  requestAnimationFrame(passo);
 }
-let verificado = 0;
 async function mostrarOperacao(primeira) {
   let d;
-  try { d = await fetch(OPERACAO_URL, { cache: "no-store" }).then(r => r.json()); } catch (e) { $("op-resumo").textContent = "Servidor sem resposta agora"; return; }
+  try { d = await fetch(OPERACAO_URL, { cache: "no-store" }).then(r => r.json()); } catch (e) { return; }
   if (!d.pronto) return;
-  verificado = d.quando * 1000;
-  $("op-lista").replaceChildren(...d.itens.map(it => {
-    const li = el("li", it.status === "instável" ? "instavel" : it.status === "vinculado" ? "vinculado" : ""), cab = el("div", "op-cab");
-    const ic = el("span", "op-ico"); ic.innerHTML = ico(it.rede.toLowerCase());
-    const st = el("em"); st.append(el("i"), maiuscula(it.status));
-    cab.append(ic, el("b", "", it.rede), st);
-    li.classList.add("luz");
-    li.append(cab, el("p", "", maiuscula(it.o_que)), batimento());
-    return li;
-  }));
-  $("n-total").textContent = "/" + d.total;
-  if (primeira) {
-    contar($("n-sistemas"), d.operando);
-    d.itens.forEach(it => registrar(it.rede, it.o_que + " · " + it.status, CORES[it.rede] || "", it.status !== "instável"));
-  } else $("n-sistemas").textContent = d.operando;
-  $("op-resumo").dataset.ok = d.operando; $("op-resumo").dataset.total = d.total;
+  const pv = d.provas;
+  if (pv) {
+    if (primeira) contarBR($("pv-pubs"), pv.videos + pv.reels);
+    else $("pv-pubs").textContent = milhar(pv.videos + pv.reels);
+    if (pv.desde) $("pv-pubs-rot").textContent = "vídeos e Reels publicados sem ninguém apertar um botão, desde " + new Date(pv.desde * 1000).toLocaleDateString("pt-BR", { day: "numeric", month: "short" }).replace(".", "");
+  }
+  $("pv-no-ar").innerHTML = `${d.operando}<small>/${d.total}</small>`;
+  if (primeira) d.itens.forEach(it => registrar(it.rede, it.o_que + " · " + it.status, CORES[it.rede] || "", it.status !== "instável"));
 }
-setInterval(() => {
-  if (!verificado) return;
-  const s = Math.max(0, Math.round((Date.now() - verificado) / 1000)), r = $("op-resumo");
-  r.innerHTML = `<b>${r.dataset.ok} de ${r.dataset.total}</b> no ar · Conferido há ${s < 60 ? s + " s" : Math.round(s / 60) + " min"}`;
-}, 1000);
+document.querySelectorAll("[data-servico]:not(.item)").forEach(b => b.addEventListener("click", () => escolherServico(b.dataset.servico)));
+document.querySelectorAll("[data-ir]").forEach(b => b.addEventListener("click", () => $(b.dataset.ir).scrollIntoView({ behavior: calmo ? "auto" : "smooth" })));
+document.querySelectorAll("[data-nina]").forEach(b => b.addEventListener("click", () => escolherServico(null)));
 
 /* dores: lista de frases + painel; troca sozinha a cada 7 s até a pessoa escolher */
 const SVG = d => `<svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
 const OK = SVG('<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 10"/>');
-let dorAtual = 0, dorAuto = !calmo, dorTimer;
+let dorAtual = 0, dorAuto = !calmo, dorTimer, lista = DORES, perfil = "";
+const PROVA_PERFIL = "a mesma base dos sistemas que você vê rodando nesta página.";
+/* valores de partida aprovados pelo Leo (iguais aos da Nina, em nina.py) */
+const PRECO_AREA = { bots: "R$ 800", conteudo: "R$ 1.200", vendas: "R$ 900", sistemas: "R$ 2.500", automacao: "R$ 500", ia: "R$ 1.500", seguranca: "R$ 150" };
+const PRECO_NOTA = { conteudo: "+ R$ 300/mês", seguranca: "por mês" };
+const PRECO_SERVICO = { "Assistente que conhece seu negócio": "R$ 1.500", "Funil com e-mails automáticos": "R$ 1.500" };
+const SERVICO_GERAL = { conteudo: "Posts diários com aprovação no celular", bots: "Bot de WhatsApp com menu", sistemas: "Controle com QR Code", vendas: "Funil com e-mails automáticos", seguranca: "Site e sistemas vigiados 24h" };
 function mostrarDor(i, porClique) {
   dorAtual = i;
-  if (porClique) { dorAuto = false; clearTimeout(dorTimer); }
+  clearTimeout(dorTimer);
+  if (porClique) dorAuto = false;
   document.querySelectorAll("#frases button").forEach((b, k) => {
     b.setAttribute("aria-selected", k === i); b.tabIndex = k === i ? 0 : -1;
     const t = b.querySelector(".tempo"); t.classList.remove("anda"); void t.offsetWidth; if (k === i && dorAuto) t.classList.add("anda");
   });
-  const d = DORES[i], area = CATALOGO.find(c => c.id === d.cat);
+  const d = lista[i], area = CATALOGO.find(c => c.id === d.cat), servico = d.servico || SERVICO_GERAL[d.cat];
+  const preco = PRECO_SERVICO[servico] || PRECO_AREA[d.cat], nota = PRECO_SERVICO[servico] ? "" : PRECO_NOTA[d.cat] || "";
   $("cura").innerHTML = `
-    <span class="rotulo">${OK}Como fica resolvido</span>
+    <div class="cura-cab"><span class="passo-n"><b>3</b>Sua solução</span><span class="chip-serv" style="--cor:${area.cor}">${SVG(ICONES_CAT[area.ic])}${servico}</span></div>
     <h3>${d.titulo}</h3>
     <p class="hoje"><b>Hoje:</b> ${d.custa[0].toLowerCase()}.</p>
-    <ol class="tres">${d.como.map((x, k) => `<li style="animation-delay:${.08 * k + .1}s">${x}</li>`).join("")}</ol>
-    <div class="cura-pe"><button class="botao cheio" type="button" id="dor-pedido">Quero resolver isso →</button>
-      <button class="link-sec" type="button" id="dor-cat">Ver serviços de ${area.nome.toLowerCase()} ↓</button></div>
-    <p class="ja-roda"><i></i>Já roda: ${d.prova}</p>`;
-  $("dor-cat").addEventListener("click", () => irParaCategoria(d.cat));
-  $("dor-pedido").addEventListener("click", () => { if (!$("pedido-msg").value) $("pedido-msg").value = "“" + d.frase + "” "; escolherServico(d.titulo); });
-  if (dorAuto) dorTimer = setTimeout(() => mostrarDor((dorAtual + 1) % DORES.length), 7000);
+    <span class="incluso">O que vem incluso</span>
+    <ul class="tres">${d.como.map((x, k) => `<li style="animation-delay:${.08 * k + .1}s">${OK}${x}</li>`).join("")}</ul>
+    <div class="preco"><span>a partir de</span><strong>${preco}</strong>${nota ? `<em>${nota}</em>` : ""}<small>O valor final vem na proposta, depois de entender o seu caso.</small></div>
+    <div class="cura-pe"><button class="botao cheio" type="button" id="dor-pedido">Quero essa solução →</button>
+      <button class="link-sec" type="button" id="dor-cat">Ver outros serviços de ${area.nome.toLowerCase()} ↓</button></div>
+    <p class="ja-roda"><i></i>${d.prova ? "Já roda: " + d.prova : "Feito com " + PROVA_PERFIL}</p>`;
+  $("dor-cat").addEventListener("click", () => irParaCategoria(d.cat, servico));
+  $("dor-pedido").addEventListener("click", () => escolherServico(servico, "Quero essa solução: " + servico + ". Meu problema hoje: " + d.frase));
+  if (dorAuto) dorTimer = setTimeout(() => mostrarDor((dorAtual + 1) % lista.length), 7000);
 }
-$("frases").replaceChildren(...DORES.map((d, i) => {
-  const item = el("li"), b = el("button");
-  b.type = "button"; b.setAttribute("role", "tab");
-  b.innerHTML = `<span>“${d.frase}”</span><span class="tempo"></span>`;
-  b.addEventListener("click", () => mostrarDor(i, true));
-  b.addEventListener("keydown", e => {
-    const n = e.key === "ArrowDown" ? 1 : e.key === "ArrowUp" ? -1 : 0;
-    if (n) { e.preventDefault(); const k = (i + n + DORES.length) % DORES.length; mostrarDor(k, true); $("frases").children[k].firstChild.focus(); }
-  });
-  item.append(b); return item;
+function montarFrases() {
+  $("frases").replaceChildren(...lista.map((d, i) => {
+    const item = el("li"), b = el("button");
+    b.type = "button"; b.setAttribute("role", "tab");
+    b.innerHTML = `<span>“${d.frase}”</span><span class="tempo"></span>`;
+    b.addEventListener("click", () => mostrarDor(i, true));
+    b.addEventListener("keydown", e => {
+      const n = e.key === "ArrowDown" ? 1 : e.key === "ArrowUp" ? -1 : 0;
+      if (n) { e.preventDefault(); const k = (i + n + lista.length) % lista.length; mostrarDor(k, true); $("frases").children[k].firstChild.focus(); }
+    });
+    item.append(b); return item;
+  }));
+}
+/* profissão: troca as frases pela língua de quem está lendo; a Nina também fica sabendo */
+function escolherPerfil(id, porClique) {
+  const p = PROFISSOES.find(x => x.id === id);
+  perfil = p ? p.id : ""; lista = p ? p.dores : DORES;
+  document.querySelectorAll("#perfis button").forEach(b => b.setAttribute("aria-pressed", b.dataset.id === perfil));
+  document.querySelector("#dores h2").textContent = p ? "Frases que a gente ouve " + p.quem : "Qual destas frases você já disse?";
+  montarFrases(); mostrarDor(0, porClique);
+}
+$("perfis").replaceChildren(...[{ id: "", nome: "Qualquer área" }, ...PROFISSOES, { id: "online", nome: "Vendo online" }].map(p => {
+  const b = el("button", "", p.nome); b.type = "button"; b.dataset.id = p.id;
+  b.addEventListener("click", () => escolherPerfil(p.id, true));
+  return b;
 }));
+PROFISSOES.push({ id: "online", nome: "Quem vende online", quem: "de quem vende online", dores: [DORES[3], DORES[0], DORES[1]] });
+montarFrases();
+document.querySelector("#perfis button").setAttribute("aria-pressed", "true");
 
 /* catálogo: busca, categorias e "Quero este" que leva pra caixa de pedido */
 const CATALOGO = [{"id": "bots", "nome": "Bots e atendimento", "ic": "bot", "cor": "#2BD9A8", "itens": [["Bot para Telegram", "Vendas, avisos, área de membros e pagamentos dentro do Telegram."], ["Bot de WhatsApp com menu", "Responde as perguntas de sempre e chama você só quando precisa."], ["Agendamento com lembrete", "O cliente marca sozinho e recebe lembrete antes do horário."], ["Triagem de contatos", "Separa quem está curioso de quem está pronto pra comprar."], ["Assistente que conhece seu negócio", "Responde com base nos seus documentos, preços e regras."]]}, {"id": "conteudo", "nome": "Conteúdo e redes", "ic": "conteudo", "cor": "#F5B700", "itens": [["Posts diários com aprovação no celular", "Tema, texto e arte prontos; você só aprova com um toque."], ["Roteiros que se autovalidam", "Cada roteiro passa por checagem de fatos, tamanho e gancho antes de chegar a você."], ["Canal dark completo", "Roteiro, voz, edição e publicação no YouTube sem você aparecer."], ["Cortes e Reels a partir de vídeo longo", "Um vídeo vira vários cortes com legenda, no formato de cada rede."], ["Radar de tendências do seu nicho", "O que está em alta na semana, pronto pra virar pauta."]]}, {"id": "vendas", "nome": "Vendas e marketing digital", "ic": "vendas", "cor": "#FF4D6D", "itens": [["Página de vendas", "Página pensada para quem chega decidir rápido, com checkout integrado."], ["Funil com e-mails automáticos", "Quem deixa o contato recebe a sequência certa até comprar."], ["Garimpo de anúncios que vendem", "Mapeia o que já vende no seu nicho antes de você gastar com tráfego."], ["Métricas da campanha no celular", "Resumo diário do que gastou, do que voltou e do que ajustar."], ["Produto digital do zero", "Guia, kit ou curso: conteúdo, capa, página e checkout."]]}, {"id": "sistemas", "nome": "Sistemas para empresas", "ic": "sistema", "cor": "#3D8BFF", "itens": [["Controle com QR Code", "Estoque, equipamentos ou ferramentas: quem pegou, quando e o que voltou."], ["Agenda e reservas online", "Horários, salas ou serviços reservados sem troca de mensagens."], ["Painel administrativo sob medida", "Os números do seu negócio numa tela só, atualizados sozinhos."], ["Orçamentos e PDFs automáticos", "Preencheu, saiu o documento pronto, com a sua marca."], ["App que funciona no celular", "Instala pelo navegador, funciona offline e não depende de loja."]]}, {"id": "automacao", "nome": "Automação e integrações", "ic": "integra", "cor": "#B79CFF", "itens": [["Ferramentas conversando entre si", "Planilha, CRM, e-mail e WhatsApp trocando dados sem copiar e colar."], ["Relatórios que chegam sozinhos", "O resumo do dia ou da semana no seu WhatsApp ou e-mail."], ["Monitor de preços e concorrentes", "Avisa quando um preço muda ou um concorrente lança algo."], ["Planilhas que se atualizam", "Os dados entram sozinhos, sem ninguém digitar."], ["Alertas fora do normal", "Venda caiu, pedido parado, site lento: você sabe na hora."]]}, {"id": "ia", "nome": "IA aplicada", "ic": "ia", "cor": "#2BD9A8", "itens": [["Chat com IA no seu site", "Atende o visitante a qualquer hora, com as informações do seu negócio."], ["Leitura de documentos e notas", "Extrai dados de PDFs, notas fiscais e formulários pra uma planilha."], ["Classificação de mensagens", "E-mails e pedidos separados por assunto e prioridade."], ["Imagens e textos na sua identidade", "Peças geradas no padrão da sua marca, prontas pra usar."], ["Resumo diário do seu mercado", "As notícias que importam pro seu ramo, num texto curto de manhã."]]}, {"id": "seguranca", "nome": "Proteção e monitoramento", "ic": "seguro", "cor": "#FF4D6D", "itens": [["Site e sistemas vigiados 24h", "Se algo cair, você recebe o alerta antes do cliente perceber."], ["Backup automático", "Cópias diárias guardadas em outro lugar, prontas pra restaurar."], ["Revisão de segurança básica", "Senhas, acessos e pontos fracos revisados, com o que corrigir primeiro."], ["Proteção contra golpes no atendimento", "Checagens que evitam pagamento falso e perfil clonado."]]}];
@@ -852,19 +1021,118 @@ function montarCatalogo() {
     $("catalogo").replaceChildren(cab, v);
   } else $("catalogo").replaceChildren(cab, ul);
 }
-function escolherServico(nome) {
-  $("selo-texto").textContent = "Serviço: " + nome;
-  $("selo-servico").classList.add("tem"); $("selo-servico").dataset.servico = nome;
+function escolherServico(nome, texto) {
+  if (nome) { $("selo-texto").textContent = "Serviço: " + nome; $("selo-servico").classList.add("tem"); $("selo-servico").dataset.servico = nome; }
   $("pedido").scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
   const caixa = $("pedido"); caixa.classList.remove("chamou"); void caixa.offsetWidth; caixa.classList.add("chamou");
   setTimeout(() => caixa.classList.remove("chamou"), 1800);
-  setTimeout(() => $("pedido-msg").focus({ preventScroll: true }), calmo ? 0 : 600);
+  if (ninaViva) {
+    if (nome && !ninaServico) ninaServico = nome;
+    const fala = texto || (nome ? "Quero saber mais sobre: " + nome : "");
+    if (fala) setTimeout(() => falarNina(fala), calmo ? 0 : 500);
+    setTimeout(() => $("nina-txt").focus({ preventScroll: true }), calmo ? 0 : 600);
+  } else {
+    if (texto && !$("pedido-msg").value) $("pedido-msg").value = texto;
+    setTimeout(() => $("pedido-msg").focus({ preventScroll: true }), calmo ? 0 : 600);
+  }
 }
+/* Nina: conversa guardada no navegador; o servidor só responde. Caiu = volta o formulário com o que a pessoa já escreveu */
+const NINA_URL = "https://painel.leomagalhaes.tech/leo/nina";
+let ninaViva = true, ninaServico = "", ninaOcupada = false;
+const ninaId = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)).slice(0, 36);
+const ninaHist = [];
+function ninaBalao(cls, texto) {
+  const li = el("li", cls, texto); $("nina-msgs").append(li);
+  $("nina-msgs").scrollTop = $("nina-msgs").scrollHeight; return li;
+}
+function ninaFormulario(motivo) {
+  ninaViva = false;
+  if (motivo) ninaBalao("dela", motivo);
+  const escrito = ninaHist.filter(m => m.quem === "voce").map(m => m.texto).join("\n");
+  if (escrito && !$("pedido-msg").value) $("pedido-msg").value = escrito;
+  $("nina-form").hidden = true; $("form-pedido").hidden = false; $("ir-form").hidden = true;
+}
+async function falarNina(texto) {
+  texto = texto.trim().slice(0, 600);
+  if (!texto || !ninaViva) return;
+  if (ninaOcupada) { $("nina-txt").value = texto; return; }
+  ninaOcupada = true; $("nina-btn").disabled = true;
+  ninaHist.push({ quem: "voce", texto }); ninaBalao("sua", texto);
+  const d = ninaBalao("dela digita"); d.innerHTML = "<i></i><i></i><i></i><span></span>";
+  const fareja = ["farejando a resposta", "pensando com as orelhas", "mastigando a ideia", "abanando o rabo"];
+  let fk = Math.floor(Math.random() * fareja.length); d.lastChild.textContent = fareja[fk];
+  const farejo = setInterval(() => { fk = (fk + 1) % fareja.length; d.lastChild.textContent = fareja[fk]; }, 1400);
+  try {
+    const r = await fetch(NINA_URL, { method: "POST", headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({ id: ninaId, historico: ninaHist, servico: ninaServico, para: perfil && (PROFISSOES.find(x => x.id === perfil) || {}).nome }) });
+    const o = await r.json();
+    clearInterval(farejo); d.remove();
+    if (!o.resposta) throw new Error("sem resposta");
+    ninaHist.push({ quem: "nina", texto: o.resposta }); ninaBalao("dela", o.resposta);
+    if (r.status === 429) ninaFormulario();
+    if (o.fechou) { ninaBalao("aviso", "✓ Pedido entregue ao Leo no WhatsApp"); registrar("Site", "Nina fechou um pedido", "", true); setTimeout(() => modoTurbo("Correndo avisar o Leo ⚡"), 600); }
+  } catch (e) {
+    clearInterval(farejo); d.remove();
+    ninaFormulario("Minha conexão caiu 🐾 Deixa seu contato aqui embaixo que o seu pedido chega direto no Leo.");
+  }
+  ninaOcupada = false; $("nina-btn").disabled = false;
+}
+$("nina-form").addEventListener("submit", e => { e.preventDefault(); const t = $("nina-txt").value; $("nina-txt").value = ""; falarNina(t); });
+$("ir-form").addEventListener("click", () => ninaFormulario());
+/* modo turbo: a Nina sai correndo 220V pela tela (no pedido fechado, no carinho e uma vez por visita) */
+let turboAtivo = false, turboFim, statusAntes = "";
+const avisoTurbo = (txt, botao) => {
+  $("turbo-aviso-txt").textContent = txt; $("turbo-carinho").hidden = !botao;
+  $("turbo-aviso").classList.toggle("calmo", calmo || !botao); $("turbo-aviso").classList.add("ve");
+};
+function modoTurbo(texto) {
+  if (turboAtivo) return;
+  turboAtivo = true;
+  const st = $("nina-status"); statusAntes = st.textContent;
+  st.textContent = (texto || "Modo turbo ativado ⚡ 220V") + " · faz carinho pra parar"; $("nina").classList.add("turbo");
+  const t = $("turbo"); t.classList.remove("parou", "vai"); t.style.transform = t.style.opacity = t.style.transition = ""; void t.offsetWidth; if (!calmo) t.classList.add("vai");
+  avisoTurbo("⚡ A Nina ativou o modo turbo! Faz carinho nela pra ela parar", true);
+  turboFim = setTimeout(() => pararTurbo("Cansou de correr e deitou 😴"), 25000);
+}
+function pararTurbo(msg) {
+  if (!turboAtivo) return;
+  clearTimeout(turboFim); turboAtivo = false;
+  const t = $("turbo");
+  if (t.classList.contains("vai")) {
+    const r = t.getBoundingClientRect(), c = el("span", "coracao", "❤️");
+    t.style.transform = getComputedStyle(t).transform; t.style.opacity = "1"; t.classList.remove("vai"); t.classList.add("parou");
+    requestAnimationFrame(() => { t.style.transition = "opacity .7s .7s"; t.style.opacity = "0"; });
+    c.style.left = (r.left + r.width * .55) + "px"; c.style.top = (r.top - 10) + "px";
+    document.body.append(c); setTimeout(() => c.remove(), 1300);
+  }
+  $("nina").classList.remove("turbo"); $("nina-status").textContent = statusAntes;
+  avisoTurbo(msg || "Ufa, parou. Ela amou o carinho 🐾", false);
+  setTimeout(() => { if (!turboAtivo) $("turbo-aviso").classList.remove("ve"); }, 2600);
+}
+let carinhos = 0;
+const carinho = () => {
+  if (turboAtivo) return pararTurbo();
+  carinhos++;
+  if (carinhos % 2) { const st = $("nina-status"), a = st.textContent; st.textContent = "Ela gostou do carinho 🐾"; setTimeout(() => { if (!turboAtivo) st.textContent = a; }, 1800); }
+  else modoTurbo("Carinho demais, ligou o turbo ⚡");
+};
+$("nina-av").addEventListener("click", carinho);
+$("nina-av").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); carinho(); } });
+$("turbo").addEventListener("click", () => pararTurbo());
+$("turbo-carinho").addEventListener("click", () => pararTurbo());
+new IntersectionObserver(([e], obs) => {
+  if (!e.isIntersecting) return;
+  obs.disconnect();
+  let ja = false; try { ja = sessionStorage.getItem("nina-turbo") === "1"; sessionStorage.setItem("nina-turbo", "1"); } catch (_) {}
+  if (!ja) setTimeout(() => modoTurbo("Ativou o turbo do nada ⚡"), 2500);
+}, { threshold: .5 }).observe($("nina"));
+ninaBalao("dela", "Oi! Eu sou a Nina, a buldogue que atende aqui 🐾 Me conta: o que você quer resolver?");
 $("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
 $("busca").addEventListener("input", () => { montarAreas(); montarCatalogo(); });
 montarAreas(); montarCatalogo(); mostrarDor(0);
 /* dores levam aos serviços: categoria certa no catálogo e pedido já preenchido */
-function irParaCategoria(id) { categoria = id; $("busca").value = ""; montarAreas(); montarCatalogo(); $("servicos").scrollIntoView({ behavior: calmo ? "auto" : "smooth" }); }
+function irParaCategoria(id, servico) { categoria = id; $("busca").value = ""; montarAreas(); montarCatalogo();
+  if (servico) setTimeout(() => [...document.querySelectorAll("#catalogo .item")].find(b => b.textContent.includes(servico))?.focus({ preventScroll: true }), calmo ? 0 : 700); $("servicos").scrollIntoView({ behavior: calmo ? "auto" : "smooth" }); }
 /* botão flutuante: aparece depois do topo, some quando a caixa de pedido ou o contato estão na tela */
 (function () {
   const f = $("flutua"); let passouTopo = false, alvoNaTela = false;
@@ -872,7 +1140,7 @@ function irParaCategoria(id) { categoria = id; $("busca").value = ""; montarArea
   new IntersectionObserver(([e]) => { passouTopo = !e.isIntersecting; atualiza(); }).observe(document.querySelector(".topo"));
   const vistos = new Set();
   const io2 = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? vistos.add(e.target) : vistos.delete(e.target)); alvoNaTela = vistos.size > 0; atualiza(); }, { threshold: .2 });
-  ["pedido", "contato"].forEach(id => io2.observe($(id)));
+  ["pedido"].forEach(id => io2.observe($(id)));
 })();
 function exemplosVivos(campo, frases) {
   if (calmo) return;
@@ -895,18 +1163,17 @@ exemplosVivos($("pedido-msg"), ["Tenho uma loja e queria que os pedidos do site 
   "Quero um bot no Telegram que venda meu curso e libere o acesso sozinho.",
   "Preciso de um painel que mostre minhas vendas do dia no celular.",
   "Tenho uma ideia de app e não sei por onde começar."]);
-/* topo: a frase vira o pedido e o cursor já vai pro contato */
+/* topo: a frase vira a primeira mensagem para a Nina */
 $("rapido").addEventListener("submit", e => {
   e.preventDefault();
-  const t = $("rapido-txt").value.trim();
-  if (t) $("pedido-msg").value = t;
-  $("pedido").scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
-  setTimeout(() => document.querySelector('#form-pedido [name="' + (t ? "contato" : "mensagem") + '"]').focus({ preventScroll: true }), calmo ? 0 : 600);
+  const t = $("rapido-txt").value.trim(); $("rapido-txt").value = "";
+  escolherServico(null, t);
 });
 exemplosVivos($("rapido-txt"), ["Quero parar de perder cliente no WhatsApp.", "Preciso postar todo dia sem perder o dia.", "Quero um painel com as vendas no celular.", "Tenho um produto e quero vender online."]);
-/* link direto: ?servico=nome já escolhe o serviço; ?area=id abre a área (pra usar na bio e nos posts) */
+/* link direto: ?servico=nome já escolhe o serviço; ?area=id abre a área; ?para=clinica|salao|restaurante|advocacia|imobiliaria|academia|loja|online troca as frases */
 (function () {
-  const q = new URLSearchParams(location.search), sv = q.get("servico"), ar = q.get("area");
+  const q = new URLSearchParams(location.search), sv = q.get("servico"), ar = q.get("area"), pa = q.get("para");
+  if (pa && PROFISSOES.some(x => x.id === pa)) { escolherPerfil(pa); setTimeout(() => $("dores").scrollIntoView(), 300); }
   if (ar && AREAS.some(a => a.id === ar)) { categoria = ar; montarAreas(); montarCatalogo(); setTimeout(() => $("servicos").scrollIntoView(), 300); }
   if (sv) {
     const alvo = semAcento(sv), achou = CATALOGO.flatMap(c => c.itens).find(([n]) => semAcento(n).includes(alvo));
@@ -933,46 +1200,12 @@ $("form-pedido").addEventListener("submit", async e => {
   btn.disabled = false; btn.lastChild.textContent = "Enviar pedido";
 });
 
-/* diário */
 const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 function dataCurta(iso) { const [a, m, d] = iso.split("-"); return d + " " + MESES[+m - 1] + " " + a; }
-function montarDiario(itens, fonte) {
-  $("lista-diario").replaceChildren(...itens.slice().sort((a, b) => b.quando.localeCompare(a.quando)).slice(0, 7).map(e => {
-    const li = el("li"), t = el("time", "", dataCurta(e.quando));
-    t.dateTime = e.quando;
-    li.append(t, el("span", "", e.texto), el("small", "", ({ "01": "PostEngineAI", "02": "TrackPoint", "03": "Estúdio de conteúdo", "site": "Este site" })[e.projeto] || e.projeto));
-    return li;
-  }));
-  $("fonte-diario").textContent = fonte;
-  observarDiario();
-}
 
 /* rolagem: elementos surgem, a linha do diário acende */
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visivel"); io.unobserve(e.target); } }), { threshold: .15 });
 document.querySelectorAll(".surge").forEach(e => io.observe(e));
-const ioNum = new IntersectionObserver(es => es.forEach(e => {
-  if (!e.isIntersecting) return;
-  e.target.querySelectorAll("[data-conta]").forEach(n => n.dataset.conta && contar(n, +n.dataset.conta));
-  ioNum.unobserve(e.target);
-}), { threshold: .4 });
-ioNum.observe(document.querySelector(".numeros"));
-function observarDiario() {
-  const lista = $("lista-diario");
-  const andar = () => {
-    const r = lista.getBoundingClientRect(), meio = innerHeight * .7;
-    const p = Math.max(0, Math.min(1, (meio - r.top) / r.height));
-    lista.style.setProperty("--andou", (p * 100).toFixed(1) + "%");
-    lista.querySelectorAll("li").forEach(li => li.classList.toggle("aceso", li.getBoundingClientRect().top < meio));
-  };
-  andar(); addEventListener("scroll", andar, { passive: true });
-}
-
-/* semana: acende o dia de hoje (fuso de Salvador) */
-(function () {
-  const dia = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Bahia" })).getDay();
-  const i = dia === 0 || dia === 6 ? 5 : dia - 1;
-  document.querySelector(`.semana li[data-dia="${i}"]`)?.classList.add("hoje");
-})();
 /* brilho que segue o mouse */
 document.addEventListener("pointermove", e => {
   const c = e.target.closest?.(".luz"); if (!c) return;
@@ -983,14 +1216,11 @@ document.addEventListener("pointermove", e => {
 /* partida */
 registrar("Sistema", "Conectando ao servidor em Salvador…", "ambar");
 mostrarOperacao(true); setInterval(mostrarOperacao, 60000);
-montarDiario(DIARIO, "Registro escrito a cada avanço.");
 fetch("https://api.github.com/users/leomagalhaesti/repos?sort=pushed&per_page=30")
   .then(r => r.ok ? r.json() : Promise.reject(r.status))
   .then(repos => {
     const meus = repos.filter(r => REPOS[r.name]);
     if (meus[0]) registrar("GitHub", REPOS[meus[0].name][1] + " · último envio " + dataCurta(meus[0].pushed_at.slice(0, 10)), "lilas");
-    const extra = meus.map(r => ({ quando: r.pushed_at.slice(0, 10), projeto: REPOS[r.name][0], texto: REPOS[r.name][1] + ": nova atualização no código." }));
-    if (extra.length) montarDiario([...DIARIO, ...extra], "Registro escrito a cada avanço, somado à atividade pública no GitHub.");
   })
   .catch(() => {});
 /* depois da carga, o console continua vivo: a cada 20 s uma checagem real */
