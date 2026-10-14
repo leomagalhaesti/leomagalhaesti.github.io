@@ -1,329 +1,575 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+<base href="/">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Leo Magalhães, Computer Science student. Robôs de automação, aplicativos web e ferramentas com IA: o que eu construí e em que pé está.">
+<meta name="description" content="Leo Magalhães, Computer Science student. Automações, aplicativos web, ferramentas com IA e projetos no mercado digital, com o status de cada um ao vivo.">
 <meta property="og:title" content="Leo Magalhães · Projetos">
-<meta property="og:description" content="Eu construo sistemas que trabalham sozinhos. Robôs de automação, aplicativos web e ferramentas com IA.">
+<meta property="og:description" content="Eu construo sistemas que trabalham sozinhos. Veja o que está rodando agora.">
 <meta property="og:image" content="https://leomagalhaesti.github.io/previa.png">
 <meta property="og:url" content="https://leomagalhaesti.github.io/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#07061C">
+<meta name="theme-color" content="#050807">
 <link rel="icon" href="img/foto.jpg">
-<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
 <title>Leo Magalhães</title>
-</head>
-<body>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: portfólio de uma coluna larga. Abertura com nome, frase e a arte do córtex; números reais; três estudos de caso
-   com telas de verdade; diário de obra; fora do código; contato. Tema Córtex, só escuro. */
+/* Layout: central de controle. Topo com quem sou + console ao vivo (dados reais do servidor e do GitHub entrando linha
+   a linha); faixa de números animados; sistemas em operação com batimento; projetos com barra de progresso; diário em
+   linha do tempo que acende ao rolar; fora do código com os ícones dos destaques do Instagram; contato.
+   Identidade = a do Instagram: verde-menta da foto, grafite, ícones de traço e a ondinha. Só escuro. */
 :root{
+  --fundo:#050807; --painel:#0B1110; --painel-2:#101917; --linha:#17231F; --linha-forte:#24362F;
+  --texto:#E8F2EE; --texto-2:#A7BAB3; --texto-3:#6A7F78;
+  --menta:#2BD9A8; --menta-2:#7CF5CF; --ambar:#F5B700; --coral:#FF4D6D; --azul:#3D8BFF; --lilas:#B79CFF;
+  --mono:"Geist Mono",ui-monospace,monospace; --sans:"Geist",system-ui,sans-serif; --raio:14px;
   color-scheme:dark;
-  --fundo:#07061C; --superficie:#0F0C33; --superficie-2:#151146; --linha:#252060; --linha-forte:#3A3380;
-  --texto:#EEECFF; --texto-2:#B9B4E6; --texto-3:#7F79B5;
-  --menta:#5CF2C8; --ambar:#F2C14E; --azul:#6CB6FF; --tinta:#07061C;
-  --display:"Space Grotesk",system-ui,sans-serif; --corpo:"Instrument Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  --raio:14px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--fundo);color:var(--texto);font-family:var(--corpo);font-size:1.0625rem;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-.envelope{max-width:68rem;margin:0 auto;padding-inline:clamp(1rem,4vw,2.5rem)}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fundo);color:var(--texto);font:400 1rem/1.6 var(--sans);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:linear-gradient(var(--linha) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--linha) 1px,transparent 1px) 0 0/48px 48px;
+  opacity:.35;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%)}
+body::after{content:"";position:fixed;left:50%;top:-30vh;width:90vw;height:70vh;transform:translateX(-50%);pointer-events:none;z-index:0;
+  background:radial-gradient(closest-side,rgba(43,217,168,.16),transparent)}
 a{color:inherit}
-a:focus-visible{outline:2px solid var(--menta);outline-offset:3px;border-radius:4px}
-.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--texto-3)}
-h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.025em}
+img{max-width:100%;display:block}
+.envelope{position:relative;z-index:1;width:min(1160px,100% - 2rem);margin-inline:auto}
+.rotulo{display:inline-flex;align-items:center;gap:.5rem;font:500 .78rem/1 var(--mono);letter-spacing:.04em;color:var(--texto-3)}
+.ic-s{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
+.rotulo .ic-s{color:var(--menta)}
+.rotulo b{color:var(--menta);font-weight:500}
+
+/* barra */
+.barra{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(5,8,7,.72);border-bottom:1px solid var(--linha)}
+.barra .envelope{display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
+.marca{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:600;letter-spacing:-.01em}
+.marca img{width:28px;height:28px;border-radius:50%}
+.barra nav{display:flex;gap:1.4rem;font:500 .82rem var(--sans)}
+.barra nav a{text-decoration:none;color:var(--texto-2)}.barra nav a:hover{color:var(--menta)}
+.relogio{font:500 .72rem var(--mono);color:var(--texto-3);font-variant-numeric:tabular-nums}
+.marca,.barra nav a{white-space:nowrap}
+@media (max-width:40rem){.barra nav a.opcional,.relogio{display:none}.barra nav{gap:1rem;font-size:.7rem}}
+@media (max-width:26rem){.marca span{display:none}}
 
 /* topo */
-.barra{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(7,6,28,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--linha)}
-.barra .envelope{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:3.5rem}
-.marca{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--display);font-weight:600;letter-spacing:-.01em}
-.marca img{width:28px;height:28px;border-radius:50%;object-fit:cover}
-.barra nav{display:flex;gap:1.4rem;font-size:.9rem;color:var(--texto-2)}
-.barra nav a{text-decoration:none}
-.barra nav a:hover{color:var(--texto)}
-@media (max-width:30rem){.barra nav a.opcional{display:none}}
-
-/* abertura */
-.abertura{position:relative;padding-block:clamp(3rem,9vw,6.5rem) clamp(2.5rem,6vw,4rem)}
-.abertura .arte{position:absolute;right:max(-6rem,calc((100vw - 68rem)/-2 - 2rem));top:-1rem;width:min(34rem,70vw);aspect-ratio:1080/1341;max-width:100%;
-  background:url(img/cortex.jpg) center 70%/cover no-repeat;pointer-events:none;opacity:.9;
-  -webkit-mask-image:radial-gradient(60% 55% at 62% 70%,#000 35%,transparent 100%);mask-image:radial-gradient(60% 55% at 62% 70%,#000 35%,transparent 100%)}
-@media (max-width:48rem){
-  .abertura{padding-top:0}
-  .abertura .arte{position:relative;right:auto;top:auto;width:100%;height:15rem;aspect-ratio:auto;margin-bottom:-2.5rem;background-position:100% 68%;background-size:130% auto;
-    -webkit-mask-image:radial-gradient(55% 70% at 60% 55%,#000 40%,transparent 100%);mask-image:radial-gradient(55% 70% at 60% 55%,#000 40%,transparent 100%)}
-}
-.abertura .conteudo{position:relative;display:flex;flex-direction:column;gap:1.5rem;max-width:40rem}
-.quem{display:flex;align-items:center;gap:.9rem}
-.quem img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--linha-forte)}
-.quem strong{display:block;font-family:var(--display);font-size:1.05rem;font-weight:600}
-.quem{position:relative}
-.quem.online img{box-shadow:0 0 0 2px var(--fundo),0 0 0 4px var(--menta)}
-.quem .visto{display:flex;align-items:center;gap:.45rem;margin-top:.3rem;color:var(--texto-2)}
+.topo{padding:clamp(2.5rem,7vw,5rem) 0 2.5rem;display:grid;gap:2.5rem;align-items:center}
+@media (min-width:60rem){.topo{grid-template-columns:1.05fr .95fr}}
+.quem{display:flex;align-items:center;gap:1rem}
+.orbita{position:relative;width:76px;height:76px;flex:none;display:grid;place-items:center}
+.orbita::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--menta),transparent 35%,transparent 65%,var(--menta));
+  animation:gira 6s linear infinite;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px))}
+.orbita img{width:64px;height:64px;border-radius:50%}
+.orbita .ponto{position:absolute;right:4px;bottom:4px;width:14px;height:14px;border-radius:50%;background:var(--texto-3);border:3px solid var(--fundo)}
+.online .orbita .ponto{background:var(--menta);box-shadow:0 0 12px var(--menta)}
+.quem strong{display:block;font-size:1.1rem;font-weight:600}
+.quem .cargo{font:400 .78rem var(--mono);color:var(--texto-3)}
+.visto{display:flex;align-items:center;gap:.45rem;margin-top:.25rem;font:500 .78rem var(--mono);color:var(--texto-2)}
 .visto i{width:7px;height:7px;border-radius:50%;background:var(--texto-3);flex:none}
-.online .visto i{background:var(--menta);box-shadow:0 0 0 0 rgba(92,242,200,.6);animation:pulsoVerde 2s ease-out infinite}
-@keyframes pulsoVerde{to{box-shadow:0 0 0 7px rgba(92,242,200,0)}}
-.quem span{font-family:var(--mono);font-size:.78rem;color:var(--texto-3)}
-h1{font-size:clamp(2.5rem,7.4vw,4.6rem);line-height:1;font-weight:700}
-h1 em{font-style:normal;color:var(--menta)}
-.abertura p.lead{margin:0;font-size:clamp(1.05rem,2.2vw,1.2rem);color:var(--texto-2);max-width:34rem}
-.agora{display:inline-flex;align-items:center;gap:.6rem;align-self:flex-start;font-family:var(--mono);font-size:.78rem;color:var(--texto-2);
-  border:1px solid var(--linha-forte);background:rgba(15,12,51,.7);border-radius:999px;padding:.45rem .9rem}
-.agora i{width:8px;height:8px;border-radius:50%;background:var(--ambar);box-shadow:0 0 0 0 rgba(242,193,78,.6);animation:pulso 2s ease-out infinite;flex:none}
-.agora b{color:var(--texto);font-weight:500}
-@keyframes pulso{to{box-shadow:0 0 0 8px rgba(242,193,78,0)}}
-.acoes{display:flex;flex-wrap:wrap;gap:.7rem}
-.botao{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:600;font-size:.95rem;padding:.75rem 1.15rem;border-radius:10px;border:1px solid var(--linha-forte);transition:border-color .2s,background .2s}
-.botao:hover{border-color:var(--texto-3)}
-.botao.cheio{background:var(--menta);border-color:var(--menta);color:var(--tinta)}
-.botao.cheio:hover{background:#7AF5D4}
+.online .visto i{background:var(--menta);animation:pulso 2s ease-out infinite}
+.online .visto{color:var(--menta-2)}
+h1{margin:1.6rem 0 0;font-weight:700;font-size:clamp(2.5rem,6.6vw,4.6rem);line-height:1.02;letter-spacing:-.045em}
+h1 .troca{display:block;color:var(--menta);min-height:1.05em}
+h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;background:var(--menta);vertical-align:-.06em;animation:pisca 1s steps(1) infinite}
+.lead{max-width:34rem;margin:1.3rem 0 0;font-size:1.08rem;color:var(--texto-2)}
+.acoes{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+.botao{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.15rem;border-radius:10px;border:1px solid var(--linha-forte);text-decoration:none;font-weight:600;font-size:.92rem;transition:border-color .2s,background .2s,transform .2s}
+.botao:hover{border-color:var(--menta);transform:translateY(-1px)}
+button.botao{background:transparent;color:var(--texto);font-family:var(--sans);cursor:pointer}
+.botao.cheio{background:var(--menta);border-color:var(--menta);color:#03140F}
+.botao.cheio:hover{background:var(--menta-2)}
+
+/* console */
+.console{background:linear-gradient(180deg,var(--painel-2),var(--painel));border:1px solid var(--linha-forte);border-radius:var(--raio);overflow:hidden;
+  box-shadow:0 30px 80px -30px rgba(43,217,168,.25),inset 0 1px 0 rgba(255,255,255,.03);min-width:0}
+.console header{display:flex;align-items:center;gap:.45rem;padding:.75rem 1rem;border-bottom:1px solid var(--linha)}
+.console header i{width:10px;height:10px;border-radius:50%;background:#2A3A35}
+.console header i:first-child{background:var(--coral)}.console header i:nth-child(2){background:var(--ambar)}.console header i:nth-child(3){background:var(--menta)}
+.console header span{margin-left:auto;font:500 .7rem var(--mono);color:var(--texto-3)}
+.console header .vivo{display:inline-flex;align-items:center;gap:.35rem;color:var(--menta)}
+.console header .vivo::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--menta);animation:pulso 2s ease-out infinite}
+.log{margin:0;padding:1rem 1.1rem 1.2rem;list-style:none;font:400 .8rem/1.75 var(--mono);height:19.5rem;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+  -webkit-mask-image:linear-gradient(transparent,#000 22%);mask-image:linear-gradient(transparent,#000 22%)}
+.log li{display:flex;gap:.7rem;white-space:nowrap;animation:entra .35s ease-out}
+.log time{color:var(--texto-3);flex:none}
+.log .tag{flex:none;min-width:7.2rem;color:var(--menta);display:inline-flex;align-items:center;gap:.4rem}
+.log .tag .ic-s{width:1em;height:1em}
+.log .tag.ambar{color:var(--ambar)}.log .tag.azul{color:var(--azul)}.log .tag.lilas{color:var(--lilas)}.log .tag.coral{color:var(--coral)}
+.log .msg{color:var(--texto-2);overflow:hidden;text-overflow:ellipsis}
+.log .ok{color:var(--menta);flex:none}
+.log li.digitando .msg::after{content:"▍";color:var(--menta);animation:pisca 1s steps(1) infinite}
+@media (max-width:30rem){.log{font-size:.72rem;height:15rem}.log .tag{min-width:6rem}.log time{display:none}}
 
 /* números */
-.operacao{margin-top:2.2rem}
-.op-topo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.4rem 1rem;margin-bottom:.9rem}
-.op-resumo{font-family:var(--mono);font-size:.75rem;color:var(--texto-3)}
-.op-lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5rem,1fr));gap:.6rem}
-.op-lista li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.35rem .7rem;background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);padding:.85rem 1rem;min-width:0}
-.op-lista i{width:8px;height:8px;border-radius:50%;background:var(--menta);box-shadow:0 0 0 0 rgba(92,242,200,.6);animation:pulsoVerde 2.4s ease-out infinite}
-.op-lista li.instavel i{background:var(--ambar);animation:none}
-.op-lista li.vinculado i{background:var(--azul);animation:none}
-.op-lista b{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
-.op-lista em{font-style:normal;font-family:var(--mono);font-size:.68rem;color:var(--menta)}
-.op-lista li.instavel em{color:var(--ambar)}.op-lista li.vinculado em{color:var(--azul)}
-.op-lista span{grid-column:2/4;font-size:.88rem;color:var(--texto-3);line-height:1.35}
-.numeros{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--linha)}
-.numeros div{padding:1.4rem 1rem 1.4rem 0;display:flex;flex-direction:column;gap:.2rem;min-width:0}
-.numeros div+div{padding-left:1.25rem;border-left:1px solid var(--linha)}
-.numeros strong{font-family:var(--display);font-size:clamp(1.7rem,5vw,2.4rem);line-height:1;font-weight:600;font-variant-numeric:tabular-nums}
-.numeros span{font-size:.85rem;color:var(--texto-3);line-height:1.35}
-@media (max-width:36rem){.numeros{grid-template-columns:1fr}.numeros div+div{padding-left:0;border-left:0;border-top:1px solid var(--linha)}.numeros div{padding:1rem 0;flex-direction:row;align-items:baseline;gap:.8rem}.numeros strong{min-width:5.6rem;flex:none}}
+.numeros{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--linha);border-radius:var(--raio);background:rgba(11,17,16,.6);margin-top:1rem}
+.numeros div{padding:1.3rem 1.2rem;min-width:0}
+.numeros .ic-s{display:block;width:20px;height:20px;color:var(--texto-3);margin-bottom:.8rem}
+.numeros .vivo .ic-s{color:var(--menta)}
+.numeros div+div{border-left:1px solid var(--linha)}
+.numeros strong{display:block;font-weight:700;font-size:clamp(1.8rem,4.5vw,2.6rem);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.numeros strong small{font-size:.5em;color:var(--texto-3);font-weight:500;margin-left:.15em}
+.numeros>div>span{display:block;margin-top:.45rem;font-size:.83rem;color:var(--texto-3);line-height:1.35}
+.numeros .vivo strong{color:var(--menta)}
+@media (max-width:48rem){.numeros{grid-template-columns:1fr 1fr}.numeros div:nth-child(3){border-left:0}.numeros div:nth-child(n+3){border-top:1px solid var(--linha)}}
 
 /* seções */
-.secao{padding-block:clamp(3.5rem,8vw,5.5rem);display:flex;flex-direction:column;gap:2rem}
-.secao>header{display:flex;flex-direction:column;gap:.7rem;max-width:38rem}
-.secao h2{font-size:clamp(1.8rem,4.4vw,2.6rem);line-height:1.08;font-weight:700}
-.secao>header p{margin:0;color:var(--texto-2)}
+.secao{padding-top:clamp(4rem,9vw,6.5rem)}
+.secao>header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:.8rem 2rem;margin-bottom:1.8rem}
+.secao h2{margin:.7rem 0 0;font-weight:700;font-size:clamp(1.7rem,3.6vw,2.5rem);letter-spacing:-.035em;line-height:1.08}
+.secao>header p{margin:.6rem 0 0;max-width:36rem;color:var(--texto-2)}
+.resumo-vivo{font:500 .75rem var(--mono);color:var(--texto-3);font-variant-numeric:tabular-nums}
+.resumo-vivo b{color:var(--menta);font-weight:500}
 
-/* projetos */
-.projetos{display:flex;flex-direction:column;gap:1.5rem}
-.projeto{background:var(--superficie);border:1px solid var(--linha);border-radius:calc(var(--raio) + 6px);overflow:hidden;display:grid;grid-template-columns:1fr}
-@media (min-width:56rem){.projeto{grid-template-columns:1.05fr 1fr}.projeto.inverte .midia{order:2}}
-.projeto .texto{padding:clamp(1.4rem,3.5vw,2.4rem);display:flex;flex-direction:column;gap:1.1rem;min-width:0}
-.cabeca{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.cabeca .eyebrow b{color:var(--texto);font-weight:500}
-.status{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .65rem;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
-.status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.status.no-ar{color:var(--menta)}
-.status.piloto{color:var(--azul)}
-.status.obra{color:var(--ambar)}
-.projeto h3{font-size:clamp(1.5rem,3.4vw,2rem);line-height:1.1;font-weight:700}
-.projeto .resumo{margin:0;color:var(--texto-2)}
-.ficha{margin:0;display:grid;gap:.9rem;padding-top:1.1rem;border-top:1px solid var(--linha)}
-.ficha div{display:grid;grid-template-columns:6.5rem 1fr;gap:1rem}
-.ficha dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--texto-3);padding-top:.2rem}
-.ficha dd{margin:0;font-size:.97rem;color:var(--texto-2);min-width:0}
-@media (max-width:30rem){.ficha div{grid-template-columns:1fr;gap:.15rem}}
-.pilha{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
-.pilha li{font-family:var(--mono);font-size:.72rem;color:var(--texto-2);background:var(--superficie-2);border:1px solid var(--linha);padding:.25rem .55rem;border-radius:6px}
-.projeto .link{align-self:flex-start;font-size:.92rem;font-weight:600;color:var(--menta);text-decoration:none}
-.projeto .link:hover{text-decoration:underline;text-underline-offset:4px}
-.midia{position:relative;min-height:18rem;background:radial-gradient(90% 80% at 50% 0%,#1E1866 0%,var(--superficie-2) 60%,var(--superficie) 100%);display:grid;place-items:center;padding:clamp(1.2rem,3vw,2rem);overflow:hidden;border-top:1px solid var(--linha)}
-@media (min-width:56rem){.midia{border-top:0;border-left:1px solid var(--linha)}.projeto.inverte .midia{border-left:0;border-right:1px solid var(--linha)}}
-.midia figcaption{position:absolute;left:1rem;bottom:.8rem;font-family:var(--mono);font-size:.66rem;color:var(--texto-3)}
-.tela{border-radius:10px;border:1px solid var(--linha-forte);box-shadow:0 24px 50px -20px rgba(0,0,0,.7);display:block;max-width:100%;height:auto}
-.duas{display:grid;grid-template-columns:1.25fr 1fr;gap:.8rem;align-items:start;width:100%}
-.duas .tela:last-child{margin-top:2rem}
-.leque{position:relative;width:100%;max-width:26rem;aspect-ratio:1.25;margin-bottom:1rem}
-.leque img{position:absolute;top:6%;width:52%;left:24%;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
-.leque img:nth-child(1){transform:translateX(-42%) rotate(-8deg) scale(.92);z-index:1}
-.leque img:nth-child(3){transform:translateX(42%) rotate(8deg) scale(.92);z-index:1}
-.leque img:nth-child(2){z-index:2}
-.projeto:hover .leque img:nth-child(1){transform:translateX(-52%) rotate(-11deg) scale(.92)}
-.projeto:hover .leque img:nth-child(3){transform:translateX(52%) rotate(11deg) scale(.92)}
+/* operação */
+.op-lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(20rem,1fr));gap:.75rem}
+.op-lista li{position:relative;background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio);padding:1rem 1.1rem 0;overflow:hidden;min-width:0;transition:border-color .25s}
+.op-lista li:hover{border-color:var(--linha-forte)}
+.op-cab{display:flex;align-items:center;gap:.6rem}
+.op-cab em i{width:6px;height:6px;border-radius:50%;background:var(--menta);animation:pulso 2.4s ease-out infinite;flex:none}
+.op-cab b{font-weight:600;font-size:.98rem;letter-spacing:-.01em}
+.op-ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex:none;color:var(--menta);background:rgba(43,217,168,.08);border:1px solid rgba(43,217,168,.22)}
+.op-ico .ic-s{width:19px;height:19px}
+.op-lista li.instavel .op-ico{color:var(--ambar);background:rgba(245,183,0,.08);border-color:rgba(245,183,0,.25)}
+.op-lista li.vinculado .op-ico{color:var(--azul);background:rgba(61,139,255,.08);border-color:rgba(61,139,255,.25)}
+.op-cab em{margin-left:auto;display:inline-flex;align-items:center;gap:.4rem;font:500 .7rem var(--mono);font-style:normal;color:var(--menta);border:1px solid rgba(43,217,168,.35);padding:.2rem .5rem;border-radius:999px}
+.op-lista p{margin:.6rem 0 .2rem;font-size:.9rem;color:var(--texto-2)}
+.op-lista svg.bat{display:block;width:calc(100% + 2.2rem);margin:0 -1.1rem;height:38px}
+.op-lista svg.bat path{fill:none;stroke:var(--menta);stroke-width:1.5;stroke-dasharray:6 600;animation:batida 3.2s linear infinite;filter:drop-shadow(0 0 4px rgba(43,217,168,.7))}
+.op-lista svg.bat path.base{stroke:var(--linha-forte);stroke-dasharray:none;animation:none;filter:none}
+.op-lista li.instavel .op-cab em i{background:var(--ambar);animation:none}
+.op-lista li.instavel em{color:var(--ambar);border-color:rgba(245,183,0,.35)}.op-lista li.instavel svg.bat path:not(.base){stroke:var(--ambar);animation-duration:1.4s}
+.op-lista li.vinculado .op-cab em i{background:var(--azul);animation:none}
+.op-lista li.vinculado em{color:var(--azul);border-color:rgba(61,139,255,.35)}.op-lista li.vinculado svg.bat path:not(.base){stroke:var(--azul);animation:none;stroke-dasharray:none;opacity:.5;filter:none}
+
+/* pontes entre seções */
+.ponte{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem 1.2rem;margin-top:1.6rem;padding:1rem 1.2rem;border-radius:var(--raio);
+  text-decoration:none;border:1px dashed var(--linha-forte);color:var(--texto-2);transition:border-color .25s,background .25s}
+.ponte b{color:var(--menta);font-weight:600;white-space:nowrap}
+.ponte:hover{border-color:var(--menta);border-style:solid;background:rgba(43,217,168,.05)}
+.ponte:hover b{text-decoration:underline}
+/* ---- hierarquia única nas seções de venda: 1 título forte, 1 linha de apoio, cor só no ícone e no indicador ---- */
+/* pedido em uma frase (topo) */
+.rapido{display:flex;gap:.4rem;margin-top:1.8rem;max-width:34rem;padding:.35rem;border-radius:14px;background:var(--painel);border:1px solid var(--linha-forte);transition:border-color .2s,box-shadow .2s}
+.rapido:focus-within{border-color:var(--menta);box-shadow:0 0 0 4px rgba(43,217,168,.12)}
+.rapido input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--texto);font:400 1rem var(--sans);padding:.7rem .8rem}
+.rapido input::placeholder{color:var(--texto-3)}
+.rapido .botao{padding:.7rem 1rem;white-space:nowrap}
+.atalhos{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin-top:.9rem;font:500 .82rem var(--sans)}
+.atalhos a{color:var(--texto-3);text-decoration:none}.atalhos a:hover{color:var(--menta)}
+@media (max-width:30rem){.rapido{flex-direction:column}.rapido .botao{justify-content:center}}
+
+/* soluções: lista de frases à esquerda, painel limpo à direita */
+.dores{display:grid;gap:1rem}
+@media (min-width:60rem){.dores{grid-template-columns:.9fr 1.1fr;align-items:stretch}}
+.frases{list-style:none;margin:0;padding:0;display:grid;gap:.25rem;align-content:start}
+.frases button{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:block;width:100%;padding:.95rem 1rem .95rem 1.2rem;border-radius:12px;
+  color:var(--texto-3);font-size:.98rem;line-height:1.4;overflow:hidden;transition:color .25s,background .25s}
+.frases button::before{content:"";position:absolute;left:0;top:.8rem;bottom:.8rem;width:2px;border-radius:2px;background:var(--linha-forte);transition:background .25s}
+.frases button:hover{color:var(--texto-2)}
+.frases button:focus-visible{outline:2px solid var(--menta);outline-offset:2px}
+.frases button[aria-selected="true"]{color:var(--texto);background:var(--painel)}
+.frases button[aria-selected="true"]::before{background:var(--menta)}
+.frases .tempo{position:absolute;left:1.2rem;right:1rem;bottom:0;height:1px;transform-origin:left;transform:scaleX(0);background:var(--menta);opacity:.5}
+.frases button[aria-selected="true"] .tempo.anda{animation:enche var(--ciclo,7s) linear forwards}
+.cura{display:flex;flex-direction:column;background:var(--painel);border:1px solid var(--linha);border-radius:calc(var(--raio) + 4px);padding:clamp(1.3rem,3vw,2rem)}
+.cura>*{animation:entra .45s ease-out both}
+.cura h3{margin:.7rem 0 0;font-size:clamp(1.45rem,2.8vw,1.9rem);font-weight:700;letter-spacing:-.035em;line-height:1.12}
+.cura .hoje{margin:.6rem 0 0;color:var(--texto-3);font-size:.93rem}
+.cura .hoje b{color:var(--texto-2);font-weight:500}
+.tres{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:.15rem;counter-reset:t}
+.tres li{counter-increment:t;display:grid;grid-template-columns:2rem 1fr;align-items:baseline;padding:.6rem 0;border-top:1px solid var(--linha);color:var(--texto-2);font-size:.97rem}
+.tres li::before{content:"0" counter(t);font:500 .74rem var(--mono);color:var(--menta)}
+.cura-pe{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.3rem;margin-top:auto;padding-top:1.5rem}
+.link-sec{all:unset;cursor:pointer;font:500 .88rem var(--sans);color:var(--texto-2)}
+.link-sec:hover{color:var(--menta)}
+.link-sec:focus-visible{outline:2px solid var(--menta);outline-offset:3px;border-radius:4px}
+.ja-roda{display:flex;align-items:center;gap:.5rem;margin:1.1rem 0 0;font:500 .75rem var(--mono);color:var(--texto-3)}
+.ja-roda i{width:6px;height:6px;border-radius:50%;background:var(--menta);flex:none;animation:pulso 2.4s ease-out infinite}
+
+/* serviços: áreas à esquerda, uma lista enxuta à direita */
+.vitrine{margin-top:1rem;display:grid;gap:1rem}
+@media (min-width:52rem){.vitrine{grid-template-columns:17.5rem 1fr;align-items:start}}
+.areas{display:flex;gap:.3rem;overflow-x:auto;scrollbar-width:none;padding-bottom:.2rem}
+.areas::-webkit-scrollbar{display:none}
+@media (min-width:52rem){.areas{flex-direction:column;position:sticky;top:76px;overflow:visible}}
+.areas button{all:unset;box-sizing:border-box;cursor:pointer;flex:none;position:relative;display:flex;align-items:center;gap:.65rem;padding:.65rem .8rem;border-radius:10px;
+  font:500 .9rem var(--sans);color:var(--texto-3);white-space:nowrap;transition:color .2s,background .2s}
+.areas button .ic-s{width:17px;height:17px;color:var(--cor)}
+.areas button small{margin-left:auto;padding-left:.8rem;font:500 .7rem var(--mono);color:var(--texto-3)}
+.areas button:hover{color:var(--texto)}
+.areas button[aria-selected="true"]{color:var(--texto);background:var(--painel)}
+.areas button[aria-selected="true"]::before{content:"";position:absolute;left:0;top:.55rem;bottom:.55rem;width:2px;border-radius:2px;background:var(--cor)}
+.areas button:focus-visible{outline:2px solid var(--menta);outline-offset:2px}
+@media (max-width:51.99rem){.areas button{border:1px solid var(--linha)}.areas button[aria-selected="true"]{border-color:var(--cor)}.areas button[aria-selected="true"]::before{display:none}}
+.lista{background:var(--painel);border:1px solid var(--linha);border-radius:calc(var(--raio) + 4px);padding:.4rem clamp(.4rem,1.5vw,.9rem) .6rem;min-height:100%}
+.lista-cab{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding:1rem .6rem .7rem}
+.lista-cab h3{margin:0;font-size:1.2rem;letter-spacing:-.02em}
+.lista-cab span{font:500 .72rem var(--mono);color:var(--texto-3)}
+.servicos{list-style:none;margin:0;padding:0}
+.servicos li{animation:entra .35s ease-out both}
+.servicos li+li{border-top:1px solid var(--linha)}
+.item{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;padding:.9rem .6rem;border-radius:10px;transition:background .2s}
+.item strong{display:block;font-weight:600;font-size:.98rem;letter-spacing:-.01em;line-height:1.3}
+.item small{display:block;margin-top:.15rem;font-size:.86rem;color:var(--texto-3);line-height:1.45}
+.item em{font-style:normal;font:500 .66rem var(--mono);color:var(--cor);margin-left:.5rem;vertical-align:.1em}
+.item .quero{font:600 .82rem var(--sans);color:var(--texto-3);white-space:nowrap;transition:color .2s,transform .2s}
+.item:hover{background:var(--painel-2)}
+.item:hover .quero{color:var(--menta);transform:translateX(2px)}
+.item:focus-visible{outline:2px solid var(--menta);outline-offset:-2px}
+@media (max-width:30rem){.item .quero b{display:none}}
+.servicos mark{background:color-mix(in srgb,var(--menta) 30%,transparent);color:inherit;border-radius:3px}
+/* botão flutuante */
+.flutua{position:fixed;right:1rem;bottom:1rem;z-index:30;display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.1rem;border-radius:999px;text-decoration:none;
+  font:600 .9rem var(--sans);color:#03140F;background:var(--menta);box-shadow:0 12px 34px -10px rgba(43,217,168,.8);
+  opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .35s,transform .35s}
+.flutua.ve{opacity:1;transform:none;pointer-events:auto;animation:respira 4.5s ease-in-out infinite}
+.flutua .ic-s{width:17px;height:17px}
+@media (max-width:30rem){.flutua{left:1rem;right:1rem;justify-content:center}}
+
+/* catálogo de serviços */
+.busca{display:flex;align-items:center;gap:.7rem;background:var(--painel);border:1px solid var(--linha-forte);border-radius:14px;padding:.2rem .3rem .2rem 1rem;transition:border-color .2s,box-shadow .2s}
+.busca:focus-within{border-color:var(--menta);box-shadow:0 0 0 4px rgba(43,217,168,.12)}
+.busca .ic-s{color:var(--texto-3);width:20px;height:20px}
+.busca input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--texto);font:400 1rem var(--sans);padding:.85rem 0}
+.busca input::placeholder{color:var(--texto-3)}
+.busca output{font:500 .74rem var(--mono);color:var(--texto-3);padding-right:.8rem;white-space:nowrap}
+.vazio{padding:1.4rem;border:1px dashed var(--linha-forte);border-radius:var(--raio);color:var(--texto-2)}
+.vazio b{color:var(--menta)}
+/* caixa de pedido */
+.pedido{margin-top:1.8rem;display:grid;gap:1.4rem;border-radius:calc(var(--raio) + 6px);padding:clamp(1.3rem,3.5vw,2.2rem);border:1px solid rgba(43,217,168,.35);
+  background:radial-gradient(500px circle at 0% 0%,rgba(43,217,168,.16),transparent 60%),linear-gradient(180deg,var(--painel-2),var(--painel))}
+@media (min-width:56rem){.pedido{grid-template-columns:.8fr 1.2fr;align-items:start}}
+.pedido h3{margin:.6rem 0 0;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.pedido h3 em{font-style:normal;color:var(--menta)}
+.pedido>div>p{margin:.7rem 0 0;color:var(--texto-2)}
+.pedido form{display:grid;gap:.7rem}
+.pedido{position:relative;animation:respira 4.5s ease-in-out infinite}
+.pedido.chamou{animation:chama .8s ease-out 2}
+.disponivel{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font:500 .8rem var(--mono);color:var(--texto-2);padding:.4rem .75rem;border-radius:999px;border:1px solid var(--linha-forte);background:rgba(5,8,7,.5)}
+.disponivel i{width:7px;height:7px;border-radius:50%;background:var(--texto-3)}
+.disponivel.on{color:var(--menta-2);border-color:rgba(43,217,168,.4)}
+.disponivel.on i{background:var(--menta);animation:pulso 2s ease-out infinite}
+.pedido .linha2{display:grid;gap:.7rem}
+@media (min-width:36rem){.pedido .linha2{grid-template-columns:1fr 1fr}}
+.pedido label{display:grid;gap:.35rem;font:500 .78rem var(--mono);color:var(--texto-3)}
+.pedido input,.pedido textarea{width:100%;background:var(--fundo);border:1px solid var(--linha-forte);border-radius:10px;color:var(--texto);font:400 .98rem var(--sans);padding:.8rem .9rem;transition:border-color .2s,box-shadow .2s}
+.pedido textarea{min-height:7.5rem;resize:vertical}
+.pedido input:focus,.pedido textarea:focus{outline:0;border-color:var(--menta);box-shadow:0 0 0 4px rgba(43,217,168,.12)}
+.pedido .isca{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.pedido .envia{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem}
+.pedido .envia small{font:400 .75rem var(--mono);color:var(--texto-3)}
+.pedido .botao[disabled]{opacity:.6;pointer-events:none}
+.resposta{font-size:.95rem;padding:.8rem 1rem;border-radius:10px}
+.resposta.ok{background:rgba(43,217,168,.1);border:1px solid rgba(43,217,168,.35);color:var(--menta-2)}
+.resposta.erro{background:rgba(255,77,109,.1);border:1px solid rgba(255,77,109,.35);color:#FF9DB0}
+.selo-servico{display:none;align-items:center;gap:.5rem;justify-self:start;font:500 .8rem var(--sans);padding:.4rem .5rem .4rem .8rem;border-radius:999px;background:rgba(43,217,168,.1);border:1px solid rgba(43,217,168,.35);color:var(--menta-2)}
+.selo-servico.tem{display:inline-flex}
+.selo-servico button{all:unset;cursor:pointer;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;color:var(--texto-2)}
+.selo-servico button:hover{background:rgba(255,255,255,.08)}
+
+.passos{list-style:none;margin:0;padding:0;display:grid;gap:.75rem;counter-reset:p;position:relative}
+@media (min-width:52rem){.passos{grid-template-columns:repeat(3,1fr)}
+  .passos::before{content:"";position:absolute;left:8%;right:8%;top:2.4rem;height:2px;background:linear-gradient(90deg,var(--menta),var(--azul),var(--menta));background-size:200% 100%;animation:corre 4s linear infinite;opacity:.5}}
+.passos li{position:relative;background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio);padding:1.3rem}
+.passos .n{position:relative;z-index:1;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--fundo);border:1px solid rgba(43,217,168,.4);color:var(--menta)}
+.passos .n .ic-s{width:21px;height:21px}
+.passos h3{margin:1rem 0 0;font-size:1.1rem;letter-spacing:-.02em}
+.passos p{margin:.35rem 0 0;font-size:.92rem;color:var(--texto-2)}
+.passos small{display:block;margin-top:.8rem;font:500 .72rem var(--mono);color:var(--texto-3)}
+
+.chamada{position:relative;overflow:hidden;margin-bottom:1.2rem;border-radius:calc(var(--raio) + 6px);padding:clamp(1.6rem,4vw,2.6rem);border:1px solid rgba(43,217,168,.35);
+  background:radial-gradient(600px circle at 85% 0%,rgba(43,217,168,.22),transparent 60%),linear-gradient(180deg,var(--painel-2),var(--painel))}
+.chamada h2{margin:0;font-size:clamp(1.8rem,4.4vw,3rem);font-weight:700;letter-spacing:-.04em;line-height:1.05;max-width:20ch}
+.chamada h2 em{font-style:normal;color:var(--menta)}
+.chamada p{margin:.9rem 0 0;max-width:36rem;color:var(--texto-2)}
+.chamada .acoes{margin-top:1.4rem}
+@keyframes enche{to{transform:scaleX(1)}}
+@keyframes respira{0%,100%{box-shadow:0 0 0 0 rgba(43,217,168,0)}50%{box-shadow:0 0 0 1px rgba(43,217,168,.28),0 0 46px -12px rgba(43,217,168,.5)}}
+@keyframes chama{0%{box-shadow:0 0 0 0 rgba(43,217,168,.7)}100%{box-shadow:0 0 0 14px rgba(43,217,168,0)}}
+@keyframes corre{to{background-position:-200% 0}}
 
 /* diário */
-.diario{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha)}
-.diario li{display:grid;grid-template-columns:8.5rem 1fr auto;gap:1rem;align-items:baseline;padding:1rem 0;border-bottom:1px solid var(--linha)}
-.diario time{font-family:var(--mono);font-size:.78rem;color:var(--texto-3);font-variant-numeric:tabular-nums}
-.diario span{color:var(--texto-2);min-width:0}
-.diario small{font-family:var(--mono);font-size:.68rem;color:var(--texto-3);white-space:nowrap}
-@media (max-width:36rem){.diario li{grid-template-columns:1fr auto;gap:.2rem .8rem}.diario span{grid-column:1/-1}}
-.nota{margin:0;font-size:.85rem;color:var(--texto-3)}
+.diario{list-style:none;margin:0;padding:0 0 0 1.4rem;position:relative}
+.diario::before{content:"";position:absolute;left:5px;top:.5rem;bottom:.5rem;width:2px;background:var(--linha)}
+.diario::after{content:"";position:absolute;left:5px;top:.5rem;width:2px;height:var(--andou,0%);background:linear-gradient(var(--menta),rgba(43,217,168,.2));transition:height .2s linear}
+.diario li{position:relative;display:grid;grid-template-columns:7.5rem 1fr auto;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--linha);align-items:baseline}
+.diario li::before{content:"";position:absolute;left:calc(-1.4rem + 1px);top:1.45rem;width:10px;height:10px;border-radius:50%;background:var(--fundo);border:2px solid var(--linha-forte);transition:all .4s}
+.diario li.aceso::before{border-color:var(--menta);background:var(--menta);box-shadow:0 0 10px var(--menta)}
+.diario time{font:500 .75rem var(--mono);color:var(--texto-3)}
+.diario span{color:var(--texto-2)}
+.diario small{font:500 .72rem var(--mono);color:var(--texto-3)}
+@media (max-width:40rem){.diario li{grid-template-columns:1fr;gap:.2rem}}
+.nota{font:400 .75rem var(--mono);color:var(--texto-3);margin-top:1rem}
 
 /* fora do código */
-.fora{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-@media (max-width:48rem){.fora{grid-template-columns:1fr}}
-.fora div{border:1px solid var(--linha);border-radius:var(--raio);padding:1.3rem;display:flex;flex-direction:column;gap:.35rem}
-.fora h3{font-size:1.15rem;font-weight:600}
-.fora p{margin:0;color:var(--texto-2);font-size:.95rem}
-.fora .eyebrow{color:var(--ambar)}
+.fora{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.75rem}
+.fora div{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio);padding:1.4rem;transition:border-color .3s,transform .3s}
+.fora div:hover{border-color:var(--cor);transform:translateY(-2px)}
+.fora svg.ic{width:40px;height:40px;stroke:var(--texto);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fora svg.onda{display:block;width:60px;height:8px;margin:.7rem 0 0}
+.fora svg.onda path{fill:none;stroke:var(--cor);stroke-width:2;stroke-linecap:round}
+.fora h3{margin:1rem 0 0;font-size:1.15rem;letter-spacing:-.02em}
+.fora p{margin:.35rem 0 0;font-size:.92rem;color:var(--texto-2)}
 
 /* contato */
-.contato{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-@media (max-width:48rem){.contato{grid-template-columns:1fr}}
-.contato a{display:flex;flex-direction:column;gap:.3rem;text-decoration:none;background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);padding:1.3rem;transition:border-color .2s,transform .2s}
+.contato{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.75rem}
+.contato a{display:flex;flex-direction:column;gap:.3rem;text-decoration:none;background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio);padding:1.3rem;transition:border-color .2s,transform .2s}
 .contato a:hover{border-color:var(--menta);transform:translateY(-2px)}
-.contato strong{font-family:var(--display);font-size:1.15rem;font-weight:600;display:flex;justify-content:space-between}
-.contato span{color:var(--texto-2);font-size:.92rem}
-.rodape{border-top:1px solid var(--linha);padding-block:1.6rem 2.4rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;font-size:.82rem;color:var(--texto-3)}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.agora i{animation:none}.leque img,.contato a{transition:none}}
+.contato strong{display:flex;align-items:center;gap:.6rem;font-size:1.1rem}
+.contato strong .ic-s{color:var(--menta);width:22px;height:22px}
+.contato strong span{margin-left:auto}
+.contato strong span{color:var(--menta)}
+.contato a>span{font:400 .8rem var(--mono);color:var(--texto-3)}
+.rodape{margin-top:clamp(4rem,8vw,6rem);border-top:1px solid var(--linha);padding:1.6rem 0 2.4rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;font:400 .75rem var(--mono);color:var(--texto-3)}
+
+/* brilho que segue o mouse */
+.luz{position:relative;isolation:isolate}
+.luz::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(43,217,168,.09),transparent 60%)}
+.luz:hover::after{opacity:1}
+
+/* semana do Instagram */
+.semana{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem}
+.semana li{list-style:none;position:relative;background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio);padding:1.1rem 1rem 1.2rem;min-width:0;transition:border-color .3s,transform .3s}
+.semana li:hover{transform:translateY(-3px);border-color:var(--cor)}
+.semana .dia{font:500 .74rem var(--mono);color:var(--texto-3)}
+.semana .ico{margin-top:.9rem;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:var(--cor);background:color-mix(in srgb,var(--cor) 12%,transparent);border:1px solid color-mix(in srgb,var(--cor) 35%,transparent)}
+.semana .ico .ic-s{width:21px;height:21px}
+.semana strong{display:block;margin-top:.8rem;font-size:.98rem;line-height:1.25;letter-spacing:-.01em}
+.semana span.d{display:block;margin-top:.3rem;font-size:.82rem;color:var(--texto-3);line-height:1.35}
+.semana svg.onda{display:block;width:44px;height:6px;margin-top:.9rem}
+.semana svg.onda path{fill:none;stroke:var(--cor);stroke-width:2;stroke-linecap:round}
+.semana li.hoje{border-color:var(--cor);box-shadow:0 0 0 1px var(--cor),0 18px 40px -18px var(--cor)}
+.semana li.hoje::before{content:"Hoje";position:absolute;top:.9rem;right:.9rem;font:600 .66rem var(--mono);color:#03140F;background:var(--cor);padding:.2rem .5rem;border-radius:999px}
+@media (max-width:62rem){.semana{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:30rem){.semana{grid-template-columns:repeat(2,1fr)}}
+
+/* entrada ao rolar */
+.surge{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.surge.visivel{opacity:1;transform:none}
+
+@keyframes gira{to{transform:rotate(360deg)}}
+@keyframes pisca{50%{opacity:0}}
+@keyframes pulso{0%{box-shadow:0 0 0 0 rgba(43,217,168,.55)}100%{box-shadow:0 0 0 8px rgba(43,217,168,0)}}
+@keyframes entra{from{opacity:0;transform:translateY(6px)}}
+@keyframes batida{from{stroke-dashoffset:606}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .surge{opacity:1;transform:none}
+  .progresso>span i{width:var(--p)}
+}
 </style>
+</head>
+<body>
 
 <header class="barra">
   <div class="envelope">
-    <a class="marca" href="#inicio"><img src="img/foto.jpg" alt="">Leo Magalhães</a>
+    <a class="marca" href="#inicio"><img src="img/foto.jpg" alt=""><span>Leo Magalhães</span></a>
     <nav aria-label="Seções">
-      <a href="#projetos">Projetos</a>
-      <a class="opcional" href="#diario">Diário</a>
-      <a href="#contato">Contato</a>
+      <a href="#dores">Soluções</a>
+      <a href="#servicos">Serviços</a>
+      <a class="opcional" href="#operacao">Ao vivo</a>
+      <a href="#pedido">Pedido</a>
     </nav>
+    <span class="relogio" id="relogio" aria-hidden="true">SSA --:--:--</span>
   </div>
 </header>
 
 <main id="inicio">
-  <section class="abertura">
-    <div class="arte" aria-hidden="true"></div>
-    <div class="envelope">
-      <div class="conteudo">
-        <div class="quem">
-          <img src="img/foto.jpg" alt="Foto do Leo Magalhães">
-          <div><strong>Leo Magalhães</strong><span>Computer Science student</span><span class="visto" id="visto" hidden><i></i><span id="visto-texto"></span></span></div>
-        </div>
-        <h1>Eu construo sistemas que <em>trabalham sozinhos.</em></h1>
-        <p class="lead">Robôs de automação, aplicativos web e ferramentas com IA. Cada projeto fica registrado aqui no pé em que está, do primeiro rascunho até rodar no ar.</p>
-        <span class="agora" id="agora"><i></i><span>Agora: <b id="agora-texto">máquina de posts deste perfil</b></span></span>
-        <div class="acoes">
-          <a class="botao cheio" href="#projetos">Ver projetos</a>
-          <a class="botao" href="https://github.com/leomagalhaesti">GitHub</a>
-          <a class="botao" href="https://www.linkedin.com/in/leomagalhaesti/">LinkedIn</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <div class="envelope">
-    <div class="numeros">
-      <div><strong>3</strong><span>projetos em andamento</span></div>
-      <div><strong>27</strong><span>etapas automáticas no robô do LinkedIn</span></div>
-      <div><strong>1/dia</strong><span>post publicado sem ninguém apertar botão</span></div>
-    </div>
-
-    <section class="operacao" aria-labelledby="op-titulo">
-      <div class="op-topo">
-        <span class="eyebrow" id="op-titulo">Em operação agora</span>
-        <span class="op-resumo" id="op-resumo">verificando o servidor…</span>
+    <section class="topo">
+      <div>
+        <div class="quem" id="quem">
+          <div class="orbita"><img src="img/foto.jpg" alt="Ilustração do rosto do Leo Magalhães"><span class="ponto"></span></div>
+          <div>
+            <strong>Leo Magalhães</strong>
+            <span class="cargo">Computer Science student · Mercado digital · Salvador, BA</span>
+            <span class="visto" id="visto"><i></i><span id="visto-texto">Conectando…</span></span>
+          </div>
+        </div>
+        <h1>Eu construo sistemas que <span class="troca"><span id="troca">trabalham sozinhos.</span><span class="cursor" aria-hidden="true"></span></span></h1>
+        <p class="lead">Automações, aplicativos web e ferramentas com IA, e projetos no mercado digital: canais, produtos e campanhas. O que está rodando aparece aqui ao vivo.</p>
+        <form class="rapido" id="rapido">
+          <input id="rapido-txt" maxlength="300" placeholder="Me conta em uma frase o que você quer resolver" aria-label="O que você quer resolver">
+          <button class="botao cheio" type="submit">Começar →</button>
+        </form>
+        <div class="atalhos"><a href="#servicos">Ver serviços ↓</a><a href="#dores">Ver soluções ↓</a><a href="https://github.com/leomagalhaesti">GitHub ↗</a></div>
       </div>
-      <ul class="op-lista" id="op-lista"></ul>
+      <div class="console" aria-label="Registro ao vivo dos sistemas">
+        <header><i></i><i></i><i></i><span><span class="vivo">Ao vivo</span> · leo@servidor</span></header>
+        <ol class="log" id="log" aria-live="off"></ol>
+      </div>
     </section>
 
-    <section class="secao" id="projetos">
-      <header>
-        <span class="eyebrow">Projetos</span>
-        <h2>O que eu montei e em que pé está</h2>
-        <p>Problema real, solução e resultado. As telas são dos próprios sistemas, com dados de demonstração.</p>
+    <div class="numeros surge">
+      <div class="vivo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><strong><span data-conta id="n-sistemas">0</span><small id="n-total">/0</small></strong><span>Sistemas no ar agora</span></div>
+      <div><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M6.5 10v4a3 3 0 0 0 3 3H14"/></svg><strong><span data-conta="27">0</span></strong><span>Etapas automáticas no fluxo do LinkedIn</span></div>
+      <div><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><strong><span data-conta="3">0</span></strong><span>Projetos em andamento</span></div>
+      <div class="vivo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><strong id="n-codigo">--</strong><span>Desde a última linha de código</span></div>
+    </div>
+
+    <section class="secao" id="dores">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>Soluções</span>
+          <h2>Qual destas frases você já disse?</h2>
+          <p>Escolha a que mais incomoda e veja como fica resolvida.</p>
+        </div>
       </header>
-
-      <div class="projetos">
-        <article class="projeto">
-          <div class="texto">
-            <div class="cabeca"><span class="eyebrow">01 · <b>PostEngineAI</b></span><span class="status no-ar">No ar</span></div>
-            <h3>Robô que publica no LinkedIn todos os dias</h3>
-            <p class="resumo">Do tema à publicação, sem intervenção: escolhe o assunto, escreve com IA, revisa, busca a imagem, publica e registra.</p>
-            <dl class="ficha">
-              <div><dt>Problema</dt><dd>Manter constância no LinkedIn exigia um tempo que a rotina não tinha.</dd></div>
-              <div><dt>Solução</dt><dd>Um fluxo de 27 etapas que decide o formato do dia (foto, carrossel, enquete ou texto) e evita repetir temas.</dd></div>
-              <div><dt>Resultado</dt><dd>Um post por dia rodando num servidor próprio, com IA reserva e segunda busca de imagem quando algo falha.</dd></div>
-            </dl>
-            <ul class="pilha" aria-label="Tecnologias"><li>n8n</li><li>Gemini</li><li>Notion</li><li>Pixabay API</li><li>LinkedIn API</li><li>Linux VPS</li></ul>
-            <a class="link" href="https://github.com/leomagalhaesti/Postengine-ai">Ver o código →</a>
-          </div>
-          <figure class="midia" style="margin:0">
-            <img class="tela" src="img/postengine-fluxo.jpg" alt="Mapa do fluxo do robô: cada caixa é uma tarefa, da agenda das 8h ao registro do post." loading="lazy" width="960" height="750">
-            <figcaption>mapa real do fluxo · cada caixa é uma tarefa</figcaption>
-          </figure>
-        </article>
-
-        <article class="projeto inverte">
-          <div class="texto">
-            <div class="cabeca"><span class="eyebrow">02 · <b>TrackPoint</b></span><span class="status piloto">Piloto</span></div>
-            <h3>Controle de saída e retorno de equipamentos</h3>
-            <p class="resumo">Cada equipamento que sai e volta passa por uma conferência rápida pela câmera, com QR Code.</p>
-            <dl class="ficha">
-              <div><dt>Problema</dt><dd>Equipamentos saindo e voltando o dia inteiro, sem saber ao certo o que estava fora e com quem.</dd></div>
-              <div><dt>Solução</dt><dd>Agenda de saídas, lista pronta para cada tipo de trabalho e conferência por QR Code na saída e na volta.</dd></div>
-              <div><dt>Resultado</dt><dd>Em piloto. O fim do dia sai resumido num relatório em PDF ou planilha.</dd></div>
-            </dl>
-            <ul class="pilha" aria-label="Tecnologias"><li>React</li><li>TypeScript</li><li>Vite</li><li>QR Code</li><li>PDF</li></ul>
-            <a class="link" href="https://github.com/leomagalhaesti/trackpoint">Ver o estudo de caso →</a>
-          </div>
-          <figure class="midia" style="margin:0">
-            <div class="duas">
-              <img class="tela" src="img/trackpoint-calendario.jpg" alt="Calendário do mês com as saídas marcadas por dia." loading="lazy" width="720" height="636">
-              <img class="tela" src="img/trackpoint-relatorio.jpg" alt="Tela do relatório diário com botões para baixar PDF e CSV." loading="lazy" width="600" height="663">
-            </div>
-            <figcaption>telas do piloto · dados de demonstração</figcaption>
-          </figure>
-        </article>
-
-        <article class="projeto">
-          <div class="texto">
-            <div class="cabeca"><span class="eyebrow">03 · <b>Gerador de carrosséis</b></span><span class="status obra">Em desenvolvimento</span></div>
-            <h3>A máquina que desenha os posts deste perfil</h3>
-            <p class="resumo">Recebe o texto e devolve os slides prontos, no tamanho do Instagram e na identidade visual do perfil.</p>
-            <dl class="ficha">
-              <div><dt>Problema</dt><dd>Montar slide por slide num editor de imagem não cabe numa rotina de post diário.</dd></div>
-              <div><dt>Solução</dt><dd>Modelos em código para cada formato (capa, lista, comparação, terminal, fechamento) e uma cor para cada série da semana.</dd></div>
-              <div><dt>Resultado</dt><dd>Os slides já saem prontos em segundos. Próximo passo: publicar sozinho, com prévia para aprovação de manhã.</dd></div>
-            </dl>
-            <ul class="pilha" aria-label="Tecnologias"><li>Python</li><li>HTML e CSS</li><li>Chromium</li><li>Docker</li></ul>
-          </div>
-          <figure class="midia" style="margin:0">
-            <div class="leque">
-              <img class="tela" src="img/carrossel-1.jpg" alt="Capa de carrossel sobre o robô do LinkedIn." loading="lazy" width="540" height="675">
-              <img class="tela" src="img/carrossel-3.jpg" alt="Capa de carrossel da série IA na prática." loading="lazy" width="540" height="675">
-              <img class="tela" src="img/carrossel-2.jpg" alt="Capa de carrossel sobre o controle de equipamentos." loading="lazy" width="540" height="675">
-            </div>
-            <figcaption>slides gerados pela máquina</figcaption>
-          </figure>
-        </article>
+      <div class="dores surge">
+        <ul class="frases" id="frases" role="tablist" aria-label="Problemas comuns"></ul>
+        <div class="cura" id="cura" role="tabpanel" aria-live="polite"></div>
       </div>
+      <a class="ponte surge" href="#servicos"><span>Reconheceu alguma? Isso é só uma parte do que dá pra resolver.</span><b>Ver todos os serviços ↓</b></a>
+    </section>
+
+    <section class="secao" id="servicos">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Serviços</span>
+          <h2>O que eu posso construir pra você</h2>
+          <p>Escolha uma área ou procure pelo nome. Toque no serviço e o pedido já sai preenchido.</p>
+        </div>
+      </header>
+      <div class="surge">
+        <label class="busca"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="busca" type="search" placeholder="Ex.: bot, agenda, página de vendas, relatório…" aria-label="Procurar serviço" autocomplete="off"><output id="busca-conta">34 serviços</output></label>
+      </div>
+      <div class="vitrine surge">
+        <div class="areas" id="areas" role="tablist" aria-label="Áreas"></div>
+        <div class="lista" id="catalogo" role="tabpanel" aria-live="polite"></div>
+      </div>
+
+      <div class="pedido surge" id="pedido">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Não achou?</span>
+          <h3>Me conta o que você <em>precisa resolver.</em></h3>
+          <p>Serviço, produto, uma ideia solta ou um problema que ninguém resolveu ainda. A mensagem chega direto no meu celular, e quem responde sou eu.</p>
+          <span class="disponivel" id="disponivel"><i></i><span>Respondo assim que eu ver</span></span>
+        </div>
+        <form id="form-pedido" novalidate>
+          <span class="selo-servico" id="selo-servico"><span id="selo-texto"></span><button type="button" id="selo-tira" aria-label="Tirar o serviço escolhido">✕</button></span>
+          <div class="linha2">
+            <label>Seu nome<input name="nome" autocomplete="name" maxlength="80" placeholder="Como posso te chamar?"></label>
+            <label>WhatsApp ou e-mail *<input name="contato" required maxlength="120" placeholder="Pra eu te responder"></label>
+          </div>
+          <label>O que você precisa? *<textarea name="mensagem" id="pedido-msg" required maxlength="1500" placeholder="Ex.: tenho uma loja e queria que os pedidos do site caíssem numa planilha e me avisassem no WhatsApp."></textarea></label>
+          <span class="isca" aria-hidden="true"><label>Não preencha<input name="site_url" tabindex="-1" autocomplete="off"></label></span>
+          <div class="envia">
+            <button class="botao cheio" type="submit" id="pedido-btn"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Enviar pedido</button>
+            <small>Seus dados servem só pra eu te responder.</small>
+          </div>
+          <div class="resposta" id="pedido-resposta" role="status" hidden></div>
+        </form>
+      </div>
+      <a class="ponte surge" href="#como"><span>Escolheu? Veja como funciona da primeira conversa até o sistema rodando.</span><b>Como a gente trabalha ↓</b></a>
+    </section>
+
+    <section class="secao" id="como">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Como a gente trabalha</span>
+          <h2>Da conversa ao sistema rodando</h2>
+        </div>
+      </header>
+      <ol class="passos surge">
+        <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></div><h3>Você me conta o problema</h3><p>Uma conversa curta sobre o que trava o seu dia e onde está o prejuízo.</p><small>Sem formulário</small></li>
+        <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Eu desenho e construo</h3><p>Você vê a solução tomando forma, com prévias no caminho, antes de ir pro ar.</p><small>Em etapas curtas</small></li>
+        <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><h3>Roda e você acompanha</h3><p>O sistema trabalha todo dia e te avisa no celular. Igual ao que está rodando nesta página.</p><small>Com acompanhamento</small></li>
+      </ol>
+      <a class="ponte surge" href="#operacao"><span>Não precisa acreditar só no texto. Tudo isso já está rodando agora.</span><b>Ver ao vivo ↓</b></a>
+    </section>
+
+    <section class="secao" id="operacao">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Em operação agora</span>
+          <h2>O que está rodando neste momento</h2>
+          <p>Conferido direto no servidor a cada minuto. Sem nomes nem perfis: só o tipo de sistema e se está de pé.</p>
+        </div>
+        <span class="resumo-vivo" id="op-resumo">verificando o servidor…</span>
+      </header>
+      <ul class="op-lista" id="op-lista"></ul>
+      <a class="ponte surge" href="#pedido"><span>O seu sistema pode ser o próximo a aparecer aqui.</span><b>Fazer meu pedido ↑</b></a>
+    </section>
+
+    <section class="secao" id="semana">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Toda semana no Instagram</span>
+          <h2>Um assunto por dia</h2>
+          <p>Um assunto por dia, explicado para quem não é da área. Pergunta nos comentários que eu respondo.</p>
+        </div>
+        <a class="resumo-vivo" href="https://www.instagram.com/leomagalhaes.ti/" style="text-decoration:none"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7h.01"/></svg> <b>@leomagalhaes.ti</b> ↗</a>
+      </header>
+      <ul class="semana surge" style="padding:0;margin:0">
+        <li class="luz" data-dia="0" style="--cor:#2BD9A8"><span class="dia">Segunda</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div><strong>IA na prática</strong><span class="d">Como as ferramentas funcionam por dentro</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="1" style="--cor:#FF4D6D"><span class="dia">Terça</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><strong>Segurança digital</strong><span class="d">Golpes, senhas e como se proteger</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="2" style="--cor:#F5B700"><span class="dia">Quarta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><strong>Em construção</strong><span class="d">O que eu construí na semana</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="3" style="--cor:#3D8BFF"><span class="dia">Quinta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727"/></svg></div><strong>Tecnologia e cripto</strong><span class="d">O mercado e como funciona por dentro</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="4" style="--cor:#B79CFF"><span class="dia">Sexta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="13" rx="10" ry="3.2"/><path d="M6.8 12.2a5.2 5.2 0 0 1 10.4 0"/><path d="M9 17.5l-1.5 3.5M15 17.5l1.5 3.5"/></svg></div><strong>Fora da Terra</strong><span class="d">Astronomia e vida fora daqui, com fonte</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="5" style="--cor:#8B5CF6"><span class="dia">Fim de semana</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8.5" width="20" height="4" rx="1"/><rect x="9.5" y="7" width="5" height="7" rx="1.2"/><path d="M10.6 14l-2 7M13.4 14l2 7"/></svg></div><strong>Tatame e mar</strong><span class="d">Foto real, jiu-jitsu ou folga</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+      </ul>
     </section>
 
     <section class="secao" id="diario">
-      <header>
-        <span class="eyebrow">Diário de obra</span>
-        <h2>Últimas atualizações</h2>
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3M8 7h8M8 11h6"/></svg>Diário de obra</span>
+          <h2>Últimas atualizações</h2>
+        </div>
       </header>
       <ol class="diario" id="lista-diario"></ol>
       <p class="nota" id="fonte-diario"></p>
     </section>
 
-    <section class="secao">
-      <header>
-        <span class="eyebrow">Fora do código</span>
-        <h2>O que mais ocupa a cabeça</h2>
+    <section class="secao" id="fora">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Fora do código</span>
+          <h2>O que mais ocupa a cabeça</h2>
+        </div>
       </header>
-      <div class="fora">
-        <div><span class="eyebrow">Tatame</span><h3>Jiu-jitsu</h3><p>Melhor do Ano 2025 pela FBJJMMA.</p></div>
-        <div><span class="eyebrow">Mar</span><h3>Surf</h3><p>Sempre que o mar deixa.</p></div>
-        <div><span class="eyebrow">Céu</span><h3>Astronomia</h3><p>E a pergunta sobre vida fora da Terra. Assunto das sextas no Instagram.</p></div>
+      <div class="fora surge">
+        <div class="luz" style="--cor:#8B5CF6">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8.5" width="20" height="4" rx="1"/><rect x="9.5" y="7" width="5" height="7" rx="1.2"/><path d="M10.6 14l-2 7M13.4 14l2 7"/></svg>
+          <svg class="onda" viewBox="0 0 60 8" aria-hidden="true"><path d="M1 4q7.25-4 14.5 0t14.5 0 14.5 0 14.5 0"/></svg>
+          <h3>Jiu-jitsu</h3><p>Faixa roxa. Melhor do Ano 2025 pela FBJJMMA.</p>
+        </div>
+        <div class="luz" style="--cor:#3D8BFF">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+          <svg class="onda" viewBox="0 0 60 8" aria-hidden="true"><path d="M1 4q7.25-4 14.5 0t14.5 0 14.5 0 14.5 0"/></svg>
+          <h3>Surf</h3><p>Sempre que o mar de Salvador deixa.</p>
+        </div>
+        <div class="luz" style="--cor:#B79CFF">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="13" rx="10" ry="3.2"/><path d="M6.8 12.2a5.2 5.2 0 0 1 10.4 0"/><path d="M9 17.5l-1.5 3.5M15 17.5l1.5 3.5"/></svg>
+          <svg class="onda" viewBox="0 0 60 8" aria-hidden="true"><path d="M1 4q7.25-4 14.5 0t14.5 0 14.5 0 14.5 0"/></svg>
+          <h3>Astronomia</h3><p>E a pergunta sobre vida fora da Terra. Assunto das sextas no Instagram.</p>
+        </div>
       </div>
     </section>
 
     <section class="secao" id="contato">
-      <header>
-        <span class="eyebrow">Contato</span>
-        <h2>Vamos conversar</h2>
-        <p>Para acompanhar os próximos capítulos ou trocar uma ideia sobre algum projeto.</p>
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Contato</span>
+        </div>
       </header>
-      <div class="contato">
-        <a href="https://www.instagram.com/leomagalhaes.ti/"><strong>Instagram <span aria-hidden="true">↗</span></strong><span>@leomagalhaes.ti · bastidores toda semana</span></a>
-        <a href="https://www.linkedin.com/in/leomagalhaesti/"><strong>LinkedIn <span aria-hidden="true">↗</span></strong><span>in/leomagalhaesti</span></a>
-        <a href="https://github.com/leomagalhaesti"><strong>GitHub <span aria-hidden="true">↗</span></strong><span>github.com/leomagalhaesti</span></a>
+      <div class="chamada surge luz">
+        <h2>Me conta o que você <em>quer resolver.</em></h2>
+        <p>Quem responde sou eu, não um atendimento automático. Se eu não for a pessoa certa pro seu problema, eu te digo isso também.</p>
+        <div class="acoes">
+          <a class="botao cheio" href="mailto:leomagalhaes.ti@gmail.com?subject=Quero%20resolver%20um%20problema"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Mandar um e-mail</a>
+          <a class="botao" href="https://ig.me/m/leomagalhaes.ti">Chamar no Instagram ↗</a>
+        </div>
+      </div>
+      <div class="contato surge">
+        <a href="https://www.instagram.com/leomagalhaes.ti/"><strong><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7h.01"/></svg>Instagram <span aria-hidden="true">↗</span></strong><span>@leomagalhaes.ti · Bastidores toda semana</span></a>
+        <a href="https://www.linkedin.com/in/leomagalhaesti/"><strong><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16M8 7.6h.01M11.5 16v-5.5M11.5 13c0-1.6 1-2.6 2.4-2.6s2.1 1 2.1 2.6V16"/></svg>LinkedIn <span aria-hidden="true">↗</span></strong><span>in/leomagalhaesti</span></a>
+        <a href="https://github.com/leomagalhaesti"><strong><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub <span aria-hidden="true">↗</span></strong><span>github.com/leomagalhaesti</span></a>
       </div>
     </section>
 
@@ -333,94 +579,428 @@ h1 em{font-style:normal;color:var(--menta)}
     </footer>
   </div>
 </main>
+<a class="flutua" id="flutua" href="#pedido"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Fazer um pedido</a>
 
 <script>
 /* ====== DIÁRIO: acrescente uma linha a cada avanço ====== */
-const AGORA = "máquina de posts deste perfil";
 const DIARIO = [
+  { quando: "2026-10-14", texto: "Estúdio de conteúdo começou a publicar no Instagram pela API. Prévia de manhã, aprovação pelo WhatsApp.", projeto: "03" },
+  { quando: "2026-10-14", texto: "Este portfólio passou a mostrar ao vivo o que está rodando no servidor.", projeto: "site" },
   { quando: "2026-10-13", texto: "Gerador de carrosséis: cada série da semana ganhou sua cor e novos formatos de slide.", projeto: "03" },
   { quando: "2026-10-12", texto: "Os slides do Instagram passaram a sair de código, não de editor de imagem.", projeto: "03" },
   { quando: "2026-10-12", texto: "TrackPoint ganhou nome e estudo de caso público.", projeto: "02" },
   { quando: "2026-10-11", texto: "PostEngineAI: código publicado no GitHub.", projeto: "01" }
 ];
 const REPOS = { "Postengine-ai": ["01", "PostEngineAI"], "trackpoint": ["02", "TrackPoint"] };
+const DORES = [
+  { frase: "Eu sei que preciso postar todo dia, mas a semana acaba antes.", custa: ["Perfil parado passa a impressão de empresa parada", "O concorrente aparece todo dia e você some", "Cada post vira uma tarefa de horas"],
+    titulo: "Conteúdo que sai no horário, todo dia", como: ["Tema escolhido pelo que está em alta no seu nicho", "Texto e arte prontos na identidade da sua marca", "Você aprova com um toque no celular"],
+    prova: "Meu LinkedIn e meu Instagram funcionam assim agora.", cat: "conteudo", ligados: ["Posts diários com aprovação no celular", "Radar de tendências do seu nicho", "Cortes e Reels a partir de vídeo longo"], rede: ["LinkedIn", "Instagram"] },
+  { frase: "Cliente manda mensagem e eu demoro pra responder.", custa: ["Quem espera muito compra de quem respondeu primeiro", "Pedido perdido no meio das conversas", "Você vira refém do celular"],
+    titulo: "WhatsApp que avisa e responde na hora certa", como: ["Mensagens importantes separadas por assunto", "Confirmações e lembretes saem sozinhos", "Você só entra no que precisa de você"],
+    prova: "Todos os meus sistemas falam comigo pelo WhatsApp.", cat: "bots", ligados: ["Bot de WhatsApp com menu", "Agendamento com lembrete", "Triagem de contatos"], rede: ["WhatsApp"] },
+  { frase: "Eu não sei o que saiu, o que voltou e com quem está.", custa: ["Equipamento some e ninguém sabe desde quando", "Prejuízo que só aparece no fim do mês", "Planilha que ninguém atualiza"],
+    titulo: "Controle na palma da mão, com QR Code", como: ["Saída e volta conferidas pela câmera do celular", "Agenda do que está fora e com quem", "Resumo do dia pronto em PDF"],
+    prova: "Um sistema assim está em piloto agora.", cat: "sistemas", ligados: ["Controle com QR Code", "Painel administrativo sob medida", "Orçamentos e PDFs automáticos"], rede: [] },
+  { frase: "Tenho um produto bom, mas ele não vende.", custa: ["Anúncio que gasta e não traz retorno", "Página que ninguém lê até o fim", "Você não sabe onde as pessoas desistem"],
+    titulo: "Funil com página, campanha e números à vista", como: ["Pesquisa do que já vende no seu nicho antes de investir", "Página e oferta feitas para converter", "Resultado acompanhado todo dia, sem achismo"],
+    prova: "Tenho produtos e campanhas no ar com esse método.", cat: "vendas", ligados: ["Página de vendas", "Funil com e-mails automáticos", "Garimpo de anúncios que vendem"], rede: [] },
+  { frase: "Eu só descubro que algo parou quando o cliente reclama.", custa: ["Site fora do ar sem ninguém perceber", "Sistema travado no fim de semana", "Decisão tomada no escuro"],
+    titulo: "Painel ao vivo e alerta antes do problema", como: ["O que importa numa tela só", "Alerta no celular quando algo cai", "Histórico pra saber o que aconteceu"],
+    prova: "Esta página mostra meus sistemas ao vivo. Role pra cima e confira.", cat: "seguranca", ligados: ["Site e sistemas vigiados 24h", "Alertas fora do normal", "Backup automático"], rede: [] }
+];
+const FRASES = ["trabalham sozinhos.", "vendem no digital.", "fazem negócios crescerem.", "não esquecem nada."];
 /* ======================================================= */
 
-/* Último acesso: o PC do Leo avisa o servidor a cada 5 min; o GitHub público entra como segunda fonte. */
 const VISTO_URL = "https://painel.leomagalhaes.tech/leo/visto.json";
-async function mostrarVisto() {
+const OPERACAO_URL = "https://painel.leomagalhaes.tech/status/publico.json";
+const ICONES = {"youtube": "<rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"4\"/><path d=\"M10 9.2v5.6l4.8-2.8z\"/>", "instagram": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M17.3 6.7h.01\"/>", "tiktok": "<path d=\"M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5\"/><path d=\"M14 3c.4 2.6 2.2 4.4 5 4.6\"/>", "linkedin": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"4\"/><path d=\"M8 10.5V16M8 7.6h.01M11.5 16v-5.5M11.5 13c0-1.6 1-2.6 2.4-2.6s2.1 1 2.1 2.6V16\"/>", "whatsapp": "<path d=\"M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-4A8 8 0 1 1 20 11.5z\"/><path d=\"M9 9.5c.3 1.9 2.6 4.2 4.5 4.5l1-1.2 1.6.7\"/>", "sistema": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"7\" rx=\"2\"/><rect x=\"3\" y=\"13\" width=\"18\" height=\"7\" rx=\"2\"/><path d=\"M7 7.5h.01M7 16.5h.01\"/>", "github": "<path d=\"M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21\"/>", "leo": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21a8 8 0 0 1 16 0\"/>"};
+const ico = n => `<svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true">${ICONES[n] || ICONES.sistema}</svg>`;
+const maiuscula = t => t ? t[0].toUpperCase() + t.slice(1) : t;
+const calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = id => document.getElementById(id);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const hora = (d = new Date()) => d.toLocaleTimeString("pt-BR", { timeZone: "America/Bahia", hour12: false });
+
+/* relógio de Salvador */
+setInterval(() => { $("relogio").textContent = "SSA " + hora(); }, 1000);
+
+/* frase que se reescreve */
+(function trocar() {
+  if (calmo) return;
+  let i = 0;
+  const alvo = $("troca");
+  const escrever = async () => {
+    const atual = alvo.textContent;
+    for (let n = atual.length; n >= 0; n--) { alvo.textContent = atual.slice(0, n); await new Promise(r => setTimeout(r, 28)); }
+    i = (i + 1) % FRASES.length;
+    for (let n = 1; n <= FRASES[i].length; n++) { alvo.textContent = FRASES[i].slice(0, n); await new Promise(r => setTimeout(r, 55)); }
+    setTimeout(escrever, 2600);
+  };
+  setTimeout(escrever, 2600);
+})();
+
+/* console: fila de linhas reais, uma de cada vez */
+const fila = [];
+let escrevendo = false;
+function registrar(tag, msg, cor = "", ok = true) { fila.push({ tag, msg, cor, ok }); if (!escrevendo) proxima(); }
+async function proxima() {
+  const item = fila.shift();
+  if (!item) { escrevendo = false; return; }
+  escrevendo = true;
+  const log = $("log"), li = el("li", "digitando"), m = el("span", "msg", "");
+  const tag = el("span", "tag " + item.cor); tag.innerHTML = ico(item.tag.toLowerCase()) + " " + item.tag;
+  li.append(el("time", "", hora()), tag, m);
+  item.msg = maiuscula(item.msg);
+  log.append(li);
+  while (log.children.length > 14) log.firstChild.remove();
+  if (calmo) m.textContent = item.msg;
+  else for (let n = 1; n <= item.msg.length; n += 2) { m.textContent = item.msg.slice(0, n); await new Promise(r => setTimeout(r, 14)); }
+  m.textContent = item.msg; li.classList.remove("digitando");
+  if (item.ok) li.append(el("span", "ok", "✓"));
+  setTimeout(proxima, 380);
+}
+
+/* números que sobem */
+function contar(alvo, ate) {
+  if (calmo) { alvo.textContent = ate; return; }
+  const t0 = performance.now(), dur = 1200;
+  const passo = t => { const p = Math.min(1, (t - t0) / dur); alvo.textContent = Math.round(ate * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(passo); };
+  requestAnimationFrame(passo);
+}
+
+/* último acesso */
+let ultimoCodigo = 0;
+function tempoDesde(ms) {
+  const min = Math.max(0, Math.round((Date.now() - ms) / 6e4));
+  if (min < 1) return ["agora", min];
+  if (min < 60) return [min + " min", min];
+  if (min < 1440) return [Math.round(min / 60) + " h", min];
+  return [Math.round(min / 1440) + (min < 2880 ? " dia" : " dias"), min];
+}
+function duracao(seg) {
+  const min = Math.max(1, Math.round(seg / 60));
+  if (min < 60) return min + " min";
+  const h = Math.floor(min / 60), m = min % 60;
+  return h + "h" + (m ? String(m).padStart(2, "0") : "");
+}
+async function mostrarVisto(primeira) {
   const fontes = await Promise.allSettled([
     fetch(VISTO_URL, { cache: "no-store" }).then(r => r.json()),
     fetch("https://api.github.com/users/leomagalhaesti/events/public?per_page=1").then(r => r.json())
   ]);
-  let quando = 0, projeto = null;
-  if (fontes[0].status === "fulfilled" && fontes[0].value.visto) { quando = fontes[0].value.visto * 1000; projeto = fontes[0].value.projeto; }
+  let quando = 0, inicio = 0, projeto = null;
+  if (fontes[0].status === "fulfilled" && fontes[0].value.visto) {
+    quando = fontes[0].value.visto * 1000; inicio = (fontes[0].value.inicio || 0) * 1000; projeto = fontes[0].value.projeto;
+  }
   if (fontes[1].status === "fulfilled" && Array.isArray(fontes[1].value) && fontes[1].value[0]) {
     const t = Date.parse(fontes[1].value[0].created_at);
-    if (t > quando) { quando = t; projeto = null; }
+    if (t > quando) { if (!(inicio && t - quando < 30 * 6e4)) inicio = 0; quando = t; projeto = null; }   /* envio no GitHub logo depois prolonga a sessão */
   }
-  if (!quando) return;
-  const min = Math.max(0, Math.round((Date.now() - quando) / 6e4));
-  let texto;
-  if (min < 10) texto = "codando agora" + (projeto ? " · " + projeto : "");
-  else if (min < 60) texto = "codando há " + min + " min";
-  else if (min < 1440) texto = "último código há " + Math.round(min / 60) + " h";
-  else texto = "último código há " + Math.round(min / 1440) + (min < 2880 ? " dia" : " dias");
-  document.getElementById("visto-texto").textContent = texto;
-  document.getElementById("visto").hidden = false;
-  document.querySelector(".quem").classList.toggle("online", min < 10);
+  if (!quando) { $("visto-texto").textContent = "Sem sinal agora"; return; }
+  const [txt, min] = tempoDesde(quando);
+  const online = min < 10;
+  const seguidas = online && inicio && Date.now() - inicio >= 10 * 3600e3 ? duracao((Date.now() - inicio) / 1000) : null;   /* só a partir de 10 h */
+  const n = $("n-codigo"), rot = n.nextElementSibling;
+  if (online) {
+    $("visto-texto").textContent = "Codando agora" + (seguidas ? " · " + seguidas + " seguidas" : "");
+    n.textContent = seguidas || "Agora";
+    rot.textContent = seguidas ? "Codando sem parar" : "Codando agora";
+  } else {
+    $("visto-texto").textContent = "Offline · último código há " + txt;
+    n.textContent = txt;
+    rot.textContent = "Desde a última linha de código";
+  }
+  $("quem").classList.toggle("online", online);
+  $("disponivel").classList.toggle("on", online);
+  $("disponivel").lastChild.textContent = online ? "Online agora · respondo rápido" : "Respondo assim que eu ver";
+  if (primeira) registrar("Leo", online ? "Online · codando" + (projeto ? " no " + projeto : "") + (seguidas ? " há " + seguidas + " seguidas" : "") : "Offline · último código há " + txt, "", online);
 }
-mostrarVisto(); setInterval(mostrarVisto, 60000);
+mostrarVisto(true);
+setInterval(() => mostrarVisto(false), 60000);
 
-/* Em operação agora: resumo anônimo do servidor (sem @ e sem nome de projeto), atualizado a cada minuto. */
-const OPERACAO_URL = "https://painel.leomagalhaes.tech/status/publico.json";
-async function mostrarOperacao() {
+/* em operação */
+const CORES = { YouTube: "coral", Instagram: "lilas", TikTok: "azul", LinkedIn: "azul", WhatsApp: "" };
+function batimento() {
+  const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  s.setAttribute("viewBox", "0 0 300 38"); s.setAttribute("class", "bat"); s.setAttribute("preserveAspectRatio", "none"); s.setAttribute("aria-hidden", "true");
+  const d = "M0 26 H110 l6 -3 l5 3 h10 l5 -18 l6 30 l5 -12 h12 l5 -2 l5 2 H300";
+  s.innerHTML = `<path class="base" d="${d}"/><path d="${d}"/>`;
+  return s;
+}
+let verificado = 0;
+async function mostrarOperacao(primeira) {
   let d;
-  try { d = await fetch(OPERACAO_URL, { cache: "no-store" }).then(r => r.json()); } catch (e) { return; }
+  try { d = await fetch(OPERACAO_URL, { cache: "no-store" }).then(r => r.json()); } catch (e) { $("op-resumo").textContent = "Servidor sem resposta agora"; return; }
   if (!d.pronto) return;
-  document.getElementById("op-lista").replaceChildren(...d.itens.map(it => {
-    const li = document.createElement("li"), i = document.createElement("i"), b = document.createElement("b"),
-          em = document.createElement("em"), s = document.createElement("span");
-    li.className = it.status === "instável" ? "instavel" : it.status === "vinculado" ? "vinculado" : "";
-    b.textContent = it.rede; em.textContent = it.status; s.textContent = it.o_que;
-    li.append(i, b, em, s); return li;
+  verificado = d.quando * 1000;
+  $("op-lista").replaceChildren(...d.itens.map(it => {
+    const li = el("li", it.status === "instável" ? "instavel" : it.status === "vinculado" ? "vinculado" : ""), cab = el("div", "op-cab");
+    const ic = el("span", "op-ico"); ic.innerHTML = ico(it.rede.toLowerCase());
+    const st = el("em"); st.append(el("i"), maiuscula(it.status));
+    cab.append(ic, el("b", "", it.rede), st);
+    li.classList.add("luz");
+    li.append(cab, el("p", "", maiuscula(it.o_que)), batimento());
+    return li;
   }));
-  const seg = Math.max(0, Math.round(Date.now() / 1000 - d.quando));
-  document.getElementById("op-resumo").textContent =
-    d.operando + " de " + d.total + " no ar · conferido há " + (seg < 60 ? seg + " s" : Math.round(seg / 60) + " min");
+  $("n-total").textContent = "/" + d.total;
+  if (primeira) {
+    contar($("n-sistemas"), d.operando);
+    d.itens.forEach(it => registrar(it.rede, it.o_que + " · " + it.status, CORES[it.rede] || "", it.status !== "instável"));
+  } else $("n-sistemas").textContent = d.operando;
+  $("op-resumo").dataset.ok = d.operando; $("op-resumo").dataset.total = d.total;
 }
-mostrarOperacao(); setInterval(mostrarOperacao, 60000);
+setInterval(() => {
+  if (!verificado) return;
+  const s = Math.max(0, Math.round((Date.now() - verificado) / 1000)), r = $("op-resumo");
+  r.innerHTML = `<b>${r.dataset.ok} de ${r.dataset.total}</b> no ar · Conferido há ${s < 60 ? s + " s" : Math.round(s / 60) + " min"}`;
+}, 1000);
 
+/* dores: lista de frases + painel; troca sozinha a cada 7 s até a pessoa escolher */
+const SVG = d => `<svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
+const OK = SVG('<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 10"/>');
+let dorAtual = 0, dorAuto = !calmo, dorTimer;
+function mostrarDor(i, porClique) {
+  dorAtual = i;
+  if (porClique) { dorAuto = false; clearTimeout(dorTimer); }
+  document.querySelectorAll("#frases button").forEach((b, k) => {
+    b.setAttribute("aria-selected", k === i); b.tabIndex = k === i ? 0 : -1;
+    const t = b.querySelector(".tempo"); t.classList.remove("anda"); void t.offsetWidth; if (k === i && dorAuto) t.classList.add("anda");
+  });
+  const d = DORES[i], area = CATALOGO.find(c => c.id === d.cat);
+  $("cura").innerHTML = `
+    <span class="rotulo">${OK}Como fica resolvido</span>
+    <h3>${d.titulo}</h3>
+    <p class="hoje"><b>Hoje:</b> ${d.custa[0].toLowerCase()}.</p>
+    <ol class="tres">${d.como.map((x, k) => `<li style="animation-delay:${.08 * k + .1}s">${x}</li>`).join("")}</ol>
+    <div class="cura-pe"><button class="botao cheio" type="button" id="dor-pedido">Quero resolver isso →</button>
+      <button class="link-sec" type="button" id="dor-cat">Ver serviços de ${area.nome.toLowerCase()} ↓</button></div>
+    <p class="ja-roda"><i></i>Já roda: ${d.prova}</p>`;
+  $("dor-cat").addEventListener("click", () => irParaCategoria(d.cat));
+  $("dor-pedido").addEventListener("click", () => { if (!$("pedido-msg").value) $("pedido-msg").value = "“" + d.frase + "” "; escolherServico(d.titulo); });
+  if (dorAuto) dorTimer = setTimeout(() => mostrarDor((dorAtual + 1) % DORES.length), 7000);
+}
+$("frases").replaceChildren(...DORES.map((d, i) => {
+  const item = el("li"), b = el("button");
+  b.type = "button"; b.setAttribute("role", "tab");
+  b.innerHTML = `<span>“${d.frase}”</span><span class="tempo"></span>`;
+  b.addEventListener("click", () => mostrarDor(i, true));
+  b.addEventListener("keydown", e => {
+    const n = e.key === "ArrowDown" ? 1 : e.key === "ArrowUp" ? -1 : 0;
+    if (n) { e.preventDefault(); const k = (i + n + DORES.length) % DORES.length; mostrarDor(k, true); $("frases").children[k].firstChild.focus(); }
+  });
+  item.append(b); return item;
+}));
+
+/* catálogo: busca, categorias e "Quero este" que leva pra caixa de pedido */
+const CATALOGO = [{"id": "bots", "nome": "Bots e atendimento", "ic": "bot", "cor": "#2BD9A8", "itens": [["Bot para Telegram", "Vendas, avisos, área de membros e pagamentos dentro do Telegram."], ["Bot de WhatsApp com menu", "Responde as perguntas de sempre e chama você só quando precisa."], ["Agendamento com lembrete", "O cliente marca sozinho e recebe lembrete antes do horário."], ["Triagem de contatos", "Separa quem está curioso de quem está pronto pra comprar."], ["Assistente que conhece seu negócio", "Responde com base nos seus documentos, preços e regras."]]}, {"id": "conteudo", "nome": "Conteúdo e redes", "ic": "conteudo", "cor": "#F5B700", "itens": [["Posts diários com aprovação no celular", "Tema, texto e arte prontos; você só aprova com um toque."], ["Roteiros que se autovalidam", "Cada roteiro passa por checagem de fatos, tamanho e gancho antes de chegar a você."], ["Canal dark completo", "Roteiro, voz, edição e publicação no YouTube sem você aparecer."], ["Cortes e Reels a partir de vídeo longo", "Um vídeo vira vários cortes com legenda, no formato de cada rede."], ["Radar de tendências do seu nicho", "O que está em alta na semana, pronto pra virar pauta."]]}, {"id": "vendas", "nome": "Vendas e marketing digital", "ic": "vendas", "cor": "#FF4D6D", "itens": [["Página de vendas", "Página pensada para quem chega decidir rápido, com checkout integrado."], ["Funil com e-mails automáticos", "Quem deixa o contato recebe a sequência certa até comprar."], ["Garimpo de anúncios que vendem", "Mapeia o que já vende no seu nicho antes de você gastar com tráfego."], ["Métricas da campanha no celular", "Resumo diário do que gastou, do que voltou e do que ajustar."], ["Produto digital do zero", "Guia, kit ou curso: conteúdo, capa, página e checkout."]]}, {"id": "sistemas", "nome": "Sistemas para empresas", "ic": "sistema", "cor": "#3D8BFF", "itens": [["Controle com QR Code", "Estoque, equipamentos ou ferramentas: quem pegou, quando e o que voltou."], ["Agenda e reservas online", "Horários, salas ou serviços reservados sem troca de mensagens."], ["Painel administrativo sob medida", "Os números do seu negócio numa tela só, atualizados sozinhos."], ["Orçamentos e PDFs automáticos", "Preencheu, saiu o documento pronto, com a sua marca."], ["App que funciona no celular", "Instala pelo navegador, funciona offline e não depende de loja."]]}, {"id": "automacao", "nome": "Automação e integrações", "ic": "integra", "cor": "#B79CFF", "itens": [["Ferramentas conversando entre si", "Planilha, CRM, e-mail e WhatsApp trocando dados sem copiar e colar."], ["Relatórios que chegam sozinhos", "O resumo do dia ou da semana no seu WhatsApp ou e-mail."], ["Monitor de preços e concorrentes", "Avisa quando um preço muda ou um concorrente lança algo."], ["Planilhas que se atualizam", "Os dados entram sozinhos, sem ninguém digitar."], ["Alertas fora do normal", "Venda caiu, pedido parado, site lento: você sabe na hora."]]}, {"id": "ia", "nome": "IA aplicada", "ic": "ia", "cor": "#2BD9A8", "itens": [["Chat com IA no seu site", "Atende o visitante a qualquer hora, com as informações do seu negócio."], ["Leitura de documentos e notas", "Extrai dados de PDFs, notas fiscais e formulários pra uma planilha."], ["Classificação de mensagens", "E-mails e pedidos separados por assunto e prioridade."], ["Imagens e textos na sua identidade", "Peças geradas no padrão da sua marca, prontas pra usar."], ["Resumo diário do seu mercado", "As notícias que importam pro seu ramo, num texto curto de manhã."]]}, {"id": "seguranca", "nome": "Proteção e monitoramento", "ic": "seguro", "cor": "#FF4D6D", "itens": [["Site e sistemas vigiados 24h", "Se algo cair, você recebe o alerta antes do cliente perceber."], ["Backup automático", "Cópias diárias guardadas em outro lugar, prontas pra restaurar."], ["Revisão de segurança básica", "Senhas, acessos e pontos fracos revisados, com o que corrigir primeiro."], ["Proteção contra golpes no atendimento", "Checagens que evitam pagamento falso e perfil clonado."]]}];
+const ICONES_CAT = {"bot": "<rect x=\"4\" y=\"8\" width=\"16\" height=\"12\" rx=\"3\"/><path d=\"M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5\"/><circle cx=\"12\" cy=\"3\" r=\"1\"/>", "conteudo": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\"/><path d=\"M3 9h18M9 21V9\"/>", "vendas": "<path d=\"M3 3v18h18\"/><path d=\"M7 15l4-4 3 3 6-7\"/><path d=\"M16 7h4v4\"/>", "sistema": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/>", "integra": "<circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"18\" cy=\"18\" r=\"3\"/><path d=\"M9 6h5a4 4 0 0 1 4 4v5M15 18h-5a4 4 0 0 1-4-4V9\"/>", "ia": "<rect x=\"4\" y=\"4\" width=\"16\" height=\"16\" rx=\"2\"/><rect x=\"9\" y=\"9\" width=\"6\" height=\"6\" rx=\"1\"/><path d=\"M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2\"/>", "seguro": "<path d=\"M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z\"/><path d=\"M9 12l2 2 4-4\"/>"};
+const PEDIDO_URL = "https://painel.leomagalhaes.tech/leo/pedido";
+const DESTAQUES = [
+  { nome: "Bot de WhatsApp com menu", cat: "bots", porque: "Responde na hora e não deixa cliente esperando." },
+  { nome: "Página de vendas", cat: "vendas", porque: "Quem chega decide rápido e compra no mesmo lugar." },
+  { nome: "Posts diários com aprovação no celular", cat: "conteudo", porque: "Sua marca aparece todo dia sem tomar o seu dia." },
+  { nome: "Painel administrativo sob medida", cat: "sistemas", porque: "Os números do negócio numa tela, sempre atualizados." }
+];
+const ESTRELA = '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>';
+const AREAS = [{ id: "top", nome: "Mais procurados", cor: "#2BD9A8", svg: ESTRELA, itens: DESTAQUES.map(d => [d.nome, d.porque]) },
+  ...CATALOGO.map(c => ({ ...c, svg: ICONES_CAT[c.ic] }))];
+let categoria = "top";
+const semAcento = t => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const escapa = t => t.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+function realca(texto, termo) {
+  if (!termo) return escapa(texto);
+  const i = semAcento(texto).indexOf(semAcento(termo));
+  return i < 0 ? escapa(texto) : escapa(texto.slice(0, i)) + "<mark>" + escapa(texto.slice(i, i + termo.length)) + "</mark>" + escapa(texto.slice(i + termo.length));
+}
+function montarAreas() {
+  const buscando = !!$("busca").value.trim();
+  $("areas").replaceChildren(...AREAS.map(a => {
+    const b = el("button"); b.type = "button"; b.setAttribute("role", "tab"); b.style.setProperty("--cor", a.cor);
+    b.setAttribute("aria-selected", !buscando && a.id === categoria);
+    b.innerHTML = SVG(a.svg) + escapa(a.nome) + `<small>${a.itens.length}</small>`;
+    b.addEventListener("click", () => { categoria = a.id; $("busca").value = ""; montarAreas(); montarCatalogo(); });
+    return b;
+  }));
+}
+function linha([n, d], termo, area) {
+  const li = el("li"), b = el("button", "item"); b.type = "button";
+  if (area) b.style.setProperty("--cor", area.cor);
+  b.innerHTML = `<span><strong>${realca(n, termo)}${area ? `<em>${escapa(area.nome)}</em>` : ""}</strong><small>${realca(d, termo)}</small></span><span class="quero"><b>Quero este </b>→</span>`;
+  b.addEventListener("click", () => escolherServico(n));
+  li.append(b); return li;
+}
+function montarCatalogo() {
+  const termo = $("busca").value.trim(), t = semAcento(termo);
+  const cab = el("div", "lista-cab"), ul = el("ul", "servicos");
+  let itens;
+  if (t) {
+    itens = CATALOGO.flatMap(c => c.itens.filter(([n, d]) => semAcento(n + " " + d + " " + c.nome).includes(t)).map(x => [x, c]));
+    cab.innerHTML = `<h3>Resultado da busca</h3><span>${itens.length} ${itens.length === 1 ? "serviço" : "serviços"}</span>`;
+    itens.forEach(([x, c], k) => { const li = linha(x, termo, c); li.style.animationDelay = (k * .03) + "s"; ul.append(li); });
+  } else {
+    const a = AREAS.find(x => x.id === categoria);
+    itens = a.itens;
+    cab.innerHTML = `<h3>${escapa(a.nome)}</h3><span>${itens.length} serviços</span>`;
+    itens.forEach((x, k) => { const li = linha(x, ""); li.style.animationDelay = (k * .04) + "s"; ul.append(li); });
+  }
+  $("busca-conta").textContent = t ? itens.length + (itens.length === 1 ? " achado" : " achados") : CATALOGO.reduce((n, c) => n + c.itens.length, 0) + " serviços";
+  if (!itens.length) {
+    const v = el("div", "vazio");
+    v.innerHTML = `Ainda não tem <b>“${escapa(termo)}”</b> na lista, mas provavelmente dá pra fazer. <a href="#pedido" style="color:var(--menta)">Me conta o que você precisa ↓</a>`;
+    v.querySelector("a").addEventListener("click", () => { if (!$("pedido-msg").value) $("pedido-msg").value = "Preciso de: " + termo + ". "; });
+    $("catalogo").replaceChildren(cab, v);
+  } else $("catalogo").replaceChildren(cab, ul);
+}
+function escolherServico(nome) {
+  $("selo-texto").textContent = "Serviço: " + nome;
+  $("selo-servico").classList.add("tem"); $("selo-servico").dataset.servico = nome;
+  $("pedido").scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
+  const caixa = $("pedido"); caixa.classList.remove("chamou"); void caixa.offsetWidth; caixa.classList.add("chamou");
+  setTimeout(() => caixa.classList.remove("chamou"), 1800);
+  setTimeout(() => $("pedido-msg").focus({ preventScroll: true }), calmo ? 0 : 600);
+}
+$("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
+$("busca").addEventListener("input", () => { montarAreas(); montarCatalogo(); });
+montarAreas(); montarCatalogo(); mostrarDor(0);
+/* dores levam aos serviços: categoria certa no catálogo e pedido já preenchido */
+function irParaCategoria(id) { categoria = id; $("busca").value = ""; montarAreas(); montarCatalogo(); $("servicos").scrollIntoView({ behavior: calmo ? "auto" : "smooth" }); }
+/* botão flutuante: aparece depois do topo, some quando a caixa de pedido ou o contato estão na tela */
+(function () {
+  const f = $("flutua"); let passouTopo = false, alvoNaTela = false;
+  const atualiza = () => f.classList.toggle("ve", passouTopo && !alvoNaTela);
+  new IntersectionObserver(([e]) => { passouTopo = !e.isIntersecting; atualiza(); }).observe(document.querySelector(".topo"));
+  const vistos = new Set();
+  const io2 = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? vistos.add(e.target) : vistos.delete(e.target)); alvoNaTela = vistos.size > 0; atualiza(); }, { threshold: .2 });
+  ["pedido", "contato"].forEach(id => io2.observe($(id)));
+})();
+function exemplosVivos(campo, frases) {
+  if (calmo) return;
+  let i = 0, n = 0, apagando = false, parado = false;
+  campo.addEventListener("focus", () => { parado = true; campo.placeholder = frases[0]; });
+  campo.addEventListener("blur", () => { if (!campo.value) { parado = false; passo(); } });
+  function passo() {
+    if (parado) return;
+    const f = frases[i];
+    n += apagando ? -1 : 1;
+    campo.placeholder = f.slice(0, n) + (n < f.length || apagando ? "▍" : "");
+    if (!apagando && n >= f.length) { apagando = true; return setTimeout(passo, 2200); }
+    if (apagando && n <= 0) { apagando = false; i = (i + 1) % frases.length; }
+    setTimeout(passo, apagando ? 18 : 45);
+  }
+  passo();
+}
+exemplosVivos($("busca"), ["bot para Telegram", "página de vendas", "agenda online", "relatório no WhatsApp", "canal dark", "controle de estoque"]);
+exemplosVivos($("pedido-msg"), ["Tenho uma loja e queria que os pedidos do site caíssem numa planilha e me avisassem no WhatsApp.",
+  "Quero um bot no Telegram que venda meu curso e libere o acesso sozinho.",
+  "Preciso de um painel que mostre minhas vendas do dia no celular.",
+  "Tenho uma ideia de app e não sei por onde começar."]);
+/* topo: a frase vira o pedido e o cursor já vai pro contato */
+$("rapido").addEventListener("submit", e => {
+  e.preventDefault();
+  const t = $("rapido-txt").value.trim();
+  if (t) $("pedido-msg").value = t;
+  $("pedido").scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
+  setTimeout(() => document.querySelector('#form-pedido [name="' + (t ? "contato" : "mensagem") + '"]').focus({ preventScroll: true }), calmo ? 0 : 600);
+});
+exemplosVivos($("rapido-txt"), ["Quero parar de perder cliente no WhatsApp.", "Preciso postar todo dia sem perder o dia.", "Quero um painel com as vendas no celular.", "Tenho um produto e quero vender online."]);
+/* link direto: ?servico=nome já escolhe o serviço; ?area=id abre a área (pra usar na bio e nos posts) */
+(function () {
+  const q = new URLSearchParams(location.search), sv = q.get("servico"), ar = q.get("area");
+  if (ar && AREAS.some(a => a.id === ar)) { categoria = ar; montarAreas(); montarCatalogo(); setTimeout(() => $("servicos").scrollIntoView(), 300); }
+  if (sv) {
+    const alvo = semAcento(sv), achou = CATALOGO.flatMap(c => c.itens).find(([n]) => semAcento(n).includes(alvo));
+    setTimeout(() => escolherServico(achou ? achou[0] : sv), 300);
+  }
+})();
+const abriuEm = Date.now();
+$("form-pedido").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, r = $("pedido-resposta"), btn = $("pedido-btn");
+  const dados = new URLSearchParams(new FormData(f));
+  dados.set("servico", $("selo-servico").dataset.servico || ""); dados.set("ms", Date.now() - abriuEm);
+  const mostra = (ok, txt) => { r.hidden = false; r.className = "resposta " + (ok ? "ok" : "erro"); r.textContent = txt; };
+  if (dados.get("mensagem").trim().length < 10) return mostra(false, "Escreva um pouco mais sobre o que você precisa.");
+  if (dados.get("contato").trim().length < 6) return mostra(false, "Deixe um WhatsApp ou e-mail pra eu te responder.");
+  btn.disabled = true; btn.lastChild.textContent = "Enviando…";
+  try {
+    const resp = await fetch(PEDIDO_URL, { method: "POST", body: dados }).then(x => x.json());
+    mostra(resp.ok, resp.msg);
+    if (resp.ok) { f.reset(); $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; registrar("Site", "Pedido novo recebido", "", true); }
+  } catch (err) {
+    mostra(false, "Não consegui enviar agora. Tente de novo ou mande um e-mail pra leomagalhaes.ti@gmail.com.");
+  }
+  btn.disabled = false; btn.lastChild.textContent = "Enviar pedido";
+});
+
+/* diário */
 const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 function dataCurta(iso) { const [a, m, d] = iso.split("-"); return d + " " + MESES[+m - 1] + " " + a; }
-function haQuanto(iso) {
-  const dias = Math.floor((Date.now() - new Date(iso + "T12:00:00").getTime()) / 864e5);
-  if (dias <= 0) return "hoje";
-  if (dias === 1) return "ontem";
-  if (dias < 30) return "há " + dias + " dias";
-  return "há " + Math.floor(dias / 30) + (dias < 60 ? " mês" : " meses");
-}
 function montarDiario(itens, fonte) {
-  const lista = document.getElementById("lista-diario");
-  lista.replaceChildren(...itens.slice().sort((a, b) => b.quando.localeCompare(a.quando)).slice(0, 6).map(e => {
-    const li = document.createElement("li"), t = document.createElement("time"), s = document.createElement("span"), p = document.createElement("small");
-    t.dateTime = e.quando; t.textContent = dataCurta(e.quando);
-    s.textContent = e.texto; p.textContent = "projeto " + e.projeto;
-    li.append(t, s, p); return li;
+  $("lista-diario").replaceChildren(...itens.slice().sort((a, b) => b.quando.localeCompare(a.quando)).slice(0, 7).map(e => {
+    const li = el("li"), t = el("time", "", dataCurta(e.quando));
+    t.dateTime = e.quando;
+    li.append(t, el("span", "", e.texto), el("small", "", ({ "01": "PostEngineAI", "02": "TrackPoint", "03": "Estúdio de conteúdo", "site": "Este site" })[e.projeto] || e.projeto));
+    return li;
   }));
-  document.getElementById("fonte-diario").textContent = fonte;
-  const ultimo = itens.reduce((a, b) => (a.quando > b.quando ? a : b));
-  document.getElementById("agora-texto").textContent = AGORA + " · atualizado " + haQuanto(ultimo.quando);
+  $("fonte-diario").textContent = fonte;
+  observarDiario();
 }
+
+/* rolagem: elementos surgem, a linha do diário acende */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visivel"); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll(".surge").forEach(e => io.observe(e));
+const ioNum = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.querySelectorAll("[data-conta]").forEach(n => n.dataset.conta && contar(n, +n.dataset.conta));
+  ioNum.unobserve(e.target);
+}), { threshold: .4 });
+ioNum.observe(document.querySelector(".numeros"));
+function observarDiario() {
+  const lista = $("lista-diario");
+  const andar = () => {
+    const r = lista.getBoundingClientRect(), meio = innerHeight * .7;
+    const p = Math.max(0, Math.min(1, (meio - r.top) / r.height));
+    lista.style.setProperty("--andou", (p * 100).toFixed(1) + "%");
+    lista.querySelectorAll("li").forEach(li => li.classList.toggle("aceso", li.getBoundingClientRect().top < meio));
+  };
+  andar(); addEventListener("scroll", andar, { passive: true });
+}
+
+/* semana: acende o dia de hoje (fuso de Salvador) */
+(function () {
+  const dia = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Bahia" })).getDay();
+  const i = dia === 0 || dia === 6 ? 5 : dia - 1;
+  document.querySelector(`.semana li[data-dia="${i}"]`)?.classList.add("hoje");
+})();
+/* brilho que segue o mouse */
+document.addEventListener("pointermove", e => {
+  const c = e.target.closest?.(".luz"); if (!c) return;
+  const r = c.getBoundingClientRect();
+  c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+}, { passive: true });
+
+/* partida */
+registrar("Sistema", "Conectando ao servidor em Salvador…", "ambar");
+mostrarOperacao(true); setInterval(mostrarOperacao, 60000);
 montarDiario(DIARIO, "Registro escrito a cada avanço.");
 fetch("https://api.github.com/users/leomagalhaesti/repos?sort=pushed&per_page=30")
   .then(r => r.ok ? r.json() : Promise.reject(r.status))
   .then(repos => {
-    const extra = repos.filter(r => REPOS[r.name]).map(r => ({ quando: r.pushed_at.slice(0, 10), projeto: REPOS[r.name][0], texto: REPOS[r.name][1] + ": nova atualização no código." }));
+    const meus = repos.filter(r => REPOS[r.name]);
+    if (meus[0]) registrar("GitHub", REPOS[meus[0].name][1] + " · último envio " + dataCurta(meus[0].pushed_at.slice(0, 10)), "lilas");
+    const extra = meus.map(r => ({ quando: r.pushed_at.slice(0, 10), projeto: REPOS[r.name][0], texto: REPOS[r.name][1] + ": nova atualização no código." }));
     if (extra.length) montarDiario([...DIARIO, ...extra], "Registro escrito a cada avanço, somado à atividade pública no GitHub.");
   })
   .catch(() => {});
+/* depois da carga, o console continua vivo: a cada 20 s uma checagem real */
+setInterval(async () => {
+  try {
+    const d = await fetch(OPERACAO_URL, { cache: "no-store" }).then(r => r.json());
+    const it = d.itens[Math.floor(Math.random() * d.itens.length)];
+    registrar(it.rede, "Checagem · " + it.status, CORES[it.rede] || "", it.status !== "instável");
+  } catch (e) {}
+}, 20000);
 </script>
-
 </body>
 </html>
