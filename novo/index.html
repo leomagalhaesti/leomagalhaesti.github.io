@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Leo Magalhães, Computer Science student. Automações, aplicativos web e ferramentas com IA, com o status de cada um ao vivo.">
+<meta name="description" content="Leo Magalhães, Computer Science student. Automações, aplicativos web, ferramentas com IA e projetos no mercado digital, com o status de cada um ao vivo.">
 <meta property="og:title" content="Leo Magalhães · Projetos">
 <meta property="og:description" content="Eu construo sistemas que trabalham sozinhos. Veja o que está rodando agora.">
 <meta property="og:image" content="https://leomagalhaesti.github.io/previa.png">
@@ -275,12 +275,12 @@ figcaption{margin-top:.7rem;font:400 .72rem var(--mono);color:var(--texto-3);tex
           <div class="orbita"><img src="img/foto.jpg" alt="Ilustração do rosto do Leo Magalhães"><span class="ponto"></span></div>
           <div>
             <strong>Leo Magalhães</strong>
-            <span class="cargo">Computer Science student · Salvador, BA</span>
+            <span class="cargo">Computer Science student · Mercado digital · Salvador, BA</span>
             <span class="visto" id="visto"><i></i><span id="visto-texto">Conectando…</span></span>
           </div>
         </div>
         <h1>Eu construo sistemas que <span class="troca"><span id="troca">trabalham sozinhos.</span><span class="cursor" aria-hidden="true"></span></span></h1>
-        <p class="lead">Automações, aplicativos web e ferramentas com IA. Tudo o que está rodando aparece aqui ao vivo, com o status de cada sistema.</p>
+        <p class="lead">Automações, aplicativos web e ferramentas com IA, e projetos no mercado digital: canais, produtos e campanhas. O que está rodando aparece aqui ao vivo.</p>
         <div class="acoes">
           <a class="botao cheio" href="#operacao">Ver ao vivo</a>
           <a class="botao" href="#projetos">Projetos</a>
@@ -317,7 +317,7 @@ figcaption{margin-top:.7rem;font:400 .72rem var(--mono);color:var(--texto-3);tex
         <div>
           <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Toda semana no Instagram</span>
           <h2>Um assunto por dia</h2>
-          <p>O conteúdo é montado automaticamente, eu aprovo pelo celular e o post sai no fim da tarde.</p>
+          <p>Um assunto por dia, explicado para quem não é da área. Pergunta nos comentários que eu respondo.</p>
         </div>
         <a class="resumo-vivo" href="https://www.instagram.com/leomagalhaes.ti/" style="text-decoration:none"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7h.01"/></svg> <b>@leomagalhaes.ti</b> ↗</a>
       </header>
@@ -478,7 +478,7 @@ const DIARIO = [
   { quando: "2026-10-11", texto: "PostEngineAI: código publicado no GitHub.", projeto: "01" }
 ];
 const REPOS = { "Postengine-ai": ["01", "PostEngineAI"], "trackpoint": ["02", "TrackPoint"] };
-const FRASES = ["trabalham sozinhos.", "postam por mim.", "não esquecem nada.", "avisam quando algo cai."];
+const FRASES = ["trabalham sozinhos.", "vendem no digital.", "fazem negócios crescerem.", "não esquecem nada."];
 /* ======================================================= */
 
 const VISTO_URL = "https://painel.leomagalhaes.tech/leo/visto.json";
@@ -569,21 +569,19 @@ async function mostrarVisto(primeira) {
   if (!quando) { $("visto-texto").textContent = "Sem sinal agora"; return; }
   const [txt, min] = tempoDesde(quando);
   const online = min < 10;
-  const sessao = inicio && quando > inicio ? duracao((quando - inicio) / 1000) : null;
+  const seguidas = online && inicio && Date.now() - inicio >= 10 * 3600e3 ? duracao((Date.now() - inicio) / 1000) : null;   /* só a partir de 10 h */
   const n = $("n-codigo"), rot = n.nextElementSibling;
   if (online) {
-    const agoraSessao = inicio ? duracao((Date.now() - inicio) / 1000) : null;
-    $("visto-texto").textContent = "Codando agora" + (agoraSessao ? " · " + agoraSessao + " seguidas" : "");
-    n.textContent = agoraSessao || "Agora";
-    rot.textContent = agoraSessao ? "Codando agora, sem parar" : "Codando agora";
+    $("visto-texto").textContent = "Codando agora" + (seguidas ? " · " + seguidas + " seguidas" : "");
+    n.textContent = seguidas || "Agora";
+    rot.textContent = seguidas ? "Codando sem parar" : "Codando agora";
   } else {
-    $("visto-texto").textContent = "Offline" + (sessao ? " · codou " + sessao + ", até " + txt + " atrás" : " · último código há " + txt);
-    n.textContent = sessao || txt;
-    rot.textContent = sessao ? "Última sessão de código · terminou há " + txt : "Desde a última linha de código";
+    $("visto-texto").textContent = "Offline · último código há " + txt;
+    n.textContent = txt;
+    rot.textContent = "Desde a última linha de código";
   }
   $("quem").classList.toggle("online", online);
-  if (primeira) registrar("Leo", online ? "Online · codando" + (projeto ? " no " + projeto : "") + (inicio ? " há " + duracao((Date.now() - inicio) / 1000) + " seguidas" : "")
-                                       : "Offline · última sessão " + (sessao || "curta") + ", terminou há " + txt, "", online);
+  if (primeira) registrar("Leo", online ? "Online · codando" + (projeto ? " no " + projeto : "") + (seguidas ? " há " + seguidas + " seguidas" : "") : "Offline · último código há " + txt, "", online);
 }
 mostrarVisto(true);
 setInterval(() => mostrarVisto(false), 60000);
