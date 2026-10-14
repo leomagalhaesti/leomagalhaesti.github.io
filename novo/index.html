@@ -144,6 +144,69 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
 .op-lista li.vinculado .op-cab em i{background:var(--azul);animation:none}
 .op-lista li.vinculado em{color:var(--azul);border-color:rgba(61,139,255,.35)}.op-lista li.vinculado svg.bat path:not(.base){stroke:var(--azul);animation:none;stroke-dasharray:none;opacity:.5;filter:none}
 
+/* catálogo de serviços */
+.busca{display:flex;align-items:center;gap:.7rem;background:var(--painel);border:1px solid var(--linha-forte);border-radius:14px;padding:.2rem .3rem .2rem 1rem;transition:border-color .2s,box-shadow .2s}
+.busca:focus-within{border-color:var(--menta);box-shadow:0 0 0 4px rgba(43,217,168,.12)}
+.busca .ic-s{color:var(--texto-3);width:20px;height:20px}
+.busca input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--texto);font:400 1rem var(--sans);padding:.85rem 0}
+.busca input::placeholder{color:var(--texto-3)}
+.busca output{font:500 .74rem var(--mono);color:var(--texto-3);padding-right:.8rem;white-space:nowrap}
+.chips{display:flex;gap:.45rem;overflow-x:auto;padding:.9rem 0 .2rem;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{all:unset;cursor:pointer;flex:none;display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .85rem;border-radius:999px;border:1px solid var(--linha-forte);font:500 .82rem var(--sans);color:var(--texto-2);transition:all .2s}
+.chips button .ic-s{width:15px;height:15px;color:var(--cor,var(--menta))}
+.chips button:hover{color:var(--texto);border-color:var(--cor,var(--menta))}
+.chips button[aria-pressed="true"]{color:#03140F;background:var(--cor,var(--menta));border-color:var(--cor,var(--menta))}
+.chips button[aria-pressed="true"] .ic-s{color:#03140F}
+.chips button:focus-visible{outline:2px solid var(--menta);outline-offset:2px}
+.catalogo{margin-top:1.2rem;display:grid;gap:1.6rem}
+.grupo h3{display:flex;align-items:center;gap:.6rem;margin:0 0 .8rem;font-size:1.05rem;letter-spacing:-.01em}
+.grupo h3 .ico{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:var(--cor);background:color-mix(in srgb,var(--cor) 12%,transparent);border:1px solid color-mix(in srgb,var(--cor) 35%,transparent)}
+.grupo h3 .ico .ic-s{width:17px;height:17px}
+.grupo h3 small{font:500 .72rem var(--mono);color:var(--texto-3);font-weight:500}
+.servicos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(12.8rem,1fr));gap:.6rem}
+.servicos li{display:flex;flex-direction:column;gap:.35rem;background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio);padding:1rem 1.05rem;transition:border-color .25s,transform .25s;animation:entra .35s ease-out both}
+.servicos li:hover{border-color:var(--cor);transform:translateY(-2px)}
+.servicos strong{font-size:.98rem;letter-spacing:-.01em;line-height:1.3}
+.servicos p{margin:0;font-size:.88rem;color:var(--texto-3);line-height:1.45;flex:1}
+.servicos button{all:unset;cursor:pointer;align-self:flex-start;margin-top:.4rem;font:600 .8rem var(--sans);color:var(--cor)}
+.servicos button:hover{text-decoration:underline}
+.servicos button:focus-visible{outline:2px solid var(--menta);outline-offset:3px;border-radius:4px}
+.servicos mark{background:color-mix(in srgb,var(--menta) 30%,transparent);color:inherit;border-radius:3px}
+.vazio{padding:1.4rem;border:1px dashed var(--linha-forte);border-radius:var(--raio);color:var(--texto-2)}
+.vazio b{color:var(--menta)}
+/* caixa de pedido */
+.pedido{margin-top:1.8rem;display:grid;gap:1.4rem;border-radius:calc(var(--raio) + 6px);padding:clamp(1.3rem,3.5vw,2.2rem);border:1px solid rgba(43,217,168,.35);
+  background:radial-gradient(500px circle at 0% 0%,rgba(43,217,168,.16),transparent 60%),linear-gradient(180deg,var(--painel-2),var(--painel))}
+@media (min-width:56rem){.pedido{grid-template-columns:.8fr 1.2fr;align-items:start}}
+.pedido h3{margin:.6rem 0 0;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.pedido h3 em{font-style:normal;color:var(--menta)}
+.pedido>div>p{margin:.7rem 0 0;color:var(--texto-2)}
+.pedido form{display:grid;gap:.7rem}
+.pedido{position:relative;animation:respira 4.5s ease-in-out infinite}
+.pedido.chamou{animation:chama .8s ease-out 2}
+.disponivel{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font:500 .8rem var(--mono);color:var(--texto-2);padding:.4rem .75rem;border-radius:999px;border:1px solid var(--linha-forte);background:rgba(5,8,7,.5)}
+.disponivel i{width:7px;height:7px;border-radius:50%;background:var(--texto-3)}
+.disponivel.on{color:var(--menta-2);border-color:rgba(43,217,168,.4)}
+.disponivel.on i{background:var(--menta);animation:pulso 2s ease-out infinite}
+.pedido .linha2{display:grid;gap:.7rem}
+@media (min-width:36rem){.pedido .linha2{grid-template-columns:1fr 1fr}}
+.pedido label{display:grid;gap:.35rem;font:500 .78rem var(--mono);color:var(--texto-3)}
+.pedido input,.pedido textarea{width:100%;background:var(--fundo);border:1px solid var(--linha-forte);border-radius:10px;color:var(--texto);font:400 .98rem var(--sans);padding:.8rem .9rem;transition:border-color .2s,box-shadow .2s}
+.pedido textarea{min-height:7.5rem;resize:vertical}
+.pedido input:focus,.pedido textarea:focus{outline:0;border-color:var(--menta);box-shadow:0 0 0 4px rgba(43,217,168,.12)}
+.pedido .isca{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.pedido .envia{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem}
+.pedido .envia small{font:400 .75rem var(--mono);color:var(--texto-3)}
+.pedido .botao[disabled]{opacity:.6;pointer-events:none}
+.resposta{font-size:.95rem;padding:.8rem 1rem;border-radius:10px}
+.resposta.ok{background:rgba(43,217,168,.1);border:1px solid rgba(43,217,168,.35);color:var(--menta-2)}
+.resposta.erro{background:rgba(255,77,109,.1);border:1px solid rgba(255,77,109,.35);color:#FF9DB0}
+.selo-servico{display:none;align-items:center;gap:.5rem;justify-self:start;font:500 .8rem var(--sans);padding:.4rem .5rem .4rem .8rem;border-radius:999px;background:rgba(43,217,168,.1);border:1px solid rgba(43,217,168,.35);color:var(--menta-2)}
+.selo-servico.tem{display:inline-flex}
+.selo-servico button{all:unset;cursor:pointer;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;color:var(--texto-2)}
+.selo-servico button:hover{background:rgba(255,255,255,.08)}
+
 /* dores: coral = o que dói (urgência), menta = como fica (alívio), azul = prova (confiança) */
 .dores{display:grid;gap:1rem}
 @media (min-width:60rem){.dores{grid-template-columns:.95fr 1.05fr;align-items:start}}
@@ -191,6 +254,8 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
 .chamada p{margin:.9rem 0 0;max-width:36rem;color:var(--texto-2)}
 .chamada .acoes{margin-top:1.4rem}
 @keyframes enche{to{width:100%}}
+@keyframes respira{0%,100%{box-shadow:0 0 0 0 rgba(43,217,168,0)}50%{box-shadow:0 0 0 1px rgba(43,217,168,.28),0 0 46px -12px rgba(43,217,168,.5)}}
+@keyframes chama{0%{box-shadow:0 0 0 0 rgba(43,217,168,.7)}100%{box-shadow:0 0 0 14px rgba(43,217,168,0)}}
 @keyframes corre{to{background-position:-200% 0}}
 
 /* diário */
@@ -275,6 +340,7 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
       <a href="#operacao">Ao vivo</a>
       <a class="opcional" href="#semana">Semana</a>
       <a href="#dores">Soluções</a>
+      <a href="#servicos">Serviços</a>
       <a class="opcional" href="#diario">Diário</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -357,6 +423,44 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
       <div class="dores surge">
         <ul class="frases" id="frases" role="tablist" aria-label="Problemas comuns"></ul>
         <div class="cura" id="cura" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="secao" id="servicos">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Serviços</span>
+          <h2>O que eu posso construir pra você</h2>
+          <p>Organizado por área. Procure pelo que você precisa ou escolha uma categoria. Se não estiver aqui, me conta logo abaixo: a lista é só o começo.</p>
+        </div>
+      </header>
+      <div class="surge">
+        <label class="busca"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="busca" type="search" placeholder="Ex.: bot, agenda, página de vendas, relatório…" aria-label="Procurar serviço" autocomplete="off"><output id="busca-conta">34 serviços</output></label>
+        <div class="chips" id="chips" role="group" aria-label="Categorias"></div>
+      </div>
+      <div class="catalogo" id="catalogo" aria-live="polite"></div>
+
+      <div class="pedido surge" id="pedido">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Não achou?</span>
+          <h3>Me conta o que você <em>precisa resolver.</em></h3>
+          <p>Serviço, produto, uma ideia solta ou um problema que ninguém resolveu ainda. A mensagem chega direto no meu celular, e quem responde sou eu.</p>
+          <span class="disponivel" id="disponivel"><i></i><span>Respondo assim que eu ver</span></span>
+        </div>
+        <form id="form-pedido" novalidate>
+          <span class="selo-servico" id="selo-servico"><span id="selo-texto"></span><button type="button" id="selo-tira" aria-label="Tirar o serviço escolhido">✕</button></span>
+          <div class="linha2">
+            <label>Seu nome<input name="nome" autocomplete="name" maxlength="80" placeholder="Como posso te chamar?"></label>
+            <label>WhatsApp ou e-mail *<input name="contato" required maxlength="120" placeholder="Pra eu te responder"></label>
+          </div>
+          <label>O que você precisa? *<textarea name="mensagem" id="pedido-msg" required maxlength="1500" placeholder="Ex.: tenho uma loja e queria que os pedidos do site caíssem numa planilha e me avisassem no WhatsApp."></textarea></label>
+          <span class="isca" aria-hidden="true"><label>Não preencha<input name="site_url" tabindex="-1" autocomplete="off"></label></span>
+          <div class="envia">
+            <button class="botao cheio" type="submit" id="pedido-btn"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Enviar pedido</button>
+            <small>Seus dados servem só pra eu te responder.</small>
+          </div>
+          <div class="resposta" id="pedido-resposta" role="status" hidden></div>
+        </form>
       </div>
     </section>
 
@@ -570,6 +674,8 @@ async function mostrarVisto(primeira) {
     rot.textContent = "Desde a última linha de código";
   }
   $("quem").classList.toggle("online", online);
+  $("disponivel").classList.toggle("on", online);
+  $("disponivel").lastChild.textContent = online ? "Online agora · respondo rápido" : "Respondo assim que eu ver";
   if (primeira) registrar("Leo", online ? "Online · codando" + (projeto ? " no " + projeto : "") + (seguidas ? " há " + seguidas + " seguidas" : "") : "Offline · último código há " + txt, "", online);
 }
 mostrarVisto(true);
@@ -645,6 +751,107 @@ $("frases").replaceChildren(...DORES.map((d, i) => {
   item.append(b); return item;
 }));
 mostrarDor(0);
+
+/* catálogo: busca, categorias e "Quero este" que leva pra caixa de pedido */
+const CATALOGO = [{"id": "bots", "nome": "Bots e atendimento", "ic": "bot", "cor": "#2BD9A8", "itens": [["Bot para Telegram", "Vendas, avisos, área de membros e pagamentos dentro do Telegram."], ["Bot de WhatsApp com menu", "Responde as perguntas de sempre e chama você só quando precisa."], ["Agendamento com lembrete", "O cliente marca sozinho e recebe lembrete antes do horário."], ["Triagem de contatos", "Separa quem está curioso de quem está pronto pra comprar."], ["Assistente que conhece seu negócio", "Responde com base nos seus documentos, preços e regras."]]}, {"id": "conteudo", "nome": "Conteúdo e redes", "ic": "conteudo", "cor": "#F5B700", "itens": [["Posts diários com aprovação no celular", "Tema, texto e arte prontos; você só aprova com um toque."], ["Roteiros que se autovalidam", "Cada roteiro passa por checagem de fatos, tamanho e gancho antes de chegar a você."], ["Canal dark completo", "Roteiro, voz, edição e publicação no YouTube sem você aparecer."], ["Cortes e Reels a partir de vídeo longo", "Um vídeo vira vários cortes com legenda, no formato de cada rede."], ["Radar de tendências do seu nicho", "O que está em alta na semana, pronto pra virar pauta."]]}, {"id": "vendas", "nome": "Vendas e marketing digital", "ic": "vendas", "cor": "#FF4D6D", "itens": [["Página de vendas", "Página pensada para quem chega decidir rápido, com checkout integrado."], ["Funil com e-mails automáticos", "Quem deixa o contato recebe a sequência certa até comprar."], ["Garimpo de anúncios que vendem", "Mapeia o que já vende no seu nicho antes de você gastar com tráfego."], ["Métricas da campanha no celular", "Resumo diário do que gastou, do que voltou e do que ajustar."], ["Produto digital do zero", "Guia, kit ou curso: conteúdo, capa, página e checkout."]]}, {"id": "sistemas", "nome": "Sistemas para empresas", "ic": "sistema", "cor": "#3D8BFF", "itens": [["Controle com QR Code", "Estoque, equipamentos ou ferramentas: quem pegou, quando e o que voltou."], ["Agenda e reservas online", "Horários, salas ou serviços reservados sem troca de mensagens."], ["Painel administrativo sob medida", "Os números do seu negócio numa tela só, atualizados sozinhos."], ["Orçamentos e PDFs automáticos", "Preencheu, saiu o documento pronto, com a sua marca."], ["App que funciona no celular", "Instala pelo navegador, funciona offline e não depende de loja."]]}, {"id": "automacao", "nome": "Automação e integrações", "ic": "integra", "cor": "#B79CFF", "itens": [["Ferramentas conversando entre si", "Planilha, CRM, e-mail e WhatsApp trocando dados sem copiar e colar."], ["Relatórios que chegam sozinhos", "O resumo do dia ou da semana no seu WhatsApp ou e-mail."], ["Monitor de preços e concorrentes", "Avisa quando um preço muda ou um concorrente lança algo."], ["Planilhas que se atualizam", "Os dados entram sozinhos, sem ninguém digitar."], ["Alertas fora do normal", "Venda caiu, pedido parado, site lento: você sabe na hora."]]}, {"id": "ia", "nome": "IA aplicada", "ic": "ia", "cor": "#2BD9A8", "itens": [["Chat com IA no seu site", "Atende o visitante a qualquer hora, com as informações do seu negócio."], ["Leitura de documentos e notas", "Extrai dados de PDFs, notas fiscais e formulários pra uma planilha."], ["Classificação de mensagens", "E-mails e pedidos separados por assunto e prioridade."], ["Imagens e textos na sua identidade", "Peças geradas no padrão da sua marca, prontas pra usar."], ["Resumo diário do seu mercado", "As notícias que importam pro seu ramo, num texto curto de manhã."]]}, {"id": "seguranca", "nome": "Proteção e monitoramento", "ic": "seguro", "cor": "#FF4D6D", "itens": [["Site e sistemas vigiados 24h", "Se algo cair, você recebe o alerta antes do cliente perceber."], ["Backup automático", "Cópias diárias guardadas em outro lugar, prontas pra restaurar."], ["Revisão de segurança básica", "Senhas, acessos e pontos fracos revisados, com o que corrigir primeiro."], ["Proteção contra golpes no atendimento", "Checagens que evitam pagamento falso e perfil clonado."]]}];
+const ICONES_CAT = {"bot": "<rect x=\"4\" y=\"8\" width=\"16\" height=\"12\" rx=\"3\"/><path d=\"M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5\"/><circle cx=\"12\" cy=\"3\" r=\"1\"/>", "conteudo": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\"/><path d=\"M3 9h18M9 21V9\"/>", "vendas": "<path d=\"M3 3v18h18\"/><path d=\"M7 15l4-4 3 3 6-7\"/><path d=\"M16 7h4v4\"/>", "sistema": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/>", "integra": "<circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"18\" cy=\"18\" r=\"3\"/><path d=\"M9 6h5a4 4 0 0 1 4 4v5M15 18h-5a4 4 0 0 1-4-4V9\"/>", "ia": "<rect x=\"4\" y=\"4\" width=\"16\" height=\"16\" rx=\"2\"/><rect x=\"9\" y=\"9\" width=\"6\" height=\"6\" rx=\"1\"/><path d=\"M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2\"/>", "seguro": "<path d=\"M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z\"/><path d=\"M9 12l2 2 4-4\"/>"};
+const PEDIDO_URL = "https://painel.leomagalhaes.tech/leo/pedido";
+let categoria = "tudo";
+const semAcento = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const escapa = t => t.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+function realca(texto, termo) {
+  if (!termo) return escapa(texto);
+  const i = semAcento(texto).indexOf(semAcento(termo));
+  return i < 0 ? escapa(texto) : escapa(texto.slice(0, i)) + "<mark>" + escapa(texto.slice(i, i + termo.length)) + "</mark>" + escapa(texto.slice(i + termo.length));
+}
+function montarChips() {
+  const todos = [{ id: "tudo", nome: "Tudo", cor: "#2BD9A8" }, ...CATALOGO];
+  $("chips").replaceChildren(...todos.map(c => {
+    const b = el("button"); b.type = "button"; b.style.setProperty("--cor", c.cor);
+    b.setAttribute("aria-pressed", c.id === categoria);
+    b.innerHTML = (c.ic ? SVG(ICONES_CAT[c.ic]) : "") + escapa(c.nome);
+    b.addEventListener("click", () => { categoria = c.id; montarChips(); montarCatalogo(); });
+    return b;
+  }));
+}
+function montarCatalogo() {
+  const termo = $("busca").value.trim(), t = semAcento(termo);
+  let achados = 0;
+  const grupos = CATALOGO.filter(c => categoria === "tudo" || c.id === categoria).map(c => {
+    const itens = c.itens.filter(([n, d]) => !t || semAcento(n + " " + d + " " + c.nome).includes(t));
+    if (!itens.length) return null;
+    achados += itens.length;
+    const g = el("div", "grupo"); g.style.setProperty("--cor", c.cor);
+    g.innerHTML = `<h3><span class="ico">${SVG(ICONES_CAT[c.ic])}</span>${escapa(c.nome)} <small>${itens.length}</small></h3>`;
+    const ul = el("ul", "servicos");
+    itens.forEach(([n, d], k) => {
+      const li = el("li"); li.style.animationDelay = (k * .04) + "s";
+      li.innerHTML = `<strong>${realca(n, termo)}</strong><p>${realca(d, termo)}</p>`;
+      const b = el("button", "", "Quero este →"); b.type = "button";
+      b.addEventListener("click", () => escolherServico(n));
+      li.append(b); ul.append(li);
+    });
+    g.append(ul); return g;
+  }).filter(Boolean);
+  $("busca-conta").textContent = achados + (achados === 1 ? " serviço" : " serviços");
+  if (!grupos.length) {
+    const v = el("div", "vazio");
+    v.innerHTML = `Ainda não tem <b>“${escapa(termo)}”</b> na lista, mas provavelmente dá pra fazer. <a href="#pedido" style="color:var(--menta)">Me conta o que você precisa ↓</a>`;
+    v.querySelector("a").addEventListener("click", () => { if (!$("pedido-msg").value) $("pedido-msg").value = "Preciso de: " + termo + ". "; });
+    $("catalogo").replaceChildren(v);
+  } else $("catalogo").replaceChildren(...grupos);
+}
+function escolherServico(nome) {
+  $("selo-texto").textContent = "Serviço: " + nome;
+  $("selo-servico").classList.add("tem"); $("selo-servico").dataset.servico = nome;
+  $("pedido").scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
+  const caixa = $("pedido"); caixa.classList.remove("chamou"); void caixa.offsetWidth; caixa.classList.add("chamou");
+  setTimeout(() => caixa.classList.remove("chamou"), 1800);
+  setTimeout(() => $("pedido-msg").focus({ preventScroll: true }), calmo ? 0 : 600);
+}
+$("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
+$("busca").addEventListener("input", montarCatalogo);
+montarChips(); montarCatalogo();
+function exemplosVivos(campo, frases) {
+  if (calmo) return;
+  let i = 0, n = 0, apagando = false, parado = false;
+  campo.addEventListener("focus", () => { parado = true; campo.placeholder = frases[0]; });
+  campo.addEventListener("blur", () => { if (!campo.value) { parado = false; passo(); } });
+  function passo() {
+    if (parado) return;
+    const f = frases[i];
+    n += apagando ? -1 : 1;
+    campo.placeholder = f.slice(0, n) + (n < f.length || apagando ? "▍" : "");
+    if (!apagando && n >= f.length) { apagando = true; return setTimeout(passo, 2200); }
+    if (apagando && n <= 0) { apagando = false; i = (i + 1) % frases.length; }
+    setTimeout(passo, apagando ? 18 : 45);
+  }
+  passo();
+}
+exemplosVivos($("busca"), ["bot para Telegram", "página de vendas", "agenda online", "relatório no WhatsApp", "canal dark", "controle de estoque"]);
+exemplosVivos($("pedido-msg"), ["Tenho uma loja e queria que os pedidos do site caíssem numa planilha e me avisassem no WhatsApp.",
+  "Quero um bot no Telegram que venda meu curso e libere o acesso sozinho.",
+  "Preciso de um painel que mostre minhas vendas do dia no celular.",
+  "Tenho uma ideia de app e não sei por onde começar."]);
+const abriuEm = Date.now();
+$("form-pedido").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, r = $("pedido-resposta"), btn = $("pedido-btn");
+  const dados = new URLSearchParams(new FormData(f));
+  dados.set("servico", $("selo-servico").dataset.servico || ""); dados.set("ms", Date.now() - abriuEm);
+  const mostra = (ok, txt) => { r.hidden = false; r.className = "resposta " + (ok ? "ok" : "erro"); r.textContent = txt; };
+  if (dados.get("mensagem").trim().length < 10) return mostra(false, "Escreva um pouco mais sobre o que você precisa.");
+  if (dados.get("contato").trim().length < 6) return mostra(false, "Deixe um WhatsApp ou e-mail pra eu te responder.");
+  btn.disabled = true; btn.lastChild.textContent = "Enviando…";
+  try {
+    const resp = await fetch(PEDIDO_URL, { method: "POST", body: dados }).then(x => x.json());
+    mostra(resp.ok, resp.msg);
+    if (resp.ok) { f.reset(); $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; registrar("Site", "Pedido novo recebido", "", true); }
+  } catch (err) {
+    mostra(false, "Não consegui enviar agora. Tente de novo ou mande um e-mail pra leomagalhaes.ti@gmail.com.");
+  }
+  btn.disabled = false; btn.lastChild.textContent = "Enviar pedido";
+});
 
 /* diário */
 const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
