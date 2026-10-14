@@ -247,6 +247,33 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
 .nina-escreve .botao[disabled]{opacity:.5;pointer-events:none}
 @keyframes pula{0%,100%{transform:none;opacity:.5}50%{transform:translateY(-3px);opacity:1}}
 @media (max-width:30rem){.nina-msgs{height:19rem}}
+/* seletor de profissão nas soluções */
+.perfil{display:flex;align-items:center;gap:.8rem;margin:-.4rem 0 1rem;min-width:0}
+.perfil>span{flex:none;font:500 .76rem var(--mono);color:var(--texto-3)}
+.perfis{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:none;min-width:0;padding:.15rem}
+.perfis::-webkit-scrollbar{display:none}
+.perfis button{all:unset;cursor:pointer;flex:none;padding:.42rem .8rem;border-radius:999px;border:1px solid var(--linha);font:500 .84rem var(--sans);color:var(--texto-3);transition:color .2s,border-color .2s,background .2s}
+.perfis button:hover{color:var(--texto);border-color:var(--linha-forte)}
+.perfis button[aria-pressed="true"]{color:var(--texto);border-color:var(--menta);background:rgba(43,217,168,.08)}
+.perfis button:focus-visible{outline:2px solid var(--menta);outline-offset:2px}
+@media (max-width:40rem){.perfil{flex-direction:column;align-items:stretch;gap:.5rem}}
+/* Nina viva: inclina a cabeça, fareja enquanto pensa, modo turbo 220V */
+.nina-av{padding:0;overflow:hidden;cursor:pointer;border:2px solid var(--menta);background:var(--painel)}
+.nina-av img{width:100%;height:100%;object-fit:cover;animation:inclina 9s ease-in-out infinite;transform-origin:50% 80%}
+.nina.turbo .nina-av{border-color:var(--ambar);box-shadow:0 0 16px rgba(245,183,0,.7);animation:treme .1s linear infinite}
+.nina.turbo .nina-cab small{color:var(--ambar)}.nina.turbo .nina-cab small i{background:var(--ambar)}
+.nina-msgs .digita span{margin-left:.35rem;font:500 .72rem var(--mono);color:var(--texto-3)}
+.turbo-pista{position:fixed;left:0;bottom:22px;z-index:40;pointer-events:none;display:flex;align-items:center;gap:.45rem;opacity:0;transform:translateX(-140px)}
+.turbo-pista img{width:56px;height:56px;border-radius:50%;border:2px solid var(--ambar);box-shadow:0 0 22px rgba(245,183,0,.65)}
+.turbo-pista::before{content:"";position:absolute;right:calc(100% - 6px);top:50%;width:130px;height:22px;transform:translateY(-50%);
+  background:repeating-linear-gradient(180deg,transparent 0 4px,rgba(245,183,0,.7) 4px 6px);-webkit-mask:linear-gradient(90deg,transparent,#000);mask:linear-gradient(90deg,transparent,#000)}
+.turbo-pista span{font:700 .7rem var(--mono);color:#1A1200;background:var(--ambar);padding:.2rem .5rem;border-radius:999px;white-space:nowrap}
+.turbo-pista.vai{animation:disparada 1.9s cubic-bezier(.55,.1,.45,.9) 2 both}
+.flutua-av{width:26px;height:26px;border-radius:50%;object-fit:cover;margin:-.2rem 0 -.2rem -.45rem;border:2px solid #03140F}
+@keyframes inclina{0%,88%,100%{transform:none}91%{transform:rotate(-13deg)}95%{transform:rotate(9deg)}}
+@keyframes treme{0%,100%{transform:translate(0,0)}25%{transform:translate(1px,-1px)}50%{transform:translate(-1px,1px)}75%{transform:translate(1px,1px)}}
+@keyframes disparada{0%{opacity:1;transform:translateX(-140px)}12%{transform:translateX(14vw) translateY(-16px)}24%{transform:translateX(28vw)}36%{transform:translateX(42vw) translateY(-16px)}
+  48%{transform:translateX(56vw)}60%{transform:translateX(70vw) translateY(-16px)}72%{transform:translateX(84vw)}99%{opacity:1;transform:translateX(calc(100vw + 40px))}100%{opacity:0;transform:translateX(calc(100vw + 40px))}}
 /* botão flutuante */
 .flutua{position:fixed;right:1rem;bottom:1rem;z-index:30;display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.1rem;border-radius:999px;text-decoration:none;
   font:600 .9rem var(--sans);color:#03140F;background:var(--menta);box-shadow:0 12px 34px -10px rgba(43,217,168,.8);
@@ -447,6 +474,7 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
           <p>Escolha a que mais incomoda e veja como fica resolvida.</p>
         </div>
       </header>
+      <div class="perfil surge"><span>Você trabalha com</span><div class="perfis" id="perfis" role="group" aria-label="Sua área"></div></div>
       <div class="dores surge">
         <ul class="frases" id="frases" role="tablist" aria-label="Problemas comuns"></ul>
         <div class="cura" id="cura" role="tabpanel" aria-live="polite"></div>
@@ -479,7 +507,7 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
         </div>
         <div class="pedido-dir" style="min-width:0">
         <div class="nina" id="nina">
-          <header class="nina-cab"><span class="nina-av"><svg class="pata" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="10" r="2.1"/><circle cx="10" cy="5.8" r="2.1"/><circle cx="14" cy="5.8" r="2.1"/><circle cx="17.5" cy="10" r="2.1"/><path d="M12 11.5c-3.1 0-5.6 3.2-5.6 5.5 0 1.7 1.3 2.5 2.8 2.5 1.2 0 1.8-.6 2.8-.6s1.6.6 2.8.6c1.5 0 2.8-.8 2.8-2.5 0-2.3-2.5-5.5-5.6-5.5z"/></svg></span><div><strong>Nina</strong><small><i></i>Assistente do Leo · responde na hora</small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
+          <header class="nina-cab"><span class="nina-av" id="nina-av" title="Faz carinho nela" role="button" tabindex="0"><img src="img/nina.jpg" alt="Foto da Nina, buldogue francesa"><svg hidden class="pata" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="10" r="2.1"/><circle cx="10" cy="5.8" r="2.1"/><circle cx="14" cy="5.8" r="2.1"/><circle cx="17.5" cy="10" r="2.1"/><path d="M12 11.5c-3.1 0-5.6 3.2-5.6 5.5 0 1.7 1.3 2.5 2.8 2.5 1.2 0 1.8-.6 2.8-.6s1.6.6 2.8.6c1.5 0 2.8-.8 2.8-2.5 0-2.3-2.5-5.5-5.6-5.5z"/></svg></span><div><strong>Nina</strong><small><i></i><span id="nina-status">Assistente do Leo · responde na hora</span></small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
           <ol class="nina-msgs" id="nina-msgs" aria-live="polite"></ol>
           <form class="nina-escreve" id="nina-form"><input id="nina-txt" maxlength="600" autocomplete="off" placeholder="Escreva aqui…" aria-label="Mensagem para a Nina"><button class="botao cheio" type="submit" id="nina-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
         </div>
@@ -613,7 +641,8 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
     </footer>
   </div>
 </main>
-<a class="flutua" id="flutua" href="#pedido"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Falar com a Nina</a>
+<a class="flutua" id="flutua" href="#pedido"><img class="flutua-av" src="img/nina.jpg" alt="">Falar com a Nina</a>
+<div class="turbo-pista" id="turbo" aria-hidden="true"><img src="img/nina.jpg" alt=""><span>⚡ MODO TURBO 220V</span></div>
 
 <script>
 /* ====== DIÁRIO: acrescente uma linha a cada avanço ====== */
@@ -643,6 +672,7 @@ const DORES = [
     titulo: "Painel ao vivo e alerta antes do problema", como: ["O que importa numa tela só", "Alerta no celular quando algo cai", "Histórico pra saber o que aconteceu"],
     prova: "Esta página mostra meus sistemas ao vivo. Role pra cima e confira.", cat: "seguranca", ligados: ["Site e sistemas vigiados 24h", "Alertas fora do normal", "Backup automático"], rede: [] }
 ];
+const PROFISSOES = [{"id": "clinica", "nome": "Clínica e consultório", "quem": "de quem tem clínica ou consultório", "dores": [{"frase": "Paciente falta e eu só fico sabendo na hora.", "custa": ["Horário vazio é dinheiro que não volta"], "titulo": "Agenda que confirma e lembra sozinha", "como": ["O paciente marca pelo link, a qualquer hora", "Lembrete e confirmação pelo WhatsApp na véspera", "Quem desmarca libera o horário pra lista de espera"], "cat": "bots", "servico": "Agendamento com lembrete"}, {"frase": "Minha secretária passa o dia respondendo as mesmas perguntas.", "custa": ["Telefone ocupado e paciente novo desistindo"], "titulo": "Atendimento que responde o básico na hora", "como": ["Valores, convênios e endereço respondidos na hora", "Dúvida séria vai direto pra secretária", "Funciona à noite e no fim de semana"], "cat": "bots", "servico": "Bot de WhatsApp com menu"}, {"frase": "Eu não sei quantos pacientes voltam depois da primeira consulta.", "custa": ["Paciente some e ninguém chama de volta"], "titulo": "Painel do consultório com os retornos à vista", "como": ["Atendimentos do mês numa tela só", "Lista de quem está na hora do retorno", "Mensagem de retorno pronta pra enviar"], "cat": "sistemas", "servico": "Painel administrativo sob medida"}]}, {"id": "salao", "nome": "Salão e barbearia", "quem": "de quem tem salão ou barbearia", "dores": [{"frase": "Passo o dia respondendo “tem horário hoje?”.", "custa": ["Você para o atendimento pra responder mensagem"], "titulo": "Cliente marca sozinho, você só atende", "como": ["Link com os horários livres de cada profissional", "Lembrete automático antes do horário", "A agenda do dia no seu celular de manhã"], "cat": "bots", "servico": "Agendamento com lembrete"}, {"frase": "Cliente marca e não aparece.", "custa": ["Cadeira vazia no horário mais disputado"], "titulo": "Confirmação que acaba com o furo", "como": ["Pedido de confirmação na véspera", "Sem resposta, o horário volta pra agenda", "Você sabe quem costuma faltar"], "cat": "bots", "servico": "Agendamento com lembrete"}, {"frase": "Meu Instagram fica parado semanas.", "custa": ["Quem procura salão olha o perfil antes de marcar"], "titulo": "Posts prontos com os seus trabalhos", "como": ["Suas fotos viram posts com texto pronto", "Você aprova com um toque", "Sai no melhor horário, toda semana"], "cat": "conteudo", "servico": "Posts diários com aprovação no celular"}]}, {"id": "restaurante", "nome": "Restaurante e delivery", "quem": "de quem tem restaurante ou delivery", "dores": [{"frase": "No horário de pico eu perco pedido no WhatsApp.", "custa": ["Cliente com fome não espera resposta"], "titulo": "Cardápio que atende e anota o pedido", "como": ["Menu com pratos e preços no WhatsApp", "O pedido chega organizado pra cozinha", "Você só confirma e manda entregar"], "cat": "bots", "servico": "Bot de WhatsApp com menu"}, {"frase": "Eu não sei qual prato dá lucro de verdade.", "custa": ["Prato que vende muito pode estar dando prejuízo"], "titulo": "As vendas da noite resumidas no celular", "como": ["Vendas e custos entram sozinhos numa planilha", "Resumo do dia no seu WhatsApp", "Os pratos campeões e os que não pagam a conta"], "cat": "automacao", "servico": "Relatórios que chegam sozinhos"}, {"frase": "Ingrediente acaba no meio do serviço.", "custa": ["Prato riscado do cardápio em plena sexta"], "titulo": "Estoque que avisa antes de faltar", "como": ["Saída do estoque registrada pelo celular", "Alerta quando um item chega no mínimo", "Lista de compras pronta"], "cat": "sistemas", "servico": "Controle com QR Code"}]}, {"id": "advocacia", "nome": "Advocacia e contabilidade", "quem": "de escritórios de advocacia e contabilidade", "dores": [{"frase": "Perco horas copiando dados de documento pra planilha.", "custa": ["Hora de trabalho caro gasta em digitação"], "titulo": "Documentos lidos e organizados sozinhos", "como": ["Você manda o PDF ou a foto", "Os dados importantes vão pra planilha", "Você só confere"], "cat": "ia", "servico": "Leitura de documentos e notas"}, {"frase": "Cliente me cobra andamento toda semana.", "custa": ["Ligação que interrompe o trabalho"], "titulo": "Cliente informado sem você parar", "como": ["Atualização automática quando algo muda", "As dúvidas comuns respondidas na hora", "Você entra só no que é decisão"], "cat": "bots", "servico": "Assistente que conhece seu negócio"}, {"frase": "Um prazo quase passou porque ninguém lembrou.", "custa": ["Prazo perdido custa caro e mancha o nome"], "titulo": "Alertas de prazo no seu celular", "como": ["Prazos cadastrados uma vez", "Aviso com antecedência no WhatsApp", "Resumo da semana toda segunda"], "cat": "automacao", "servico": "Alertas fora do normal"}]}, {"id": "imobiliaria", "nome": "Imobiliária e corretor", "quem": "de imobiliárias e corretores", "dores": [{"frase": "Recebo muito contato curioso e pouco cliente de verdade.", "custa": ["Horas em visita que não vira negócio"], "titulo": "Triagem antes de você atender", "como": ["Perguntas de faixa de preço, bairro e prazo", "Quem está pronto chega marcado pra você", "O curioso recebe as opções sozinho"], "cat": "bots", "servico": "Triagem de contatos"}, {"frase": "Demoro pra mandar as opções e o cliente fecha com outro.", "custa": ["Contato esfria em poucas horas"], "titulo": "Resposta na hora, a qualquer hora", "como": ["Imóveis certos pelo perfil de quem pergunta", "Fotos e valores sem você digitar", "Visita marcada direto na agenda"], "cat": "ia", "servico": "Chat com IA no seu site"}, {"frase": "Fazer proposta e ficha toma a minha tarde.", "custa": ["Burocracia no lugar de visita"], "titulo": "Proposta em PDF com um clique", "como": ["Preencheu os dados, saiu o documento", "Com a sua marca, tudo certinho", "Enviado direto pro cliente"], "cat": "sistemas", "servico": "Orçamentos e PDFs automáticos"}]}, {"id": "academia", "nome": "Academia e personal", "quem": "de academias e personal trainers", "dores": [{"frase": "Aluno some e eu só percebo quando ele cancela.", "custa": ["Cada cancelamento é mensalidade a menos"], "titulo": "Alerta de aluno sumido", "como": ["Frequência registrada sozinha", "Aviso de quem não aparece há dias", "Mensagem de incentivo pronta"], "cat": "automacao", "servico": "Alertas fora do normal"}, {"frase": "Cobrar mensalidade atrasada é constrangedor.", "custa": ["Inadimplência que vai se acumulando"], "titulo": "Cobrança educada e automática", "como": ["Lembrete antes do vencimento", "Link de pagamento na mensagem", "Quem pagou e quem não pagou numa tela"], "cat": "automacao", "servico": "Ferramentas conversando entre si"}, {"frase": "Monto treino e mando um por um no WhatsApp.", "custa": ["Noites inteiras em tarefa repetida"], "titulo": "Treinos num app no celular do aluno", "como": ["O treino de cada aluno no próprio app", "Funciona até sem internet", "Você atualiza uma vez e todos recebem"], "cat": "sistemas", "servico": "App que funciona no celular"}]}, {"id": "loja", "nome": "Loja física", "quem": "de quem tem loja", "dores": [{"frase": "Não sei o que tem no estoque sem ir contar.", "custa": ["Venda perdida por falta e dinheiro parado em sobra"], "titulo": "Estoque na palma da mão", "como": ["Entrada e saída pelo celular, com QR Code", "Alerta quando algo está acabando", "Relatório do que mais gira"], "cat": "sistemas", "servico": "Controle com QR Code"}, {"frase": "Cliente pergunta preço no direct e some.", "custa": ["Interesse que esfria sem resposta"], "titulo": "Resposta na hora, com preço e foto", "como": ["Catálogo respondido automaticamente", "Quem quer comprar vem pra você", "Funciona fora do horário da loja"], "cat": "bots", "servico": "Bot de WhatsApp com menu"}, {"frase": "Fecho o mês sem saber se lucrei.", "custa": ["Decisão tomada no escuro"], "titulo": "Resumo das vendas toda noite", "como": ["As vendas do dia entram sozinhas", "Resumo no WhatsApp ao fechar a loja", "Comparação com a semana passada"], "cat": "automacao", "servico": "Relatórios que chegam sozinhos"}]}];
 const FRASES = ["trabalham sozinhos.", "vendem no digital.", "fazem negócios crescerem.", "não esquecem nada."];
 /* ======================================================= */
 
@@ -793,38 +823,58 @@ setInterval(() => {
 /* dores: lista de frases + painel; troca sozinha a cada 7 s até a pessoa escolher */
 const SVG = d => `<svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
 const OK = SVG('<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 10"/>');
-let dorAtual = 0, dorAuto = !calmo, dorTimer;
+let dorAtual = 0, dorAuto = !calmo, dorTimer, lista = DORES, perfil = "";
+const PROVA_PERFIL = "a mesma base dos sistemas que você vê rodando nesta página.";
 function mostrarDor(i, porClique) {
   dorAtual = i;
-  if (porClique) { dorAuto = false; clearTimeout(dorTimer); }
+  clearTimeout(dorTimer);
+  if (porClique) dorAuto = false;
   document.querySelectorAll("#frases button").forEach((b, k) => {
     b.setAttribute("aria-selected", k === i); b.tabIndex = k === i ? 0 : -1;
     const t = b.querySelector(".tempo"); t.classList.remove("anda"); void t.offsetWidth; if (k === i && dorAuto) t.classList.add("anda");
   });
-  const d = DORES[i], area = CATALOGO.find(c => c.id === d.cat);
+  const d = lista[i], area = CATALOGO.find(c => c.id === d.cat);
   $("cura").innerHTML = `
     <span class="rotulo">${OK}Como fica resolvido</span>
     <h3>${d.titulo}</h3>
     <p class="hoje"><b>Hoje:</b> ${d.custa[0].toLowerCase()}.</p>
     <ol class="tres">${d.como.map((x, k) => `<li style="animation-delay:${.08 * k + .1}s">${x}</li>`).join("")}</ol>
     <div class="cura-pe"><button class="botao cheio" type="button" id="dor-pedido">Quero resolver isso →</button>
-      <button class="link-sec" type="button" id="dor-cat">Ver serviços de ${area.nome.toLowerCase()} ↓</button></div>
-    <p class="ja-roda"><i></i>Já roda: ${d.prova}</p>`;
-  $("dor-cat").addEventListener("click", () => irParaCategoria(d.cat));
-  $("dor-pedido").addEventListener("click", () => escolherServico(null, d.frase));
-  if (dorAuto) dorTimer = setTimeout(() => mostrarDor((dorAtual + 1) % DORES.length), 7000);
+      <button class="link-sec" type="button" id="dor-cat">${d.servico ? "Ver o serviço: " + d.servico.toLowerCase() : "Ver serviços de " + area.nome.toLowerCase()} ↓</button></div>
+    <p class="ja-roda"><i></i>${d.prova ? "Já roda: " + d.prova : "Feito com " + PROVA_PERFIL}</p>`;
+  $("dor-cat").addEventListener("click", () => irParaCategoria(d.cat, d.servico));
+  $("dor-pedido").addEventListener("click", () => escolherServico(d.servico || null, d.frase));
+  if (dorAuto) dorTimer = setTimeout(() => mostrarDor((dorAtual + 1) % lista.length), 7000);
 }
-$("frases").replaceChildren(...DORES.map((d, i) => {
-  const item = el("li"), b = el("button");
-  b.type = "button"; b.setAttribute("role", "tab");
-  b.innerHTML = `<span>“${d.frase}”</span><span class="tempo"></span>`;
-  b.addEventListener("click", () => mostrarDor(i, true));
-  b.addEventListener("keydown", e => {
-    const n = e.key === "ArrowDown" ? 1 : e.key === "ArrowUp" ? -1 : 0;
-    if (n) { e.preventDefault(); const k = (i + n + DORES.length) % DORES.length; mostrarDor(k, true); $("frases").children[k].firstChild.focus(); }
-  });
-  item.append(b); return item;
+function montarFrases() {
+  $("frases").replaceChildren(...lista.map((d, i) => {
+    const item = el("li"), b = el("button");
+    b.type = "button"; b.setAttribute("role", "tab");
+    b.innerHTML = `<span>“${d.frase}”</span><span class="tempo"></span>`;
+    b.addEventListener("click", () => mostrarDor(i, true));
+    b.addEventListener("keydown", e => {
+      const n = e.key === "ArrowDown" ? 1 : e.key === "ArrowUp" ? -1 : 0;
+      if (n) { e.preventDefault(); const k = (i + n + lista.length) % lista.length; mostrarDor(k, true); $("frases").children[k].firstChild.focus(); }
+    });
+    item.append(b); return item;
+  }));
+}
+/* profissão: troca as frases pela língua de quem está lendo; a Nina também fica sabendo */
+function escolherPerfil(id, porClique) {
+  const p = PROFISSOES.find(x => x.id === id);
+  perfil = p ? p.id : ""; lista = p ? p.dores : DORES;
+  document.querySelectorAll("#perfis button").forEach(b => b.setAttribute("aria-pressed", b.dataset.id === perfil));
+  document.querySelector("#dores h2").textContent = p ? "Frases que a gente ouve " + p.quem : "Qual destas frases você já disse?";
+  montarFrases(); mostrarDor(0, porClique);
+}
+$("perfis").replaceChildren(...[{ id: "", nome: "Qualquer área" }, ...PROFISSOES, { id: "online", nome: "Vendo online" }].map(p => {
+  const b = el("button", "", p.nome); b.type = "button"; b.dataset.id = p.id;
+  b.addEventListener("click", () => escolherPerfil(p.id, true));
+  return b;
 }));
+PROFISSOES.push({ id: "online", nome: "Quem vende online", quem: "de quem vende online", dores: [DORES[3], DORES[0], DORES[1]] });
+montarFrases();
+document.querySelector("#perfis button").setAttribute("aria-pressed", "true");
 
 /* catálogo: busca, categorias e "Quero este" que leva pra caixa de pedido */
 const CATALOGO = [{"id": "bots", "nome": "Bots e atendimento", "ic": "bot", "cor": "#2BD9A8", "itens": [["Bot para Telegram", "Vendas, avisos, área de membros e pagamentos dentro do Telegram."], ["Bot de WhatsApp com menu", "Responde as perguntas de sempre e chama você só quando precisa."], ["Agendamento com lembrete", "O cliente marca sozinho e recebe lembrete antes do horário."], ["Triagem de contatos", "Separa quem está curioso de quem está pronto pra comprar."], ["Assistente que conhece seu negócio", "Responde com base nos seus documentos, preços e regras."]]}, {"id": "conteudo", "nome": "Conteúdo e redes", "ic": "conteudo", "cor": "#F5B700", "itens": [["Posts diários com aprovação no celular", "Tema, texto e arte prontos; você só aprova com um toque."], ["Roteiros que se autovalidam", "Cada roteiro passa por checagem de fatos, tamanho e gancho antes de chegar a você."], ["Canal dark completo", "Roteiro, voz, edição e publicação no YouTube sem você aparecer."], ["Cortes e Reels a partir de vídeo longo", "Um vídeo vira vários cortes com legenda, no formato de cada rede."], ["Radar de tendências do seu nicho", "O que está em alta na semana, pronto pra virar pauta."]]}, {"id": "vendas", "nome": "Vendas e marketing digital", "ic": "vendas", "cor": "#FF4D6D", "itens": [["Página de vendas", "Página pensada para quem chega decidir rápido, com checkout integrado."], ["Funil com e-mails automáticos", "Quem deixa o contato recebe a sequência certa até comprar."], ["Garimpo de anúncios que vendem", "Mapeia o que já vende no seu nicho antes de você gastar com tráfego."], ["Métricas da campanha no celular", "Resumo diário do que gastou, do que voltou e do que ajustar."], ["Produto digital do zero", "Guia, kit ou curso: conteúdo, capa, página e checkout."]]}, {"id": "sistemas", "nome": "Sistemas para empresas", "ic": "sistema", "cor": "#3D8BFF", "itens": [["Controle com QR Code", "Estoque, equipamentos ou ferramentas: quem pegou, quando e o que voltou."], ["Agenda e reservas online", "Horários, salas ou serviços reservados sem troca de mensagens."], ["Painel administrativo sob medida", "Os números do seu negócio numa tela só, atualizados sozinhos."], ["Orçamentos e PDFs automáticos", "Preencheu, saiu o documento pronto, com a sua marca."], ["App que funciona no celular", "Instala pelo navegador, funciona offline e não depende de loja."]]}, {"id": "automacao", "nome": "Automação e integrações", "ic": "integra", "cor": "#B79CFF", "itens": [["Ferramentas conversando entre si", "Planilha, CRM, e-mail e WhatsApp trocando dados sem copiar e colar."], ["Relatórios que chegam sozinhos", "O resumo do dia ou da semana no seu WhatsApp ou e-mail."], ["Monitor de preços e concorrentes", "Avisa quando um preço muda ou um concorrente lança algo."], ["Planilhas que se atualizam", "Os dados entram sozinhos, sem ninguém digitar."], ["Alertas fora do normal", "Venda caiu, pedido parado, site lento: você sabe na hora."]]}, {"id": "ia", "nome": "IA aplicada", "ic": "ia", "cor": "#2BD9A8", "itens": [["Chat com IA no seu site", "Atende o visitante a qualquer hora, com as informações do seu negócio."], ["Leitura de documentos e notas", "Extrai dados de PDFs, notas fiscais e formulários pra uma planilha."], ["Classificação de mensagens", "E-mails e pedidos separados por assunto e prioridade."], ["Imagens e textos na sua identidade", "Peças geradas no padrão da sua marca, prontas pra usar."], ["Resumo diário do seu mercado", "As notícias que importam pro seu ramo, num texto curto de manhã."]]}, {"id": "seguranca", "nome": "Proteção e monitoramento", "ic": "seguro", "cor": "#FF4D6D", "itens": [["Site e sistemas vigiados 24h", "Se algo cair, você recebe o alerta antes do cliente perceber."], ["Backup automático", "Cópias diárias guardadas em outro lugar, prontas pra restaurar."], ["Revisão de segurança básica", "Senhas, acessos e pontos fracos revisados, com o que corrigir primeiro."], ["Proteção contra golpes no atendimento", "Checagens que evitam pagamento falso e perfil clonado."]]}];
@@ -923,30 +973,54 @@ async function falarNina(texto) {
   if (ninaOcupada) { $("nina-txt").value = texto; return; }
   ninaOcupada = true; $("nina-btn").disabled = true;
   ninaHist.push({ quem: "voce", texto }); ninaBalao("sua", texto);
-  const d = ninaBalao("dela digita"); d.innerHTML = "<i></i><i></i><i></i>";
+  const d = ninaBalao("dela digita"); d.innerHTML = "<i></i><i></i><i></i><span></span>";
+  const fareja = ["farejando a resposta", "pensando com as orelhas", "mastigando a ideia", "abanando o rabo"];
+  let fk = Math.floor(Math.random() * fareja.length); d.lastChild.textContent = fareja[fk];
+  const farejo = setInterval(() => { fk = (fk + 1) % fareja.length; d.lastChild.textContent = fareja[fk]; }, 1400);
   try {
     const r = await fetch(NINA_URL, { method: "POST", headers: { "Content-Type": "text/plain" },
-      body: JSON.stringify({ id: ninaId, historico: ninaHist, servico: ninaServico }) });
+      body: JSON.stringify({ id: ninaId, historico: ninaHist, servico: ninaServico, para: perfil && (PROFISSOES.find(x => x.id === perfil) || {}).nome }) });
     const o = await r.json();
-    d.remove();
+    clearInterval(farejo); d.remove();
     if (!o.resposta) throw new Error("sem resposta");
     ninaHist.push({ quem: "nina", texto: o.resposta }); ninaBalao("dela", o.resposta);
     if (r.status === 429) ninaFormulario();
-    if (o.fechou) { ninaBalao("aviso", "✓ Pedido entregue ao Leo no WhatsApp"); registrar("Site", "Nina fechou um pedido", "", true); }
+    if (o.fechou) { ninaBalao("aviso", "✓ Pedido entregue ao Leo no WhatsApp"); registrar("Site", "Nina fechou um pedido", "", true); setTimeout(() => modoTurbo("Correndo avisar o Leo ⚡ 220V"), 600); }
   } catch (e) {
-    d.remove();
+    clearInterval(farejo); d.remove();
     ninaFormulario("Minha conexão caiu 🐾 Deixa seu contato aqui embaixo que o seu pedido chega direto no Leo.");
   }
   ninaOcupada = false; $("nina-btn").disabled = false;
 }
 $("nina-form").addEventListener("submit", e => { e.preventDefault(); const t = $("nina-txt").value; $("nina-txt").value = ""; falarNina(t); });
 $("ir-form").addEventListener("click", () => ninaFormulario());
+/* modo turbo: a Nina sai correndo 220V pela tela (no pedido fechado, no carinho e uma vez por visita) */
+let turboAtivo = false;
+function modoTurbo(texto) {
+  if (turboAtivo) return;
+  turboAtivo = true;
+  const st = $("nina-status"), antes = st.textContent;
+  st.textContent = texto || "Modo turbo ativado ⚡ 220V"; $("nina").classList.add("turbo");
+  if (!calmo) { const t = $("turbo"); t.classList.remove("vai"); void t.offsetWidth; t.classList.add("vai"); }
+  setTimeout(() => { $("nina").classList.remove("turbo"); st.textContent = antes; turboAtivo = false; }, 4200);
+}
+let carinhos = 0;
+const carinho = () => { carinhos++; if (carinhos === 1 && !turboAtivo) { const st = $("nina-status"), a = st.textContent; st.textContent = "Ela gostou do carinho 🐾"; setTimeout(() => { if (!turboAtivo) st.textContent = a; }, 1800); } else modoTurbo(); };
+$("nina-av").addEventListener("click", carinho);
+$("nina-av").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); carinho(); } });
+new IntersectionObserver(([e], obs) => {
+  if (!e.isIntersecting) return;
+  obs.disconnect();
+  let ja = false; try { ja = sessionStorage.getItem("nina-turbo") === "1"; sessionStorage.setItem("nina-turbo", "1"); } catch (_) {}
+  if (!ja) setTimeout(() => modoTurbo("Ativou o modo turbo do nada ⚡ 220V"), 2500);
+}, { threshold: .5 }).observe($("nina"));
 ninaBalao("dela", "Oi! Eu sou a Nina, a buldogue que atende aqui 🐾 Me conta: o que você quer resolver?");
 $("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
 $("busca").addEventListener("input", () => { montarAreas(); montarCatalogo(); });
 montarAreas(); montarCatalogo(); mostrarDor(0);
 /* dores levam aos serviços: categoria certa no catálogo e pedido já preenchido */
-function irParaCategoria(id) { categoria = id; $("busca").value = ""; montarAreas(); montarCatalogo(); $("servicos").scrollIntoView({ behavior: calmo ? "auto" : "smooth" }); }
+function irParaCategoria(id, servico) { categoria = id; $("busca").value = ""; montarAreas(); montarCatalogo();
+  if (servico) setTimeout(() => [...document.querySelectorAll("#catalogo .item")].find(b => b.textContent.includes(servico))?.focus({ preventScroll: true }), calmo ? 0 : 700); $("servicos").scrollIntoView({ behavior: calmo ? "auto" : "smooth" }); }
 /* botão flutuante: aparece depois do topo, some quando a caixa de pedido ou o contato estão na tela */
 (function () {
   const f = $("flutua"); let passouTopo = false, alvoNaTela = false;
@@ -984,9 +1058,10 @@ $("rapido").addEventListener("submit", e => {
   escolherServico(null, t);
 });
 exemplosVivos($("rapido-txt"), ["Quero parar de perder cliente no WhatsApp.", "Preciso postar todo dia sem perder o dia.", "Quero um painel com as vendas no celular.", "Tenho um produto e quero vender online."]);
-/* link direto: ?servico=nome já escolhe o serviço; ?area=id abre a área (pra usar na bio e nos posts) */
+/* link direto: ?servico=nome já escolhe o serviço; ?area=id abre a área; ?para=clinica|salao|restaurante|advocacia|imobiliaria|academia|loja|online troca as frases */
 (function () {
-  const q = new URLSearchParams(location.search), sv = q.get("servico"), ar = q.get("area");
+  const q = new URLSearchParams(location.search), sv = q.get("servico"), ar = q.get("area"), pa = q.get("para");
+  if (pa && PROFISSOES.some(x => x.id === pa)) { escolherPerfil(pa); setTimeout(() => $("dores").scrollIntoView(), 300); }
   if (ar && AREAS.some(a => a.id === ar)) { categoria = ar; montarAreas(); montarCatalogo(); setTimeout(() => $("servicos").scrollIntoView(), 300); }
   if (sv) {
     const alvo = semAcento(sv), achou = CATALOGO.flatMap(c => c.itens).find(([n]) => semAcento(n).includes(alvo));
