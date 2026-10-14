@@ -263,16 +263,16 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
 .nina.turbo .nina-av{border-color:var(--ambar);box-shadow:0 0 16px rgba(245,183,0,.7);animation:treme .1s linear infinite}
 .nina.turbo .nina-cab small{color:var(--ambar)}.nina.turbo .nina-cab small i{background:var(--ambar)}
 .nina-msgs .digita span{margin-left:.35rem;font:500 .72rem var(--mono);color:var(--texto-3)}
-.turbo-pista{position:fixed;left:0;bottom:22px;z-index:40;pointer-events:none;display:flex;align-items:center;gap:.45rem;opacity:0;transform:translateX(-140px)}
-.turbo-pista img{width:56px;height:56px;border-radius:50%;border:2px solid var(--ambar);box-shadow:0 0 22px rgba(245,183,0,.65)}
-.turbo-pista::before{content:"";position:absolute;right:calc(100% - 6px);top:50%;width:130px;height:22px;transform:translateY(-50%);
+.turbo-pista{position:fixed;left:0;bottom:10px;z-index:40;pointer-events:none;display:flex;align-items:center;gap:.45rem;opacity:0;transform:translateX(-300px)}
+.turbo-pista img{width:132px;height:auto;filter:drop-shadow(0 0 14px rgba(245,183,0,.35))}
+.turbo-pista::before{content:"";position:absolute;right:calc(100% - 6px);top:55%;width:90px;height:16px;transform:translateY(-50%);
   background:repeating-linear-gradient(180deg,transparent 0 4px,rgba(245,183,0,.7) 4px 6px);-webkit-mask:linear-gradient(90deg,transparent,#000);mask:linear-gradient(90deg,transparent,#000)}
-.turbo-pista span{font:700 .7rem var(--mono);color:#1A1200;background:var(--ambar);padding:.2rem .5rem;border-radius:999px;white-space:nowrap}
+.turbo-pista span{align-self:flex-start;margin-top:.4rem;font:700 .7rem var(--mono);color:#1A1200;background:var(--ambar);padding:.2rem .5rem;border-radius:999px;white-space:nowrap}
 .turbo-pista.vai{animation:disparada 1.9s cubic-bezier(.55,.1,.45,.9) 2 both}
 .flutua-av{width:26px;height:26px;border-radius:50%;object-fit:cover;margin:-.2rem 0 -.2rem -.45rem;border:2px solid #03140F}
 @keyframes inclina{0%,88%,100%{transform:none}91%{transform:rotate(-13deg)}95%{transform:rotate(9deg)}}
 @keyframes treme{0%,100%{transform:translate(0,0)}25%{transform:translate(1px,-1px)}50%{transform:translate(-1px,1px)}75%{transform:translate(1px,1px)}}
-@keyframes disparada{0%{opacity:1;transform:translateX(-140px)}12%{transform:translateX(14vw) translateY(-16px)}24%{transform:translateX(28vw)}36%{transform:translateX(42vw) translateY(-16px)}
+@keyframes disparada{0%{opacity:1;transform:translateX(-300px)}12%{transform:translateX(14vw) translateY(-16px)}24%{transform:translateX(28vw)}36%{transform:translateX(42vw) translateY(-16px)}
   48%{transform:translateX(56vw)}60%{transform:translateX(70vw) translateY(-16px)}72%{transform:translateX(84vw)}99%{opacity:1;transform:translateX(calc(100vw + 40px))}100%{opacity:0;transform:translateX(calc(100vw + 40px))}}
 /* botão flutuante */
 .flutua{position:fixed;right:1rem;bottom:1rem;z-index:30;display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.1rem;border-radius:999px;text-decoration:none;
@@ -642,7 +642,7 @@ button.botao{background:transparent;color:var(--texto);font-family:var(--sans);c
   </div>
 </main>
 <a class="flutua" id="flutua" href="#pedido"><img class="flutua-av" src="img/nina.jpg" alt="">Falar com a Nina</a>
-<div class="turbo-pista" id="turbo" aria-hidden="true"><img src="img/nina.jpg" alt=""><span>⚡ MODO TURBO 220V</span></div>
+<div class="turbo-pista" id="turbo" aria-hidden="true"><img src="img/nina-turbo.png" alt=""><span>⚡ MODO TURBO 220V</span></div>
 
 <script>
 /* ====== DIÁRIO: acrescente uma linha a cada avanço ====== */
