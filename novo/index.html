@@ -79,6 +79,7 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
 .acoes{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
 .botao{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.15rem;border-radius:10px;border:1px solid var(--linha-forte);text-decoration:none;font-weight:600;font-size:.92rem;transition:border-color .2s,background .2s,transform .2s}
 .botao:hover{border-color:var(--menta);transform:translateY(-1px)}
+button.botao{background:transparent;color:var(--texto);font-family:var(--sans);cursor:pointer}
 .botao.cheio{background:var(--menta);border-color:var(--menta);color:#03140F}
 .botao.cheio:hover{background:var(--menta-2)}
 
@@ -143,6 +144,42 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
 .op-lista li.instavel em{color:var(--ambar);border-color:rgba(245,183,0,.35)}.op-lista li.instavel svg.bat path:not(.base){stroke:var(--ambar);animation-duration:1.4s}
 .op-lista li.vinculado .op-cab em i{background:var(--azul);animation:none}
 .op-lista li.vinculado em{color:var(--azul);border-color:rgba(61,139,255,.35)}.op-lista li.vinculado svg.bat path:not(.base){stroke:var(--azul);animation:none;stroke-dasharray:none;opacity:.5;filter:none}
+
+/* pontes entre seções */
+.ponte{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem 1.2rem;margin-top:1.6rem;padding:1rem 1.2rem;border-radius:var(--raio);
+  text-decoration:none;border:1px dashed var(--linha-forte);color:var(--texto-2);transition:border-color .25s,background .25s}
+.ponte b{color:var(--menta);font-weight:600;white-space:nowrap}
+.ponte:hover{border-color:var(--menta);border-style:solid;background:rgba(43,217,168,.05)}
+.ponte:hover b{text-decoration:underline}
+/* mais procurados */
+.destaques{list-style:none;margin:1.2rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.75rem}
+.destaques li{position:relative;display:flex;flex-direction:column;gap:.5rem;padding:1.3rem;border-radius:calc(var(--raio) + 2px);
+  background:linear-gradient(var(--painel-2),var(--painel)) padding-box,linear-gradient(140deg,var(--cor),transparent 55%,color-mix(in srgb,var(--cor) 50%,transparent)) border-box;
+  border:1px solid transparent;transition:transform .3s,box-shadow .3s}
+.destaques li:hover{transform:translateY(-3px);box-shadow:0 20px 50px -24px var(--cor)}
+.destaques .selo{align-self:flex-start;display:inline-flex;align-items:center;gap:.35rem;font:600 .68rem var(--mono);color:#03140F;background:var(--cor);padding:.25rem .55rem;border-radius:999px}
+.destaques .selo .ic-s{width:12px;height:12px}
+.destaques .ico{margin-top:.4rem;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:var(--cor);background:color-mix(in srgb,var(--cor) 12%,transparent);border:1px solid color-mix(in srgb,var(--cor) 35%,transparent)}
+.destaques .ico .ic-s{width:22px;height:22px}
+.destaques strong{font-size:1.15rem;letter-spacing:-.02em;line-height:1.25}
+.destaques p{margin:0;color:var(--texto-2);font-size:.92rem;flex:1}
+.destaques small{font:500 .74rem var(--mono);color:var(--texto-3)}
+.destaques button{all:unset;cursor:pointer;margin-top:.5rem;align-self:flex-start;display:inline-flex;align-items:center;gap:.4rem;padding:.6rem .95rem;border-radius:9px;
+  font:600 .86rem var(--sans);color:#03140F;background:var(--cor);transition:filter .2s}
+.destaques button:hover{filter:brightness(1.12)}
+.destaques button:focus-visible{outline:2px solid var(--texto);outline-offset:2px}
+.sub-titulo{margin:2rem 0 0;font:500 .78rem var(--mono);color:var(--texto-3)}
+/* serviços ligados a cada dor */
+.ligados{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.ligados button{all:unset;cursor:pointer;font:500 .78rem var(--sans);padding:.35rem .7rem;border-radius:999px;border:1px solid var(--linha-forte);color:var(--texto-2);transition:all .2s}
+.ligados button:hover{border-color:var(--menta);color:var(--menta)}
+/* botão flutuante */
+.flutua{position:fixed;right:1rem;bottom:1rem;z-index:30;display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.1rem;border-radius:999px;text-decoration:none;
+  font:600 .9rem var(--sans);color:#03140F;background:var(--menta);box-shadow:0 12px 34px -10px rgba(43,217,168,.8);
+  opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .35s,transform .35s}
+.flutua.ve{opacity:1;transform:none;pointer-events:auto;animation:respira 4.5s ease-in-out infinite}
+.flutua .ic-s{width:17px;height:17px}
+@media (max-width:30rem){.flutua{left:1rem;right:1rem;justify-content:center}}
 
 /* catálogo de serviços */
 .busca{display:flex;align-items:center;gap:.7rem;background:var(--painel);border:1px solid var(--linha-forte);border-radius:14px;padding:.2rem .3rem .2rem 1rem;transition:border-color .2s,box-shadow .2s}
@@ -337,12 +374,10 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
   <div class="envelope">
     <a class="marca" href="#inicio"><img src="img/foto.jpg" alt=""><span>Leo Magalhães</span></a>
     <nav aria-label="Seções">
-      <a href="#operacao">Ao vivo</a>
-      <a class="opcional" href="#semana">Semana</a>
       <a href="#dores">Soluções</a>
       <a href="#servicos">Serviços</a>
-      <a class="opcional" href="#diario">Diário</a>
-      <a href="#contato">Contato</a>
+      <a class="opcional" href="#operacao">Ao vivo</a>
+      <a href="#pedido">Pedido</a>
     </nav>
     <span class="relogio" id="relogio" aria-hidden="true">SSA --:--:--</span>
   </div>
@@ -363,8 +398,8 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
         <h1>Eu construo sistemas que <span class="troca"><span id="troca">trabalham sozinhos.</span><span class="cursor" aria-hidden="true"></span></span></h1>
         <p class="lead">Automações, aplicativos web e ferramentas com IA, e projetos no mercado digital: canais, produtos e campanhas. O que está rodando aparece aqui ao vivo.</p>
         <div class="acoes">
-          <a class="botao cheio" href="#dores">Resolver um problema</a>
-          <a class="botao" href="#operacao">Ver ao vivo</a>
+          <a class="botao cheio" href="#servicos">Ver serviços</a>
+          <a class="botao" href="#dores">Qual é o seu problema?</a>
           <a class="botao" href="https://github.com/leomagalhaesti">GitHub ↗</a>
         </div>
       </div>
@@ -381,37 +416,6 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
       <div class="vivo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><strong id="n-codigo">--</strong><span>Desde a última linha de código</span></div>
     </div>
 
-    <section class="secao" id="operacao">
-      <header class="surge">
-        <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Em operação agora</span>
-          <h2>O que está rodando neste momento</h2>
-          <p>Conferido direto no servidor a cada minuto. Sem nomes nem perfis: só o tipo de sistema e se está de pé.</p>
-        </div>
-        <span class="resumo-vivo" id="op-resumo">verificando o servidor…</span>
-      </header>
-      <ul class="op-lista" id="op-lista"></ul>
-    </section>
-
-    <section class="secao" id="semana">
-      <header class="surge">
-        <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Toda semana no Instagram</span>
-          <h2>Um assunto por dia</h2>
-          <p>Um assunto por dia, explicado para quem não é da área. Pergunta nos comentários que eu respondo.</p>
-        </div>
-        <a class="resumo-vivo" href="https://www.instagram.com/leomagalhaes.ti/" style="text-decoration:none"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7h.01"/></svg> <b>@leomagalhaes.ti</b> ↗</a>
-      </header>
-      <ul class="semana surge" style="padding:0;margin:0">
-        <li class="luz" data-dia="0" style="--cor:#2BD9A8"><span class="dia">Segunda</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div><strong>IA na prática</strong><span class="d">Como as ferramentas funcionam por dentro</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="1" style="--cor:#FF4D6D"><span class="dia">Terça</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><strong>Segurança digital</strong><span class="d">Golpes, senhas e como se proteger</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="2" style="--cor:#F5B700"><span class="dia">Quarta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><strong>Em construção</strong><span class="d">O que eu construí na semana</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="3" style="--cor:#3D8BFF"><span class="dia">Quinta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727"/></svg></div><strong>Tecnologia e cripto</strong><span class="d">O mercado e como funciona por dentro</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="4" style="--cor:#B79CFF"><span class="dia">Sexta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="13" rx="10" ry="3.2"/><path d="M6.8 12.2a5.2 5.2 0 0 1 10.4 0"/><path d="M9 17.5l-1.5 3.5M15 17.5l1.5 3.5"/></svg></div><strong>Fora da Terra</strong><span class="d">Astronomia e vida fora daqui, com fonte</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-        <li class="luz" data-dia="5" style="--cor:#8B5CF6"><span class="dia">Fim de semana</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8.5" width="20" height="4" rx="1"/><rect x="9.5" y="7" width="5" height="7" rx="1.2"/><path d="M10.6 14l-2 7M13.4 14l2 7"/></svg></div><strong>Tatame e mar</strong><span class="d">Foto real, jiu-jitsu ou folga</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
-      </ul>
-    </section>
-
     <section class="secao" id="dores">
       <header class="surge">
         <div>
@@ -424,6 +428,7 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
         <ul class="frases" id="frases" role="tablist" aria-label="Problemas comuns"></ul>
         <div class="cura" id="cura" role="tabpanel" aria-live="polite"></div>
       </div>
+      <a class="ponte surge" href="#servicos"><span>Reconheceu alguma? Isso é só uma parte do que dá pra resolver.</span><b>Ver todos os serviços ↓</b></a>
     </section>
 
     <section class="secao" id="servicos">
@@ -438,6 +443,8 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
         <label class="busca"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="busca" type="search" placeholder="Ex.: bot, agenda, página de vendas, relatório…" aria-label="Procurar serviço" autocomplete="off"><output id="busca-conta">34 serviços</output></label>
         <div class="chips" id="chips" role="group" aria-label="Categorias"></div>
       </div>
+      <ul class="destaques surge" id="destaques"></ul>
+      <p class="sub-titulo surge">Todos os serviços, por área</p>
       <div class="catalogo" id="catalogo" aria-live="polite"></div>
 
       <div class="pedido surge" id="pedido">
@@ -462,6 +469,7 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
           <div class="resposta" id="pedido-resposta" role="status" hidden></div>
         </form>
       </div>
+      <a class="ponte surge" href="#como"><span>Escolheu? Veja como funciona da primeira conversa até o sistema rodando.</span><b>Como a gente trabalha ↓</b></a>
     </section>
 
     <section class="secao" id="como">
@@ -476,6 +484,39 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
         <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Eu desenho e construo</h3><p>Você vê a solução tomando forma, com prévias no caminho, antes de ir pro ar.</p><small>Em etapas curtas</small></li>
         <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><h3>Roda e você acompanha</h3><p>O sistema trabalha todo dia e te avisa no celular. Igual ao que está rodando nesta página.</p><small>Com acompanhamento</small></li>
       </ol>
+      <a class="ponte surge" href="#operacao"><span>Não precisa acreditar só no texto. Tudo isso já está rodando agora.</span><b>Ver ao vivo ↓</b></a>
+    </section>
+
+    <section class="secao" id="operacao">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Em operação agora</span>
+          <h2>O que está rodando neste momento</h2>
+          <p>Conferido direto no servidor a cada minuto. Sem nomes nem perfis: só o tipo de sistema e se está de pé.</p>
+        </div>
+        <span class="resumo-vivo" id="op-resumo">verificando o servidor…</span>
+      </header>
+      <ul class="op-lista" id="op-lista"></ul>
+      <a class="ponte surge" href="#pedido"><span>O seu sistema pode ser o próximo a aparecer aqui.</span><b>Fazer meu pedido ↑</b></a>
+    </section>
+
+    <section class="secao" id="semana">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Toda semana no Instagram</span>
+          <h2>Um assunto por dia</h2>
+          <p>Um assunto por dia, explicado para quem não é da área. Pergunta nos comentários que eu respondo.</p>
+        </div>
+        <a class="resumo-vivo" href="https://www.instagram.com/leomagalhaes.ti/" style="text-decoration:none"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7h.01"/></svg> <b>@leomagalhaes.ti</b> ↗</a>
+      </header>
+      <ul class="semana surge" style="padding:0;margin:0">
+        <li class="luz" data-dia="0" style="--cor:#2BD9A8"><span class="dia">Segunda</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div><strong>IA na prática</strong><span class="d">Como as ferramentas funcionam por dentro</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="1" style="--cor:#FF4D6D"><span class="dia">Terça</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><strong>Segurança digital</strong><span class="d">Golpes, senhas e como se proteger</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="2" style="--cor:#F5B700"><span class="dia">Quarta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><strong>Em construção</strong><span class="d">O que eu construí na semana</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="3" style="--cor:#3D8BFF"><span class="dia">Quinta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727"/></svg></div><strong>Tecnologia e cripto</strong><span class="d">O mercado e como funciona por dentro</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="4" style="--cor:#B79CFF"><span class="dia">Sexta</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="13" rx="10" ry="3.2"/><path d="M6.8 12.2a5.2 5.2 0 0 1 10.4 0"/><path d="M9 17.5l-1.5 3.5M15 17.5l1.5 3.5"/></svg></div><strong>Fora da Terra</strong><span class="d">Astronomia e vida fora daqui, com fonte</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+        <li class="luz" data-dia="5" style="--cor:#8B5CF6"><span class="dia">Fim de semana</span><div class="ico"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8.5" width="20" height="4" rx="1"/><rect x="9.5" y="7" width="5" height="7" rx="1.2"/><path d="M10.6 14l-2 7M13.4 14l2 7"/></svg></div><strong>Tatame e mar</strong><span class="d">Foto real, jiu-jitsu ou folga</span><svg class="onda" viewBox="0 0 44 6" aria-hidden="true"><path d="M1 3q5-3 10.5 0t10.5 0 10.5 0 10.5 0"/></svg></li>
+      </ul>
     </section>
 
     <section class="secao" id="diario">
@@ -489,7 +530,7 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
       <p class="nota" id="fonte-diario"></p>
     </section>
 
-    <section class="secao">
+    <section class="secao" id="fora">
       <header class="surge">
         <div>
           <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Fora do código</span>
@@ -542,6 +583,7 @@ h1 .cursor{display:inline-block;width:.07em;height:.85em;margin-left:.06em;backg
     </footer>
   </div>
 </main>
+<a class="flutua" id="flutua" href="#pedido"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Fazer um pedido</a>
 
 <script>
 /* ====== DIÁRIO: acrescente uma linha a cada avanço ====== */
@@ -557,19 +599,19 @@ const REPOS = { "Postengine-ai": ["01", "PostEngineAI"], "trackpoint": ["02", "T
 const DORES = [
   { frase: "Eu sei que preciso postar todo dia, mas a semana acaba antes.", custa: ["Perfil parado passa a impressão de empresa parada", "O concorrente aparece todo dia e você some", "Cada post vira uma tarefa de horas"],
     titulo: "Conteúdo que sai no horário, todo dia", como: ["Tema escolhido pelo que está em alta no seu nicho", "Texto e arte prontos na identidade da sua marca", "Você aprova com um toque no celular"],
-    prova: "Meu LinkedIn e meu Instagram funcionam assim agora.", rede: ["LinkedIn", "Instagram"] },
+    prova: "Meu LinkedIn e meu Instagram funcionam assim agora.", cat: "conteudo", ligados: ["Posts diários com aprovação no celular", "Radar de tendências do seu nicho", "Cortes e Reels a partir de vídeo longo"], rede: ["LinkedIn", "Instagram"] },
   { frase: "Cliente manda mensagem e eu demoro pra responder.", custa: ["Quem espera muito compra de quem respondeu primeiro", "Pedido perdido no meio das conversas", "Você vira refém do celular"],
     titulo: "WhatsApp que avisa e responde na hora certa", como: ["Mensagens importantes separadas por assunto", "Confirmações e lembretes saem sozinhos", "Você só entra no que precisa de você"],
-    prova: "Todos os meus sistemas falam comigo pelo WhatsApp.", rede: ["WhatsApp"] },
+    prova: "Todos os meus sistemas falam comigo pelo WhatsApp.", cat: "bots", ligados: ["Bot de WhatsApp com menu", "Agendamento com lembrete", "Triagem de contatos"], rede: ["WhatsApp"] },
   { frase: "Eu não sei o que saiu, o que voltou e com quem está.", custa: ["Equipamento some e ninguém sabe desde quando", "Prejuízo que só aparece no fim do mês", "Planilha que ninguém atualiza"],
     titulo: "Controle na palma da mão, com QR Code", como: ["Saída e volta conferidas pela câmera do celular", "Agenda do que está fora e com quem", "Resumo do dia pronto em PDF"],
-    prova: "Um sistema assim está em piloto agora.", rede: [] },
+    prova: "Um sistema assim está em piloto agora.", cat: "sistemas", ligados: ["Controle com QR Code", "Painel administrativo sob medida", "Orçamentos e PDFs automáticos"], rede: [] },
   { frase: "Tenho um produto bom, mas ele não vende.", custa: ["Anúncio que gasta e não traz retorno", "Página que ninguém lê até o fim", "Você não sabe onde as pessoas desistem"],
     titulo: "Funil com página, campanha e números à vista", como: ["Pesquisa do que já vende no seu nicho antes de investir", "Página e oferta feitas para converter", "Resultado acompanhado todo dia, sem achismo"],
-    prova: "Tenho produtos e campanhas no ar com esse método.", rede: [] },
+    prova: "Tenho produtos e campanhas no ar com esse método.", cat: "vendas", ligados: ["Página de vendas", "Funil com e-mails automáticos", "Garimpo de anúncios que vendem"], rede: [] },
   { frase: "Eu só descubro que algo parou quando o cliente reclama.", custa: ["Site fora do ar sem ninguém perceber", "Sistema travado no fim de semana", "Decisão tomada no escuro"],
     titulo: "Painel ao vivo e alerta antes do problema", como: ["O que importa numa tela só", "Alerta no celular quando algo cai", "Histórico pra saber o que aconteceu"],
-    prova: "Esta página mostra meus sistemas ao vivo. Role pra cima e confira.", rede: [] }
+    prova: "Esta página mostra meus sistemas ao vivo. Role pra cima e confira.", cat: "seguranca", ligados: ["Site e sistemas vigiados 24h", "Alertas fora do normal", "Backup automático"], rede: [] }
 ];
 const FRASES = ["trabalham sozinhos.", "vendem no digital.", "fazem negócios crescerem.", "não esquecem nada."];
 /* ======================================================= */
@@ -729,14 +771,19 @@ function mostrarDor(i, porClique) {
     b.setAttribute("aria-selected", k === i); b.tabIndex = k === i ? 0 : -1;
     const t = b.querySelector(".tempo"); t.classList.remove("anda"); void t.offsetWidth; if (k === i && dorAuto) t.classList.add("anda");
   });
-  const d = DORES[i], assunto = encodeURIComponent("Quero resolver: " + d.frase);
+  const d = DORES[i];
   const li = (arr, ic) => arr.map((x, k) => `<li style="animation-delay:${.08 * k + .1}s">${ic}<span>${x}</span></li>`).join("");
   $("cura").innerHTML = `
     <div class="bloco custo"><span class="rotulo">${X}O que isso está custando</span><ul>${li(d.custa, X)}</ul></div>
     <div class="seta">quando está resolvido</div>
     <div class="bloco depois"><span class="rotulo">${OK}Como fica</span><h3>${d.titulo}</h3><ul>${li(d.como, OK)}</ul></div>
+    <div class="bloco"><span class="rotulo">${OK}Serviços que resolvem</span><div class="ligados">${d.ligados.map(n => `<button type="button" data-servico="${n}">${n}</button>`).join("")}</div></div>
     <div class="prova"><i></i><span><b>Já roda:</b> ${d.prova}</span></div>
-    <a class="botao cheio" href="mailto:leomagalhaes.ti@gmail.com?subject=${assunto}">Quero resolver isso →</a>`;
+    <div class="acoes" style="margin-top:1.3rem"><button class="botao cheio" type="button" id="dor-pedido" style="margin:0">Quero resolver isso →</button>
+    <button class="botao" type="button" id="dor-cat" style="margin:0">Ver serviços dessa área</button></div>`;
+  $("cura").querySelectorAll("[data-servico]").forEach(b => b.addEventListener("click", () => escolherServico(b.dataset.servico)));
+  $("dor-cat").addEventListener("click", () => irParaCategoria(d.cat));
+  $("dor-pedido").addEventListener("click", () => { if (!$("pedido-msg").value) $("pedido-msg").value = "“" + d.frase + "” "; escolherServico(d.titulo); });
   if (dorAuto) dorTimer = setTimeout(() => mostrarDor((dorAtual + 1) % DORES.length), 7000);
 }
 $("frases").replaceChildren(...DORES.map((d, i) => {
@@ -755,6 +802,12 @@ mostrarDor(0);
 /* catálogo: busca, categorias e "Quero este" que leva pra caixa de pedido */
 const CATALOGO = [{"id": "bots", "nome": "Bots e atendimento", "ic": "bot", "cor": "#2BD9A8", "itens": [["Bot para Telegram", "Vendas, avisos, área de membros e pagamentos dentro do Telegram."], ["Bot de WhatsApp com menu", "Responde as perguntas de sempre e chama você só quando precisa."], ["Agendamento com lembrete", "O cliente marca sozinho e recebe lembrete antes do horário."], ["Triagem de contatos", "Separa quem está curioso de quem está pronto pra comprar."], ["Assistente que conhece seu negócio", "Responde com base nos seus documentos, preços e regras."]]}, {"id": "conteudo", "nome": "Conteúdo e redes", "ic": "conteudo", "cor": "#F5B700", "itens": [["Posts diários com aprovação no celular", "Tema, texto e arte prontos; você só aprova com um toque."], ["Roteiros que se autovalidam", "Cada roteiro passa por checagem de fatos, tamanho e gancho antes de chegar a você."], ["Canal dark completo", "Roteiro, voz, edição e publicação no YouTube sem você aparecer."], ["Cortes e Reels a partir de vídeo longo", "Um vídeo vira vários cortes com legenda, no formato de cada rede."], ["Radar de tendências do seu nicho", "O que está em alta na semana, pronto pra virar pauta."]]}, {"id": "vendas", "nome": "Vendas e marketing digital", "ic": "vendas", "cor": "#FF4D6D", "itens": [["Página de vendas", "Página pensada para quem chega decidir rápido, com checkout integrado."], ["Funil com e-mails automáticos", "Quem deixa o contato recebe a sequência certa até comprar."], ["Garimpo de anúncios que vendem", "Mapeia o que já vende no seu nicho antes de você gastar com tráfego."], ["Métricas da campanha no celular", "Resumo diário do que gastou, do que voltou e do que ajustar."], ["Produto digital do zero", "Guia, kit ou curso: conteúdo, capa, página e checkout."]]}, {"id": "sistemas", "nome": "Sistemas para empresas", "ic": "sistema", "cor": "#3D8BFF", "itens": [["Controle com QR Code", "Estoque, equipamentos ou ferramentas: quem pegou, quando e o que voltou."], ["Agenda e reservas online", "Horários, salas ou serviços reservados sem troca de mensagens."], ["Painel administrativo sob medida", "Os números do seu negócio numa tela só, atualizados sozinhos."], ["Orçamentos e PDFs automáticos", "Preencheu, saiu o documento pronto, com a sua marca."], ["App que funciona no celular", "Instala pelo navegador, funciona offline e não depende de loja."]]}, {"id": "automacao", "nome": "Automação e integrações", "ic": "integra", "cor": "#B79CFF", "itens": [["Ferramentas conversando entre si", "Planilha, CRM, e-mail e WhatsApp trocando dados sem copiar e colar."], ["Relatórios que chegam sozinhos", "O resumo do dia ou da semana no seu WhatsApp ou e-mail."], ["Monitor de preços e concorrentes", "Avisa quando um preço muda ou um concorrente lança algo."], ["Planilhas que se atualizam", "Os dados entram sozinhos, sem ninguém digitar."], ["Alertas fora do normal", "Venda caiu, pedido parado, site lento: você sabe na hora."]]}, {"id": "ia", "nome": "IA aplicada", "ic": "ia", "cor": "#2BD9A8", "itens": [["Chat com IA no seu site", "Atende o visitante a qualquer hora, com as informações do seu negócio."], ["Leitura de documentos e notas", "Extrai dados de PDFs, notas fiscais e formulários pra uma planilha."], ["Classificação de mensagens", "E-mails e pedidos separados por assunto e prioridade."], ["Imagens e textos na sua identidade", "Peças geradas no padrão da sua marca, prontas pra usar."], ["Resumo diário do seu mercado", "As notícias que importam pro seu ramo, num texto curto de manhã."]]}, {"id": "seguranca", "nome": "Proteção e monitoramento", "ic": "seguro", "cor": "#FF4D6D", "itens": [["Site e sistemas vigiados 24h", "Se algo cair, você recebe o alerta antes do cliente perceber."], ["Backup automático", "Cópias diárias guardadas em outro lugar, prontas pra restaurar."], ["Revisão de segurança básica", "Senhas, acessos e pontos fracos revisados, com o que corrigir primeiro."], ["Proteção contra golpes no atendimento", "Checagens que evitam pagamento falso e perfil clonado."]]}];
 const ICONES_CAT = {"bot": "<rect x=\"4\" y=\"8\" width=\"16\" height=\"12\" rx=\"3\"/><path d=\"M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5\"/><circle cx=\"12\" cy=\"3\" r=\"1\"/>", "conteudo": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\"/><path d=\"M3 9h18M9 21V9\"/>", "vendas": "<path d=\"M3 3v18h18\"/><path d=\"M7 15l4-4 3 3 6-7\"/><path d=\"M16 7h4v4\"/>", "sistema": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/>", "integra": "<circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"18\" cy=\"18\" r=\"3\"/><path d=\"M9 6h5a4 4 0 0 1 4 4v5M15 18h-5a4 4 0 0 1-4-4V9\"/>", "ia": "<rect x=\"4\" y=\"4\" width=\"16\" height=\"16\" rx=\"2\"/><rect x=\"9\" y=\"9\" width=\"6\" height=\"6\" rx=\"1\"/><path d=\"M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2\"/>", "seguro": "<path d=\"M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z\"/><path d=\"M9 12l2 2 4-4\"/>"};
+const DESTAQUES = [
+  { nome: "Bot de WhatsApp com menu", cat: "bots", porque: "Responde na hora e não deixa cliente esperando." },
+  { nome: "Página de vendas", cat: "vendas", porque: "Quem chega decide rápido e compra no mesmo lugar." },
+  { nome: "Posts diários com aprovação no celular", cat: "conteudo", porque: "Sua marca aparece todo dia sem tomar o seu dia." },
+  { nome: "Painel administrativo sob medida", cat: "sistemas", porque: "Os números do negócio numa tela, sempre atualizados." }
+];
 const PEDIDO_URL = "https://painel.leomagalhaes.tech/leo/pedido";
 let categoria = "tudo";
 const semAcento = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -793,6 +846,8 @@ function montarCatalogo() {
     });
     g.append(ul); return g;
   }).filter(Boolean);
+  $("destaques").hidden = categoria !== "tudo" || !!termo;
+  document.querySelector(".sub-titulo").hidden = categoria !== "tudo" || !!termo;
   $("busca-conta").textContent = achados + (achados === 1 ? " serviço" : " serviços");
   if (!grupos.length) {
     const v = el("div", "vazio");
@@ -812,6 +867,26 @@ function escolherServico(nome) {
 $("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
 $("busca").addEventListener("input", montarCatalogo);
 montarChips(); montarCatalogo();
+$("destaques").replaceChildren(...DESTAQUES.map(d => {
+  const c = CATALOGO.find(x => x.id === d.cat);
+  const li = el("li"); li.style.setProperty("--cor", c.cor);
+  li.innerHTML = `<span class="selo">${SVG('<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>')}Mais procurado</span><span class="ico">${SVG(ICONES_CAT[c.ic])}</span>
+    <strong>${escapa(d.nome)}</strong><p>${escapa(d.porque)}</p>`;
+  const b = el("button"); b.type = "button"; b.innerHTML = "Quero este →";
+  b.addEventListener("click", () => escolherServico(d.nome)); li.append(b);
+  return li;
+}));
+/* dores levam aos serviços: categoria certa no catálogo e pedido já preenchido */
+function irParaCategoria(id) { categoria = id; $("busca").value = ""; montarChips(); montarCatalogo(); $("servicos").scrollIntoView({ behavior: calmo ? "auto" : "smooth" }); }
+/* botão flutuante: aparece depois do topo, some quando a caixa de pedido ou o contato estão na tela */
+(function () {
+  const f = $("flutua"); let passouTopo = false, alvoNaTela = false;
+  const atualiza = () => f.classList.toggle("ve", passouTopo && !alvoNaTela);
+  new IntersectionObserver(([e]) => { passouTopo = !e.isIntersecting; atualiza(); }).observe(document.querySelector(".topo"));
+  const vistos = new Set();
+  const io2 = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? vistos.add(e.target) : vistos.delete(e.target)); alvoNaTela = vistos.size > 0; atualiza(); }, { threshold: .2 });
+  ["pedido", "contato"].forEach(id => io2.observe($(id)));
+})();
 function exemplosVivos(campo, frases) {
   if (calmo) return;
   let i = 0, n = 0, apagando = false, parado = false;
