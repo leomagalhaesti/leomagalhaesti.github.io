@@ -594,7 +594,7 @@ h1 .troca{font-size:1.06em;line-height:1}
         <ul class="garantias"><li>Resposta na hora</li><li>Orçamento sem compromisso</li><li>Sem cadastro</li></ul>
       </div>
       <div class="pedido hero-nina" id="pedido">
-        <div class="hero-nina-cab"><span class="rotulo">Fale com a Nina, ela responde na hora</span><span class="disponivel" id="disponivel"><i></i><span>Respondo assim que eu ver</span></span></div>
+        <div class="hero-nina-cab"><span class="rotulo">Fale com a Nina, ela responde na hora</span><span class="disponivel on" id="disponivel"><i></i><span>Online agora · responde na hora</span></span></div>
         <div class="pedido-dir" style="min-width:0">
         <div class="nina" id="nina">
           <header class="nina-cab"><span class="nina-av" id="nina-av" title="Faz carinho nela" role="button" tabindex="0"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg></span><div><strong>Nina</strong><small><i></i><span id="nina-status">Assistente do Leo · responde na hora</span></small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
@@ -843,8 +843,6 @@ async function mostrarVisto(primeira) {
   const seguidas = online && inicio && Date.now() - inicio >= 10 * 3600e3 ? duracao((Date.now() - inicio) / 1000) : null;   /* só a partir de 10 h */
   $("visto-texto").textContent = online ? "Codando agora" + (seguidas ? " · " + seguidas + " seguidas" : "") : "Offline · último código há " + txt;
   $("quem").classList.toggle("online", online);
-  $("disponivel").classList.toggle("on", online);
-  $("disponivel").lastChild.textContent = online ? "Online agora · respondo rápido" : "Respondo assim que eu ver";
   if (primeira) registrar("Leo", online ? "Online · codando" + (projeto ? " no " + projeto : "") + (seguidas ? " há " + seguidas + " seguidas" : "") : "Offline · último código há " + txt, "", online);
 }
 mostrarVisto(true);
