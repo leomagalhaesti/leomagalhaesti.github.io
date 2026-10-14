@@ -403,6 +403,21 @@ h1 .troca{font-size:1.06em;line-height:1}
 .nina-cartao figcaption{font:700 1.05rem var(--display)}
 .nina-cartao small{display:block;font:400 .8rem var(--sans);color:var(--texto-3)}
 #falar .pedido{margin-top:0}
+/* enxuto: Nina no topo, serviços dentro do "Monte sua solução" */
+.pedido.hero-nina{display:block;margin:0;padding:0;border:0;border-radius:0;background:none;animation:none;min-width:0}
+.hero-nina-cab{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.7rem}
+.hero-nina-cab .rotulo{color:var(--menta-2)}
+.hero-nina .disponivel{margin-top:0}
+.hero-nina .nina{box-shadow:0 30px 80px -30px rgba(43,217,168,.35)}
+.hero-nina .nina-msgs{height:19rem}
+.todos{margin-top:1.2rem;border:1px solid var(--linha);border-radius:16px;background:var(--painel)}
+.todos summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.2rem;color:var(--texto-2)}
+.todos summary::-webkit-details-marker{display:none}
+.todos summary b{color:var(--menta);font-weight:600}
+.todos summary i{font:500 1.4rem/1 var(--mono);font-style:normal;color:var(--menta);transition:transform .2s}
+.todos[open] summary i{transform:rotate(45deg)}
+.todos[open]{padding-bottom:1rem}
+.todos .busca,.todos .vitrine{margin-inline:1rem}
 /* botão flutuante */
 .flutua{position:fixed;right:1rem;bottom:1rem;z-index:30;display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.1rem;border-radius:999px;text-decoration:none;
   font:600 .9rem var(--sans);color:#03140F;background:var(--menta);box-shadow:0 12px 34px -10px rgba(43,217,168,.8);
@@ -554,7 +569,6 @@ h1 .troca{font-size:1.06em;line-height:1}
     <a class="marca" href="#inicio"><img src="img/foto.jpg" alt=""><span>Leo Magalhães</span></a>
     <nav aria-label="Seções">
       <a href="#dores">Monte sua solução</a>
-      <a class="opcional" href="#servicos">Serviços</a>
       <a class="opcional" href="#trabalhos">Trabalhos</a>
       <a class="opcional" href="#duvidas">Dúvidas</a>
     </nav>
@@ -575,16 +589,32 @@ h1 .troca{font-size:1.06em;line-height:1}
           </div>
         </div>
         <h1>Eu construo sistemas que <span class="troca serif"><span id="troca">trabalham sozinhos.</span><span class="cursor" aria-hidden="true"></span></span></h1>
-        <p class="lead">Bots de atendimento, automações, sistemas e páginas que vendem, para o seu negócio parar de depender de você em tudo. O que já está rodando aparece aqui ao vivo.</p>
-        <form class="rapido" id="rapido">
-          <input id="rapido-txt" maxlength="300" placeholder="Me conta em uma frase o que você quer resolver" aria-label="O que você quer resolver">
-          <button class="botao cheio" type="submit">Começar →</button>
-        </form>
+        <p class="lead">Bots de atendimento, automações, sistemas e páginas que vendem, para o seu negócio parar de depender de você em tudo.</p>
         <ul class="garantias"><li>Resposta na hora</li><li>Orçamento sem compromisso</li><li>Sem cadastro</li></ul>
       </div>
-      <div class="console" aria-label="Registro ao vivo dos sistemas">
-        <header><i></i><i></i><i></i><span><span class="vivo">Ao vivo</span> · leo@servidor</span></header>
-        <ol class="log" id="log" aria-live="off"></ol>
+      <div class="pedido hero-nina" id="pedido">
+        <div class="hero-nina-cab"><span class="rotulo">Fale com a Nina, ela responde na hora</span><span class="disponivel" id="disponivel"><i></i><span>Respondo assim que eu ver</span></span></div>
+        <div class="pedido-dir" style="min-width:0">
+        <div class="nina" id="nina">
+          <header class="nina-cab"><span class="nina-av" id="nina-av" title="Faz carinho nela" role="button" tabindex="0"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg></span><div><strong>Nina</strong><small><i></i><span id="nina-status">Assistente do Leo · responde na hora</span></small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
+          <ol class="nina-msgs" id="nina-msgs" aria-live="polite"></ol>
+          <form class="nina-escreve" id="nina-form"><input id="nina-txt" maxlength="600" autocomplete="off" placeholder="Escreva aqui…" aria-label="Mensagem para a Nina"><button class="botao cheio" type="submit" id="nina-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
+        </div>
+        <form id="form-pedido" novalidate hidden>
+          <span class="selo-servico" id="selo-servico"><span id="selo-texto"></span><button type="button" id="selo-tira" aria-label="Tirar o serviço escolhido">✕</button></span>
+          <div class="linha2">
+            <label>Seu nome<input name="nome" autocomplete="name" maxlength="80" placeholder="Como posso te chamar?"></label>
+            <label>WhatsApp ou e-mail *<input name="contato" required maxlength="120" placeholder="Pra eu te responder"></label>
+          </div>
+          <label>O que você precisa? *<textarea name="mensagem" id="pedido-msg" required maxlength="1500" placeholder="Ex.: tenho uma loja e queria que os pedidos do site caíssem numa planilha e me avisassem no WhatsApp."></textarea></label>
+          <span class="isca" aria-hidden="true"><label>Não preencha<input name="site_url" tabindex="-1" autocomplete="off"></label></span>
+          <div class="envia">
+            <button class="botao cheio" type="submit" id="pedido-btn"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Enviar pedido</button>
+            <small>Seus dados servem só pra eu te responder.</small>
+          </div>
+          <div class="resposta" id="pedido-resposta" role="status" hidden></div>
+        </form>
+        </div>
       </div>
     </section>
 
@@ -612,25 +642,16 @@ h1 .troca{font-size:1.06em;line-height:1}
         <ul class="frases" id="frases" role="tablist" aria-label="Problemas comuns"></ul></div>
         <div class="cura" id="cura" role="tabpanel" aria-live="polite"></div>
       </div>
-    </section>
-
-    <section class="secao" id="servicos">
-      <header class="surge">
-        <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Serviços</span>
-          <h2>O que eu posso construir pra você</h2>
-          <p>Escolha uma área ou procure pelo nome. Toque no serviço e o pedido já sai preenchido.</p>
-        </div>
-      </header>
-      <div class="surge">
+      <details class="todos" id="servicos">
+        <summary><span>Não achou o seu caso? <b>Ver todos os 34 serviços</b></span><i aria-hidden="true">+</i></summary>
         <label class="busca"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="busca" type="search" placeholder="Ex.: bot, agenda, página de vendas, relatório…" aria-label="Procurar serviço" autocomplete="off"><output id="busca-conta">34 serviços</output></label>
-      </div>
-      <div class="vitrine surge">
+      <div class="vitrine">
         <div class="areas" id="areas" role="tablist" aria-label="Áreas"></div>
         <div class="lista" id="catalogo" role="tabpanel" aria-live="polite"></div>
       </div>
-
+      </details>
     </section>
+
 
     <section class="secao" id="trabalhos">
       <header class="surge">
@@ -675,23 +696,11 @@ h1 .troca{font-size:1.06em;line-height:1}
       </div>
     </section>
 
-    <section class="secao" id="como">
-      <header class="surge">
-        <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Como a gente trabalha</span>
-          <h2>Da conversa ao sistema rodando</h2>
-        </div>
-      </header>
-      <ol class="passos surge">
-        <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></div><h3>Você me conta o problema</h3><p>Uma conversa curta sobre o que trava o seu dia e onde está o prejuízo.</p><small>Sem formulário</small></li>
-        <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Eu desenho e construo</h3><p>Você vê a solução tomando forma, com prévias no caminho, antes de ir pro ar.</p><small>Em etapas curtas</small></li>
-        <li><div class="n"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><h3>Roda e você acompanha</h3><p>O sistema trabalha todo dia e te avisa no celular. Igual ao que está rodando nesta página.</p><small>Com acompanhamento</small></li>
-      </ol>
-    </section>
 
     <section class="secao" id="duvidas">
       <header class="surge"><div><span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg>Dúvidas</span><h2>Antes de você perguntar</h2></div></header>
       <div class="faq surge">
+        <details open><summary>Como funciona?</summary><p>Você conta o problema pra Nina ou monta a sua solução aqui em cima. Eu desenho e construo, com prévias no caminho. Depois o sistema roda sozinho e te avisa no celular.</p></details>
         <details><summary>Quanto custa?</summary><p>Depende do que você precisa. Para ter uma ideia: automações a partir de R$ 500, bots a partir de R$ 800, páginas de vendas a partir de R$ 900 e sistemas sob medida a partir de R$ 2.500. A Nina te passa o valor de partida do seu caso na hora, e eu confirmo o valor final na proposta.</p></details>
         <details><summary>Quanto tempo leva?</summary><p>Depende do tamanho. Você acompanha prévias no caminho, em etapas curtas, e o prazo vem confirmado junto com a proposta.</p></details>
         <details><summary>Preciso entender de tecnologia?</summary><p>Não. Você usa pelo celular, recebe os avisos no WhatsApp e aprova com um toque. A parte técnica fica comigo.</p></details>
@@ -701,38 +710,6 @@ h1 .troca{font-size:1.06em;line-height:1}
       <button class="botao cheio faq-cta surge" type="button" data-nina="1">Ainda com dúvida? Pergunta pra Nina →</button>
     </section>
 
-    <section class="secao" id="falar">
-      <div class="pedido surge" id="pedido">
-        <div>
-          <span class="rotulo"><svg class="pata" style="color:var(--menta)" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="10" r="2.1"/><circle cx="10" cy="5.8" r="2.1"/><circle cx="14" cy="5.8" r="2.1"/><circle cx="17.5" cy="10" r="2.1"/><path d="M12 11.5c-3.1 0-5.6 3.2-5.6 5.5 0 1.7 1.3 2.5 2.8 2.5 1.2 0 1.8-.6 2.8-.6s1.6.6 2.8.6c1.5 0 2.8-.8 2.8-2.5 0-2.3-2.5-5.5-5.6-5.5z"/></svg>Atendimento</span>
-          <h3>Fala com a Nina. <em class="serif">Ela responde na hora.</em></h3>
-          <p>A Nina é a minha buldogue e cuida do atendimento aqui: entende o que você precisa, fala de valores e me passa tudo no WhatsApp. O resto é comigo.</p>
-          <figure class="nina-cartao"><img src="img/nina.jpg" alt="A Nina, buldogue francesa do Leo" loading="lazy"><figcaption>Essa é a Nina 🐾<small>buldogue francesa, chefe do atendimento</small></figcaption></figure>
-          <span class="disponivel" id="disponivel"><i></i><span>Respondo assim que eu ver</span></span>
-        </div>
-        <div class="pedido-dir" style="min-width:0">
-        <div class="nina" id="nina">
-          <header class="nina-cab"><span class="nina-av" id="nina-av" title="Faz carinho nela" role="button" tabindex="0"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg></span><div><strong>Nina</strong><small><i></i><span id="nina-status">Assistente do Leo · responde na hora</span></small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
-          <ol class="nina-msgs" id="nina-msgs" aria-live="polite"></ol>
-          <form class="nina-escreve" id="nina-form"><input id="nina-txt" maxlength="600" autocomplete="off" placeholder="Escreva aqui…" aria-label="Mensagem para a Nina"><button class="botao cheio" type="submit" id="nina-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
-        </div>
-        <form id="form-pedido" novalidate hidden>
-          <span class="selo-servico" id="selo-servico"><span id="selo-texto"></span><button type="button" id="selo-tira" aria-label="Tirar o serviço escolhido">✕</button></span>
-          <div class="linha2">
-            <label>Seu nome<input name="nome" autocomplete="name" maxlength="80" placeholder="Como posso te chamar?"></label>
-            <label>WhatsApp ou e-mail *<input name="contato" required maxlength="120" placeholder="Pra eu te responder"></label>
-          </div>
-          <label>O que você precisa? *<textarea name="mensagem" id="pedido-msg" required maxlength="1500" placeholder="Ex.: tenho uma loja e queria que os pedidos do site caíssem numa planilha e me avisassem no WhatsApp."></textarea></label>
-          <span class="isca" aria-hidden="true"><label>Não preencha<input name="site_url" tabindex="-1" autocomplete="off"></label></span>
-          <div class="envia">
-            <button class="botao cheio" type="submit" id="pedido-btn"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>Enviar pedido</button>
-            <small>Seus dados servem só pra eu te responder.</small>
-          </div>
-          <div class="resposta" id="pedido-resposta" role="status" hidden></div>
-        </form>
-        </div>
-      </div>
-    </section>
 
     <footer class="rodape">
       <span>© 2026 Leo Magalhães · Salvador, BA · <a href="mailto:leomagalhaes.ti@gmail.com">leomagalhaes.ti@gmail.com</a></span>
@@ -805,7 +782,7 @@ const hora = (d = new Date()) => d.toLocaleTimeString("pt-BR", { timeZone: "Amer
 /* console: fila de linhas reais, uma de cada vez */
 const fila = [];
 let escrevendo = false;
-function registrar(tag, msg, cor = "", ok = true) { fila.push({ tag, msg, cor, ok }); if (!escrevendo) proxima(); }
+function registrar(tag, msg, cor = "", ok = true) { if (!$("log")) return; fila.push({ tag, msg, cor, ok }); if (!escrevendo) proxima(); }
 async function proxima() {
   const item = fila.shift();
   if (!item) { escrevendo = false; return; }
@@ -1126,13 +1103,13 @@ new IntersectionObserver(([e], obs) => {
   obs.disconnect();
   let ja = false; try { ja = sessionStorage.getItem("nina-turbo") === "1"; sessionStorage.setItem("nina-turbo", "1"); } catch (_) {}
   if (!ja) setTimeout(() => modoTurbo("Ativou o turbo do nada ⚡"), 2500);
-}, { threshold: .5 }).observe($("nina"));
+}, { threshold: .3 }).observe($("trabalhos"));
 ninaBalao("dela", "Oi! Eu sou a Nina, a buldogue que atende aqui 🐾 Me conta: o que você quer resolver?");
 $("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
 $("busca").addEventListener("input", () => { montarAreas(); montarCatalogo(); });
 montarAreas(); montarCatalogo(); mostrarDor(0);
 /* dores levam aos serviços: categoria certa no catálogo e pedido já preenchido */
-function irParaCategoria(id, servico) { categoria = id; $("busca").value = ""; montarAreas(); montarCatalogo();
+function irParaCategoria(id, servico) { $("servicos").open = true; categoria = id; $("busca").value = ""; montarAreas(); montarCatalogo();
   if (servico) setTimeout(() => [...document.querySelectorAll("#catalogo .item")].find(b => b.textContent.includes(servico))?.focus({ preventScroll: true }), calmo ? 0 : 700); $("servicos").scrollIntoView({ behavior: calmo ? "auto" : "smooth" }); }
 /* botão flutuante: aparece depois do topo, some quando a caixa de pedido ou o contato estão na tela */
 (function () {
@@ -1164,18 +1141,11 @@ exemplosVivos($("pedido-msg"), ["Tenho uma loja e queria que os pedidos do site 
   "Quero um bot no Telegram que venda meu curso e libere o acesso sozinho.",
   "Preciso de um painel que mostre minhas vendas do dia no celular.",
   "Tenho uma ideia de app e não sei por onde começar."]);
-/* topo: a frase vira a primeira mensagem para a Nina */
-$("rapido").addEventListener("submit", e => {
-  e.preventDefault();
-  const t = $("rapido-txt").value.trim(); $("rapido-txt").value = "";
-  escolherServico(null, t);
-});
-exemplosVivos($("rapido-txt"), ["Quero parar de perder cliente no WhatsApp.", "Preciso postar todo dia sem perder o dia.", "Quero um painel com as vendas no celular.", "Tenho um produto e quero vender online."]);
 /* link direto: ?servico=nome já escolhe o serviço; ?area=id abre a área; ?para=clinica|salao|restaurante|advocacia|imobiliaria|academia|loja|online troca as frases */
 (function () {
   const q = new URLSearchParams(location.search), sv = q.get("servico"), ar = q.get("area"), pa = q.get("para");
   if (pa && PROFISSOES.some(x => x.id === pa)) { escolherPerfil(pa); setTimeout(() => $("dores").scrollIntoView(), 300); }
-  if (ar && AREAS.some(a => a.id === ar)) { categoria = ar; montarAreas(); montarCatalogo(); setTimeout(() => $("servicos").scrollIntoView(), 300); }
+  if (ar && AREAS.some(a => a.id === ar)) { $("servicos").open = true; categoria = ar; montarAreas(); montarCatalogo(); setTimeout(() => $("servicos").scrollIntoView(), 300); }
   if (sv) {
     const alvo = semAcento(sv), achou = CATALOGO.flatMap(c => c.itens).find(([n]) => semAcento(n).includes(alvo));
     setTimeout(() => escolherServico(achou ? achou[0] : sv), 300);
