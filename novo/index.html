@@ -650,6 +650,29 @@ h1 .troca{font-size:1.06em;line-height:1}
 .demo-fim{display:none;gap:.7rem;border:1px solid rgba(255,178,36,.35);background:rgba(255,178,36,.06);border-radius:16px;padding:1rem 1.1rem}
 .demo-fim.ve{display:grid;animation:entra .4s ease-out both}
 .demo-fim p{margin:0}
+/* ===== 2026-10-20: o sistema se desenhando ao lado da Nina ===== */
+.fluxo{margin-top:.8rem;border:1px solid var(--linha);border-radius:16px;background:var(--painel);padding:.85rem 1rem 1rem}
+.fluxo[hidden]{display:none}
+.fluxo-cab{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.7rem}
+.fluxo-cab .rotulo{color:var(--menta-2)}
+.fluxo-cab small{font:500 .7rem var(--mono);color:var(--texto-3)}
+.fluxo ol{list-style:none;margin:0;padding:0;display:grid}
+.fluxo li{position:relative;display:flex;align-items:center;gap:.7rem;padding:.25rem 0 .9rem;animation:no-entra .55s cubic-bezier(.2,.8,.2,1) both}
+.fluxo li:last-child{padding-bottom:0}
+.fluxo li:not(:last-child)::before{content:"";position:absolute;left:15px;top:34px;bottom:2px;width:2px;background:var(--linha-forte);transform-origin:top;animation:linha .5s ease-out both;animation-delay:inherit}
+.fluxo li:not(:last-child)::after{content:"";position:absolute;left:13px;top:34px;width:6px;height:6px;border-radius:50%;background:var(--menta-2);box-shadow:0 0 8px var(--menta);animation:dado 1.6s linear infinite}
+.fluxo .no{width:32px;height:32px;flex:none;border-radius:10px;display:grid;place-items:center;background:rgba(43,217,168,.12);border:1px solid rgba(43,217,168,.4);color:var(--menta)}
+.fluxo .no .ic-s{width:17px;height:17px}
+.fluxo li span{font-size:.9rem;line-height:1.3;color:var(--texto)}
+.fluxo li.mudou span{animation:brilha 1s ease-out}
+.fluxo-pe{margin:.8rem 0 0;font:500 .74rem var(--mono);color:var(--texto-3)}
+.fluxo.pronto{border-color:rgba(43,217,168,.45)}
+.fluxo.pronto .fluxo-pe{color:var(--menta-2)}
+@keyframes no-entra{from{opacity:0;transform:translateX(-10px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes linha{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes dado{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(calc(100% + 12px));opacity:0}}
+@keyframes brilha{0%{color:var(--menta-2)}100%{color:var(--texto)}}
+@media (prefers-reduced-motion:reduce){.fluxo li,.fluxo li::before{animation:none}.fluxo li::after{display:none}}
 </style>
 </head>
 <body>
@@ -691,6 +714,11 @@ h1 .troca{font-size:1.06em;line-height:1}
           <header class="nina-cab"><span class="nina-av" id="nina-av" title="Faz carinho nela" role="button" tabindex="0"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg></span><div><strong>Nina</strong><small><i></i><span id="nina-status">Assistente do Leo · responde na hora</span></small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
           <ol class="nina-msgs" id="nina-msgs" aria-live="polite"></ol>
           <form class="nina-escreve" id="nina-form"><input id="nina-txt" maxlength="600" autocomplete="off" placeholder="Escreva aqui…" aria-label="Mensagem para a Nina"><button class="botao cheio" type="submit" id="nina-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
+        </div>
+        <div class="fluxo" id="fluxo" hidden aria-live="polite">
+          <div class="fluxo-cab"><span class="rotulo"><i class="ponto-vivo"></i>Seu sistema, se desenhando</span><small id="fluxo-n"></small></div>
+          <ol id="fluxo-passos"></ol>
+          <p class="fluxo-pe" id="fluxo-pe">Conforme você conta, a Nina ajusta o desenho.</p>
         </div>
         <form id="form-pedido" novalidate hidden>
           <span class="selo-servico" id="selo-servico"><span id="selo-texto"></span><button type="button" id="selo-tira" aria-label="Tirar o serviço escolhido">✕</button></span>
@@ -1179,6 +1207,7 @@ async function falarNina(texto) {
     clearInterval(farejo); d.remove();
     if (!o.resposta) throw new Error("sem resposta");
     ninaHist.push({ quem: "nina", texto: o.resposta }); ninaBalao("dela", o.resposta);
+    if (o.fluxo) desenharFluxo(o.fluxo, o.fechou);
     if (r.status === 429) ninaFormulario();
     if (o.fechou) { ninaBalao("aviso", "✓ Pedido entregue ao Leo no WhatsApp"); registrar("Site", "Nina fechou um pedido", "", true); setTimeout(() => modoTurbo("Correndo avisar o Leo ⚡"), 600); }
   } catch (e) {
@@ -1472,6 +1501,41 @@ Object.entries(DEMOS).forEach(([id, d]) => { const b = el("button", "", d.rot); 
 $("cel-form").addEventListener("submit", e => { e.preventDefault(); const t = $("cel-txt").value; $("cel-txt").value = ""; demoFalar(t); });
 $("demo-quero").addEventListener("click", () => escolherServico(DEMOS[demoRamo].servico, `Testei a demonstração (${DEMOS[demoRamo].rot.toLowerCase()}) e quero um atendente assim no meu negócio.`));
 demoTrocar("clinica");
+
+/* o sistema se desenhando: a Nina devolve os passos a cada resposta; o que não mudou fica, o resto entra animado */
+const ICONES_FLUXO = {
+  mensagem: '<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/>',
+  robo: '<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 17h5"/>',
+  agenda: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/>',
+  lembrete: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M5 3 2 6M19 3l3 3"/>',
+  aviso: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/>',
+  planilha: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/>',
+  documento: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',
+  pagamento: '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>',
+  grafico: '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>',
+  site: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/>',
+  qr: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h7v-4"/>',
+  ia: '<path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
+  escudo: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+};
+function desenharFluxo(passos, pronto) {
+  const caixa = $("fluxo"), ol = $("fluxo-passos"), atuais = [...ol.children];
+  caixa.hidden = false;
+  let novos = 0;
+  passos.forEach((p, i) => {
+    const velho = atuais[i];
+    if (velho && velho.dataset.texto === p.texto) return;
+    const li = el("li"); li.dataset.texto = p.texto;
+    li.innerHTML = `<span class="no">${SVG(ICONES_FLUXO[p.icone] || ICONES_FLUXO.robo)}</span>`;
+    li.append(el("span", "", p.texto));
+    if (velho) { velho.replaceWith(li); li.classList.add("mudou"); li.style.animation = "none"; }
+    else { li.style.animationDelay = (calmo ? 0 : novos++ * 0.35) + "s"; ol.append(li); }
+  });
+  [...ol.children].slice(passos.length).forEach(li => li.remove());
+  $("fluxo-n").textContent = passos.length + " etapas · sozinho";
+  caixa.classList.toggle("pronto", !!pronto);
+  $("fluxo-pe").textContent = pronto ? "✓ Este desenho foi junto com o seu pedido pro Leo." : "Conforme você conta, a Nina ajusta o desenho.";
+}
 </script>
 </body>
 </html>
