@@ -703,6 +703,17 @@ h1 .troca{font-size:1.06em;line-height:1}
 .calc-det b{color:var(--texto);font-variant-numeric:tabular-nums}
 .calc-res .botao{align-self:flex-start;margin-top:.3rem}
 .calc-conta p{margin:.5rem 0 0;font-size:.82rem;color:var(--texto-3);line-height:1.5}
+/* ===== 2026-10-20: proposta em PDF entregue na conversa ===== */
+.nina-msgs .prop{align-self:stretch;max-width:100%;background:linear-gradient(135deg,rgba(43,217,168,.14),rgba(255,178,36,.1));border:1px solid rgba(43,217,168,.4);border-radius:14px;padding:.85rem .95rem;display:grid;gap:.55rem}
+.nina-msgs .prop b{font:700 1rem var(--display);color:var(--texto)}
+.nina-msgs .prop small{font:500 .74rem var(--mono);color:var(--texto-3)}
+.nina-msgs .prop .barra-p{height:4px;border-radius:4px;background:var(--linha-forte);overflow:hidden}
+.nina-msgs .prop .barra-p i{display:block;height:100%;width:30%;background:var(--menta);border-radius:4px;animation:carrega 1.4s ease-in-out infinite}
+.nina-msgs .prop .acoes{display:flex;flex-wrap:wrap;gap:.45rem}
+.nina-msgs .prop a{text-decoration:none;font:600 .85rem var(--sans);border-radius:9px;padding:.55rem .85rem}
+.nina-msgs .prop a.pdf{background:linear-gradient(135deg,#FFC44D,var(--cta-2));color:#1A0E00}
+.nina-msgs .prop a.viva{border:1px solid var(--linha-forte);color:var(--texto)}
+@keyframes carrega{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
 </style>
 </head>
 <body>
@@ -1249,6 +1260,7 @@ async function falarNina(texto) {
     if (!o.resposta) throw new Error("sem resposta");
     ninaHist.push({ quem: "nina", texto: o.resposta }); ninaBalao("dela", o.resposta);
     if (o.fluxo) desenharFluxo(o.fluxo, o.fechou);
+    if (o.proposta) acompanharProposta(o.proposta);
     if (r.status === 429) ninaFormulario();
     if (o.fechou) { ninaBalao("aviso", "✓ Pedido entregue ao Leo no WhatsApp"); registrar("Site", "Nina fechou um pedido", "", true); setTimeout(() => modoTurbo("Correndo avisar o Leo ⚡"), 600); }
   } catch (e) {
@@ -1603,6 +1615,25 @@ function calcular() {
 $("c-quero").addEventListener("click", () => { const { msgs, valor } = calcular();
   escolherServico("Bot de WhatsApp com menu", `Fiz a calculadora: ${msgs} clientes novos por dia, respondo em "${TEMPOS[cTempo][0].toLowerCase()}" e posso estar perdendo ${reais(valor)} por mês. Quero responder na hora.`); });
 calcular();
+
+/* proposta em PDF: o servidor monta em ~20 s depois que a Nina fecha; aqui a gente espera e entrega na conversa */
+const PROPOSTA_URL = "https://painel.leomagalhaes.tech/leo/proposta/";
+async function acompanharProposta(token) {
+  const li = el("li", "prop"); li.innerHTML = "<b>📄 Desenhando a sua proposta…</b><small>A planta do seu sistema, em PDF. Leva uns 20 segundos.</small><div class=\"barra-p\"><i></i></div>";
+  $("nina-msgs").append(li); $("nina-msgs").scrollTop = $("nina-msgs").scrollHeight;
+  for (let k = 0; k < 40; k++) {
+    await new Promise(ok => setTimeout(ok, 3000));
+    let e; try { e = await (await fetch(PROPOSTA_URL + token + ".json", { cache: "no-store" })).json(); } catch (_) { continue; }
+    if (e.status === "pronta") {
+      li.replaceChildren(el("b", "", "📄 " + (e.titulo || "Sua proposta") ), el("small", "", "5 folhas, feitas pra você a partir dessa conversa."));
+      const ac = el("div", "acoes"), pdf = el("a", "pdf", "Baixar PDF ↓"), viva = el("a", "viva", "Ver no celular →");
+      pdf.href = e.pdf; pdf.target = "_blank"; pdf.rel = "noopener"; viva.href = e.viva; viva.target = "_blank"; viva.rel = "noopener";
+      ac.append(pdf, viva); li.append(ac); $("nina-msgs").scrollTop = $("nina-msgs").scrollHeight; return;
+    }
+    if (e.status === "falhou") break;
+  }
+  li.replaceChildren(el("b", "", "📄 A proposta vai pelo WhatsApp"), el("small", "", "Deu um tropeço aqui, mas o Leo já recebeu o seu pedido e te manda junto com a conversa."));
+}
 </script>
 </body>
 </html>
