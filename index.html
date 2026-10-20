@@ -561,6 +561,94 @@ h1 .troca{font-size:1.06em;line-height:1}
   .surge{opacity:1;transform:none}
   .progresso>span i{width:var(--p)}
 }
+/* ===== 2026-10-19: Raio-X do negócio + demonstração do atendente (prévia) ===== */
+.rx{position:relative;border:1px solid var(--linha);border-radius:22px;background:linear-gradient(180deg,var(--painel),rgba(11,17,16,.6));padding:clamp(1.2rem,3vw,2rem);overflow:hidden}
+.rx-form{display:grid;gap:.7rem;grid-template-columns:1fr}
+.rx-campo{display:flex;align-items:center;gap:.6rem;border:1px solid var(--linha-forte);border-radius:14px;background:var(--fundo);padding:.35rem .35rem .35rem 1rem;transition:border-color .2s}
+.rx-campo:focus-within{border-color:var(--menta)}
+.rx-campo .ic-s{color:var(--texto-3)}
+.rx-campo input{flex:1;min-width:0;background:none;border:0;color:var(--texto);font:500 1.05rem var(--sans);padding:.7rem 0;outline:none}
+.rx-linha{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.rx-linha select{background:var(--fundo);color:var(--texto-2);border:1px solid var(--linha-forte);border-radius:10px;padding:.6rem .8rem;font:500 .88rem var(--sans);max-width:100%}
+.rx-linha small{color:var(--texto-3);font-size:.8rem}
+.rx-exemplos{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem}
+.rx-exemplos button{background:none;border:1px dashed var(--linha-forte);color:var(--texto-3);border-radius:999px;padding:.25rem .7rem;font:500 .75rem var(--mono);cursor:pointer}
+.rx-exemplos button:hover{color:var(--menta);border-color:var(--menta)}
+.rx-scan{display:grid;gap:.5rem;padding:1.2rem 0 .4rem;font:500 .85rem var(--mono);color:var(--texto-3)}
+.rx-scan li{list-style:none;display:flex;gap:.6rem;align-items:center;opacity:.35;transition:opacity .3s,color .3s}
+.rx-scan li.on{opacity:1;color:var(--texto)}
+.rx-scan li.ok{opacity:1;color:var(--menta-2)}
+.rx-scan li i{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.rx-scan li.on i{animation:pula 1s ease-in-out infinite}
+.rx.lendo::after{content:"";position:absolute;left:0;right:0;height:120px;top:-120px;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(43,217,168,.16) 70%,rgba(124,245,207,.55) 98%,transparent);animation:varre 1.8s linear infinite}
+@keyframes varre{to{top:100%}}
+.rx-res{display:grid;gap:1.1rem;padding-top:.4rem}
+.rx-total{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem 1rem}
+.rx-total strong{font:800 clamp(2.6rem,7vw,4.2rem)/1 var(--display);letter-spacing:-.04em;color:var(--menta-2);font-variant-numeric:tabular-nums}
+.rx-total span{color:var(--texto-2);max-width:26rem}
+.rx-leitura{margin:0;color:var(--texto-3);font-size:.88rem}
+.rx-leitura b{color:var(--texto-2);font-weight:600}
+.rx-achados{display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))}
+.rx-achado{border:1px solid var(--linha);border-radius:16px;background:var(--painel-2);padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.55rem;animation:entra .5s ease-out both}
+.rx-achado:nth-child(2){animation-delay:.15s}.rx-achado:nth-child(3){animation-delay:.3s}
+.rx-achado header{display:flex;justify-content:space-between;gap:.6rem;align-items:start}
+.rx-achado h3{margin:0;font:700 1.05rem/1.25 var(--display)}
+.rx-horas{flex:none;font:600 .75rem var(--mono);color:#03140F;background:var(--menta);border-radius:999px;padding:.2rem .55rem}
+.rx-achado p{margin:0;font-size:.9rem;line-height:1.45;color:var(--texto-2)}
+.rx-achado p b{display:block;font:500 .7rem var(--mono);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.1rem}
+.rx-achado .hoje b{color:var(--coral)}.rx-achado .depois b{color:var(--menta)}
+.rx-achado .caso-cta{margin-top:auto;align-self:flex-start}
+.rx-plano{display:grid;gap:.7rem;border:1px solid rgba(255,178,36,.35);background:rgba(255,178,36,.06);border-radius:16px;padding:1rem 1.1rem}
+.rx-plano p{margin:0;color:var(--texto)}
+.rx-plano form{display:flex;flex-wrap:wrap;gap:.5rem}
+.rx-plano input{flex:1 1 12rem;min-width:0;background:var(--fundo);border:1px solid var(--linha-forte);border-radius:10px;color:var(--texto);font:500 .95rem var(--sans);padding:.75rem .9rem}
+.rx-plano input:focus{outline:none;border-color:var(--cta)}
+.rx-msg{margin:0;font-size:.88rem;color:var(--texto-2)}
+.rx-msg.erro{color:var(--coral)}
+.rx-de-novo{background:none;border:0;color:var(--texto-3);font:500 .8rem var(--mono);cursor:pointer;justify-self:start;padding:0}
+.rx-de-novo:hover{color:var(--menta)}
+
+.demo{display:grid;gap:1.4rem;align-items:start}
+@media (min-width:56rem){.demo{grid-template-columns:minmax(0,24rem) 1fr;gap:2.5rem}}
+.demo-ramos{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1rem}
+.demo-ramos button{background:var(--painel);border:1px solid var(--linha-forte);color:var(--texto-2);border-radius:999px;padding:.45rem .9rem;font:500 .85rem var(--sans);cursor:pointer}
+.demo-ramos button[aria-selected="true"]{border-color:var(--menta);color:var(--texto);background:rgba(43,217,168,.12)}
+.cel{border:10px solid #121A18;border-radius:38px;background:#0B141A;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px var(--linha-forte);overflow:hidden;max-width:24rem;width:100%;margin-inline:auto}
+.cel-cab{display:flex;align-items:center;gap:.65rem;background:#1F2C33;padding:.75rem .9rem;color:#E9EDEF}
+.cel-av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:700 1rem var(--display);color:#03140F;background:var(--menta);flex:none}
+.cel-cab strong{display:block;font-size:.95rem;line-height:1.2}
+.cel-cab small{font-size:.75rem;color:#8696A0}
+.cel-msgs{list-style:none;margin:0;padding:.9rem .7rem;height:24rem;overflow-y:auto;display:flex;flex-direction:column;gap:.35rem;overscroll-behavior:contain;
+  background:#0B141A radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/18px 18px}
+.cel-msgs li{max-width:82%;padding:.45rem .65rem .35rem;border-radius:10px;font-size:.9rem;line-height:1.4;color:#E9EDEF;white-space:pre-wrap;overflow-wrap:anywhere;animation:entra .25s ease-out both;position:relative}
+.cel-msgs li small{display:block;text-align:right;font-size:.66rem;color:#8696A0;margin-top:.1rem}
+.cel-msgs .ele{align-self:flex-start;background:#202C33;border-top-left-radius:2px}
+.cel-msgs .eu{align-self:flex-end;background:#005C4B;border-top-right-radius:2px}
+.cel-msgs .eu small::after{content:" ✓✓";color:#53BDEB}
+.cel-msgs .sis{align-self:center;background:#182229;color:#8696A0;font-size:.74rem;text-align:center;max-width:92%}
+.cel-msgs .digita{display:flex;gap:.25rem;padding:.65rem .75rem}
+.cel-msgs .digita i{width:6px;height:6px;border-radius:50%;background:#8696A0;animation:pula 1s ease-in-out infinite}
+.cel-msgs .digita i:nth-child(2){animation-delay:.15s}.cel-msgs .digita i:nth-child(3){animation-delay:.3s}
+.cel-sug{display:flex;gap:.35rem;overflow-x:auto;padding:.45rem .6rem 0;background:#0B141A;scrollbar-width:none}
+.cel-sug button{flex:none;background:#1F2C33;color:#E9EDEF;border:0;border-radius:999px;padding:.35rem .7rem;font:500 .78rem var(--sans);cursor:pointer}
+.cel-escreve{display:flex;gap:.4rem;padding:.55rem;background:#0B141A}
+.cel-escreve input{flex:1;min-width:0;border:0;border-radius:999px;background:#2A3942;color:#E9EDEF;padding:.65rem .95rem;font:400 .95rem var(--sans);outline:none}
+.cel-escreve button{width:42px;height:42px;flex:none;border-radius:50%;border:0;background:#00A884;color:#fff;display:grid;place-items:center;cursor:pointer}
+.cel-escreve button:disabled{opacity:.5}
+.bastidor{display:grid;gap:1rem}
+.bastidor h3{margin:0;font:700 1.15rem var(--display)}
+.bastidor ol{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.bastidor li{display:flex;gap:.7rem;align-items:flex-start;border:1px solid var(--linha);border-radius:12px;padding:.7rem .9rem;background:var(--painel);color:var(--texto-3);transition:color .4s,border-color .4s,background .4s}
+.bastidor li .ic-s{margin-top:.15rem}
+.bastidor li b{display:block;font-weight:600;color:inherit}
+.bastidor li span{font-size:.85rem}
+.bastidor li.feito{color:var(--texto);border-color:rgba(43,217,168,.4);background:rgba(43,217,168,.07)}
+.bastidor li.feito .ic-s{color:var(--menta)}
+.bastidor .nota{font:500 .75rem var(--mono);color:var(--texto-3)}
+.demo-fim{display:none;gap:.7rem;border:1px solid rgba(255,178,36,.35);background:rgba(255,178,36,.06);border-radius:16px;padding:1rem 1.1rem}
+.demo-fim.ve{display:grid;animation:entra .4s ease-out both}
+.demo-fim p{margin:0}
 </style>
 </head>
 <body>
@@ -569,7 +657,9 @@ h1 .troca{font-size:1.06em;line-height:1}
   <div class="envelope">
     <a class="marca" href="#inicio"><img src="img/foto.jpg" alt=""><span>Leo Magalhães</span></a>
     <nav aria-label="Seções">
-      <a href="#dores">Monte sua solução</a>
+      <a href="#raiox">Raio-X grátis</a>
+      <a class="opcional" href="#teste">Teste agora</a>
+      <a class="opcional" href="#dores">Monte sua solução</a>
       <a class="opcional" href="#trabalhos">Trabalhos</a>
       <a class="opcional" href="#duvidas">Dúvidas</a>
     </nav>
@@ -629,6 +719,27 @@ h1 .troca{font-size:1.06em;line-height:1}
       </div>
     </section>
 
+    <section class="secao" id="raiox">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"/></svg>Raio-X grátis · 30 segundos</span>
+          <h2>Quanto tempo o seu negócio <em class="serif">poderia te devolver?</em></h2>
+          <p>Cole o @ do Instagram ou o site. A análise lê o que é público e aponta as 3 tarefas que mais valem a pena deixar no automático, com as horas de cada uma.</p>
+        </div>
+      </header>
+      <div class="rx surge" id="rx">
+        <form class="rx-form" id="rx-form" novalidate>
+          <label class="rx-campo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <input id="rx-alvo" maxlength="200" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@seunegocio ou seusite.com.br" aria-label="@ do Instagram ou site do negócio">
+            <button class="botao cheio" type="submit" id="rx-btn">Fazer meu raio-X</button></label>
+          <div class="rx-linha"><select id="rx-para" aria-label="Sua área (opcional)"><option value="">Sua área (opcional)</option></select><small>Sem cadastro. Só lemos o que já é público.</small></div>
+          <div class="rx-exemplos" aria-label="Exemplos"><span class="rotulo">Sem negócio agora? Teste com:</span><button type="button" data-rx="Salão e barbearia">um salão</button><button type="button" data-rx="Clínica e consultório">uma clínica</button><button type="button" data-rx="Restaurante e delivery">um restaurante</button></div>
+        </form>
+        <ol class="rx-scan" id="rx-scan" hidden></ol>
+        <div class="rx-res" id="rx-res" hidden aria-live="polite"></div>
+      </div>
+    </section>
+
     <section class="secao" id="dores">
       <header class="surge">
         <div>
@@ -653,6 +764,39 @@ h1 .troca{font-size:1.06em;line-height:1}
       </details>
     </section>
 
+
+    <section class="secao" id="teste">
+      <header class="surge">
+        <div>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>Teste agora · sem cadastro</span>
+          <h2>Converse com um atendente <em class="serif">que marca sozinho.</em></h2>
+          <p>Empresa de mentira, atendimento de verdade. Escolha um exemplo, pergunte preço, peça um horário e veja o que acontece por trás.</p>
+        </div>
+      </header>
+      <div class="demo surge">
+        <div>
+          <div class="demo-ramos" id="demo-ramos" role="tablist" aria-label="Exemplos de negócio"></div>
+          <div class="cel">
+            <div class="cel-cab"><span class="cel-av" id="cel-av">L</span><div><strong id="cel-nome">Clínica Sorriso Vivo</strong><small id="cel-status">online · demonstração</small></div></div>
+            <ol class="cel-msgs" id="cel-msgs" aria-live="polite"></ol>
+            <div class="cel-sug" id="cel-sug"></div>
+            <form class="cel-escreve" id="cel-form"><input id="cel-txt" maxlength="400" autocomplete="off" placeholder="Mensagem" aria-label="Mensagem para o atendente"><button type="submit" id="cel-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
+          </div>
+        </div>
+        <div class="bastidor">
+          <h3>O que está acontecendo por trás</h3>
+          <ol id="bastidor">
+            <li data-p="resp"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b id="bs-resp">Responde na hora, de dia ou de madrugada</b><span>Ninguém espera, ninguém compra do concorrente.</span></div></li>
+            <li data-p="info"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><div><b>Tira dúvida de preço e horário</b><span>Com as informações e as regras da empresa.</span></div></li>
+            <li data-p="agenda"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><div><b>Mostra os horários livres</b><span>Direto da agenda, sem ida e volta de mensagem.</span></div></li>
+            <li data-p="fecha"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 10"/></svg><div><b>Fecha e anota</b><span id="bs-fecha">O dono recebe o resumo no WhatsApp.</span></div></li>
+            <li data-p="depois"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><div><b id="bs-depois">Lembrete programado</b><span>A pessoa recebe um dia antes e confirma com um toque.</span></div></li>
+          </ol>
+          <div class="demo-fim" id="demo-fim"><p id="demo-fim-txt"></p><button class="botao cheio" type="button" id="demo-quero">Quero um desse no meu negócio →</button></div>
+          <span class="nota">Demonstração: a empresa é fictícia e nada é cobrado nem enviado.</span>
+        </div>
+      </div>
+    </section>
 
     <section class="secao" id="trabalhos">
       <header class="surge">
@@ -685,7 +829,7 @@ h1 .troca{font-size:1.06em;line-height:1}
           <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>Quem faz</span>
           <h2>Leo Magalhães <em class="serif">e a Nina.</em></h2>
           <p>Desenvolvedor em Salvador e Computer Science student. Eu converso com você, construo, coloco no ar e acompanho. A Nina cuida do atendimento e, de vez em quando, do modo turbo.</p>
-          <ul class="selos"><li>Faixa roxa de jiu-jitsu · Melhor do Ano 2025</li><li>Surf quando o mar deixa</li><li>Sistemas rodando 24h no meu servidor</li></ul>
+          <ul class="selos"><li>Academia de manhã há 8 anos</li><li>Surf quando o mar deixa</li><li>Sistemas rodando 24h no meu servidor</li></ul>
           <div class="sobre-links"><a href="https://www.instagram.com/leomagalhaes.ti/">Instagram ↗</a><a href="https://www.linkedin.com/in/leomagalhaesti/">LinkedIn ↗</a><a href="https://github.com/leomagalhaesti">GitHub ↗</a></div>
         </div>
       </div>
@@ -1189,6 +1333,144 @@ setInterval(async () => {
     registrar(it.rede, "Checagem · " + it.status, CORES[it.rede] || "", it.status !== "instável");
   } catch (e) {}
 }, 20000);
+
+/* Raio-X: @ ou site -> 3 tarefas pro automático com as horas; o contato pro plano completo vai pro Leo no WhatsApp */
+const RAIOX_URL = "https://painel.leomagalhaes.tech/leo/raiox";
+const rxId = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)).slice(0, 36);
+PROFISSOES.forEach(p => $("rx-para").append(new Option(p.nome, p.nome)));
+let rxOcupado = false;
+function rxPassos(alvo) {
+  const ehSite = /\.[a-z]{2,}/i.test(alvo) && !/^@/.test(alvo) && !/instagram\.com/i.test(alvo);
+  return [alvo ? (ehSite ? "Abrindo o site" : "Abrindo o perfil " + (alvo.startsWith("@") ? alvo : "@" + alvo.replace(/.*instagram\.com\//i, "").replace(/\/.*/, ""))) : "Olhando como esse ramo funciona",
+    "Entendendo o que você vende", "Procurando tarefas que se repetem", "Calculando as horas da semana"];
+}
+async function fazerRaiox(alvo, para) {
+  if (rxOcupado) return;
+  alvo = alvo.trim(); para = para || $("rx-para").value;
+  if (alvo.length < 2 && !para) { $("rx-alvo").focus(); $("rx-alvo").placeholder = "Cola aqui o @ ou o site 👆"; return; }
+  rxOcupado = true; $("rx-btn").disabled = true; $("rx-res").hidden = true; $("rx").classList.add("lendo");
+  const scan = $("rx-scan"); scan.hidden = false;
+  scan.replaceChildren(...rxPassos(alvo).map(t => { const li = el("li"); li.append(el("i"), el("span", "", t + "…")); return li; }));
+  const itens = [...scan.children]; let k = 0; itens[0].className = "on";
+  const anda = setInterval(() => { if (k < itens.length - 1) { itens[k].className = "ok"; itens[++k].className = "on"; } }, calmo ? 400 : 2300);
+  let o, r;
+  try {
+    r = await fetch(RAIOX_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ id: rxId, alvo, para }) });
+    o = await r.json();
+  } catch (e) { o = { ok: false, erro: "Não consegui agora. Tenta de novo em instantes, ou fala com a Nina." }; }
+  clearInterval(anda); itens.forEach(i => i.className = "ok");
+  await new Promise(ok => setTimeout(ok, calmo ? 0 : 500));
+  $("rx").classList.remove("lendo"); scan.hidden = true; rxOcupado = false; $("rx-btn").disabled = false;
+  mostrarRaiox(o, alvo || para);
+}
+function mostrarRaiox(o, alvo) {
+  const res = $("rx-res"); res.hidden = false;
+  if (!o.ok) { res.replaceChildren(el("p", "rx-msg erro", o.erro || "Não consegui agora.")); return; }
+  $("rx-form").hidden = true;
+  const total = el("div", "rx-total"), n = el("strong", "", "0h");
+  total.append(n, el("span", "", `por semana é o que dá pra tirar das suas costas${o.negocio ? " em " + o.negocio.replace(/\.$/, "").replace(/^./, c => c.toLowerCase()) : ""}.`));
+  const leitura = el("p", "rx-leitura"); leitura.innerHTML = `<b>${escapa(o.alvo || alvo)}</b> · ${escapa(o.leitura || "")} <i>Estimativa conservadora.</i>`;
+  const grade = el("div", "rx-achados");
+  o.achados.forEach(a => {
+    const c = el("article", "rx-achado"), cab = el("header");
+    cab.append(el("h3", "", a.titulo), el("span", "rx-horas", "~" + a.horas + "h/sem"));
+    const hoje = el("p", "hoje"); hoje.append(el("b", "", "Hoje"), a.hoje);
+    const depois = el("p", "depois"); depois.append(el("b", "", "No automático"), a.depois);
+    const b = el("button", "caso-cta", "Quero esse →"); b.type = "button";
+    b.addEventListener("click", () => escolherServico(a.servico === "Sob medida" ? null : a.servico, `Fiz o raio-X (${o.alvo || alvo}) e quero resolver isto: ${a.titulo}.`));
+    c.append(cab, hoje, depois, b); grade.append(c);
+  });
+  const plano = el("div", "rx-plano");
+  plano.innerHTML = `<p><b>Quer o plano completo?</b> ${escapa(o.fecho || "O Leo monta o passo a passo pro seu caso e te manda no WhatsApp, sem compromisso.")}</p>
+    <form novalidate><input name="nome" maxlength="80" autocomplete="name" placeholder="Seu nome"><input name="contato" maxlength="120" autocomplete="tel" inputmode="tel" placeholder="WhatsApp com DDD" required><button class="botao cheio" type="submit">Receber o plano</button></form>
+    <p class="rx-msg" role="status"></p>`;
+  const f = plano.querySelector("form"), msg = plano.querySelector(".rx-msg");
+  f.addEventListener("submit", async e => {
+    e.preventDefault(); const bt = f.querySelector("button"); bt.disabled = true; msg.className = "rx-msg"; msg.textContent = "Enviando…";
+    try {
+      const r = await fetch(RAIOX_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ id: rxId, nome: f.nome.value, contato: f.contato.value }) });
+      const d = await r.json();
+      if (!d.ok) throw new Error(d.erro || "Não consegui enviar.");
+      f.remove(); msg.textContent = "✓ Pronto! O Leo recebeu o seu raio-X e te chama no WhatsApp com o plano.";
+      if (typeof modoTurbo === "function") setTimeout(() => modoTurbo("Correndo levar seu raio-X pro Leo ⚡"), 500);
+    } catch (err) { msg.className = "rx-msg erro"; msg.textContent = err.message; bt.disabled = false; }
+  });
+  const denovo = el("button", "rx-de-novo", "↻ Fazer outro raio-X"); denovo.type = "button";
+  denovo.addEventListener("click", () => { res.hidden = true; $("rx-form").hidden = false; $("rx-alvo").value = ""; $("rx-alvo").focus(); });
+  res.replaceChildren(total, leitura, grade, plano, denovo);
+  const fim = o.horas, t0 = performance.now();
+  (function sobe(t) { const p = calmo ? 1 : Math.min(1, (t - t0) / 1200); n.textContent = Math.round(fim * (1 - Math.pow(1 - p, 3))) + "h"; if (p < 1) requestAnimationFrame(sobe); })(t0);
+  res.scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "nearest" });
+}
+$("rx-form").addEventListener("submit", e => { e.preventDefault(); fazerRaiox($("rx-alvo").value); });
+document.querySelectorAll("[data-rx]").forEach(b => b.addEventListener("click", () => { $("rx-para").value = b.dataset.rx; fazerRaiox("", b.dataset.rx); }));
+
+/* Demonstração: atendente de empresa fictícia num celular desenhado; o painel ao lado acende o que ele fez */
+const DEMO_URL = "https://painel.leomagalhaes.tech/leo/demo";
+const DEMOS = {
+  clinica: { rot: "Clínica", nome: "Clínica Sorriso Vivo", av: "L", servico: "Agendamento com lembrete", depois: "Lembrete programado",
+    sug: ["Quanto custa uma limpeza?", "Tem horário amanhã de manhã?", "Aceita Unimed?"] },
+  salao: { rot: "Salão", nome: "Studio Dandara", av: "D", servico: "Agendamento com lembrete", depois: "Lembrete programado",
+    sug: ["Quero fazer escova sábado", "Quanto é corte e escova?", "Que horas abre?"] },
+  restaurante: { rot: "Restaurante", nome: "Cantinho do Dendê", av: "T", servico: "Bot de WhatsApp com menu", depois: "Aviso de saída pra entrega",
+    sug: ["Quero uma moqueca pra 2", "Qual o prato do dia?", "Entrega na Pituba?"] },
+  loja: { rot: "Loja", nome: "Maré Moda Praia", av: "B", servico: "Bot de WhatsApp com menu", depois: "Rastreio enviado sozinho",
+    sug: ["Tem biquíni tamanho M?", "Frete pra Feira de Santana?", "Parcela no cartão?"] },
+};
+let demoRamo = "clinica", demoHist = [], demoOcupada = false, demoFeito = new Set();
+const demoHora = () => new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+function demoBalao(cls, texto) {
+  const li = el("li", cls); li.append(texto); if (cls !== "sis") li.append(el("small", "", demoHora()));
+  $("cel-msgs").append(li); $("cel-msgs").scrollTop = $("cel-msgs").scrollHeight; return li;
+}
+function demoAcende(p, txt) {
+  const li = $("bastidor").querySelector(`[data-p="${p}"]`); if (!li || demoFeito.has(p)) return;
+  demoFeito.add(p); li.classList.add("feito"); if (txt && p === "resp") $("bs-resp").textContent = txt;
+}
+function demoTrocar(ramo) {
+  demoRamo = ramo; demoHist = []; demoFeito = new Set();
+  const d = DEMOS[ramo];
+  $("demo-ramos").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.ramo === ramo));
+  $("cel-nome").textContent = d.nome; $("cel-av").textContent = d.av; $("cel-status").textContent = "online · demonstração";
+  $("bs-depois").textContent = d.depois;
+  $("bastidor").querySelectorAll("li").forEach(li => li.classList.remove("feito"));
+  $("bs-resp").textContent = "Responde na hora, de dia ou de madrugada";
+  $("demo-fim").classList.remove("ve");
+  $("cel-msgs").replaceChildren(); demoBalao("sis", "🔒 Demonstração · empresa fictícia. Escreva como se fosse um cliente.");
+  $("cel-sug").replaceChildren(...d.sug.map(s => { const b = el("button", "", s); b.type = "button"; b.addEventListener("click", () => demoFalar(s)); return b; }));
+}
+async function demoFalar(texto) {
+  texto = texto.trim().slice(0, 400);
+  if (!texto || demoOcupada) return;
+  demoOcupada = true; $("cel-btn").disabled = true;
+  demoHist.push({ quem: "voce", texto }); demoBalao("eu", texto);
+  const t0 = performance.now();
+  $("cel-status").textContent = "digitando…";
+  const dg = el("li", "ele digita"); dg.innerHTML = "<i></i><i></i><i></i>"; $("cel-msgs").append(dg); $("cel-msgs").scrollTop = $("cel-msgs").scrollHeight;
+  try {
+    const r = await fetch(DEMO_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ ramo: demoRamo, historico: demoHist }) });
+    const o = await r.json(); dg.remove();
+    if (!o.resposta) throw new Error();
+    demoHist.push({ quem: "bot", texto: o.resposta }); demoBalao("ele", o.resposta);
+    demoAcende("resp", `Respondeu em ${Math.max(1, Math.round((performance.now() - t0) / 1000))} segundos`);
+    if (/R\$|\d+ ?min|pix|cart[aã]o|unimed|abre|fecha|\d{1,2}h/i.test(o.resposta)) demoAcende("info");
+    if (/\d{1,2}[:h]\d{0,2}|\d{1,2}\/\d{1,2}|amanh[aã]|segunda|ter[çc]a|quarta|quinta|sexta|s[áa]bado/i.test(o.resposta)) demoAcende("agenda");
+    if (o.fechou) {
+      ["info", "agenda", "fecha", "depois"].forEach((p, i) => setTimeout(() => demoAcende(p), calmo ? 0 : i * 450));
+      $("bs-fecha").textContent = o.resumo ? "Anotado: " + o.resumo : "O dono recebe o resumo no WhatsApp.";
+      setTimeout(() => demoBalao("sis", "✓ " + (DEMOS[demoRamo].depois) + " · tudo isso sem ninguém da equipe encostar no celular"), calmo ? 0 : 1600);
+      $("demo-fim-txt").textContent = "Isso que você acabou de ver pode atender os SEUS clientes, com os seus preços e a sua agenda.";
+      $("demo-fim").classList.add("ve");
+    }
+  } catch (e) { dg.remove(); demoBalao("sis", "A demonstração deu uma pausa. Tenta de novo, ou fala com a Nina lá em cima."); }
+  $("cel-status").textContent = "online · demonstração";
+  demoOcupada = false; $("cel-btn").disabled = false;
+}
+Object.entries(DEMOS).forEach(([id, d]) => { const b = el("button", "", d.rot); b.type = "button"; b.dataset.ramo = id; b.setAttribute("role", "tab");
+  b.addEventListener("click", () => demoTrocar(id)); $("demo-ramos").append(b); });
+$("cel-form").addEventListener("submit", e => { e.preventDefault(); const t = $("cel-txt").value; $("cel-txt").value = ""; demoFalar(t); });
+$("demo-quero").addEventListener("click", () => escolherServico(DEMOS[demoRamo].servico, `Testei a demonstração (${DEMOS[demoRamo].rot.toLowerCase()}) e quero um atendente assim no meu negócio.`));
+demoTrocar("clinica");
 </script>
 </body>
 </html>
