@@ -672,6 +672,36 @@ h1 .troca{font-size:1.06em;line-height:1}
 @keyframes dado{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(calc(100% + 12px));opacity:0}}
 @keyframes brilha{0%{color:var(--menta-2)}100%{color:var(--texto)}}
 @media (prefers-reduced-motion:reduce){.fluxo li,.fluxo li::before{animation:none}.fluxo li::after{display:none}}
+/* ===== 2026-10-20: calculadora "quanto a demora te custa" ===== */
+.calc{display:grid;gap:1.2rem;align-items:stretch}
+@media (min-width:56rem){.calc{grid-template-columns:1.1fr .9fr;gap:1.6rem}}
+.calc-perg{display:grid;gap:1.3rem;border:1px solid var(--linha);border-radius:20px;background:var(--painel);padding:clamp(1.1rem,3vw,1.8rem)}
+.calc-q{display:grid;gap:.6rem}
+.calc-q>span{display:flex;gap:.6rem;align-items:baseline;font-weight:600}
+.calc-q>span b{font:600 .72rem var(--mono);color:#03140F;background:var(--menta);border-radius:6px;padding:.1rem .4rem;flex:none}
+.calc-slide{display:flex;align-items:center;gap:1rem}
+.calc-slide input{flex:1;accent-color:var(--menta);height:28px}
+.calc-slide output{min-width:4.5rem;text-align:right;font:700 1.3rem var(--display);font-variant-numeric:tabular-nums}
+.calc-chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.calc-chips button{background:var(--fundo);border:1px solid var(--linha-forte);color:var(--texto-2);border-radius:999px;padding:.5rem .85rem;font:500 .85rem var(--sans);cursor:pointer}
+.calc-chips button[aria-checked="true"]{border-color:var(--coral);color:var(--texto);background:rgba(255,77,109,.12)}
+.calc-reais{display:flex;align-items:center;gap:.5rem;border:1px solid var(--linha-forte);border-radius:12px;background:var(--fundo);padding:.2rem .9rem;max-width:14rem}
+.calc-reais:focus-within{border-color:var(--menta)}
+.calc-reais i{font-style:normal;color:var(--texto-3);font-weight:600}
+.calc-reais input{flex:1;min-width:0;background:none;border:0;color:var(--texto);font:700 1.3rem var(--display);padding:.5rem 0;outline:none}
+.calc-mais summary,.calc-conta summary{cursor:pointer;font:500 .8rem var(--mono);color:var(--texto-3)}
+.calc-mais summary:hover,.calc-conta summary:hover{color:var(--menta)}
+.calc-mais .calc-slide{margin-top:.6rem}
+.calc-res{display:flex;flex-direction:column;gap:.5rem;border:1px solid rgba(255,77,109,.35);border-radius:20px;padding:clamp(1.1rem,3vw,1.8rem);
+  background:radial-gradient(120% 80% at 0% 0%,rgba(255,77,109,.14),transparent 60%),var(--painel)}
+.calc-rot{font:500 .78rem var(--mono);color:var(--texto-3);letter-spacing:.03em}
+.calc-valor{font:800 clamp(2.6rem,8vw,4.2rem)/1 var(--display);letter-spacing:-.04em;color:var(--coral);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.calc-sub{color:var(--texto-2)}
+.calc-sub b{color:var(--texto)}
+.calc-det{list-style:none;margin:.6rem 0 .4rem;padding:0;display:grid;gap:.4rem;color:var(--texto-2);font-size:.92rem}
+.calc-det b{color:var(--texto);font-variant-numeric:tabular-nums}
+.calc-res .botao{align-self:flex-start;margin-top:.3rem}
+.calc-conta p{margin:.5rem 0 0;font-size:.82rem;color:var(--texto-3);line-height:1.5}
 </style>
 </head>
 <body>
@@ -683,7 +713,7 @@ h1 .troca{font-size:1.06em;line-height:1}
       <a href="#raiox">Raio-X grátis</a>
       <a class="opcional" href="#teste">Teste agora</a>
       <a class="opcional" href="#dores">Monte sua solução</a>
-      <a class="opcional" href="#trabalhos">Trabalhos</a>
+      <a class="opcional" href="#calcula">Quanto você perde</a>
       <a class="opcional" href="#duvidas">Dúvidas</a>
     </nav>
     <a class="botao cheio cta-topo" href="#pedido"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg><span>Falar com a Nina</span></a>
@@ -826,29 +856,40 @@ h1 .troca{font-size:1.06em;line-height:1}
       </div>
     </section>
 
-    <section class="secao" id="trabalhos">
+    <section class="secao" id="calcula">
       <header class="surge">
         <div>
-          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>Trabalhos reais</span>
-          <h2>Não é maquete. <em class="serif">Está rodando.</em></h2>
-          <p>Telas de verdade de sistemas que eu construí e mantenho no ar.</p>
+          <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h4"/></svg>Calculadora · 3 perguntas</span>
+          <h2>Quanto a demora pra responder <em class="serif">te custa por mês?</em></h2>
+          <p>Quem manda mensagem e espera muito costuma fechar com quem respondeu primeiro. Mexa nos números do seu dia a dia.</p>
         </div>
       </header>
-      <div class="casos">
-        <article class="caso surge" style="--cor:#3D8BFF">
-          <div class="caso-img"><img src="img/trackpoint-calendario.jpg" alt="Calendário do sistema de controle de equipamentos" loading="lazy"><img class="extra" src="img/trackpoint-relatorio.jpg" alt="Relatório diário em PDF do mesmo sistema" loading="lazy"></div>
-          <div class="caso-txt"><span class="tag">Sistema para empresa · em piloto</span><h3>Controle de equipamentos com QR Code</h3>
-            <p>Quem pegou, quando e o que voltou, conferido pela câmera do celular. A agenda do mês e o relatório em PDF saem prontos.</p>
-            <button class="caso-cta" type="button" data-servico="Controle com QR Code">Quero um sistema assim →</button></div>
-        </article>
-        <article class="caso surge" style="--cor:#2BD9A8">
-          <div class="caso-img"><img src="img/nina-conversa.jpg" alt="Conversa da Nina com o dono de uma barbearia" loading="lazy"></div>
-          <div class="caso-txt"><span class="tag">Atendimento com IA · 24h</span><h3>A Nina atende, entende e passa o pedido</h3>
-            <p>Conversa com quem chega, entende o problema na língua do cliente e entrega o pedido pronto no WhatsApp. É ela que está aqui em cima, online agora.</p>
-            <button class="caso-cta" type="button" data-servico="Chat com IA no seu site">Quero uma Nina no meu negócio →</button></div>
-        </article>
+      <div class="calc surge">
+        <div class="calc-perg">
+          <label class="calc-q"><span><b>1</b>Quantos clientes novos te chamam por dia?</span>
+            <div class="calc-slide"><input type="range" id="c-msgs" min="1" max="80" value="10"><output id="c-msgs-v">10</output></div></label>
+          <div class="calc-q"><span><b>2</b>Quanto tempo você costuma levar pra responder?</span>
+            <div class="calc-chips" id="c-tempo" role="radiogroup" aria-label="Tempo de resposta"></div></div>
+          <label class="calc-q"><span><b>3</b>Quanto vale, em média, uma venda ou atendimento?</span>
+            <div class="calc-reais"><i>R$</i><input id="c-ticket" inputmode="numeric" maxlength="7" value="150" aria-label="Valor médio em reais"></div></label>
+          <details class="calc-mais"><summary>Ajustar: de cada 10 que você responde rápido, quantos fecham?</summary>
+            <div class="calc-slide"><input type="range" id="c-conv" min="1" max="10" value="3"><output id="c-conv-v">3 de 10</output></div></details>
+        </div>
+        <div class="calc-res" aria-live="polite">
+          <span class="calc-rot">Você pode estar deixando na mesa</span>
+          <strong class="calc-valor" id="c-valor">R$ 0</strong>
+          <span class="calc-sub">por mês · <b id="c-ano">R$ 0</b> por ano</span>
+          <ul class="calc-det">
+            <li><b id="c-perdidos">0</b> clientes por mês desistem de esperar</li>
+            <li><b id="c-horas">0h</b> por mês com o celular na mão respondendo</li>
+          </ul>
+          <button class="botao cheio" type="button" id="c-quero">Quero parar de perder isso →</button>
+          <details class="calc-conta"><summary>Como a conta é feita</summary>
+            <p>Clientes por dia × 30 dias × a parte que costuma desistir pela demora × quantos fechariam × o valor médio. A desistência usada é uma estimativa conservadora: <span id="c-premissa"></span>. O tempo no celular considera 4 minutos por conversa. É um retrato aproximado, não uma promessa.</p></details>
+        </div>
       </div>
     </section>
+
 
     <section class="secao" id="quem">
       <div class="sobre surge">
@@ -901,7 +942,7 @@ const DORES = [
     prova: "Todos os meus sistemas falam comigo pelo WhatsApp.", cat: "bots", ligados: ["Bot de WhatsApp com menu", "Agendamento com lembrete", "Triagem de contatos"], rede: ["WhatsApp"] },
   { frase: "Eu não sei o que saiu, o que voltou e com quem está.", custa: ["Equipamento some e ninguém sabe desde quando", "Prejuízo que só aparece no fim do mês", "Planilha que ninguém atualiza"],
     titulo: "Controle na palma da mão, com QR Code", como: ["Saída e volta conferidas pela câmera do celular", "Agenda do que está fora e com quem", "Resumo do dia pronto em PDF"],
-    prova: "Um sistema assim está em piloto agora.", cat: "sistemas", ligados: ["Controle com QR Code", "Painel administrativo sob medida", "Orçamentos e PDFs automáticos"], rede: [] },
+    prova: "A mesma base dos sistemas que você vê rodando nesta página.", cat: "sistemas", ligados: ["Controle com QR Code", "Painel administrativo sob medida", "Orçamentos e PDFs automáticos"], rede: [] },
   { frase: "Tenho um produto bom, mas ele não vende.", custa: ["Anúncio que gasta e não traz retorno", "Página que ninguém lê até o fim", "Você não sabe onde as pessoas desistem"],
     titulo: "Funil com página, campanha e números à vista", como: ["Pesquisa do que já vende no seu nicho antes de investir", "Página e oferta feitas para converter", "Resultado acompanhado todo dia, sem achismo"],
     prova: "Tenho produtos e campanhas no ar com esse método.", cat: "vendas", ligados: ["Página de vendas", "Funil com e-mails automáticos", "Garimpo de anúncios que vendem"], rede: [] },
@@ -1263,7 +1304,7 @@ new IntersectionObserver(([e], obs) => {
   obs.disconnect();
   let ja = false; try { ja = sessionStorage.getItem("nina-turbo") === "1"; sessionStorage.setItem("nina-turbo", "1"); } catch (_) {}
   if (!ja) setTimeout(() => modoTurbo("Ativou o turbo do nada ⚡"), 2500);
-}, { threshold: .3 }).observe($("trabalhos"));
+}, { threshold: .3 }).observe($("teste"));
 ninaBalao("dela", "Oi! Eu sou a Nina, a buldogue que atende aqui 🐾 Me conta: o que você quer resolver?");
 $("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
 $("busca").addEventListener("input", () => { montarAreas(); montarCatalogo(); });
@@ -1535,6 +1576,32 @@ function desenharFluxo(passos, pronto) {
   caixa.classList.toggle("pronto", !!pronto);
   $("fluxo-pe").textContent = pronto ? "✓ Este desenho foi junto com o seu pedido pro Leo." : "Conforme você conta, a Nina ajusta o desenho.";
 }
+
+/* calculadora: o que a demora pra responder custa por mês (estimativa conservadora, conta aberta na página) */
+const TEMPOS = [["Na hora", 0], ["Até 30 min", .1], ["1 a 2 horas", .2], ["Mais de 2 horas", .35], ["No outro dia", .5]];
+let cTempo = 2, cAnim = 0, cMostrado = 0;
+const reais = v => "R$ " + Math.round(v).toLocaleString("pt-BR");
+$("c-tempo").replaceChildren(...TEMPOS.map(([t], i) => { const b = el("button", "", t); b.type = "button"; b.setAttribute("role", "radio");
+  b.addEventListener("click", () => { cTempo = i; calcular(); }); return b; }));
+function calcular() {
+  const msgs = +$("c-msgs").value, conv = +$("c-conv").value / 10, ticket = Math.min(9999999, +$("c-ticket").value.replace(/\D/g, "") || 0);
+  const desiste = TEMPOS[cTempo][1], perdidos = msgs * 30 * desiste, valor = perdidos * conv * ticket;
+  $("c-msgs-v").textContent = msgs; $("c-conv-v").textContent = $("c-conv").value + " de 10";
+  [...$("c-tempo").children].forEach((b, i) => b.setAttribute("aria-checked", i === cTempo));
+  $("c-perdidos").textContent = Math.round(perdidos).toLocaleString("pt-BR");
+  $("c-horas").textContent = Math.round(msgs * 30 * 4 / 60) + "h";
+  $("c-ano").textContent = reais(valor * 12);
+  $("c-premissa").textContent = TEMPOS.map(([t, d]) => `${t.toLowerCase()}: ${Math.round(d * 100)}%`).join(" · ");
+  cancelAnimationFrame(cAnim);
+  const de = cMostrado, t0 = performance.now();
+  (function anda(t) { const k = calmo ? 1 : Math.min(1, (t - t0) / 500); cMostrado = de + (valor - de) * (1 - Math.pow(1 - k, 3));
+    $("c-valor").textContent = reais(cMostrado); if (k < 1) cAnim = requestAnimationFrame(anda); })(t0);
+  return { msgs, valor };
+}
+["c-msgs", "c-conv", "c-ticket"].forEach(id => $(id).addEventListener("input", calcular));
+$("c-quero").addEventListener("click", () => { const { msgs, valor } = calcular();
+  escolherServico("Bot de WhatsApp com menu", `Fiz a calculadora: ${msgs} clientes novos por dia, respondo em "${TEMPOS[cTempo][0].toLowerCase()}" e posso estar perdendo ${reais(valor)} por mês. Quero responder na hora.`); });
+calcular();
 </script>
 </body>
 </html>
