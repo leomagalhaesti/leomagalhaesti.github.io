@@ -721,6 +721,45 @@ h1 .troca{font-size:1.06em;line-height:1}
 .nina-msgs .atalhos button{all:unset;cursor:pointer;padding:.5rem .8rem;border-radius:999px;border:1px solid rgba(43,217,168,.45);color:var(--texto);font:500 .88rem var(--sans);background:rgba(43,217,168,.06)}
 .nina-msgs .atalhos button:hover{background:rgba(43,217,168,.16)}
 .nina-msgs .atalhos button:focus-visible{outline:2px solid var(--menta);outline-offset:2px}
+/* 2026-10-23 v2: chat com cara de app */
+.hero-nina .nina-msgs{height:27rem}
+@media (max-width:30rem){.hero-nina .nina-msgs{height:25rem}}
+.nina-msgs li.dela,.nina-msgs li.sua{position:relative;padding-bottom:1.15rem}
+.nina-msgs .hora{position:absolute;right:.6rem;bottom:.25rem;font:500 .62rem var(--mono);color:var(--texto-3)}
+.nina-msgs .sua .hora{color:var(--menta-2)}
+.nina-prog{display:flex;align-items:center;gap:3px;margin-top:.3rem}
+.nina-prog[hidden]{display:none}
+.nina-prog i{width:18px;height:4px;border-radius:4px;background:var(--linha-forte);transition:background .3s}
+.nina-prog i.on{background:var(--menta)}
+.nina-prog span{margin-left:.35rem;font:600 .62rem var(--mono);color:var(--texto-3)}
+.nina-msgs .atalhos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem}
+.nina-msgs .atalhos button{display:flex;align-items:center;gap:.55rem;padding:.7rem .75rem;border-radius:12px;border:1px solid var(--linha-forte);background:var(--painel);font:500 .86rem/1.25 var(--sans);transition:border-color .2s,transform .2s,background .2s}
+.nina-msgs .atalhos button svg{width:20px;height:20px;flex:none;color:var(--menta)}
+.nina-msgs .atalhos button:hover{border-color:var(--menta);background:rgba(43,217,168,.08);transform:translateY(-1px)}
+.cartao-diag,.cartao-demo,.cta-demo{align-self:stretch;max-width:100%!important;animation:entra .4s both}
+.cartao-diag{display:grid;gap:.45rem;padding:1rem;border-radius:16px;border:1px solid rgba(255,178,36,.35);background:linear-gradient(135deg,rgba(255,178,36,.12),rgba(255,77,109,.06))}
+.cd-rot{font:600 .66rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cta)}
+.cartao-diag strong{font:800 1.9rem/1 var(--display);color:var(--texto)}
+.cartao-diag strong small{display:block;margin-top:.25rem;font:500 .8rem var(--sans);color:var(--texto-2,var(--texto-3))}
+.cd-barra{height:6px;border-radius:6px;background:var(--linha-forte);overflow:hidden}
+.cd-barra i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--cta),var(--coral));animation:enche 1.2s ease-out both}
+.cd-horas{font-size:.84rem;color:var(--texto)}
+.cd-conta{font:400 .7rem/1.4 var(--sans);color:var(--texto-3)}
+@keyframes enche{from{width:0}}
+.cartao-demo{padding:0!important;border-radius:16px;overflow:hidden;border:1px solid var(--linha-forte);background:#0B141A}
+.wd-cab{display:flex;align-items:center;gap:.55rem;padding:.6rem .8rem;background:#1F2C33}
+.wd-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--menta),#1E9E7B)}
+.wd-cab b{font:600 .88rem var(--sans);color:#E9EDEF}
+.wd-cab small{margin-left:auto;font:400 .68rem var(--sans);color:#8696A0}
+.wd-msgs{display:flex;flex-direction:column;gap:.35rem;padding:.75rem;min-height:9rem}
+.wd{max-width:82%;padding:.4rem .6rem .5rem;border-radius:8px;font:400 .84rem/1.35 var(--sans);color:#E9EDEF;animation:entra .3s both}
+.wd small{display:block;text-align:right;font-size:.6rem;color:#8696A0;margin-top:.1rem}
+.wd.c{align-self:flex-start;background:#202C33}
+.wd.b{align-self:flex-end;background:#005C4B}
+.wd.dig{font-style:italic;color:#8696A0;background:#202C33}
+.cta-demo{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;padding:.2rem 0}
+.cta-demo .botao{background:linear-gradient(135deg,#FFC44D,var(--cta-2,#FF8A3D));color:#1A0E00}
+@media (prefers-reduced-motion:reduce){.cartao-diag,.cartao-demo,.wd,.cd-barra i{animation:none}}
 </style>
 </head>
 <body>
@@ -759,7 +798,7 @@ h1 .troca{font-size:1.06em;line-height:1}
         <div class="hero-nina-cab"><span class="rotulo">Demo grátis do seu negócio em 24h</span><span class="disponivel on" id="disponivel"><i></i><span>Online agora · responde na hora</span></span></div>
         <div class="pedido-dir" style="min-width:0">
         <div class="nina" id="nina">
-          <header class="nina-cab"><span class="nina-av" id="nina-av"><img src="img/foto.jpg" alt=""></span><div><strong>Leo Magalhães</strong><small><i></i><span id="nina-status">Assistente com IA · ele acompanha</span></small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
+          <header class="nina-cab"><span class="nina-av" id="nina-av"><img src="img/foto.jpg" alt=""></span><div><strong>Leo Magalhães</strong><small><i></i><span id="nina-status">online agora</span></small><span class="nina-prog" id="nina-prog"><i></i><i></i><i></i><i></i><span>0/4</span></span></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
           <ol class="nina-msgs" id="nina-msgs" aria-live="polite"></ol>
           <form class="nina-escreve" id="nina-form"><input id="nina-txt" maxlength="600" autocomplete="off" placeholder="Escreva aqui…" aria-label="Mensagem para a assistente"><button class="botao cheio" type="submit" id="nina-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
         </div>
@@ -1236,8 +1275,11 @@ const NINA_URL = "https://painel.leomagalhaes.tech/leo/nina";
 let ninaViva = true, ninaServico = "", ninaOcupada = false, ninaFechou = false;
 const ninaId = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)).slice(0, 36);
 const ninaHist = [];
+const agoraHM = () => new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 function ninaBalao(cls, texto) {
-  const li = el("li", cls, texto); $("nina-msgs").append(li);
+  const li = el("li", cls, texto);
+  if (cls === "dela" || cls === "sua") li.append(el("small", "hora", agoraHM() + (cls === "sua" ? " ✓✓" : "")));
+  $("nina-msgs").append(li);
   $("nina-msgs").scrollTop = $("nina-msgs").scrollHeight; return li;
 }
 function ninaFormulario(motivo) {
@@ -1247,14 +1289,15 @@ function ninaFormulario(motivo) {
   if (escrito && !$("pedido-msg").value) $("pedido-msg").value = escrito;
   $("nina-form").hidden = true; $("form-pedido").hidden = false; $("ir-form").hidden = true;
 }
-async function falarNina(texto) {
+async function falarNina(texto, silencioso) {
   texto = texto.trim().slice(0, 600);
   if (!texto || !ninaViva) return;
   if (ninaOcupada) { $("nina-txt").value = texto; return; }
   ninaOcupada = true; $("nina-btn").disabled = true;
   tirarAtalhos();
-  if (!ninaHist.length && respostasAtalho.length && !/^Tenho /.test(texto)) texto = respostasAtalho.filter(Boolean).join(". ") + ". " + texto;
-  ninaHist.push({ quem: "voce", texto }); ninaBalao("sua", texto);
+  const mostrar = texto;
+  if (!ninaHist.length && !silencioso && respostasAtalho.some(Boolean)) texto = contextoAtalhos() + " " + texto;
+  ninaHist.push({ quem: "voce", texto }); if (!silencioso) ninaBalao("sua", mostrar);
   const d = ninaBalao("dela digita"); d.innerHTML = "<i></i><i></i><i></i><span></span>";
   d.lastChild.textContent = "digitando";
   const farejo = 0;
@@ -1277,33 +1320,99 @@ async function falarNina(texto) {
 }
 $("nina-form").addEventListener("submit", e => { e.preventDefault(); const t = $("nina-txt").value; $("nina-txt").value = ""; falarNina(t); });
 $("ir-form").addEventListener("click", () => ninaFormulario());
-/* abertura em 3 toques: ramo, problema, volume. Vira uma mensagem só para a assistente; escrever pula os atalhos */
+/* abertura em 4 toques (ramo, perda, volume, valor) → diagnóstico com a conta da calculadora → prévia da demo → oferta.
+   Escrever a qualquer momento pula os atalhos; a assistente recebe o que já foi tocado. */
+const IC = {
+  tesoura: '<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/>',
+  cruz: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/>',
+  prato: '<circle cx="12" cy="12" r="7"/><path d="M12 9v6M3 3v6a2 2 0 0 0 2 2M5 3v18M21 3c-1.5 1-2 3-2 6h2v12"/>',
+  sacola: '<path d="M6 7h12l1 14H5L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/>',
+  pasta: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>',
+  mais: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>',
+  lua: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
+  agenda: '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 15l2 2 4-4"/>',
+  relogio: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  repete: '<path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/>',
+  conversa: '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"/>',
+  moeda: '<circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2s1.3 1.7 3 2 3 .9 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/>'};
+const svgIc = k => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
 const ATALHOS = [
-  ["Qual é o seu negócio?", ["Salão ou estética", "Clínica ou consultório", "Restaurante ou delivery", "Loja ou venda online", "Escritório ou serviços", "Outro"]],
-  ["Onde você mais perde hoje?", ["Cliente que chama fora do horário", "Faltas e remarcações", "Orçamento que demora", "Mesmas perguntas o dia todo", "Outra coisa"]],
-  ["Quantas mensagens de clientes chegam por dia?", ["Até 10", "10 a 30", "30 a 100", "Mais de 100"]]];
-const respostasAtalho = [];
+  { q: "Qual é o seu negócio?", ops: [["Salão ou estética", "tesoura", "Seu salão"], ["Clínica ou consultório", "cruz", "Sua clínica"], ["Restaurante ou delivery", "prato", "Seu restaurante"],
+    ["Loja ou venda online", "sacola", "Sua loja"], ["Escritório ou serviços", "pasta", "Seu escritório"], ["Outro", "mais", "Seu negócio"]] },
+  { q: "Onde você mais perde hoje?", ops: [["Cliente que chama fora do horário", "lua", "fora"], ["Faltas e remarcações", "agenda", "faltas"],
+    ["Orçamento que demora", "relogio", "orcamento"], ["Mesmas perguntas o dia todo", "repete", "repete"], ["Outra coisa", "mais", ""]] },
+  { q: "Quantas mensagens de clientes chegam por dia?", ops: [["Até 10", "conversa", 7], ["10 a 30", "conversa", 20], ["30 a 100", "conversa", 50], ["Mais de 100", "conversa", 120]] },
+  { q: "Quanto vale, em média, um atendimento ou venda?", ops: [["Até R$ 50", "moeda", 40], ["R$ 50 a 150", "moeda", 100], ["R$ 150 a 500", "moeda", 300], ["Mais de R$ 500", "moeda", 700]] }];
+const respostasAtalho = [];                     // [rótulo, ícone, valor] de cada passo
 function tirarAtalhos() { document.querySelectorAll("#nina-msgs .atalhos").forEach(x => x.remove()); }
+function progresso(i) {
+  const pr = $("nina-prog"); if (!pr) return;
+  pr.hidden = i > ATALHOS.length; pr.querySelectorAll("i").forEach((b, k) => b.classList.toggle("on", k < i));
+  pr.lastChild.textContent = Math.min(i, ATALHOS.length) + "/" + ATALHOS.length;
+}
+const contextoAtalhos = () => respostasAtalho.map((r, k) => r && r[0] !== "Outro" && r[0] !== "Outra coisa" ? ["Negócio", "Onde mais perco", "Mensagens por dia", "Valor médio"][k] + ": " + r[0] : "").filter(Boolean).join(". ") + ".";
 function perguntaAtalho(i) {
   if (!ninaViva || ninaHist.length) return;
-  if (i >= ATALHOS.length) {
-    const [ramo, dor, vol] = respostasAtalho;
-    return falarNina(`Tenho ${ramo.toLowerCase()}. Onde mais perco: ${dor.toLowerCase()}. Recebo ${vol.toLowerCase()} mensagens de clientes por dia.`);
-  }
-  ninaBalao("dela", ATALHOS[i][0]);
-  const li = el("li", "atalhos");
-  for (const op of ATALHOS[i][1]) {
-    const b = el("button", "", op); b.type = "button";
+  progresso(i);
+  if (i >= ATALHOS.length) return diagnostico();
+  ninaBalao("dela", ATALHOS[i].q);
+  const li = el("li", "atalhos" + (ATALHOS[i].ops.length > 4 ? "" : " dois"));
+  for (const op of ATALHOS[i].ops) {
+    const b = el("button"); b.type = "button"; b.innerHTML = svgIc(op[1]); b.append(el("span", "", op[0]));
     b.addEventListener("click", () => {
-      tirarAtalhos(); ninaBalao("sua", op);
-      if (/^Outr/.test(op)) { ninaBalao("dela", i ? "Me conta em uma frase o que mais atrapalha hoje." : "Qual é o seu negócio? Escreva aqui embaixo."); $("nina-txt").focus(); return; }
-      respostasAtalho[i] = op; setTimeout(() => perguntaAtalho(i + 1), calmo ? 0 : 350);
+      tirarAtalhos(); ninaBalao("sua", op[0]); respostasAtalho[i] = op;
+      if (/^Outr/.test(op[0])) { progresso(ATALHOS.length + 1); ninaBalao("dela", i ? "Me conta em uma frase o que mais atrapalha hoje." : "Qual é o seu negócio? Escreva aqui embaixo."); $("nina-txt").focus(); return; }
+      setTimeout(() => perguntaAtalho(i + 1), calmo ? 0 : 350);
     });
     li.append(b);
   }
   $("nina-msgs").append(li); $("nina-msgs").scrollTop = $("nina-msgs").scrollHeight;
 }
-ninaBalao("dela", "Olá! Sou a assistente do Leo. Em 3 toques eu entendo o seu caso, e o Leo monta uma demonstração grátis com o nome do seu negócio em até 24h.");
+/* mesma conta da calculadora: 2 em 10 desistem pela demora (1 a 2 h), 3 em 10 fechariam; faltas: 1 em 10 horários vazio */
+const CONVERSAS = {
+  fora: ["22:47", "Oi, ainda dá pra marcar pra amanhã?", "Oi! Tenho amanhã às 10h ou 15h30. Qual fica melhor?", "10h", "Pronto, reservado ✓ Te lembro 1h antes."],
+  faltas: ["08:00", "", "Bom dia! Lembrete: seu horário é hoje às 14h. Confirma?", "Confirmo", "Obrigada! Se precisar remarcar, é só tocar aqui."],
+  orcamento: ["19:12", "Quanto fica o serviço completo?", "Fica a partir de R$ 180. Quer que eu já te mande o orçamento em PDF?", "Quero", "Enviado ✓ Vale por 7 dias."],
+  repete: ["13:05", "Vocês abrem sábado? Aceita cartão?", "Abrimos sábado das 9h às 14h e aceitamos cartão e Pix.", "Ótimo, obrigado", "Por nada! Quer já deixar um horário reservado?"],
+  "": ["21:30", "Oi, vocês podem me ajudar?", "Claro! Me conta o que você precisa que eu já te respondo.", "Quero saber valores", "Te mando agora a tabela ✓"]};
+function diagnostico() {
+  const [ramo, dor, vol, tk] = respostasAtalho, msgs = vol[2], ticket = tk[2];
+  let valor, linha;
+  if (dor[2] === "faltas") { const horarios = msgs * 30 * .3; valor = horarios * .1 * ticket; linha = `Supondo que 1 em cada 10 horários fica vazio por falta: cerca de ${Math.round(horarios * .1)} por mês.`; }
+  else { const perdidos = msgs * 30 * .2; valor = perdidos * .3 * ticket; linha = `Supondo que 2 em cada 10 desistem pela demora e 3 em cada 10 fechariam: cerca de ${Math.round(perdidos)} contatos perdidos por mês.`; }
+  const horas = Math.round(msgs * 30 * 4 / 60), arred = v => Math.max(100, Math.round(v / 50) * 50);
+  diag = { valor: arred(valor), horas };
+  ninaBalao("dela", "Fiz as contas com o que você me disse:");
+  const c = el("li", "cartao-diag");
+  c.innerHTML = `<span class="cd-rot">Seu diagnóstico</span><strong>~${reais(diag.valor)}<small>/mês deixados na mesa</small></strong>
+    <div class="cd-barra"><i style="width:${Math.min(100, Math.round(horas / 1.6))}%"></i></div><span class="cd-horas"><b>${horas}h por mês</b> com o celular na mão respondendo</span>
+    <small class="cd-conta"></small>`;
+  c.querySelector(".cd-conta").textContent = linha + " Estimativa conservadora, não promessa.";
+  $("nina-msgs").append(c);
+  setTimeout(() => previaDemo(ramo[2], CONVERSAS[dor[2]] || CONVERSAS[""]), calmo ? 0 : 900);
+}
+let diag = null;
+async function previaDemo(nome, [hora, ...falas]) {
+  ninaBalao("dela", "É assim que ficaria no seu WhatsApp:");
+  const w = el("li", "cartao-demo"), cab = el("div", "wd-cab"), ol = el("div", "wd-msgs");
+  cab.innerHTML = '<span class="wd-av"></span>'; cab.append(el("b", "", nome), el("small", "", "assistente · online"));
+  w.append(cab, ol); $("nina-msgs").append(w);
+  const espera = ms => new Promise(ok => setTimeout(ok, calmo ? 0 : ms));
+  for (let k = 0; k < falas.length; k++) {
+    if (!falas[k]) continue;
+    const bot = k % 2 === 1;
+    if (bot) { const dg = el("div", "wd b dig", "digitando…"); ol.append(dg); $("nina-msgs").scrollTop = 1e6; await espera(900); dg.remove(); }
+    const m = el("div", "wd " + (bot ? "b" : "c"), falas[k]); m.append(el("small", "", hora)); ol.append(m);
+    $("nina-msgs").scrollTop = 1e6; await espera(bot ? 500 : 700);
+  }
+  const cta = el("li", "cta-demo"), sim = el("button", "botao cheio", "Quero a minha em 24h →"), duv = el("button", "link-sec", "Tenho uma dúvida antes");
+  sim.type = duv.type = "button";
+  sim.addEventListener("click", () => { cta.remove(); ninaBalao("sua", "Quero a minha em 24h");
+    falarNina(contextoAtalhos() + ` O site me mostrou o diagnóstico: cerca de ${reais(diag.valor)} por mês e ${diag.horas}h por mês respondendo. Quero a demonstração grátis.`, true); });
+  duv.addEventListener("click", () => { cta.remove(); ninaBalao("dela", "Claro. Pode perguntar."); $("nina-txt").focus(); });
+  cta.append(sim, duv); $("nina-msgs").append(cta); $("nina-msgs").scrollTop = 1e6;
+}
+ninaBalao("dela", "Olá! Sou a assistente do Leo. Em 4 toques eu calculo quanto o seu negócio perde hoje e te mostro como ficaria resolvido.");
 perguntaAtalho(0);
 $("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
 $("busca").addEventListener("input", () => { montarAreas(); montarCatalogo(); });
