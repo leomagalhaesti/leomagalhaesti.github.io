@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-BkSabwWG.js";var t=e(),n=()=>(0,t.jsx)(`div`,{className:`grid min-h-screen place-items-center bg-ink text-cream-dim`,children:`Conversa não encontrada.`});export{n as notFoundComponent};
