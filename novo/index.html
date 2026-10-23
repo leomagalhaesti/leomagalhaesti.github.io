@@ -714,6 +714,13 @@ h1 .troca{font-size:1.06em;line-height:1}
 .nina-msgs .prop a.pdf{background:linear-gradient(135deg,#FFC44D,var(--cta-2));color:#1A0E00}
 .nina-msgs .prop a.viva{border:1px solid var(--linha-forte);color:var(--texto)}
 @keyframes carrega{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
+/* 2026-10-23: atendimento profissional (sem a persona da buldogue) */
+.nina-av{border:2px solid var(--menta);background:var(--painel);cursor:default}
+.nina-av img,.nina-ic{animation:none}
+.nina-msgs .atalhos{align-self:stretch;max-width:100%;display:flex;flex-wrap:wrap;gap:.4rem;padding:0;background:none;border:0}
+.nina-msgs .atalhos button{all:unset;cursor:pointer;padding:.5rem .8rem;border-radius:999px;border:1px solid rgba(43,217,168,.45);color:var(--texto);font:500 .88rem var(--sans);background:rgba(43,217,168,.06)}
+.nina-msgs .atalhos button:hover{background:rgba(43,217,168,.16)}
+.nina-msgs .atalhos button:focus-visible{outline:2px solid var(--menta);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -728,7 +735,7 @@ h1 .troca{font-size:1.06em;line-height:1}
       <a class="opcional" href="#calcula">Quanto você perde</a>
       <a class="opcional" href="#duvidas">Dúvidas</a>
     </nav>
-    <a class="botao cheio cta-topo" href="#pedido"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg><span>Falar com a Nina</span></a>
+    <a class="botao cheio cta-topo" href="#pedido"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><span>Demo grátis em 24h</span></a>
   </div>
 </header>
 
@@ -749,17 +756,17 @@ h1 .troca{font-size:1.06em;line-height:1}
         <ul class="garantias"><li>Resposta na hora</li><li>Orçamento sem compromisso</li><li>Sem cadastro</li></ul>
       </div>
       <div class="pedido hero-nina" id="pedido">
-        <div class="hero-nina-cab"><span class="rotulo">Fale com a Nina, ela responde na hora</span><span class="disponivel on" id="disponivel"><i></i><span>Online agora · responde na hora</span></span></div>
+        <div class="hero-nina-cab"><span class="rotulo">Demo grátis do seu negócio em 24h</span><span class="disponivel on" id="disponivel"><i></i><span>Online agora · responde na hora</span></span></div>
         <div class="pedido-dir" style="min-width:0">
         <div class="nina" id="nina">
-          <header class="nina-cab"><span class="nina-av" id="nina-av" title="Faz carinho nela" role="button" tabindex="0"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg></span><div><strong>Nina</strong><small><i></i><span id="nina-status">Assistente do Leo · responde na hora</span></small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
+          <header class="nina-cab"><span class="nina-av" id="nina-av"><img src="img/foto.jpg" alt=""></span><div><strong>Leo Magalhães</strong><small><i></i><span id="nina-status">Assistente com IA · ele acompanha</span></small></div><button class="link-sec" type="button" id="ir-form">Prefiro formulário</button></header>
           <ol class="nina-msgs" id="nina-msgs" aria-live="polite"></ol>
-          <form class="nina-escreve" id="nina-form"><input id="nina-txt" maxlength="600" autocomplete="off" placeholder="Escreva aqui…" aria-label="Mensagem para a Nina"><button class="botao cheio" type="submit" id="nina-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
+          <form class="nina-escreve" id="nina-form"><input id="nina-txt" maxlength="600" autocomplete="off" placeholder="Escreva aqui…" aria-label="Mensagem para a assistente"><button class="botao cheio" type="submit" id="nina-btn" aria-label="Enviar"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></form>
         </div>
         <div class="fluxo" id="fluxo" hidden aria-live="polite">
           <div class="fluxo-cab"><span class="rotulo"><i class="ponto-vivo"></i>Seu sistema, se desenhando</span><small id="fluxo-n"></small></div>
           <ol id="fluxo-passos"></ol>
-          <p class="fluxo-pe" id="fluxo-pe">Conforme você conta, a Nina ajusta o desenho.</p>
+          <p class="fluxo-pe" id="fluxo-pe">Conforme você conta, o desenho se ajusta.</p>
         </div>
         <form id="form-pedido" novalidate hidden>
           <span class="selo-servico" id="selo-servico"><span id="selo-texto"></span><button type="button" id="selo-tira" aria-label="Tirar o serviço escolhido">✕</button></span>
@@ -784,7 +791,7 @@ h1 .troca{font-size:1.06em;line-height:1}
       <div class="prova-grade">
         <button class="pv vivo" type="button" data-servico="Site e sistemas vigiados 24h"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><strong id="pv-no-ar">—</strong><span class="rot" id="pv-no-ar-rot">sistemas meus no ar agora, conferidos a cada minuto</span><span class="cta-pv">Quero um sistema que não para →</span></button>
         <button class="pv" type="button" data-servico="Cortes e Reels a partir de vídeo longo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></svg><strong id="pv-pubs">—</strong><span class="rot" id="pv-pubs-rot">vídeos publicados no automático em canais de vídeo que eu opero</span><span class="cta-pv">Quero conteúdo no automático →</span></button>
-        <button class="pv" type="button" data-nina="1"><svg class="ic-s nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg><strong>24h</strong><span class="rot">de atendimento com IA. A Nina está online agora: teste antes de contratar</span><span class="cta-pv">Testar a Nina agora →</span></button>
+        <button class="pv" type="button" data-nina="1"><svg class="ic-s nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg><strong>24h</strong><span class="rot">de atendimento com IA. Este chat é um exemplo: teste antes de contratar</span><span class="cta-pv">Testar o atendimento agora →</span></button>
         <button class="pv" type="button" data-ir="dores"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8M2 7h20v5H2zM12 21V7M12 7H8a2.5 2.5 0 1 1 0-5c3 0 4 5 4 5zM12 7h4a2.5 2.5 0 1 0 0-5c-3 0-4 5-4 5z"/></svg><strong>R$ 0</strong><span class="rot">pra montar a sua solução e receber o orçamento. Sem cadastro e sem compromisso</span><span class="cta-pv">Montar a minha agora →</span></button>
       </div>
     </section>
@@ -905,11 +912,11 @@ h1 .troca{font-size:1.06em;line-height:1}
 
     <section class="secao" id="quem">
       <div class="sobre surge">
-        <div class="sobre-fotos"><img class="eu" src="img/foto.jpg" alt="Ilustração do Leo Magalhães" loading="lazy"><img class="nina-foto" src="img/nina-praia.jpg" alt="A Nina na praia" loading="lazy"></div>
+        <div class="sobre-fotos"><img class="eu" src="img/foto.jpg" alt="Ilustração do Leo Magalhães" loading="lazy"></div>
         <div>
           <span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>Quem faz</span>
-          <h2>Leo Magalhães <em class="serif">e a Nina.</em></h2>
-          <p>Desenvolvedor em Salvador e Computer Science student. Eu converso com você, construo, coloco no ar e acompanho. A Nina cuida do atendimento e, de vez em quando, do modo turbo.</p>
+          <h2>Leo Magalhães <em class="serif">constrói e acompanha.</em></h2>
+          <p>Desenvolvedor em Salvador e Computer Science student. Eu converso com você, construo, coloco no ar e acompanho.</p>
           <ul class="selos"><li>Ciência da Computação</li><li>Sistemas no ar 24h, vigiados ao vivo</li><li>Código público no GitHub</li><li>Você fala direto com quem constrói</li></ul>
           <div class="sobre-links"><a href="https://www.instagram.com/leomagalhaes.ti/">Instagram ↗</a><a href="https://www.linkedin.com/in/leomagalhaesti/">LinkedIn ↗</a><a href="https://github.com/leomagalhaesti">GitHub ↗</a></div>
         </div>
@@ -920,14 +927,14 @@ h1 .troca{font-size:1.06em;line-height:1}
     <section class="secao" id="duvidas">
       <header class="surge"><div><span class="rotulo"><svg class="ic-s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg>Dúvidas</span><h2>Antes de você perguntar</h2></div></header>
       <div class="faq surge">
-        <details open><summary>Como funciona?</summary><p>Você conta o problema pra Nina ou monta a sua solução aqui em cima. Eu desenho e construo, com prévias no caminho. Depois o sistema roda sozinho e te avisa no celular.</p></details>
-        <details><summary>Quanto custa?</summary><p>Depende do tamanho do problema e do que você ganha com ele resolvido. Conta o seu caso pra Nina: ela te passa o valor de partida na hora, e o valor final vem na proposta, sem compromisso.</p></details>
+        <details open><summary>Como funciona?</summary><p>Você conta o problema no chat e recebe uma demonstração grátis com o nome do seu negócio em até 24h. Gostou? Eu construo, com prévias no caminho. Depois o sistema roda sozinho e te avisa no celular.</p></details>
+        <details><summary>Quanto custa?</summary><p>Depende do tamanho do problema e do que você ganha com ele resolvido. Conta o seu caso no chat: a assistente te passa o valor de partida na hora, e o valor final vem na proposta, sem compromisso.</p></details>
         <details><summary>Quanto tempo leva?</summary><p>Depende do tamanho. Você acompanha prévias no caminho, em etapas curtas, e o prazo vem confirmado junto com a proposta.</p></details>
         <details><summary>Preciso entender de tecnologia?</summary><p>Não. Você usa pelo celular, recebe os avisos no WhatsApp e aprova com um toque. A parte técnica fica comigo.</p></details>
         <details><summary>E se der problema depois que estiver no ar?</summary><p>Eu acompanho depois de entregar. Se quiser, o sistema fica vigiado 24h: se algo cair, o alerta chega antes de você perceber, igual aos sistemas desta página.</p></details>
-        <details><summary>Serve pro meu tipo de negócio?</summary><p>Clínica, salão, restaurante, escritório, imobiliária, academia, loja ou quem vende online: escolha a sua área em “Monte sua solução” ou conte o seu caso pra Nina.</p></details>
+        <details><summary>Serve pro meu tipo de negócio?</summary><p>Clínica, salão, restaurante, escritório, imobiliária, academia, loja ou quem vende online: escolha a sua área em “Monte sua solução” ou conte o seu caso no chat.</p></details>
       </div>
-      <button class="botao cheio faq-cta surge" type="button" data-nina="1">Ainda com dúvida? Pergunta pra Nina →</button>
+      <button class="botao cheio faq-cta surge" type="button" data-nina="1">Quero a demonstração grátis →</button>
     </section>
 
 
@@ -937,9 +944,7 @@ h1 .troca{font-size:1.06em;line-height:1}
     </footer>
   </div>
 </main>
-<a class="flutua" id="flutua" href="#pedido"><span class="flutua-av"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 8.6C5.6 7.4 4.3 5.3 4.4 3.1c.1-.8.9-1.2 1.6-.8 1.9 1.1 3.4 2.6 4.3 4.3"/><path d="M16.6 8.6c1.8-1.2 3.1-3.3 3-5.5-.1-.8-.9-1.2-1.6-.8-1.9 1.1-3.4 2.6-4.3 4.3"/><path d="M12 6.2c-4 0-7.2 2.6-7.2 6.3 0 1.7.5 3.2 1.5 4.3 1.3 1.5 3.4 2.6 5.7 2.6s4.4-1.1 5.7-2.6c1-1.1 1.5-2.6 1.5-4.3 0-3.7-3.2-6.3-7.2-6.3z"/><circle cx="9" cy="11.6" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.6" r="1" fill="currentColor" stroke="none"/><path d="M10.6 13.7c0-.5.6-.8 1.4-.8s1.4.3 1.4.8-.6.9-1.4.9-1.4-.4-1.4-.9z" fill="currentColor"/><path d="M8.6 15.6c1 .9 2.3 1 3.4.2 1.1.8 2.4.7 3.4-.2"/><path d="M11 16.1c0 1.7.5 2.5 1 2.5s1-.8 1-2.5" fill="#FF8FA3" stroke="#FF8FA3" stroke-width=".9"/></svg></span>Falar com a Nina</a>
-<div class="turbo-pista" id="turbo" aria-hidden="true"><img src="img/nina-turbo.png" alt=""><span>⚡ MODO TURBO 220V</span></div>
-<div class="turbo-aviso" id="turbo-aviso" role="status"><span id="turbo-aviso-txt">⚡ A Nina ativou o modo turbo! Faz carinho nela pra ela parar</span><button type="button" id="turbo-carinho">Fazer carinho 🐾</button></div>
+<a class="flutua" id="flutua" href="#pedido"><span class="flutua-av"><svg class="nina-ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span>Demo grátis em 24h</a>
 
 <script>
 /* ====== DIÁRIO: acrescente uma linha a cada avanço ====== */
@@ -1112,7 +1117,7 @@ function mostrarDor(i, porClique) {
     <p class="hoje"><b>Hoje:</b> ${d.custa[0].toLowerCase()}.</p>
     <span class="incluso">O que vem incluso</span>
     <ul class="tres">${d.como.map((x, k) => `<li style="animation-delay:${.08 * k + .1}s">${OK}${x}</li>`).join("")}</ul>
-    <button class="preco" type="button" id="dor-preco"><span>Quanto fica no seu caso?</span><strong>A Nina te diz em 1 minuto →</strong><small>Sem cadastro e sem compromisso. O valor final vem na proposta.</small></button>
+    <button class="preco" type="button" id="dor-preco"><span>Quanto fica no seu caso?</span><strong>Descubra em 1 minuto →</strong><small>Sem cadastro e sem compromisso. O valor final vem na proposta.</small></button>
     <div class="cura-pe"><button class="botao cheio" type="button" id="dor-pedido">Quero essa solução →</button>
       <button class="link-sec" type="button" id="dor-cat">Ver outros serviços de ${area.nome.toLowerCase()} ↓</button></div>
     <p class="ja-roda"><i></i>${d.prova ? "Já roda: " + d.prova : "Feito com " + PROVA_PERFIL}</p>`;
@@ -1228,7 +1233,7 @@ function escolherServico(nome, texto) {
 }
 /* Nina: conversa guardada no navegador; o servidor só responde. Caiu = volta o formulário com o que a pessoa já escreveu */
 const NINA_URL = "https://painel.leomagalhaes.tech/leo/nina";
-let ninaViva = true, ninaServico = "", ninaOcupada = false;
+let ninaViva = true, ninaServico = "", ninaOcupada = false, ninaFechou = false;
 const ninaId = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)).slice(0, 36);
 const ninaHist = [];
 function ninaBalao(cls, texto) {
@@ -1247,11 +1252,12 @@ async function falarNina(texto) {
   if (!texto || !ninaViva) return;
   if (ninaOcupada) { $("nina-txt").value = texto; return; }
   ninaOcupada = true; $("nina-btn").disabled = true;
+  tirarAtalhos();
+  if (!ninaHist.length && respostasAtalho.length && !/^Tenho /.test(texto)) texto = respostasAtalho.filter(Boolean).join(". ") + ". " + texto;
   ninaHist.push({ quem: "voce", texto }); ninaBalao("sua", texto);
   const d = ninaBalao("dela digita"); d.innerHTML = "<i></i><i></i><i></i><span></span>";
-  const fareja = ["farejando a resposta", "pensando com as orelhas", "mastigando a ideia", "abanando o rabo"];
-  let fk = Math.floor(Math.random() * fareja.length); d.lastChild.textContent = fareja[fk];
-  const farejo = setInterval(() => { fk = (fk + 1) % fareja.length; d.lastChild.textContent = fareja[fk]; }, 1400);
+  d.lastChild.textContent = "digitando";
+  const farejo = 0;
   try {
     const r = await fetch(NINA_URL, { method: "POST", headers: { "Content-Type": "text/plain" },
       body: JSON.stringify({ id: ninaId, historico: ninaHist, servico: ninaServico, para: perfil && (PROFISSOES.find(x => x.id === perfil) || {}).nome }) });
@@ -1262,63 +1268,43 @@ async function falarNina(texto) {
     if (o.fluxo) desenharFluxo(o.fluxo, o.fechou);
     if (o.proposta) acompanharProposta(o.proposta);
     if (r.status === 429) ninaFormulario();
-    if (o.fechou) { ninaBalao("aviso", "✓ Pedido entregue ao Leo no WhatsApp"); registrar("Site", "Nina fechou um pedido", "", true); setTimeout(() => modoTurbo("Correndo avisar o Leo ⚡"), 600); }
+    if (o.fechou && !ninaFechou) { ninaFechou = true; ninaBalao("aviso", "✓ O Leo recebeu. A demonstração chega no seu WhatsApp em até 24h."); registrar("Site", "Pedido de demonstração", "", true); }
   } catch (e) {
     clearInterval(farejo); d.remove();
-    ninaFormulario("Minha conexão caiu 🐾 Deixa seu contato aqui embaixo que o seu pedido chega direto no Leo.");
+    ninaFormulario("A conexão caiu. Deixe seu contato aqui embaixo que o seu pedido chega direto no Leo.");
   }
   ninaOcupada = false; $("nina-btn").disabled = false;
 }
 $("nina-form").addEventListener("submit", e => { e.preventDefault(); const t = $("nina-txt").value; $("nina-txt").value = ""; falarNina(t); });
 $("ir-form").addEventListener("click", () => ninaFormulario());
-/* modo turbo: a Nina sai correndo 220V pela tela (no pedido fechado, no carinho e uma vez por visita) */
-let turboAtivo = false, turboFim, statusAntes = "";
-const avisoTurbo = (txt, botao) => {
-  $("turbo-aviso-txt").textContent = txt; $("turbo-carinho").hidden = !botao;
-  $("turbo-aviso").classList.toggle("calmo", calmo || !botao); $("turbo-aviso").classList.add("ve");
-};
-function modoTurbo(texto) {
-  if (turboAtivo) return;
-  turboAtivo = true;
-  const st = $("nina-status"); statusAntes = st.textContent;
-  st.textContent = (texto || "Modo turbo ativado ⚡ 220V") + " · faz carinho pra parar"; $("nina").classList.add("turbo");
-  const t = $("turbo"); t.classList.remove("parou", "vai"); t.style.transform = t.style.opacity = t.style.transition = ""; void t.offsetWidth; if (!calmo) t.classList.add("vai");
-  avisoTurbo("⚡ A Nina ativou o modo turbo! Faz carinho nela pra ela parar", true);
-  turboFim = setTimeout(() => pararTurbo("Cansou de correr e deitou 😴"), 25000);
-}
-function pararTurbo(msg) {
-  if (!turboAtivo) return;
-  clearTimeout(turboFim); turboAtivo = false;
-  const t = $("turbo");
-  if (t.classList.contains("vai")) {
-    const r = t.getBoundingClientRect(), c = el("span", "coracao", "❤️");
-    t.style.transform = getComputedStyle(t).transform; t.style.opacity = "1"; t.classList.remove("vai"); t.classList.add("parou");
-    requestAnimationFrame(() => { t.style.transition = "opacity .7s .7s"; t.style.opacity = "0"; });
-    c.style.left = (r.left + r.width * .55) + "px"; c.style.top = (r.top - 10) + "px";
-    document.body.append(c); setTimeout(() => c.remove(), 1300);
+/* abertura em 3 toques: ramo, problema, volume. Vira uma mensagem só para a assistente; escrever pula os atalhos */
+const ATALHOS = [
+  ["Qual é o seu negócio?", ["Salão ou estética", "Clínica ou consultório", "Restaurante ou delivery", "Loja ou venda online", "Escritório ou serviços", "Outro"]],
+  ["Onde você mais perde hoje?", ["Cliente que chama fora do horário", "Faltas e remarcações", "Orçamento que demora", "Mesmas perguntas o dia todo", "Outra coisa"]],
+  ["Quantas mensagens de clientes chegam por dia?", ["Até 10", "10 a 30", "30 a 100", "Mais de 100"]]];
+const respostasAtalho = [];
+function tirarAtalhos() { document.querySelectorAll("#nina-msgs .atalhos").forEach(x => x.remove()); }
+function perguntaAtalho(i) {
+  if (!ninaViva || ninaHist.length) return;
+  if (i >= ATALHOS.length) {
+    const [ramo, dor, vol] = respostasAtalho;
+    return falarNina(`Tenho ${ramo.toLowerCase()}. Onde mais perco: ${dor.toLowerCase()}. Recebo ${vol.toLowerCase()} mensagens de clientes por dia.`);
   }
-  $("nina").classList.remove("turbo"); $("nina-status").textContent = statusAntes;
-  avisoTurbo(msg || "Ufa, parou. Ela amou o carinho 🐾", false);
-  setTimeout(() => { if (!turboAtivo) $("turbo-aviso").classList.remove("ve"); }, 2600);
+  ninaBalao("dela", ATALHOS[i][0]);
+  const li = el("li", "atalhos");
+  for (const op of ATALHOS[i][1]) {
+    const b = el("button", "", op); b.type = "button";
+    b.addEventListener("click", () => {
+      tirarAtalhos(); ninaBalao("sua", op);
+      if (/^Outr/.test(op)) { ninaBalao("dela", i ? "Me conta em uma frase o que mais atrapalha hoje." : "Qual é o seu negócio? Escreva aqui embaixo."); $("nina-txt").focus(); return; }
+      respostasAtalho[i] = op; setTimeout(() => perguntaAtalho(i + 1), calmo ? 0 : 350);
+    });
+    li.append(b);
+  }
+  $("nina-msgs").append(li); $("nina-msgs").scrollTop = $("nina-msgs").scrollHeight;
 }
-let carinhos = 0;
-const carinho = () => {
-  if (turboAtivo) return pararTurbo();
-  carinhos++;
-  if (carinhos % 2) { const st = $("nina-status"), a = st.textContent; st.textContent = "Ela gostou do carinho 🐾"; setTimeout(() => { if (!turboAtivo) st.textContent = a; }, 1800); }
-  else modoTurbo("Carinho demais, ligou o turbo ⚡");
-};
-$("nina-av").addEventListener("click", carinho);
-$("nina-av").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); carinho(); } });
-$("turbo").addEventListener("click", () => pararTurbo());
-$("turbo-carinho").addEventListener("click", () => pararTurbo());
-new IntersectionObserver(([e], obs) => {
-  if (!e.isIntersecting) return;
-  obs.disconnect();
-  let ja = false; try { ja = sessionStorage.getItem("nina-turbo") === "1"; sessionStorage.setItem("nina-turbo", "1"); } catch (_) {}
-  if (!ja) setTimeout(() => modoTurbo("Ativou o turbo do nada ⚡"), 2500);
-}, { threshold: .3 }).observe($("teste"));
-ninaBalao("dela", "Oi! Eu sou a Nina, a buldogue que atende aqui 🐾 Me conta: o que você quer resolver?");
+ninaBalao("dela", "Olá! Sou a assistente do Leo. Em 3 toques eu entendo o seu caso, e o Leo monta uma demonstração grátis com o nome do seu negócio em até 24h.");
+perguntaAtalho(0);
 $("selo-tira").addEventListener("click", () => { $("selo-servico").classList.remove("tem"); delete $("selo-servico").dataset.servico; });
 $("busca").addEventListener("input", () => { montarAreas(); montarCatalogo(); });
 montarAreas(); montarCatalogo(); mostrarDor(0);
@@ -1440,7 +1426,7 @@ async function fazerRaiox(alvo, para) {
   try {
     r = await fetch(RAIOX_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ id: rxId, alvo, para }) });
     o = await r.json();
-  } catch (e) { o = { ok: false, erro: "Não consegui agora. Tenta de novo em instantes, ou fala com a Nina." }; }
+  } catch (e) { o = { ok: false, erro: "Não consegui agora. Tenta de novo em instantes, ou fala com a assistente." }; }
   clearInterval(anda); itens.forEach(i => i.className = "ok");
   await new Promise(ok => setTimeout(ok, calmo ? 0 : 500));
   $("rx").classList.remove("lendo"); scan.hidden = true; rxOcupado = false; $("rx-btn").disabled = false;
@@ -1475,7 +1461,6 @@ function mostrarRaiox(o, alvo) {
       const d = await r.json();
       if (!d.ok) throw new Error(d.erro || "Não consegui enviar.");
       f.remove(); msg.textContent = "✓ Pronto! O Leo recebeu o seu raio-X e te chama no WhatsApp com o plano.";
-      if (typeof modoTurbo === "function") setTimeout(() => modoTurbo("Correndo levar seu raio-X pro Leo ⚡"), 500);
     } catch (err) { msg.className = "rx-msg erro"; msg.textContent = err.message; bt.disabled = false; }
   });
   const denovo = el("button", "rx-de-novo", "↻ Fazer outro raio-X"); denovo.type = "button";
@@ -1545,7 +1530,7 @@ async function demoFalar(texto) {
       $("demo-fim-txt").textContent = "Isso que você acabou de ver pode atender os SEUS clientes, com os seus preços e a sua agenda.";
       $("demo-fim").classList.add("ve");
     }
-  } catch (e) { dg.remove(); demoBalao("sis", "A demonstração deu uma pausa. Tenta de novo, ou fala com a Nina lá em cima."); }
+  } catch (e) { dg.remove(); demoBalao("sis", "A demonstração deu uma pausa. Tenta de novo, ou fala com a assistente lá em cima."); }
   $("cel-status").textContent = "online · demonstração";
   demoOcupada = false; $("cel-btn").disabled = false;
 }
@@ -1587,7 +1572,7 @@ function desenharFluxo(passos, pronto) {
   [...ol.children].slice(passos.length).forEach(li => li.remove());
   $("fluxo-n").textContent = passos.length + " etapas · sozinho";
   caixa.classList.toggle("pronto", !!pronto);
-  $("fluxo-pe").textContent = pronto ? "✓ Este desenho foi junto com o seu pedido pro Leo." : "Conforme você conta, a Nina ajusta o desenho.";
+  $("fluxo-pe").textContent = pronto ? "✓ Este desenho foi junto com o seu pedido pro Leo." : "Conforme você conta, o desenho se ajusta.";
 }
 
 /* calculadora: o que a demora pra responder custa por mês (estimativa conservadora, conta aberta na página) */
