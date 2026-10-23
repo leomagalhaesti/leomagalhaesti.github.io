@@ -26,7 +26,8 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--papel);color:var(--tinta);font:400 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 img{max-width:100%;display:block}
-.casca{max-width:1160px;margin:0 auto;padding:0 20px}
+.casca{max-width:1240px;margin:0 auto;padding:0 28px}
+@media (max-width:600px){.casca{padding:0 18px}}
 .mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--tinta2)}
 button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--verde);outline-offset:3px}
@@ -48,12 +49,13 @@ button,input,select{font:inherit;color:inherit}
 @media (max-width:860px){.menu{display:none}.barra .bt{margin-left:auto;white-space:nowrap}.marca small{display:none}}
 
 /* abertura */
-.abre{padding:56px 0 72px}
+.abre{padding:56px 0 72px;position:relative;overflow:hidden}
+.abre .casca{position:relative}
 .abre .casca{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
 .selo{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--linha);background:var(--branco);border-radius:999px;padding:6px 12px 6px 10px;font-size:.85rem;color:var(--tinta2)}
 .selo i{width:8px;height:8px;border-radius:50%;background:#2DB67C;box-shadow:0 0 0 3px rgba(45,182,124,.18)}
 h1{font-weight:800;font-size:clamp(2.3rem,5.4vw,4.1rem);line-height:1.02;letter-spacing:-.035em;margin:22px 0 18px}
-h1 .sub{color:var(--verde)}
+h1 .sub{color:var(--nicho)}
 .lead{font-size:1.15rem;color:var(--tinta2);max-width:34em;margin:0 0 30px}
 .monta{background:var(--branco);border:1px solid var(--linha);border-radius:20px;padding:22px;box-shadow:0 1px 0 rgba(0,0,0,.03),0 18px 40px -28px rgba(20,23,27,.35)}
 .monta h2{font-size:1.05rem;margin:0 0 4px;letter-spacing:-.01em}
@@ -65,7 +67,7 @@ h1 .sub{color:var(--verde)}
 .ramos{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .ramos button{all:unset;cursor:pointer;padding:9px 14px;border-radius:999px;border:1.5px solid var(--linha);font-size:.93rem;background:var(--papel);transition:all .12s}
 .ramos button:hover{border-color:var(--tinta2)}
-.ramos button[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--papel)}
+.ramos button[aria-pressed="true"]{background:var(--nicho);border-color:var(--nicho);color:var(--papel)}
 .ramos button:focus-visible{outline:2px solid var(--verde);outline-offset:2px}
 .monta .bt{width:100%}
 .garantias{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;font-size:.85rem;color:var(--tinta2)}
@@ -75,7 +77,7 @@ h1 .sub{color:var(--verde)}
 .palco{position:relative}
 .cel{width:100%;max-width:380px;margin:0 auto;background:#0E1113;border-radius:42px;padding:10px;box-shadow:0 40px 80px -40px rgba(20,23,27,.55)}
 .tela{background:#EFEAE2;border-radius:33px;overflow:hidden;height:560px;display:flex;flex-direction:column;position:relative}
-.cab{background:var(--verde);color:#fff;padding:30px 16px 12px;display:flex;align-items:center;gap:10px}
+.cab{background:var(--nicho);color:#fff;padding:30px 16px 12px;display:flex;align-items:center;gap:10px}
 .cab .av{width:38px;height:38px;border-radius:50%;background:#fff;color:var(--verde);display:grid;place-items:center;font-weight:800;font-size:.95rem;flex:none}
 .cab strong{display:block;font-size:1rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px}
 .cab small{font-size:.78rem;opacity:.85}
@@ -83,7 +85,7 @@ h1 .sub{color:var(--verde)}
 .b{max-width:82%;padding:7px 10px 18px;border-radius:10px;font-size:.93rem;line-height:1.4;position:relative;box-shadow:0 1px 1px rgba(0,0,0,.06);white-space:pre-wrap;word-wrap:break-word;animation:entra .22s ease-out}
 .b small{position:absolute;right:8px;bottom:3px;font-size:.66rem;color:#7a7f86}
 .b.ela{background:#fff;align-self:flex-start;border-top-left-radius:3px}
-.b.cli{background:#D7F5C7;align-self:flex-end;border-top-right-radius:3px}
+.b.cli{background:var(--bolha);align-self:flex-end;border-top-right-radius:3px}
 .b{transition:opacity .2s}
 
 .b.cli small::after{content:" ✓✓";color:#3A9BDC}
@@ -95,11 +97,11 @@ h1 .sub{color:var(--verde)}
 @keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .sug{display:flex;gap:6px;overflow-x:auto;padding:0 10px 8px;scrollbar-width:none}
 .sug::-webkit-scrollbar{display:none}
-.sug button{all:unset;cursor:pointer;flex:none;background:#fff;border:1px solid #cfd8d2;color:var(--verde);border-radius:999px;padding:7px 12px;font-size:.84rem;font-weight:600}
+.sug button{all:unset;cursor:pointer;flex:none;background:#fff;border:1px solid #cfd8d2;color:var(--nicho-esc);border-radius:999px;padding:7px 12px;font-size:.84rem;font-weight:600}
 .escreve{display:flex;gap:8px;padding:8px 10px 14px;background:#EFEAE2}
 .escreve input{flex:1;min-width:0;border:0;border-radius:999px;padding:11px 15px;font-size:.95rem;background:#fff}
 .escreve input:focus{outline:2px solid var(--verde)}
-.escreve button{all:unset;cursor:pointer;width:42px;height:42px;border-radius:50%;background:var(--verde);display:grid;place-items:center;flex:none}
+.escreve button{all:unset;cursor:pointer;width:42px;height:42px;border-radius:50%;background:var(--nicho);display:grid;place-items:center;flex:none}
 .escreve button[disabled]{opacity:.45;cursor:default}
 .tampa div{max-width:260px}
 .tampa{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,17,19,0) 35%,rgba(14,17,19,.8) 72%);display:flex;align-items:flex-end;justify-content:center;text-align:center;color:#fff;padding:0 30px 96px;transition:opacity .3s}
@@ -115,7 +117,7 @@ h1 .sub{color:var(--verde)}
 .dono li{display:flex;gap:10px;padding:6px 0;border-top:1px dashed var(--linha);animation:entra .25s ease-out}
 .dono li:first-child{border-top:0}
 .dono li time{font:500 .75rem var(--mono);color:var(--tinta2);flex:none;padding-top:2px}
-.dono li b{color:var(--verde);font-weight:600}
+.dono li b{color:var(--nicho-esc);font-weight:600}
 .dono .vazio{color:var(--tinta2)}
 
 /* depois do teste */
@@ -236,6 +238,86 @@ dialog h2{margin:0 0 8px;font-size:1.5rem;letter-spacing:-.02em;line-height:1.15
 dialog p{margin:0 0 18px;color:var(--tinta2)}
 dialog .x{all:unset;cursor:pointer;position:absolute;top:14px;right:18px;font-size:1.4rem;color:var(--tinta2)}
 dialog form{position:relative}
+
+/* 2026-10-23 · cores por nicho, em tom suave. Base: verde = confiança, laranja = ação (só botão) */
+@property --nicho{syntax:"<color>";inherits:true;initial-value:#1D6B4F}
+@property --nicho-claro{syntax:"<color>";inherits:true;initial-value:#E1EEE6}
+@property --nicho-esc{syntax:"<color>";inherits:true;initial-value:#14513B}
+@property --bolha{syntax:"<color>";inherits:true;initial-value:#D7F5C7}
+body{--nicho:#1D6B4F;--nicho-claro:#E1EEE6;--nicho-esc:#14513B;--bolha:#D7F5C7;transition:--nicho .6s,--nicho-claro .6s,--nicho-esc .6s,--bolha .6s}
+body[data-ramo=salao]{--nicho:#B0546C;--nicho-claro:#F6E5E9;--nicho-esc:#8A3D52;--bolha:#FBE4EA}       /* rosé: cuidado, autoestima */
+body[data-ramo=clinica]{--nicho:#1F7A8C;--nicho-claro:#DEF0F2;--nicho-esc:#165C6A;--bolha:#D6F0F2}     /* azul-petróleo: saúde, limpeza, confiança */
+body[data-ramo=restaurante]{--nicho:#C2621E;--nicho-claro:#F8E8D9;--nicho-esc:#994B14;--bolha:#FCE7D3} /* terracota: apetite, calor */
+body[data-ramo=loja]{--nicho:#6B4BC6;--nicho-claro:#ECE6F9;--nicho-esc:#5236A0;--bolha:#E8E0FB}        /* violeta: desejo, estilo */
+body[data-ramo=servicos]{--nicho:#27466F;--nicho-claro:#E2E8F1;--nicho-esc:#1B3354;--bolha:#DCE6F4}    /* marinho: seriedade, segurança */
+
+/* fundo do herói: painel na cor do nicho até a borda da tela */
+.abre::before{content:"";position:absolute;top:0;bottom:0;right:0;width:44%;background-color:var(--nicho-claro);
+  background-image:radial-gradient(color-mix(in srgb,var(--nicho) 22%,transparent) 1.2px,transparent 1.6px);background-size:22px 22px}
+.abre::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(color-mix(in srgb,var(--nicho) 18%,transparent),transparent 70%)}
+@media (max-width:920px){.abre::before{width:100%;top:auto;height:min(62%,860px)}.abre::after{top:auto;bottom:-140px}}
+.cel{position:relative;z-index:1}
+
+/* faixa de nichos, de ponta a ponta */
+.faixa{background:var(--tinta);color:var(--papel);overflow:hidden;padding:16px 0;border-block:1px solid #000}
+.trilho{display:flex;align-items:center;gap:34px;width:max-content;animation:rola 48s linear infinite}
+.faixa:hover .trilho,.faixa:focus-within .trilho{animation-play-state:paused}
+@keyframes rola{to{transform:translateX(-50%)}}
+.faixa .mono{color:#8c9097}
+.trilho button,.trilho span:not(.mono){all:unset;display:inline-flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:600;white-space:nowrap}
+.trilho button{cursor:pointer;border-bottom:1px solid transparent}
+.trilho button:hover{border-bottom-color:var(--c)}
+.trilho button:focus-visible{outline:2px solid #fff;outline-offset:4px}
+.trilho button::before,.trilho span:not(.mono)::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
+
+/* bandas de cor de ponta a ponta (sem bordas vazias) */
+section.s{border-top:0}
+.banda-branca{background:var(--branco)}
+.banda-branca .conta .ctl,.banda-branca .conta .res{background:var(--papel)}
+.banda-areia{background:var(--papel2)}
+.banda-areia .quem-cartao{background:var(--branco)}
+.banda-escura{background:var(--tinta);color:var(--papel)}
+.banda-escura .mono{color:#8c9097}
+.banda-escura .tit h2{color:var(--papel)}
+.banda-escura .passos{background:#1C1F24;border-color:#2C3037}
+.banda-escura .passo{border-color:#2C3037}
+.banda-escura .passo p{color:#B6B2AA}
+.banda-escura .passo .n{color:#7FD1A8}
+.banda-escura .passo .quando{background:rgba(127,209,168,.12);color:#9FE0BF}
+.banda-escura .preco{background:#1C1F24;border:1px solid #2C3037}
+.serv{border-top:3px solid var(--c);transition:background .2s}
+.serv:hover{background:var(--branco)}
+.serv h3::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin:0 9px 2px 0}
+@media (prefers-reduced-motion:reduce){.trilho{animation:none;flex-wrap:wrap;width:auto;padding:0 18px}}
+
+/* prazo e persuasão */
+.prazo{background:var(--tinta);color:#E9E5DC;font-size:.88rem}
+.prazo .casca{display:flex;align-items:center;justify-content:center;gap:10px 18px;flex-wrap:wrap;min-height:38px;padding-block:6px;text-align:center}
+.prazo b{color:#fff}
+.pulso{width:8px;height:8px;border-radius:50%;background:var(--quente);box-shadow:0 0 0 0 rgba(217,81,44,.6);animation:pulso 1.8s infinite}
+@keyframes pulso{70%{box-shadow:0 0 0 8px rgba(217,81,44,0)}100%{box-shadow:0 0 0 0 rgba(217,81,44,0)}}
+.relogio{font-family:var(--mono);font-size:.8rem;color:#B6B2AA;border-left:1px solid #3a3e45;padding-left:14px}
+.relogio b{font-weight:500;color:#FFB59E;font-variant-numeric:tabular-nums}
+.relogio i{font-style:normal}
+@media (max-width:600px){.prazo .casca{flex-wrap:nowrap;gap:10px;font-size:.8rem;justify-content:space-between;text-align:left}.pulso{display:none}.relogio{padding-left:10px}.relogio i{display:none}}
+.prazo-mini{margin:12px 0 0!important;font-size:.85rem!important;color:#c9c6bf;text-align:center}
+.prazo-mini b{font-family:var(--mono);color:#FFB59E;font-weight:500}
+.rapido{display:flex;gap:10px;max-width:640px;margin:0 auto;flex-wrap:wrap}
+.rapido input{flex:1 1 180px;min-width:0;padding:14px 16px;border-radius:999px;border:0;font-size:1rem;background:#fff;color:var(--tinta)}
+.rapido input:focus{outline:3px solid rgba(255,255,255,.5)}
+.rapido .bt{flex:0 0 auto;background:var(--quente);color:#fff}
+.rapido .bt:hover{background:var(--quente-esc)}
+@media (max-width:600px){.rapido .bt{flex:1 1 100%}}
+.rapido-msg{min-height:1.4em;margin:12px auto 0!important;font-weight:600;color:#fff!important}
+.toast{position:fixed;left:16px;bottom:16px;z-index:40;max-width:340px;display:flex;gap:12px;align-items:flex-start;background:var(--branco);color:var(--tinta);border:1px solid var(--linha);border-left:4px solid var(--nicho);border-radius:14px;padding:14px 36px 14px 14px;box-shadow:0 20px 40px -20px rgba(20,23,27,.45);transform:translateY(160%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.toast.on{transform:none}
+.toast p{margin:0;font-size:.92rem;line-height:1.4}
+.toast p b{color:var(--nicho-esc)}
+.toast p a{color:var(--quente);font-weight:600}
+.toast-ic{flex:none;width:30px;height:30px;border-radius:50%;background:var(--nicho-claro);display:grid;place-items:center}
+.toast-ic::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--nicho)}
+.toast button{all:unset;cursor:pointer;position:absolute;top:8px;right:12px;color:var(--tinta2);font-size:1.2rem}
+@media (max-width:860px){.toast{left:12px;right:12px;max-width:none;bottom:84px}}
 </style>
 </head>
 <body>
@@ -249,6 +331,8 @@ dialog form{position:relative}
     <a class="bt peq" href="#teste" data-foca>Testar grátis</a>
   </div>
 </header>
+
+<div class="prazo" role="note"><div class="casca"><span class="pulso"></span><span>Pediu <b>hoje</b>, recebe a demonstração grátis <b>amanhã</b></span><span class="relogio" aria-label="Tempo até o fim do dia"><b data-falta>--:--:--</b><i> para fechar o dia</i></span></div></div>
 
 <main id="topo">
 <section class="abre" id="teste">
@@ -264,7 +348,7 @@ dialog form{position:relative}
         <label class="campo"><span>Nome do seu negócio</span><input id="negocio" maxlength="40" placeholder="Ex.: Studio Bella" required></label>
         <div class="campo"><span id="ramo-tit">Seu ramo</span></div>
         <div class="ramos" role="group" aria-labelledby="ramo-tit" id="ramos">
-          <button type="button" data-r="salao" aria-pressed="true">Salão e estética</button>
+          <button type="button" data-r="salao" aria-pressed="false">Salão e estética</button>
           <button type="button" data-r="clinica" aria-pressed="false">Clínica e consultório</button>
           <button type="button" data-r="restaurante" aria-pressed="false">Restaurante e delivery</button>
           <button type="button" data-r="loja" aria-pressed="false">Loja e venda online</button>
@@ -306,6 +390,7 @@ dialog form{position:relative}
             </div>
             <input class="isca" name="site_url" id="isca" tabindex="-1" autocomplete="off" aria-hidden="true">
             <button class="bt" id="p-enviar">Quero a minha em 24h →</button>
+            <p class="prazo-mini">Pedindo nas próximas <b data-falta>--:--:--</b>, a sua demonstração chega amanhã.</p>
             <p id="p-erro" style="margin:10px 0 0;color:#ffb8a3;display:none"></p>
           </div>
           <div class="ok" id="p-ok"><strong>Recebido.</strong>O Leo vai te chamar no WhatsApp com a sua demonstração em até 24h.</div>
@@ -315,7 +400,9 @@ dialog form{position:relative}
   </div>
 </section>
 
-<section class="s" id="conta">
+<div class="faixa" aria-label="Para quem eu construo"><div class="trilho"><span class="mono">Para quem eu construo</span><button type="button" data-r="salao" style="--c:#B0546C">Salões e estética</button><button type="button" data-r="clinica" style="--c:#1F7A8C">Clínicas e consultórios</button><button type="button" data-r="restaurante" style="--c:#C2621E">Restaurantes e delivery</button><button type="button" data-r="loja" style="--c:#6B4BC6">Lojas e venda online</button><button type="button" data-r="servicos" style="--c:#27466F">Escritórios e serviços</button><span style="--c:#2F8F5B">Academias</span><span style="--c:#8A6A3B">Imobiliárias</span><span class="mono" aria-hidden="true">Para quem eu construo</span><button type="button" tabindex="-1" aria-hidden="true" data-r="salao" style="--c:#B0546C">Salões e estética</button><button type="button" tabindex="-1" aria-hidden="true" data-r="clinica" style="--c:#1F7A8C">Clínicas e consultórios</button><button type="button" tabindex="-1" aria-hidden="true" data-r="restaurante" style="--c:#C2621E">Restaurantes e delivery</button><button type="button" tabindex="-1" aria-hidden="true" data-r="loja" style="--c:#6B4BC6">Lojas e venda online</button><button type="button" tabindex="-1" aria-hidden="true" data-r="servicos" style="--c:#27466F">Escritórios e serviços</button><span style="--c:#2F8F5B">Academias</span><span style="--c:#8A6A3B">Imobiliárias</span></div></div>
+
+<section class="s banda-branca" id="conta">
   <div class="casca">
     <div class="tit"><span class="mono">01 · A conta</span><div><h2>Quanto custa deixar o cliente esperando?</h2><p>Quem manda mensagem e espera, costuma fechar com quem respondeu primeiro. Mexa nos números do seu dia.</p></div></div>
     <div class="conta">
@@ -346,7 +433,7 @@ dialog form{position:relative}
   </div>
 </section>
 
-<section class="s" id="como">
+<section class="s banda-escura" id="como">
   <div class="casca">
     <div class="tit"><span class="mono">02 · Como funciona</span><div><h2>Você vê funcionando antes de pagar qualquer coisa.</h2></div></div>
     <div class="passos">
@@ -366,17 +453,17 @@ dialog form{position:relative}
   <div class="casca">
     <div class="tit"><span class="mono">03 · Além do atendimento</span><div><h2>Outros problemas que eu resolvo com software.</h2><p>Se o seu problema não é atendimento, o caminho é o mesmo: você conta, eu mostro funcionando, você decide.</p></div></div>
     <div class="servs">
-      <div class="serv"><h3>Agenda e lembretes</h3><p>O cliente marca sozinho e recebe lembrete antes do horário. Menos falta, menos remarcação.</p><span>a partir de R$ 800</span></div>
-      <div class="serv"><h3>Orçamentos em PDF</h3><p>Preencheu, saiu o documento pronto com a sua marca, em segundos.</p><span>a partir de R$ 2.500</span></div>
-      <div class="serv"><h3>Relatórios que chegam sozinhos</h3><p>O resumo do dia ou da semana no seu WhatsApp, sem abrir planilha.</p><span>a partir de R$ 500</span></div>
-      <div class="serv"><h3>Controle com QR Code</h3><p>Estoque, equipamentos ou ferramentas: quem pegou, quando e o que voltou.</p><span>a partir de R$ 2.500</span></div>
-      <div class="serv"><h3>Página de vendas</h3><p>Pensada para decidir rápido, com pagamento integrado.</p><span>a partir de R$ 900</span></div>
-      <div class="serv"><h3>Sistemas vigiados 24h</h3><p>Site e sistemas monitorados: o alerta chega antes do cliente perceber.</p><span>a partir de R$ 150/mês</span></div>
+      <div class="serv" style="--c:#B0546C"><h3>Agenda e lembretes</h3><p>O cliente marca sozinho e recebe lembrete antes do horário. Menos falta, menos remarcação.</p><span>a partir de R$ 800</span></div>
+      <div class="serv" style="--c:#C2621E"><h3>Orçamentos em PDF</h3><p>Preencheu, saiu o documento pronto com a sua marca, em segundos.</p><span>a partir de R$ 2.500</span></div>
+      <div class="serv" style="--c:#27466F"><h3>Relatórios que chegam sozinhos</h3><p>O resumo do dia ou da semana no seu WhatsApp, sem abrir planilha.</p><span>a partir de R$ 500</span></div>
+      <div class="serv" style="--c:#1F7A8C"><h3>Controle com QR Code</h3><p>Estoque, equipamentos ou ferramentas: quem pegou, quando e o que voltou.</p><span>a partir de R$ 2.500</span></div>
+      <div class="serv" style="--c:#6B4BC6"><h3>Página de vendas</h3><p>Pensada para decidir rápido, com pagamento integrado.</p><span>a partir de R$ 900</span></div>
+      <div class="serv" style="--c:#1D6B4F"><h3>Sistemas vigiados 24h</h3><p>Site e sistemas monitorados: o alerta chega antes do cliente perceber.</p><span>a partir de R$ 150/mês</span></div>
     </div>
   </div>
 </section>
 
-<section class="s">
+<section class="s banda-areia">
   <div class="casca quem">
     <span class="mono" style="padding-top:10px">04 · Quem faz</span>
     <div class="quem-cartao">
@@ -406,18 +493,25 @@ dialog form{position:relative}
   </div>
 </section>
 
-<section class="final">
+<section class="final" id="fim">
   <div class="casca">
-    <h2>Veja o seu negócio respondendo sozinho.</h2>
-    <p>Leva 30 segundos e não precisa de cadastro.</p>
-    <a class="bt" href="#teste" data-foca>Testar com o nome do meu negócio</a>
-    <a class="alt" href="mailto:leomagalhaes.ti@gmail.com">Prefere e-mail? leomagalhaes.ti@gmail.com</a>
+    <h2>Sem tempo para testar agora?</h2>
+    <p>Deixe o seu WhatsApp e eu te mando a demonstração pronta, com o nome do seu negócio. Grátis, sem compromisso.</p>
+    <form class="rapido" id="rapido" novalidate>
+      <input id="r-neg" maxlength="80" placeholder="Nome do seu negócio" aria-label="Nome do seu negócio">
+      <input id="r-zap" type="tel" inputmode="tel" maxlength="20" placeholder="WhatsApp com DDD" aria-label="WhatsApp com DDD">
+      <input class="isca" id="r-isca" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="bt">Quero receber →</button>
+    </form>
+    <p class="rapido-msg" id="r-msg" role="status"></p>
+    <a class="alt" href="#teste" data-foca>Ou teste agora, em 30 segundos ↑</a>
   </div>
 </section>
 </main>
 
 <footer><div class="casca"><span>© 2026 Leo Magalhães · Salvador, BA</span><a href="../privacidade/">Privacidade</a><a href="https://www.instagram.com/leo.maagalhaes/">@leo.maagalhaes</a></div></footer>
 
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-ic"></span><p></p><button type="button" aria-label="Fechar aviso">×</button></div>
 <div class="fixa" id="fixa"><a class="bt" href="#teste" data-foca>Testar com o meu negócio, grátis</a></div>
 
 <dialog id="saida">
@@ -427,6 +521,7 @@ dialog form{position:relative}
     <p>Digite o nome e converse com a sua atendente. Leva 30 segundos.</p>
     <label class="campo"><span>Nome do seu negócio</span><input id="saida-neg" maxlength="40" placeholder="Ex.: Clínica Vida"></label>
     <button class="bt" value="ir" style="width:100%">Criar minha atendente →</button>
+    <p style="margin:14px 0 0;font-size:.9rem;text-align:center">Sem tempo? <a href="#fim" id="saida-zap" style="color:var(--verde);font-weight:600">Receba a demonstração no WhatsApp</a></p>
   </form>
 </dialog>
 
@@ -450,11 +545,17 @@ const FECHOU = { salao: "Horário marcado", clinica: "Consulta marcada", restaur
 let ramo = "salao", nome = "", hist = [], ocupado = false, trocas = 0, criada = false;
 
 /* ramo */
-$("ramos").addEventListener("click", e => {
-  const b = e.target.closest("button"); if (!b) return;
-  ramo = b.dataset.r;
-  $("ramos").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+/* cada ramo tem a sua cor (psicologia das cores, em tom suave): o celular, os balões e o fundo mudam juntos */
+function escolher(r) {
+  ramo = r; document.body.dataset.ramo = r;
+  $("ramos").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x.dataset.r === r));
   if (criada) criar();
+}
+$("ramos").addEventListener("click", e => { const b = e.target.closest("button"); if (b) escolher(b.dataset.r); });
+document.querySelector(".faixa").addEventListener("click", e => {
+  const b = e.target.closest("button[data-r]"); if (!b) return;
+  escolher(b.dataset.r); $("teste").scrollIntoView({ behavior: calmo ? "auto" : "smooth" });
+  setTimeout(() => (criada ? $("txt") : $("negocio")).focus({ preventScroll: true }), calmo ? 0 : 500);
 });
 
 function iniciais(n) { return n.split(/\s+/).filter(Boolean).slice(0, 2).map(p => p[0]).join("").toUpperCase() || "SN"; }
@@ -484,6 +585,7 @@ function sugestoes(lista) {
 function criar() {
   nome = $("negocio").value.trim().replace(/\s+/g, " ").slice(0, 40);
   if (!nome) { $("negocio").focus(); $("negocio").reportValidity(); return; }
+  if (!document.body.dataset.ramo) escolher(ramo);
   criada = true; hist = []; trocas = 0;
   $("cab-nome").textContent = nome; $("av").textContent = iniciais(nome);
   $("msgs").innerHTML = ""; $("tampa").classList.add("some");
@@ -551,7 +653,7 @@ $("pedido").addEventListener("submit", async e => {
   try {
     const r = await fetch(PEDIDO_URL, { method: "POST", body: corpo }); const d = await r.json();
     if (!d.ok) throw new Error(d.msg || "erro");
-    $("pedido-campos").style.display = "none"; $("p-ok").style.display = "block";
+    $("pedido-campos").style.display = "none"; $("p-ok").style.display = "block"; leadFeito = true;
     aviso("<b>Novo contato</b> chegou para o Leo");
   } catch (err) {
     erro.textContent = "Não consegui enviar. Tente de novo ou mande e-mail para leomagalhaes.ti@gmail.com."; erro.style.display = "block";
@@ -599,6 +701,56 @@ $("saida").addEventListener("close", () => {
   $("teste").scrollIntoView({ behavior: "auto" });
   n ? criar() : $("negocio").focus();
 });
+
+
+/* relógio do dia (hora da Bahia): pedido de hoje = demonstração amanhã */
+function relogio() {
+  const a = new Date(Date.now() - 3 * 3600e3), resto = 86400 - (a.getUTCHours() * 3600 + a.getUTCMinutes() * 60 + a.getUTCSeconds());
+  const t = [resto / 3600 | 0, (resto % 3600) / 60 | 0, resto % 60].map(n => String(n).padStart(2, "0")).join(":");
+  document.querySelectorAll("[data-falta]").forEach(x => x.textContent = t);
+}
+relogio(); setInterval(relogio, 1000);
+
+/* formulários curtos de lead (final da página) */
+async function enviarLead(neg, zap, isca, origem, extra) {
+  const corpo = new URLSearchParams({ nome: neg, contato: zap, servico: origem, site_url: isca, ms: String(Date.now() - t0),
+    mensagem: `Quer demo grátis em 24h. Negócio: ${neg || "-"} · ramo: ${document.body.dataset.ramo || "não escolheu"}.${extra || ""}` });
+  const d = await fetch(PEDIDO_URL, { method: "POST", body: corpo }).then(r => r.json());
+  if (!d.ok) throw new Error(d.msg || "erro");
+}
+$("rapido").addEventListener("submit", async e => {
+  e.preventDefault();
+  const zap = $("r-zap").value.trim(), msg = $("r-msg"), bt = e.target.querySelector("button");
+  if (zap.replace(/\D/g, "").length < 10) { msg.textContent = "Coloque o WhatsApp com DDD."; $("r-zap").focus(); return; }
+  bt.disabled = true; bt.textContent = "Enviando…";
+  try {
+    await enviarLead($("r-neg").value.trim(), zap, $("r-isca").value, "Demo no WhatsApp (final do site v3)");
+    e.target.style.display = "none"; msg.textContent = "Recebido. O Leo te chama no WhatsApp com a sua demonstração.";
+    leadFeito = true;
+  } catch (err) { msg.textContent = "Não consegui enviar. Tente de novo ou mande e-mail para leomagalhaes.ti@gmail.com."; bt.disabled = false; bt.textContent = "Quero receber →"; }
+});
+$("saida-zap").addEventListener("click", e => {
+  e.preventDefault(); $("saida").close();
+  const n = $("saida-neg").value.trim(); if (n) $("r-neg").value = n;
+  $("fim").scrollIntoView({ behavior: "auto" }); $(n ? "r-zap" : "r-neg").focus();
+});
+
+/* avisos de persuasão: só fatos e contas da própria página, no máximo 3, param quando a pessoa age */
+let leadFeito = false, avisosVistos = 0;
+const AVISOS = [
+  () => `Enquanto você lê, o cliente que te chamou no WhatsApp <b>pode estar falando com o concorrente</b>. <a href="#teste" data-foca>Ver a atendente responder →</a>`,
+  () => `Pela conta desta página, demorar pode custar <b>${$("o-mes").textContent} por mês</b>. <a href="#conta">Refazer com os meus números →</a>`,
+  () => `A demonstração é <b>grátis</b> e com o nome do seu negócio. Pedindo hoje, chega <b>amanhã</b>. <a href="#fim">Quero a minha →</a>`
+];
+function proximoAviso() {
+  if (leadFeito || avisosVistos >= AVISOS.length || document.hidden || $("fecha").classList.contains("on")) return;
+  const t = $("toast"); t.querySelector("p").innerHTML = AVISOS[avisosVistos++]();
+  t.querySelectorAll("[data-foca]").forEach(a => a.addEventListener("click", ev => { ev.preventDefault(); t.classList.remove("on"); $("teste").scrollIntoView({ behavior: calmo ? "auto" : "smooth" }); setTimeout(() => (criada ? $("txt") : $("negocio")).focus({ preventScroll: true }), 500); }));
+  t.querySelectorAll('a[href^="#"]:not([data-foca])').forEach(a => a.addEventListener("click", () => t.classList.remove("on")));
+  t.classList.add("on"); setTimeout(() => t.classList.remove("on"), 9000);
+}
+$("toast").querySelector("button").addEventListener("click", () => { $("toast").classList.remove("on"); avisosVistos = AVISOS.length; });
+setTimeout(proximoAviso, 18000); setTimeout(proximoAviso, 50000); setTimeout(proximoAviso, 90000);
 
 /* tela vazia do celular: exemplo mudo até a pessoa criar */
 balao("cli", "Oi! Vocês têm horário amanhã?");
