@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0E1113">
-<title>Leo Magalhães · Atendimento automático no WhatsApp</title>
-<meta name="description" content="Atendentes que respondem, tiram dúvida de preço e marcam horário pelo WhatsApp do seu negócio. Teste agora com o nome do seu negócio.">
-<meta property="og:title" content="Leo Magalhães · Atendimento automático no WhatsApp">
-<meta property="og:description" content="Teste agora, com o nome do seu negócio, a atendente que responde seus clientes em segundos.">
+<title>Leo Magalhães · Automação, sistemas e IA para o seu negócio</title>
+<meta name="description" content="Atendimento no WhatsApp, agenda, orçamentos, relatórios e sistemas sob medida. Demonstração grátis com o nome do seu negócio em 24h.">
+<meta property="og:title" content="Leo Magalhães · Automação, sistemas e IA para o seu negócio">
+<meta property="og:description" content="Você vê funcionando antes de pagar: demonstração grátis com o nome do seu negócio em 24h.">
 <meta property="og:image" content="https://leomagalhaesti.github.io/previa.png">
 <link rel="icon" href="../img/foto.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -307,6 +307,70 @@ dialog form{position:relative}
 dialog .bt{width:100%}
 dialog .alt{margin:14px 0 0;font-size:.9rem;text-align:center}
 dialog .alt a{color:var(--menta);font-weight:600}
+
+/* 2026-10-23 · oferta ampla: atalhos de serviço no herói, teste dentro do celular, catálogo e pedido com serviço */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.atalhos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 22px}
+.atalho{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--linha);border-radius:14px;background:var(--g1);text-decoration:none;transition:border-color .15s,background .15s}
+.atalho:hover{border-color:var(--menta);background:var(--g2)}
+.atalho .ic{flex:none;width:36px;height:36px;border-radius:10px;background:var(--menta-fundo);display:grid;place-items:center}
+.atalho .ic svg{width:19px;height:19px;stroke:var(--menta)}
+.atalho b{display:block;font-size:.95rem;font-weight:600;line-height:1.25}
+.atalho small{display:block;font:500 .72rem var(--mono);color:var(--suave);margin-top:2px}
+.atalho:first-child{border-color:rgba(43,217,168,.5)}
+.atalho:first-child small{color:var(--menta)}
+.acoes-topo{display:flex;flex-wrap:wrap;gap:10px}
+.bt.contorno{background:transparent;color:var(--texto);border:1.5px solid var(--linha);box-shadow:none}
+.bt.contorno:hover{border-color:var(--menta);color:var(--menta);background:transparent}
+@media (max-width:520px){.atalhos{gap:8px}.atalho{flex-direction:column;align-items:flex-start;gap:8px;padding:12px}.atalho b{font-size:.88rem}.acoes-topo .bt{flex:1 1 100%}}
+.so-cel{display:none}
+@media (max-width:600px){.so-pc{display:none}.so-cel{display:inline}.marca{white-space:nowrap}}
+/* teste dentro do celular */
+.tampa{height:auto;top:auto;padding:70px 14px 16px;pointer-events:auto;background:linear-gradient(to bottom,rgba(11,20,26,0),rgba(11,20,26,.97) 60px)}
+.tampa.some{pointer-events:none}
+.tampa .monta{all:unset;display:block;width:100%;text-align:left}
+.tampa-tit{display:block;font-size:1.02rem;color:#E9EDEF;margin:0 0 10px;text-align:center}
+.tampa-tit em{font-style:normal;color:var(--menta)}
+.tampa .campo{margin-bottom:10px}
+.tampa .campo input{background:#1F2C34;border-color:#2A3942;padding:12px 14px;font-size:.95rem;border-radius:999px}
+.tampa .ramos{grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px}
+.tampa .ramos button{padding:8px 2px 7px;font-size:.66rem;gap:5px;background:#1F2C34;border-color:#2A3942;border-radius:10px}
+.tampa .ramos button svg{width:18px;height:18px}
+.tampa .bt{padding:12px 16px;border-radius:999px;font-size:.95rem}
+.link{all:unset;cursor:pointer;color:var(--menta);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+/* catálogo */
+.catalogo{display:grid;grid-template-columns:250px 1fr;gap:18px;align-items:start}
+.abas{display:flex;flex-direction:column;gap:6px}
+.abas button{all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;font-weight:600;font-size:.95rem;color:var(--tinta2);border:1px solid transparent}
+.abas button svg{width:18px;height:18px;stroke:currentColor;flex:none}
+.abas button:hover{color:var(--tinta);background:#fff}
+.abas button[aria-selected="true"]{background:#fff;color:var(--tinta);border-color:var(--linha-clara);box-shadow:inset 3px 0 0 var(--menta-esc)}
+.abas button:focus-visible{outline:2px solid var(--menta-esc)}
+.painel{background:#fff;border:1px solid var(--linha-clara);border-radius:18px;padding:8px 24px 14px}
+.painel header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;padding:16px 0 12px;border-bottom:1.5px solid var(--tinta)}
+.painel h3{margin:0;font-size:1.25rem;letter-spacing:-.01em}
+.painel header span{font:500 .8rem var(--mono);color:var(--menta-esc)}
+.painel ul{list-style:none;margin:0;padding:0}
+.painel li{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid var(--linha-clara)}
+.painel li:last-child{border-bottom:0}
+.painel li b{display:block;font-size:1rem}
+.painel li div span{display:block;color:var(--tinta2);font-size:.92rem;margin-top:2px}
+.painel li a{flex:none;font-weight:600;font-size:.88rem;color:var(--menta-esc);text-decoration:none;white-space:nowrap}
+.painel li a:hover{text-decoration:underline}
+@media (max-width:860px){.catalogo{grid-template-columns:1fr}.abas{flex-direction:row;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px}.abas::-webkit-scrollbar{display:none}.abas button{flex:none;white-space:nowrap}.painel{padding:4px 18px 10px}.painel li{flex-direction:column;align-items:flex-start;gap:8px}}
+/* pedido com serviço */
+.final h2 em{font-style:normal;color:var(--menta)}
+.rapido{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;text-align:left;background:var(--g1);border:1px solid var(--linha);border-radius:20px;padding:24px}
+.rapido label span{display:block;font-size:.84rem;font-weight:600;margin-bottom:7px}
+.rapido label span i{font-style:normal;color:var(--suave);font-weight:400}
+.rapido input,.rapido select,.rapido textarea{width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid var(--linha);background:var(--g0);color:var(--texto);font:inherit;font-size:1rem}
+.rapido select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--menta) 50%),linear-gradient(135deg,var(--menta) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+.rapido textarea{resize:vertical;min-height:52px}
+.rapido input:focus,.rapido select:focus,.rapido textarea:focus{outline:none;border-color:var(--menta)}
+.rapido .largo{grid-column:1/-1}
+.rapido .bt{width:100%}
+.rapido .prazo-mini{margin:0}
+@media (max-width:600px){.rapido{grid-template-columns:1fr;padding:18px}}
 </style>
 </head>
 <body>
@@ -327,6 +391,8 @@ dialog .alt a{color:var(--menta);font-weight:600}
     <symbol id="i-qr" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M21 18v3"/></symbol>
     <symbol id="i-pagina" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 13h6M7 16h10"/></symbol>
     <symbol id="i-escudo" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-mensagem" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.5L3.5 20.5l1.4-4.5a8.4 8.4 0 1 1 15.6-4.4z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></symbol>
+    <symbol id="i-ia" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
     <symbol id="i-sino" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0"/></symbol>
   </defs>
 </svg>
@@ -337,9 +403,9 @@ dialog .alt a{color:var(--menta);font-weight:600}
   <div class="casca">
     <a class="marca" href="#topo"><img src="../img/foto.jpg" alt="" width="34" height="34"><span>Leo Magalhães<small>Automação · Salvador, BA</small></span></a>
     <nav class="menu" aria-label="Seções">
-      <a href="#teste">Teste ao vivo</a><a href="#conta">Quanto você perde</a><a href="#como">Como funciona</a><a href="#duvidas">Dúvidas</a>
+      <a href="#servicos">Serviços</a><a href="#teste-cel" data-foca>Teste ao vivo</a><a href="#como">Como funciona</a><a href="#duvidas">Dúvidas</a>
     </nav>
-    <a class="bt peq" href="#teste" data-foca>Testar grátis</a>
+    <a class="bt peq" href="#fim" data-pedir=""><span class="so-pc">Demonstração grátis</span><span class="so-cel">Demo grátis</span></a>
   </div>
 </header>
 
@@ -347,29 +413,18 @@ dialog .alt a{color:var(--menta);font-weight:600}
 <section class="abre" id="teste">
   <div class="casca">
     <div>
-      <span class="selo"><span class="pulso"></span>Atendimento automático no WhatsApp</span>
-      <h1>Seu cliente chama às 23h. <em>Seu negócio responde em segundos.</em></h1>
-      <p class="lead">Eu construo atendentes que respondem, tiram dúvida de preço e marcam horário pelo WhatsApp, e só chamam você quando precisa. <b>Não acredite em mim: teste agora, com o nome do seu negócio.</b></p>
+      <span class="selo"><span class="pulso"></span>Automação · Sistemas · IA</span>
+      <h1>Eu resolvo os problemas do seu negócio <em>com software.</em></h1>
+      <p class="lead">Atendimento que responde sozinho, agenda que lembra o cliente, orçamento que sai pronto, relatório que chega no seu celular. <b>Você vê funcionando antes de pagar.</b></p>
+      <div class="atalhos"><a class="atalho" href="#teste-cel" data-foca><span class="ic"><svg aria-hidden="true"><use href="#i-mensagem"/></svg></span><span><b>Atendimento no WhatsApp</b><small>teste ao vivo →</small></span></a><a class="atalho" href="#fim" data-pedir="Agendamento com lembrete"><span class="ic"><svg aria-hidden="true"><use href="#i-agenda"/></svg></span><span><b>Agenda e lembretes</b><small>a partir de R$ 800</small></span></a><a class="atalho" href="#fim" data-pedir="Orçamentos e PDFs automáticos"><span class="ic"><svg aria-hidden="true"><use href="#i-doc"/></svg></span><span><b>Orçamentos em PDF</b><small>a partir de R$ 2.500</small></span></a><a class="atalho" href="#fim" data-pedir="Relatórios que chegam sozinhos"><span class="ic"><svg aria-hidden="true"><use href="#i-grafico"/></svg></span><span><b>Relatórios no celular</b><small>a partir de R$ 500</small></span></a><a class="atalho" href="#fim" data-pedir="Controle com QR Code"><span class="ic"><svg aria-hidden="true"><use href="#i-qr"/></svg></span><span><b>Controle com QR Code</b><small>a partir de R$ 2.500</small></span></a><a class="atalho" href="#fim" data-pedir="Página de vendas"><span class="ic"><svg aria-hidden="true"><use href="#i-pagina"/></svg></span><span><b>Página de vendas</b><small>a partir de R$ 900</small></span></a></div>
+      <div class="acoes-topo"><a class="bt" href="#fim" data-pedir="">Pedir demonstração grátis →</a><a class="bt contorno" href="#servicos">Ver todos os serviços</a></div>
+      <div class="garantias"><span>Demonstração grátis em 24h</span><span>Sem compromisso</span><span>Atendo todo o Brasil</span></div>
 
-      <form class="monta" id="monta" autocomplete="off">
-        <h2>Crie a sua atendente em 10 segundos</h2>
-        <p>Depois, faça o papel do seu cliente e converse com ela pelo celular.</p>
-        <label class="campo"><span>Nome do seu negócio</span><input id="negocio" maxlength="40" placeholder="Ex.: Studio Bella" required></label>
-        <div class="campo"><span id="ramo-tit">Seu ramo</span></div>
-        <div class="ramos" role="group" aria-labelledby="ramo-tit" id="ramos">
-          <button type="button" data-r="salao" aria-pressed="false"><svg aria-hidden="true"><use href="#i-salao"/></svg>Salão e estética</button>
-          <button type="button" data-r="clinica" aria-pressed="false"><svg aria-hidden="true"><use href="#i-clinica"/></svg>Clínica</button>
-          <button type="button" data-r="restaurante" aria-pressed="false"><svg aria-hidden="true"><use href="#i-restaurante"/></svg>Restaurante</button>
-          <button type="button" data-r="loja" aria-pressed="false"><svg aria-hidden="true"><use href="#i-loja"/></svg>Loja</button>
-          <button type="button" data-r="servicos" aria-pressed="false"><svg aria-hidden="true"><use href="#i-servicos"/></svg>Escritório</button>
-        </div>
-        <button class="bt" type="submit" id="criar">Criar minha atendente →</button>
-        <div class="garantias"><span>Grátis</span><span>Sem cadastro</span><span>Pronto em 10 segundos</span></div>
-      </form>
+      
     </div>
 
     <div class="palco">
-      <div class="cel" aria-label="Simulação do WhatsApp do seu negócio">
+      <div class="cel" id="teste-cel" aria-label="Simulação do WhatsApp do seu negócio">
         <div class="tela">
           <div class="ilha"></div>
           <div class="status"><span id="hora-cel">--:--</span><span class="ics" aria-hidden="true">
@@ -393,10 +448,22 @@ dialog .alt a{color:var(--menta);font-weight:600}
             </div>
             <button id="enviar" aria-label="Enviar" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg></button>
           </form>
-          <div class="tampa" id="tampa"><div><strong>Aqui aparece a sua atendente</strong><p id="tampa-txt">Digite o nome do seu negócio e toque em "Criar".</p></div></div>
+          <div class="tampa" id="tampa"><form class="monta" id="monta" autocomplete="off">
+        <strong class="tampa-tit">Teste agora: a atendente do <em>seu</em> negócio</strong>
+        <label class="campo"><span class="sr">Nome do seu negócio</span><input id="negocio" maxlength="40" placeholder="Nome do seu negócio" required></label>
+        <span class="sr" id="ramo-tit">Seu ramo</span>
+        <div class="ramos" role="group" aria-labelledby="ramo-tit" id="ramos">
+          <button type="button" data-r="salao" aria-pressed="false"><svg aria-hidden="true"><use href="#i-salao"/></svg>Salão</button>
+          <button type="button" data-r="clinica" aria-pressed="false"><svg aria-hidden="true"><use href="#i-clinica"/></svg>Clínica</button>
+          <button type="button" data-r="restaurante" aria-pressed="false"><svg aria-hidden="true"><use href="#i-restaurante"/></svg>Restaurante</button>
+          <button type="button" data-r="loja" aria-pressed="false"><svg aria-hidden="true"><use href="#i-loja"/></svg>Loja</button>
+          <button type="button" data-r="servicos" aria-pressed="false"><svg aria-hidden="true"><use href="#i-servicos"/></svg>Escritório</button>
+        </div>
+        <button class="bt" type="submit" id="criar">Criar minha atendente →</button>
+      </form></div>
         </div>
       </div>
-      <p class="aviso-ex">Preços e horários de exemplo. Na sua versão entram os seus.</p>
+      <p class="aviso-ex">Preços e horários de exemplo. Na sua versão entram os seus. <button type="button" id="de-novo" class="link" hidden>Testar com outro negócio</button></p>
 
       <div class="dono" aria-live="polite">
         <header><span class="mono"><svg aria-hidden="true"><use href="#i-sino"/></svg>O que chega no SEU celular</span></header>
@@ -424,9 +491,37 @@ dialog .alt a{color:var(--menta);font-weight:600}
 
 <div class="faixa" aria-label="Para quem eu construo"><div class="trilho" id="trilho"></div></div>
 
+<section class="s clara" id="servicos">
+  <div class="casca">
+    <div class="tit"><span class="mono">01 · Serviços</span><div><h2>O que eu construo <em>para o seu negócio.</em></h2><p>34 soluções em 7 áreas. Escolha uma e eu monto uma demonstração com o nome do seu negócio, grátis.</p></div></div>
+    <div class="catalogo recuo">
+      <div class="abas" role="tablist" aria-label="Áreas"><button type="button" role="tab" aria-selected="true" data-a="0"><svg aria-hidden="true"><use href="#i-mensagem"/></svg>Bots e atendimento</button><button type="button" role="tab" aria-selected="false" data-a="1"><svg aria-hidden="true"><use href="#i-pagina"/></svg>Conteúdo e redes</button><button type="button" role="tab" aria-selected="false" data-a="2"><svg aria-hidden="true"><use href="#i-grafico"/></svg>Vendas e marketing digital</button><button type="button" role="tab" aria-selected="false" data-a="3"><svg aria-hidden="true"><use href="#i-qr"/></svg>Sistemas para empresas</button><button type="button" role="tab" aria-selected="false" data-a="4"><svg aria-hidden="true"><use href="#i-agenda"/></svg>Automação e integrações</button><button type="button" role="tab" aria-selected="false" data-a="5"><svg aria-hidden="true"><use href="#i-ia"/></svg>IA aplicada</button><button type="button" role="tab" aria-selected="false" data-a="6"><svg aria-hidden="true"><use href="#i-escudo"/></svg>Proteção e monitoramento</button></div>
+      <div class="paineis"><div class="painel" role="tabpanel" data-a="0"><header><h3>Bots e atendimento</h3><span>a partir de R$ 800</span></header><ul><li><div><b>Bot para Telegram</b><span>vendas, avisos, área de membros e pagamentos dentro do Telegram</span></div><a href="#fim" data-pedir="Bot para Telegram">Quero uma demonstração →</a></li><li><div><b>Bot de WhatsApp com menu</b><span>responde as perguntas de sempre e chama o dono só quando precisa</span></div><a href="#fim" data-pedir="Bot de WhatsApp com menu">Quero uma demonstração →</a></li><li><div><b>Agendamento com lembrete</b><span>o cliente marca sozinho e recebe lembrete antes do horário</span></div><a href="#fim" data-pedir="Agendamento com lembrete">Quero uma demonstração →</a></li><li><div><b>Triagem de contatos</b><span>separa quem está curioso de quem está pronto pra comprar</span></div><a href="#fim" data-pedir="Triagem de contatos">Quero uma demonstração →</a></li><li><div><b>Assistente que conhece seu negócio</b><span>responde com base nos documentos, preços e regras da empresa (a partir de R$ 1.500)</span></div><a href="#fim" data-pedir="Assistente que conhece seu negócio">Quero uma demonstração →</a></li></ul></div><div class="painel" role="tabpanel" data-a="1" hidden><header><h3>Conteúdo e redes</h3><span>a partir de R$ 1.200 de implantação + R$ 300/mês</span></header><ul><li><div><b>Posts diários com aprovação no celular</b><span>tema, texto e arte prontos; a pessoa só aprova com um toque</span></div><a href="#fim" data-pedir="Posts diários com aprovação no celular">Quero uma demonstração →</a></li><li><div><b>Roteiros que se autovalidam</b><span>cada roteiro passa por checagem de fatos, tamanho e gancho</span></div><a href="#fim" data-pedir="Roteiros que se autovalidam">Quero uma demonstração →</a></li><li><div><b>Canal dark completo</b><span>roteiro, voz, edição e publicação no YouTube sem aparecer</span></div><a href="#fim" data-pedir="Canal dark completo">Quero uma demonstração →</a></li><li><div><b>Cortes e Reels a partir de vídeo longo</b><span>um vídeo vira vários cortes com legenda</span></div><a href="#fim" data-pedir="Cortes e Reels a partir de vídeo longo">Quero uma demonstração →</a></li><li><div><b>Radar de tendências do seu nicho</b><span>o que está em alta na semana, pronto pra virar pauta</span></div><a href="#fim" data-pedir="Radar de tendências do seu nicho">Quero uma demonstração →</a></li></ul></div><div class="painel" role="tabpanel" data-a="2" hidden><header><h3>Vendas e marketing digital</h3><span>página de vendas a partir de R$ 900; funil com e-mails a partir de R$ 1.500; demais a partir de R$ 900</span></header><ul><li><div><b>Página de vendas</b><span>pensada para decidir rápido, com checkout integrado</span></div><a href="#fim" data-pedir="Página de vendas">Quero uma demonstração →</a></li><li><div><b>Funil com e-mails automáticos</b><span>quem deixa o contato recebe a sequência certa até comprar</span></div><a href="#fim" data-pedir="Funil com e-mails automáticos">Quero uma demonstração →</a></li><li><div><b>Garimpo de anúncios que vendem</b><span>mapeia o que já vende no nicho antes de gastar com tráfego</span></div><a href="#fim" data-pedir="Garimpo de anúncios que vendem">Quero uma demonstração →</a></li><li><div><b>Métricas da campanha no celular</b><span>resumo diário do que gastou, do que voltou e do que ajustar</span></div><a href="#fim" data-pedir="Métricas da campanha no celular">Quero uma demonstração →</a></li><li><div><b>Produto digital do zero</b><span>guia, kit ou curso: conteúdo, capa, página e checkout</span></div><a href="#fim" data-pedir="Produto digital do zero">Quero uma demonstração →</a></li></ul></div><div class="painel" role="tabpanel" data-a="3" hidden><header><h3>Sistemas para empresas</h3><span>a partir de R$ 2.500</span></header><ul><li><div><b>Controle com QR Code</b><span>estoque, equipamentos ou ferramentas: quem pegou, quando e o que voltou</span></div><a href="#fim" data-pedir="Controle com QR Code">Quero uma demonstração →</a></li><li><div><b>Agenda e reservas online</b><span>horários, salas ou serviços reservados sem troca de mensagens</span></div><a href="#fim" data-pedir="Agenda e reservas online">Quero uma demonstração →</a></li><li><div><b>Painel administrativo sob medida</b><span>os números do negócio numa tela só, atualizados sozinhos</span></div><a href="#fim" data-pedir="Painel administrativo sob medida">Quero uma demonstração →</a></li><li><div><b>Orçamentos e PDFs automáticos</b><span>preencheu, saiu o documento pronto com a marca</span></div><a href="#fim" data-pedir="Orçamentos e PDFs automáticos">Quero uma demonstração →</a></li><li><div><b>App que funciona no celular</b><span>instala pelo navegador, funciona offline, sem loja</span></div><a href="#fim" data-pedir="App que funciona no celular">Quero uma demonstração →</a></li></ul></div><div class="painel" role="tabpanel" data-a="4" hidden><header><h3>Automação e integrações</h3><span>a partir de R$ 500</span></header><ul><li><div><b>Ferramentas conversando entre si</b><span>planilha, CRM, e-mail e WhatsApp trocando dados sem copiar e colar</span></div><a href="#fim" data-pedir="Ferramentas conversando entre si">Quero uma demonstração →</a></li><li><div><b>Relatórios que chegam sozinhos</b><span>o resumo do dia ou da semana no WhatsApp ou e-mail</span></div><a href="#fim" data-pedir="Relatórios que chegam sozinhos">Quero uma demonstração →</a></li><li><div><b>Monitor de preços e concorrentes</b><span>avisa quando um preço muda ou um concorrente lança algo</span></div><a href="#fim" data-pedir="Monitor de preços e concorrentes">Quero uma demonstração →</a></li><li><div><b>Planilhas que se atualizam</b><span>os dados entram sozinhos</span></div><a href="#fim" data-pedir="Planilhas que se atualizam">Quero uma demonstração →</a></li><li><div><b>Alertas fora do normal</b><span>venda caiu, pedido parado, site lento: aviso na hora</span></div><a href="#fim" data-pedir="Alertas fora do normal">Quero uma demonstração →</a></li></ul></div><div class="painel" role="tabpanel" data-a="5" hidden><header><h3>IA aplicada</h3><span>a partir de R$ 1.500</span></header><ul><li><div><b>Chat com IA no seu site</b><span>atende o visitante a qualquer hora</span></div><a href="#fim" data-pedir="Chat com IA no seu site">Quero uma demonstração →</a></li><li><div><b>Leitura de documentos e notas</b><span>extrai dados de PDFs, notas fiscais e formulários pra planilha</span></div><a href="#fim" data-pedir="Leitura de documentos e notas">Quero uma demonstração →</a></li><li><div><b>Classificação de mensagens</b><span>e-mails e pedidos separados por assunto e prioridade</span></div><a href="#fim" data-pedir="Classificação de mensagens">Quero uma demonstração →</a></li><li><div><b>Imagens e textos na sua identidade</b><span>peças geradas no padrão da marca</span></div><a href="#fim" data-pedir="Imagens e textos na sua identidade">Quero uma demonstração →</a></li><li><div><b>Resumo diário do seu mercado</b><span>as notícias do ramo num texto curto de manhã</span></div><a href="#fim" data-pedir="Resumo diário do seu mercado">Quero uma demonstração →</a></li></ul></div><div class="painel" role="tabpanel" data-a="6" hidden><header><h3>Proteção e monitoramento</h3><span>a partir de R$ 150/mês</span></header><ul><li><div><b>Site e sistemas vigiados 24h</b><span>alerta antes do cliente perceber que caiu</span></div><a href="#fim" data-pedir="Site e sistemas vigiados 24h">Quero uma demonstração →</a></li><li><div><b>Backup automático</b><span>cópias diárias em outro lugar, prontas pra restaurar</span></div><a href="#fim" data-pedir="Backup automático">Quero uma demonstração →</a></li><li><div><b>Revisão de segurança básica</b><span>senhas, acessos e pontos fracos, com o que corrigir primeiro</span></div><a href="#fim" data-pedir="Revisão de segurança básica">Quero uma demonstração →</a></li><li><div><b>Proteção contra golpes no atendimento</b><span>evita pagamento falso e perfil clonado</span></div><a href="#fim" data-pedir="Proteção contra golpes no atendimento">Quero uma demonstração →</a></li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="como">
+  <div class="casca">
+    <div class="tit"><span class="mono">02 · Como funciona</span><div><h2>Você vê funcionando <em>antes de pagar</em> qualquer coisa.</h2></div></div>
+    <div class="recuo">
+      <div class="passos">
+        <div class="passo"><span class="n">01</span><h3>Você testa</h3><p>Aqui nesta página, com o nome do seu negócio. Sem cadastro.</p><span class="quando">AGORA</span></div>
+        <div class="passo"><span class="n">02</span><h3>Recebe a sua demonstração</h3><p>Com os seus serviços, preços e horários, no seu WhatsApp. Você testa como cliente.</p><span class="quando">EM ATÉ 24H · GRÁTIS</span></div>
+        <div class="passo"><span class="n">03</span><h3>Vai para o ar</h3><p>No número do seu negócio. Eu acompanho, ajusto e te aviso se algo sair do normal.</p><span class="quando">VOCÊ DECIDE DEPOIS DE VER</span></div>
+      </div>
+      <div class="preco">
+        <div><small>Atendente no WhatsApp</small><b>a partir de R$ 800</b></div>
+        <div><small>Atendente que conhece o seu negócio a fundo</small><b>a partir de R$ 1.500</b></div>
+        <a class="bt" href="#teste" data-foca>Começar pelo teste grátis</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="s clara" id="conta">
   <div class="casca">
-    <div class="tit"><span class="mono">01 · A conta</span><div><h2>Quanto custa deixar o <em>cliente esperando?</em></h2><p>Quem manda mensagem e espera costuma fechar com quem respondeu primeiro. Mexa nos números do seu dia.</p></div></div>
+    <div class="tit"><span class="mono">03 · Se o problema é atendimento</span><div><h2>Quanto custa deixar o <em>cliente esperando?</em></h2><p>Quem manda mensagem e espera costuma fechar com quem respondeu primeiro. Mexa nos números do seu dia.</p></div></div>
     <div class="conta recuo">
       <div class="ctl">
         <label><span>Clientes novos que chamam por dia <output id="o-cli">10</output></span><input type="range" id="r-cli" min="1" max="100" value="10"></label>
@@ -451,38 +546,6 @@ dialog .alt a{color:var(--menta);font-weight:600}
         <a class="bt" href="#teste" data-foca>Ver isso resolvido no meu negócio →</a>
         <details><summary>Como a conta é feita</summary>Clientes por dia × 30 dias × a parte que desiste pela demora (10%, 20%, 35% ou 50%, conforme o tempo de resposta) × 3 em cada 10 que fechariam × valor médio. O tempo considera 4 minutos por conversa. É uma estimativa conservadora, não uma promessa.</details>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="s" id="como">
-  <div class="casca">
-    <div class="tit"><span class="mono">02 · Como funciona</span><div><h2>Você vê funcionando <em>antes de pagar</em> qualquer coisa.</h2></div></div>
-    <div class="recuo">
-      <div class="passos">
-        <div class="passo"><span class="n">01</span><h3>Você testa</h3><p>Aqui nesta página, com o nome do seu negócio. Sem cadastro.</p><span class="quando">AGORA</span></div>
-        <div class="passo"><span class="n">02</span><h3>Recebe a sua demonstração</h3><p>Com os seus serviços, preços e horários, no seu WhatsApp. Você testa como cliente.</p><span class="quando">EM ATÉ 24H · GRÁTIS</span></div>
-        <div class="passo"><span class="n">03</span><h3>Vai para o ar</h3><p>No número do seu negócio. Eu acompanho, ajusto e te aviso se algo sair do normal.</p><span class="quando">VOCÊ DECIDE DEPOIS DE VER</span></div>
-      </div>
-      <div class="preco">
-        <div><small>Atendente no WhatsApp</small><b>a partir de R$ 800</b></div>
-        <div><small>Atendente que conhece o seu negócio a fundo</small><b>a partir de R$ 1.500</b></div>
-        <a class="bt" href="#teste" data-foca>Começar pelo teste grátis</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="s clara" id="mais">
-  <div class="casca">
-    <div class="tit"><span class="mono">03 · Além do atendimento</span><div><h2>Outros problemas que eu <em>resolvo com software.</em></h2><p>Se o seu problema não é atendimento, o caminho é o mesmo: você conta, eu mostro funcionando, você decide.</p></div></div>
-    <div class="servs recuo">
-      <div class="serv"><span class="ic"><svg aria-hidden="true"><use href="#i-agenda"/></svg></span><h3>Agenda e lembretes</h3><p>O cliente marca sozinho e recebe lembrete antes do horário. Menos falta, menos remarcação.</p><span>a partir de R$ 800</span></div>
-      <div class="serv"><span class="ic"><svg aria-hidden="true"><use href="#i-doc"/></svg></span><h3>Orçamentos em PDF</h3><p>Preencheu, saiu o documento pronto com a sua marca, em segundos.</p><span>a partir de R$ 2.500</span></div>
-      <div class="serv"><span class="ic"><svg aria-hidden="true"><use href="#i-grafico"/></svg></span><h3>Relatórios que chegam sozinhos</h3><p>O resumo do dia ou da semana no seu WhatsApp, sem abrir planilha.</p><span>a partir de R$ 500</span></div>
-      <div class="serv"><span class="ic"><svg aria-hidden="true"><use href="#i-qr"/></svg></span><h3>Controle com QR Code</h3><p>Estoque, equipamentos ou ferramentas: quem pegou, quando e o que voltou.</p><span>a partir de R$ 2.500</span></div>
-      <div class="serv"><span class="ic"><svg aria-hidden="true"><use href="#i-pagina"/></svg></span><h3>Página de vendas</h3><p>Pensada para decidir rápido, com pagamento integrado.</p><span>a partir de R$ 900</span></div>
-      <div class="serv"><span class="ic"><svg aria-hidden="true"><use href="#i-escudo"/></svg></span><h3>Sistemas vigiados 24h</h3><p>Site e sistemas monitorados: o alerta chega antes do cliente perceber.</p><span>a partir de R$ 150/mês</span></div>
     </div>
   </div>
 </section>
@@ -519,16 +582,19 @@ dialog .alt a{color:var(--menta);font-weight:600}
 
 <section class="final" id="fim">
   <div class="casca">
-    <h2>Sem tempo para testar agora?</h2>
-    <p class="intro">Deixe o seu WhatsApp e eu te mando a demonstração pronta, com o nome do seu negócio. Grátis e sem compromisso.</p>
+    <h2>Peça a sua <em>demonstração grátis.</em></h2>
+    <p class="intro">Diga o que você quer resolver. Eu monto com o nome do seu negócio e te mando no WhatsApp em até 24h. Sem compromisso.</p>
     <form class="rapido" id="rapido" novalidate>
-      <input id="r-neg" maxlength="80" placeholder="Nome do seu negócio" aria-label="Nome do seu negócio">
-      <input id="r-zap" type="tel" inputmode="tel" maxlength="20" placeholder="WhatsApp com DDD" aria-label="WhatsApp com DDD">
+      <label class="largo"><span>O que você quer resolver?</span><select id="r-serv"><option value="">Ainda não sei, quero conversar</option><optgroup label="Bots e atendimento"><option>Bot para Telegram</option><option>Bot de WhatsApp com menu</option><option>Agendamento com lembrete</option><option>Triagem de contatos</option><option>Assistente que conhece seu negócio</option></optgroup><optgroup label="Conteúdo e redes"><option>Posts diários com aprovação no celular</option><option>Roteiros que se autovalidam</option><option>Canal dark completo</option><option>Cortes e Reels a partir de vídeo longo</option><option>Radar de tendências do seu nicho</option></optgroup><optgroup label="Vendas e marketing digital"><option>Página de vendas</option><option>Funil com e-mails automáticos</option><option>Garimpo de anúncios que vendem</option><option>Métricas da campanha no celular</option><option>Produto digital do zero</option></optgroup><optgroup label="Sistemas para empresas"><option>Controle com QR Code</option><option>Agenda e reservas online</option><option>Painel administrativo sob medida</option><option>Orçamentos e PDFs automáticos</option><option>App que funciona no celular</option></optgroup><optgroup label="Automação e integrações"><option>Ferramentas conversando entre si</option><option>Relatórios que chegam sozinhos</option><option>Monitor de preços e concorrentes</option><option>Planilhas que se atualizam</option><option>Alertas fora do normal</option></optgroup><optgroup label="IA aplicada"><option>Chat com IA no seu site</option><option>Leitura de documentos e notas</option><option>Classificação de mensagens</option><option>Imagens e textos na sua identidade</option><option>Resumo diário do seu mercado</option></optgroup><optgroup label="Proteção e monitoramento"><option>Site e sistemas vigiados 24h</option><option>Backup automático</option><option>Revisão de segurança básica</option><option>Proteção contra golpes no atendimento</option></optgroup></select></label>
+      <label><span>Nome do seu negócio</span><input id="r-neg" maxlength="80" placeholder="Ex.: Clínica Vida"></label>
+      <label><span>Seu WhatsApp</span><input id="r-zap" type="tel" inputmode="tel" maxlength="20" placeholder="(71) 9 0000-0000"></label>
+      <label class="largo"><span>Quer contar mais? <i>(opcional)</i></span><textarea id="r-det" maxlength="600" rows="2" placeholder="Ex.: perco muito tempo montando orçamento no WhatsApp"></textarea></label>
       <input class="isca" id="r-isca" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="bt">Quero receber →</button>
+      <button class="bt largo">Quero a minha demonstração →</button>
+      <p class="prazo-mini largo">Pedindo nas próximas <b data-falta>--:--:--</b>, a sua chega amanhã.</p>
     </form>
     <p class="rapido-msg" id="r-msg" role="status"></p>
-    <a class="alt" href="#teste" data-foca>Ou teste agora, em 30 segundos ↑</a>
+    <a class="alt" href="#teste-cel" data-foca>Ou teste agora a atendente, em 30 segundos ↑</a>
   </div>
 </section>
 </main>
@@ -536,16 +602,16 @@ dialog .alt a{color:var(--menta);font-weight:600}
 <footer><div class="casca"><span>© 2026 Leo Magalhães · Salvador, BA</span><a href="../privacidade/">Privacidade</a><a href="https://www.instagram.com/leo.maagalhaes/">@leo.maagalhaes</a><a href="mailto:leomagalhaes.ti@gmail.com">leomagalhaes.ti@gmail.com</a></div></footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"><span class="ic"><svg aria-hidden="true"><use href="#i-sino"/></svg></span><p></p><button type="button" class="x" aria-label="Fechar aviso">×</button></div>
-<div class="fixa" id="fixa"><a class="bt" href="#teste" data-foca>Testar com o meu negócio, grátis</a></div>
+<div class="fixa" id="fixa"><a class="bt" href="#fim" data-pedir="">Pedir demonstração grátis</a></div>
 
 <dialog id="saida">
   <form method="dialog">
     <button class="x" value="fechar" aria-label="Fechar">×</button>
-    <h2>Antes de sair: veja o seu negócio atendendo sozinho.</h2>
-    <p>Digite o nome e converse com a sua atendente. Leva 30 segundos.</p>
+    <h2>Antes de sair: veja um sistema funcionando com o nome do seu negócio.</h2>
+    <p>Digite o nome e converse com a atendente dele no WhatsApp. Leva 30 segundos.</p>
     <label class="campo"><span>Nome do seu negócio</span><input id="saida-neg" maxlength="40" placeholder="Ex.: Clínica Vida"></label>
     <button class="bt" value="ir">Criar minha atendente →</button>
-    <p class="alt">Sem tempo? <a href="#fim" id="saida-zap">Receba a demonstração no WhatsApp</a></p>
+    <p class="alt">Prefere outro serviço? <a href="#fim" id="saida-zap">Peça a sua demonstração grátis</a></p>
   </form>
 </dialog>
 
@@ -584,7 +650,6 @@ function escolher(r) {
   ramo = r;
   $("ramos").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x.dataset.r === r));
   logo(r);
-  if (criada) criar();
 }
 $("ramos").addEventListener("click", e => { const b = e.target.closest("button"); if (b) escolher(b.dataset.r); });
 
@@ -604,7 +669,6 @@ $("negocio").addEventListener("input", () => {
   if (criada) return;
   const n = $("negocio").value.trim().slice(0, 40);
   mostrarNome(n); if (!ramo) logo("");
-  $("tampa-txt").textContent = n ? 'Agora escolha o ramo e toque em "Criar".' : 'Digite o nome do seu negócio e toque em "Criar".';
 });
 
 function balao(tipo, texto) {
@@ -642,8 +706,7 @@ function criar() {
   balao("sis", "Você é o cliente. Pergunte o que um cliente seu perguntaria.");
   sugestoes(SUGESTOES[ramo]);
   aviso(`Atendente de <b>${limpa(nome)}</b> ligada`);
-  $("criar").textContent = "Recriar com outro nome →";
-  $("fixa").classList.remove("on");
+  $("fixa").classList.remove("on"); $("de-novo").hidden = false;
   if (celular()) document.querySelector(".cel").scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
   else $("txt").focus({ preventScroll: true });
 }
@@ -690,7 +753,7 @@ function mostrarFecha(fechou) {
 /* lead: todos os formulários vão para o mesmo lugar e avisam o Leo no WhatsApp */
 async function enviarLead(neg, zap, isca, origem, extra) {
   const corpo = new URLSearchParams({ nome: neg, contato: zap, servico: origem, site_url: isca, ms: String(Date.now() - t0),
-    mensagem: `Quer demo grátis em 24h. Negócio: ${neg || "-"} · ramo: ${ramo || "não escolheu"}.${extra || ""}` });
+    mensagem: `Quer demo grátis em 24h de: ${origem}. Negócio: ${neg || "-"}${ramo ? " · testou como " + ramo : ""}.${extra || ""}` });
   const d = await fetch(PEDIDO_URL, { method: "POST", body: corpo }).then(r => r.json());
   if (!d.ok) throw new Error(d.msg || "erro");
 }
@@ -718,20 +781,39 @@ $("rapido").addEventListener("submit", async e => {
   if (!zapOk(zap)) { msg.textContent = "Coloque o WhatsApp com DDD."; $("r-zap").focus(); return; }
   bt.disabled = true; bt.textContent = "Enviando…";
   try {
-    await enviarLead($("r-neg").value.trim(), zap, $("r-isca").value, "Demo no WhatsApp (final do site v3)");
-    e.target.style.display = "none"; msg.textContent = "Recebido. O Leo te chama no WhatsApp com a sua demonstração."; leadFeito = true;
-  } catch (err) { msg.textContent = "Não consegui enviar. Tente de novo ou mande e-mail para leomagalhaes.ti@gmail.com."; bt.disabled = false; bt.textContent = "Quero receber →"; }
+    const det = $("r-det").value.trim();
+    await enviarLead($("r-neg").value.trim(), zap, $("r-isca").value, $("r-serv").value || "Ainda não sei (quer conversar)", det ? `\n\nO que contou: ${det}` : "");
+    e.target.style.display = "none"; msg.textContent = "Recebido. O Leo te chama no WhatsApp com a sua demonstração em até 24h."; leadFeito = true;
+  } catch (err) { msg.textContent = "Não consegui enviar. Tente de novo ou mande e-mail para leomagalhaes.ti@gmail.com."; bt.disabled = false; bt.textContent = "Quero a minha demonstração →"; }
 });
 
 /* botões que levam ao teste */
 function irAoTeste() {
-  $("teste").scrollIntoView({ behavior: calmo ? "auto" : "smooth" });
+  $("teste-cel").scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "center" });
   setTimeout(() => (criada ? $("txt") : $("negocio")).focus({ preventScroll: true }), calmo ? 0 : 500);
 }
 document.addEventListener("click", e => {
   const a = e.target.closest("[data-foca]"); if (!a) return;
   e.preventDefault(); $("toast").classList.remove("on"); irAoTeste();
 });
+
+/* pedir demonstração de um serviço: preenche o formulário do final */
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-pedir]"); if (!a) return;
+  e.preventDefault(); $("toast").classList.remove("on");
+  const v = a.dataset.pedir, sel = $("r-serv");
+  if (v && [...sel.options].some(o => o.value === v)) sel.value = v;
+  $("fim").scrollIntoView({ behavior: calmo ? "auto" : "smooth" });
+  setTimeout(() => $("r-neg").focus({ preventScroll: true }), calmo ? 0 : 500);
+});
+/* abas de serviços */
+const abas = document.querySelectorAll(".abas button");
+abas.forEach(b => b.addEventListener("click", () => {
+  abas.forEach(x => x.setAttribute("aria-selected", x === b));
+  document.querySelectorAll(".painel").forEach(p => p.hidden = p.dataset.a !== b.dataset.a);
+}));
+/* depois de criar: testar de novo com outro nome ou ramo */
+$("de-novo").addEventListener("click", () => { $("tampa").classList.remove("some"); $("negocio").focus(); });
 
 /* faixa de nichos (tocar escolhe o ramo) */
 const NICHOS = [["salao", "Salões e estética"], ["clinica", "Clínicas e consultórios"], ["restaurante", "Restaurantes e delivery"],
@@ -774,14 +856,14 @@ new IntersectionObserver(([en]) => $("fixa").classList.toggle("on", !en.isInters
 /* avisos de persuasão: só fatos e contas da própria página, no máximo 3, param quando a pessoa age */
 let avisosVistos = 0;
 const AVISOS = [
-  () => `Enquanto você lê, o cliente que te chamou no WhatsApp <b>pode estar falando com o concorrente</b>. <a href="#teste" data-foca>Ver a atendente responder →</a>`,
+  () => `Enquanto você lê, o cliente que te chamou no WhatsApp <b>pode estar falando com o concorrente</b>. <a href="#teste-cel" data-foca>Ver a atendente responder →</a>`,
   () => `Pela conta desta página, demorar pode custar <b>${$("o-mes").textContent} por mês</b>. <a href="#conta">Refazer com os meus números →</a>`,
-  () => `A demonstração é <b>grátis</b> e com o nome do seu negócio. Pedindo hoje, chega <b>amanhã</b>. <a href="#fim">Quero a minha →</a>`
+  () => `A demonstração é <b>grátis</b>, com o nome do seu negócio, para qualquer um dos 34 serviços. Pedindo hoje, chega <b>amanhã</b>. <a href="#fim" data-pedir="">Quero a minha →</a>`
 ];
 function proximoAviso() {
   if (leadFeito || avisosVistos >= AVISOS.length || document.hidden || $("fecha").classList.contains("on") || $("saida").open) return;
   const t = $("toast"); t.querySelector("p").innerHTML = AVISOS[avisosVistos++]();
-  t.querySelectorAll('a[href^="#"]:not([data-foca])').forEach(a => a.addEventListener("click", () => t.classList.remove("on")));
+  t.querySelectorAll('a[href^="#"]:not([data-foca]):not([data-pedir])').forEach(a => a.addEventListener("click", () => t.classList.remove("on")));
   t.classList.add("on"); setTimeout(() => t.classList.remove("on"), 9000);
 }
 $("toast").querySelector(".x").addEventListener("click", () => { $("toast").classList.remove("on"); avisosVistos = AVISOS.length; });
@@ -796,7 +878,7 @@ document.addEventListener("mouseout", e => {
 $("saida").addEventListener("close", () => {
   if ($("saida").returnValue !== "ir") return;
   const n = $("saida-neg").value.trim(); if (n) { $("negocio").value = n; mostrarNome(n); }
-  $("teste").scrollIntoView({ behavior: "auto" });
+  $("teste-cel").scrollIntoView({ behavior: "auto", block: "center" });
   n ? criar() : $("negocio").focus();
 });
 $("saida-zap").addEventListener("click", e => {
